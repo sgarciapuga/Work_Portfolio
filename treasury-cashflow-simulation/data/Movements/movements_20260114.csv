@@ -1,0 +1,25 @@
+date,transaction_id,account_number,currency,type,category,amount,description
+2026-01-14,TX20260114000001,1000000001,USD,Deposit,Transactions,10452.17,Deposit movement
+2026-01-14,TX20260114000002,1000000001,USD,Withdraw,Transactions,-5048.28,Withdraw movement
+2026-01-14,TX20260114000003,1000000002,EUR,Deposit,Transactions,34718.14,Deposit movement
+2026-01-14,TX20260114000004,1000000002,EUR,Withdraw,Transactions,-40797.89,Withdraw movement
+2026-01-14,TX20260114000005,1000000003,GBP,Deposit,Transactions,1395.63,Deposit movement
+2026-01-14,TX20260114000006,1000000003,GBP,Withdraw,Transactions,-12178.53,Withdraw movement
+2026-01-14,TX20260114000007,2000000001,USD,Deposit,Transactions,39396.96,Deposit movement
+2026-01-14,TX20260114000008,2000000001,USD,Withdraw,Transactions,-23086.76,Withdraw movement
+2026-01-14,TX20260114000009,2000000002,EUR,Deposit,Transactions,29343.83,Deposit movement
+2026-01-14,TX20260114000010,2000000002,EUR,Withdraw,Transactions,-30138.23,Withdraw movement
+2026-01-14,TX20260114000011,2000000003,GBP,Deposit,Transactions,27279.25,Deposit movement
+2026-01-14,TX20260114000012,2000000003,GBP,Withdraw,Transactions,-41572.92,Withdraw movement
+2026-01-14,TX20260114000013,3000000001,USD,Deposit,Transactions,43313.25,Deposit movement
+2026-01-14,TX20260114000014,3000000001,USD,Withdraw,Transactions,-15893.96,Withdraw movement
+2026-01-14,TX20260114000015,3000000002,EUR,Deposit,Transactions,30915.38,Deposit movement
+2026-01-14,TX20260114000016,3000000002,EUR,Withdraw,Transactions,-46800.59,Withdraw movement
+2026-01-14,TX20260114000017,3000000003,GBP,Deposit,Transactions,47338.56,Deposit movement
+2026-01-14,TX20260114000018,3000000003,GBP,Withdraw,Transactions,-47882.28,Withdraw movement
+2026-01-14,TX20260114000019,4000000001,USD,Deposit,Transactions,30241.83,Deposit movement
+2026-01-14,TX20260114000020,4000000001,USD,Withdraw,Transactions,-43774.34,Withdraw movement
+2026-01-14,TX20260114000021,4000000002,EUR,Deposit,Transactions,5208.29,Deposit movement
+2026-01-14,TX20260114000022,4000000002,EUR,Withdraw,Transactions,-8132.32,Withdraw movement
+2026-01-14,TX20260114000023,4000000003,GBP,Deposit,Transactions,24047.82,Deposit movement
+2026-01-14,TX20260114000024,4000000003,GBP,Withdraw,Transactions,-44396.14,Withdraw movement

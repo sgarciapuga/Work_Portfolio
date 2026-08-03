@@ -1,0 +1,12 @@
+﻿Field,Description
+bank_name,"Name of the bank (HSBC, Citi…)"
+account_number,8–12 digit synthetic number
+account_name,Operational / Payroll / Collections / Liquidity
+currency,EUR / GBP / USD / CHF
+balance,Random realistic balance
+available_balance,Balance minus holds
+last_updated,Today’s date
+country,UK / EU / US
+iban,"Synthetic IBAN (valid format, fake number)"
+swift,Valid SWIFT format (fake code)
+status,Active / Closed / Frozen
