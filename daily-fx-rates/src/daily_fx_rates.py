@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import pandas as pd
 import requests
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, Date
 
 # Load environment variables from local .env file
 load_dotenv()
@@ -133,6 +133,9 @@ def update_fx_history():
         df_final.groupby("currency")["fx_to_usd"].ffill().bfill()
     )
 
+    # Ensure date column is formatted as a datetime object
+    df_final["date"] = pd.to_datetime(df_final["date"]).dt.date
+
     # ---------------------------------------------------------
     # Save to CSV
     # ---------------------------------------------------------
@@ -142,7 +145,7 @@ def update_fx_history():
     # Save to Neon PostgreSQL Database
     # ---------------------------------------------------------
     with engine.begin() as conn:
-        df_final.to_sql("fx_rates", conn, if_exists="replace", index=False)
+        df_final.to_sql("fx_rates", conn, if_exists="replace", index=False, dtype={"date": Date()})
 
     print(
         f"FX history updated successfully. Saved {len(df_final)} rows to Neon DB and local CSV."

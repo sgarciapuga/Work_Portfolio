@@ -19,3 +19,7 @@ relationship 353979b6-277b-c75f-eef3-54c66b0bf8f5
 	fromColumn: movements.date
 	toColumn: dim_date.date
 
+relationship 32f7df4d-509e-5cef-2dae-d148ad3f5376
+	fromColumn: 'public fx_rates'.date
+	toColumn: dim_date.date
+
