@@ -65,7 +65,9 @@ def update_fx_history():
     end_date = datetime.today()
 
     if start_date.date() > end_date.date():
-        print("FX data is already up to date.")
+        print("FX data is already up to date. Ensuring local CSV backup is written...")
+        # Write existing combined history to CSV so the file always exists
+        df_all.to_csv(csv_path, index=False)
         return
 
     start_str = start_date.strftime("%Y-%m-%d")
