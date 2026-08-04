@@ -1,0 +1,74 @@
+table balances
+	lineageTag: e7a5e6db-7661-4d73-89f6-efb86b224a30
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a4351652-1b01-4268-b471-ac413dbd8c1d
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column account_number
+		dataType: string
+		lineageTag: 0df957f5-fc2a-4e95-a335-1abaa2d4481a
+		summarizeBy: none
+		sourceColumn: account_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: ca4fa60c-b439-4326-bbcc-e72581b5a11b
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column starting_balance
+		dataType: double
+		lineageTag: d3650f5b-4e59-4dc5-a35b-3abdd69b0cb1
+		summarizeBy: sum
+		sourceColumn: starting_balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_movements
+		dataType: double
+		lineageTag: c03391e4-db10-4c22-88ed-cb20178738fc
+		summarizeBy: sum
+		sourceColumn: total_movements
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column closing_balance
+		dataType: double
+		lineageTag: d0fe2de2-c0c8-4d46-8982-9723294637a3
+		summarizeBy: sum
+		sourceColumn: closing_balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition balances = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=TreasurySQLite", [HierarchicalNavigation=true]),
+				    balances_Table = Source{[Name="balances",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(balances_Table,{{"date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

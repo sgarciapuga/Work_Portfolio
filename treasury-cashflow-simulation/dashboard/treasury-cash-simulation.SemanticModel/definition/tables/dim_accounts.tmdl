@@ -1,0 +1,48 @@
+table dim_accounts
+	lineageTag: 58623372-5cd6-491b-9542-987db219a17d
+
+	column bank_id
+		dataType: string
+		lineageTag: 84855a37-4eca-4d3b-9214-c038c130802b
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: 821f5648-5399-4ed3-9df2-b744b23ca1e7
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_number
+		dataType: string
+		lineageTag: 40f4f9e5-1ee6-4936-a8b8-9825e2679c16
+		summarizeBy: none
+		sourceColumn: account_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: eecf7270-0404-46d3-97ba-4e340d2657dd
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_accounts = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=TreasurySQLite", [HierarchicalNavigation=true]),
+				    dim_accounts_Table = Source{[Name="dim_accounts",Kind="Table"]}[Data]
+				in
+				    dim_accounts_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

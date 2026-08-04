@@ -1,0 +1,131 @@
+table dim_date
+	lineageTag: 7f3f1283-00ae-43cf-8b0b-69bd899a068e
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0b72b4f2-fcb6-4da8-98db-ddfdc71d112d
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: double
+		lineageTag: 20b051ba-6ceb-4677-8089-d1cadb5dfe53
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column month
+		dataType: double
+		lineageTag: 211728cb-94d6-43f9-955b-3dbd3dce02eb
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column day
+		dataType: double
+		lineageTag: 2bd3df74-deed-49f3-b16c-e00726acd425
+		summarizeBy: sum
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column year_month
+		dataType: string
+		lineageTag: c429dc5f-eac3-40c0-80da-b03424c80f24
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: bbf31b55-79d2-4df5-ba4c-4012d8b5cb7d
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: double
+		lineageTag: 9cb07182-be03-477f-ac6c-a9dc1f232d64
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_month_end
+		dataType: double
+		lineageTag: 3b8548bc-177c-4a4c-8bdd-574f26de598b
+		summarizeBy: sum
+		sourceColumn: is_month_end
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_month_start
+		dataType: double
+		lineageTag: cc540533-b986-42f2-a401-b4840c235c77
+		summarizeBy: sum
+		sourceColumn: is_month_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column week_num
+		dataType: double
+		lineageTag: 7c54b66b-9a0c-4238-91d2-afef71b935fc
+		summarizeBy: sum
+		sourceColumn: week_num
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column weekday_name
+		dataType: string
+		lineageTag: 6900b344-6831-4462-adaa-ddf046022a5f
+		summarizeBy: none
+		sourceColumn: weekday_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=TreasurySQLite", [HierarchicalNavigation=true]),
+				    dim_date_Table = Source{[Name="dim_date",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(dim_date_Table,{{"date", type date}})
+				in
+				    #"Changed Type"
+
+	calendar Normal
+		lineageTag: 2fdd0f7e-03dd-4d02-9845-4e4769a7d115
+
+		calendarColumnGroup = year
+			primaryColumn: year
+
+		calendarColumnGroup = date
+			primaryColumn: date
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,27 @@
+date,transaction_id,account_number,currency,type,category,amount,description
+2026-04-09,TX20260409000001,1000000001,USD,Deposit,Transactions,8200.88,Deposit movement
+2026-04-09,TX20260409000002,1000000001,USD,Withdraw,Transactions,-8374.1,Withdraw movement
+2026-04-09,TX20260409000003,1000000002,EUR,Charges,Fees,-919.01,Bank charges
+2026-04-09,TX20260409000004,1000000002,EUR,Deposit,Transactions,48890.55,Deposit movement
+2026-04-09,TX20260409000005,1000000002,EUR,Withdraw,Transactions,-43735.58,Withdraw movement
+2026-04-09,TX20260409000006,1000000003,GBP,Deposit,Transactions,18083.52,Deposit movement
+2026-04-09,TX20260409000007,1000000003,GBP,Withdraw,Transactions,-3871.07,Withdraw movement
+2026-04-09,TX20260409000008,2000000001,USD,Charges,Fees,-432.41,Bank charges
+2026-04-09,TX20260409000009,2000000001,USD,Deposit,Transactions,24573.76,Deposit movement
+2026-04-09,TX20260409000010,2000000001,USD,Withdraw,Transactions,-25181.4,Withdraw movement
+2026-04-09,TX20260409000011,2000000002,EUR,Deposit,Transactions,19375.28,Deposit movement
+2026-04-09,TX20260409000012,2000000002,EUR,Withdraw,Transactions,-15127.3,Withdraw movement
+2026-04-09,TX20260409000013,2000000003,GBP,Deposit,Transactions,40536.38,Deposit movement
+2026-04-09,TX20260409000014,2000000003,GBP,Withdraw,Transactions,-29884.03,Withdraw movement
+2026-04-09,TX20260409000015,3000000001,USD,Deposit,Transactions,18534.98,Deposit movement
+2026-04-09,TX20260409000016,3000000001,USD,Withdraw,Transactions,-39078.41,Withdraw movement
+2026-04-09,TX20260409000017,3000000002,EUR,Deposit,Transactions,16836.81,Deposit movement
+2026-04-09,TX20260409000018,3000000002,EUR,Withdraw,Transactions,-32614.44,Withdraw movement
+2026-04-09,TX20260409000019,3000000003,GBP,Deposit,Transactions,11921.13,Deposit movement
+2026-04-09,TX20260409000020,3000000003,GBP,Withdraw,Transactions,-38628.36,Withdraw movement
+2026-04-09,TX20260409000021,4000000001,USD,Deposit,Transactions,20698.34,Deposit movement
+2026-04-09,TX20260409000022,4000000001,USD,Withdraw,Transactions,-22945.49,Withdraw movement
+2026-04-09,TX20260409000023,4000000002,EUR,Deposit,Transactions,20671.9,Deposit movement
+2026-04-09,TX20260409000024,4000000002,EUR,Withdraw,Transactions,-29564.34,Withdraw movement
+2026-04-09,TX20260409000025,4000000003,GBP,Deposit,Transactions,32533.5,Deposit movement
+2026-04-09,TX20260409000026,4000000003,GBP,Withdraw,Transactions,-47407.08,Withdraw movement

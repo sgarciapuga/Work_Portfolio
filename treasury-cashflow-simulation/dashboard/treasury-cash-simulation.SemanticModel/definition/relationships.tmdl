@@ -1,0 +1,21 @@
+relationship AutoDetected_ffbd7dac-d8f6-4914-a8de-302ac27b82b3
+	fromColumn: movements.type
+	toColumn: dim_movement_types.Type
+
+relationship b6f16d55-1b30-fd01-6be3-e260ff9933c6
+	crossFilteringBehavior: bothDirections
+	fromColumn: movements.account_number
+	toColumn: dim_accounts.account_number
+
+relationship addbe33d-fbe7-2584-80d4-059d99c81f4c
+	fromColumn: balances.account_number
+	toColumn: dim_accounts.account_number
+
+relationship ca821360-a4c4-c71f-ca8a-ef63357b5703
+	fromColumn: balances.date
+	toColumn: dim_date.date
+
+relationship 353979b6-277b-c75f-eef3-54c66b0bf8f5
+	fromColumn: movements.date
+	toColumn: dim_date.date
+

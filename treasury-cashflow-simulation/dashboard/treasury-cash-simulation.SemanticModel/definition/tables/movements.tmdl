@@ -1,0 +1,86 @@
+table movements
+	lineageTag: 9f714543-ecc9-433d-90ef-5615eaab6057
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8252d47b-4401-47fb-a093-734cb5847a65
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column transaction_id
+		dataType: string
+		lineageTag: 64b7e95f-50a2-4756-933d-d69e4a12f091
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_number
+		dataType: string
+		lineageTag: 8014af44-00db-4161-9ed2-52bb0d485ed2
+		summarizeBy: none
+		sourceColumn: account_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 9be2fe01-2957-4d4c-aece-381bacf350ef
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 9efc3265-4af2-4f35-a013-01fe04892585
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 92ead91a-bbab-4686-a069-7c10bc0f4658
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 1a339678-7569-4d42-afb4-7df911ebc7dc
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column description
+		dataType: string
+		lineageTag: 1493d1c1-ef48-4e57-85e9-f514a39770a9
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition movements = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=TreasurySQLite", [HierarchicalNavigation=true]),
+				    movements_Table = Source{[Name="movements",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(movements_Table,{{"date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

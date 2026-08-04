@@ -1,0 +1,112 @@
+table Measures_Table
+	lineageTag: 1f1cb31f-8341-4134-81c0-d0af2977bc44
+
+	measure 'Total Liquidity' = SUM(balances[closing_balance])
+		lineageTag: b618b760-2684-4b61-b284-48620ec508fd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Daily Net Movements' = SUM(movements[amount])
+		lineageTag: c715c84e-2366-4c94-b357-ef9ad8112150
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTD Movements' =
+			
+			CALCULATE(
+			    [Daily Net Movements],
+			    DATESMTD(dim_date[date])
+			)
+		lineageTag: 2e489c7e-310f-4d86-9631-278a0ba323b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Month End Balance' =
+			
+			CALCULATE(
+			    [Total Liquidity],
+			    dim_date[is_month_end] = 1
+			)
+		lineageTag: 1bf26727-312c-4390-a3b7-a4ff707e0f6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Highest Balance' = MAX(balances[closing_balance])
+		lineageTag: 9f5328fd-45bb-47d7-8d8d-f2684d2a6cc7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lowest Balance' = MIN(balances[closing_balance])
+		lineageTag: e2f98a00-a198-4c2d-adc2-2cb8f339f34c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Number of Accounts' = DISTINCTCOUNT(dim_accounts[account_number])
+		formatString: 0
+		lineageTag: b00b72f5-0693-4204-b3f7-7fac3758a47b
+
+	measure 'Number of Sweeps' =
+			
+			CALCULATE(
+			    COUNTROWS(movements),
+			    movements[type] = "Internal Sweep"
+			)
+		formatString: 0
+		lineageTag: 7148cea8-2a8d-4f2e-b095-3e3d6ec3e1ed
+
+	measure 'Open Balance' = ```
+			
+			CALCULATE(
+			    MAX(balances[starting_balance])
+			)
+			
+			```
+		lineageTag: 530918d7-415a-4107-9589-4d015c698626
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movements No Sweep' =
+			
+			CALCULATE(
+			    SUM(movements[amount]),
+			    movements[type] <> "Internal Sweep"
+			)
+		lineageTag: f60b6523-f1ea-41d7-bde5-b7527dd2edf4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Closing Balance No Sweeps' = [Open Balance] + [Movements No Sweep]
+		lineageTag: e25e74d1-066c-45a3-bc3b-9b23cd1c3135
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Sweep =
+			
+			CALCULATE(
+			    SUM(movements[amount]),
+			    movements[type] = "Internal Sweep"
+			)
+		lineageTag: 7e6ffccb-c192-4107-ace8-0bc341abb19f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		lineageTag: 3c9c8070-90c7-4227-b27c-28ba3787f72a
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measures_Table = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

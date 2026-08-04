@@ -1,0 +1,307 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "75f9c0fd84498201b51c",
+  "position": {
+    "x": 886.15384615384619,
+    "y": 40.496277915632753,
+    "z": 1,
+    "height": 625.31017369727044,
+    "width": 1025.5086848635235,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "dim_date.date",
+              "nativeQueryRef": "date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "movements"
+                    }
+                  },
+                  "Property": "account_number"
+                }
+              },
+              "queryRef": "movements.account_number",
+              "nativeQueryRef": "account_number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_accounts"
+                    }
+                  },
+                  "Property": "currency"
+                }
+              },
+              "queryRef": "dim_accounts.currency",
+              "nativeQueryRef": "currency"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Open Balance"
+                }
+              },
+              "queryRef": "Measures_Table.Open Balance",
+              "nativeQueryRef": "Open Balance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Movements No Sweep"
+                }
+              },
+              "queryRef": "Measures_Table.Movements No Sweep",
+              "nativeQueryRef": "Movements No Sweep"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Closing Balance No Sweeps"
+                }
+              },
+              "queryRef": "Measures_Table.Closing Balance No Sweeps",
+              "nativeQueryRef": "Closing Balance No Sweeps"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Sweep"
+                }
+              },
+              "queryRef": "Measures_Table.Sweep",
+              "nativeQueryRef": "Sweep"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Total Liquidity"
+                }
+              },
+              "queryRef": "Measures_Table.Total Liquidity",
+              "nativeQueryRef": "Total Liquidity"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_date"
+                  }
+                },
+                "Property": "date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "69f5aa59e478a3c18206",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f19713ba608c1d625be1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "movements"
+              }
+            },
+            "Property": "account_number"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "aae7555698ac24ea4c28",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Open Balance"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "54095350de8872abdce1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Movements No Sweep"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fe7c41e653b249e1e10a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Closing Balance No Sweeps"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2ff6a16a8be1988235b0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Total Liquidity"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "411b66bd4c30303da0e7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Sweep"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m1",
+              "Entity": "Measures_Table",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "m1"
+                            }
+                          },
+                          "Property": "Sweep"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dd482b667d8a3ea640cc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_accounts"
+              }
+            },
+            "Property": "currency"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

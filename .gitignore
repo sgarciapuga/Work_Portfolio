@@ -1,0 +1,20 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Exclude environment secrets
+.env
+.env.*
+.Renviron
+
+# Python
+__pycache__/
+*.pyc
+
+# RStudio & R Markdown outputs
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*_files/
+*_cache/
+*.html

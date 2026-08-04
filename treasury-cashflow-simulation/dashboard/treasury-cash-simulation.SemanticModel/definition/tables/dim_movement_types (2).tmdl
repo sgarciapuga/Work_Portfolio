@@ -1,0 +1,39 @@
+table 'dim_movement_types (2)'
+	lineageTag: bedea386-1c22-4318-becd-2543a1630e00
+
+	column Name
+		dataType: string
+		lineageTag: 39c1ae72-beff-4970-a77a-bbe5dcb2653c
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 8655dd44-8ce2-4d2f-90d4-9e316e7e1871
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kind
+		dataType: string
+		lineageTag: f063ea82-1346-4b88-b2e4-e0cde1463c64
+		summarizeBy: none
+		sourceColumn: Kind
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dim_movement_types (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Odbc.DataSource("dsn=TreasurySQLite", [HierarchicalNavigation=true])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
