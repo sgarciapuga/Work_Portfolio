@@ -18,3 +18,10 @@ __pycache__/
 *_files/
 *_cache/
 *.html
+
+# Power BI Project (.pbip) ignore rules
+*.tmp
+*.log
+*.pbi/cache.abf
+*.pbi/localSettings.json
+*.pbi/userSettings.json
