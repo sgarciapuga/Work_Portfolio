@@ -6,6 +6,10 @@ on:
     - cron: '0 18 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
+#give GitHub Actions permission to commit and push
+permissions:
+  contents: write
+
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
