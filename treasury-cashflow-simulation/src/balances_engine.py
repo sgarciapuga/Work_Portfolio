@@ -1,4 +1,4 @@
-import pandas as pd
+﻿import pandas as pd
 from utils.db import get_connection
 
 def load_latest_balances():

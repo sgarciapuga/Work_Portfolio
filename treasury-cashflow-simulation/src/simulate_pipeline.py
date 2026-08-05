@@ -1,4 +1,4 @@
-import os
+﻿import os
 import pandas as pd
 import random
 from datetime import datetime, timedelta
@@ -36,7 +36,7 @@ def simulate_pipeline():
             round(random.uniform(100000, 500000), 2)
             for _ in range(len(accounts_df))
         ]
-        logger.info(f"Database empty → full backfill from {start_date}")
+        logger.info(f"Database empty â†’ full backfill from {start_date}")
     else:
         next_date = datetime.strptime(last_date, "%Y-%m-%d") + timedelta(days=1)
         start_date = next_date.strftime("%Y-%m-%d")

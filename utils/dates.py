@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+﻿from datetime import datetime, timedelta
 
 def is_month_end(date):
     return (date + timedelta(days=1)).month != date.month

@@ -1,16 +1,20 @@
-import os
+﻿import os
 
-def project_root():
-    return os.getcwd()
+def get_project_root():
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-def data_path(project_name):
-    return os.path.join(project_root(), project_name, "data")
-
-def balances_path(project_name):
-    return os.path.join(data_path(project_name), "Balances")
-
-def movements_path(project_name):
-    return os.path.join(data_path(project_name), "Movements")
+def get_data_path():
+    repo = get_project_root()
+    pd = os.path.join(repo, "portfolio-data")
+    if os.path.isdir(pd):
+        return pd
+    return os.path.join(repo, "data")
 
 def db_path():
-    return os.path.join(project_root(), "portfolio-data", "treasury.db")
+    return os.path.join(get_data_path(), "treasury.db")
+
+def balances_path():
+    return os.path.join(get_data_path(), "balances.csv")
+
+def movements_path():
+    return os.path.join(get_data_path(), "movements.csv")

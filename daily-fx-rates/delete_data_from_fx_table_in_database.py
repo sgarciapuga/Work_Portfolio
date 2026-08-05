@@ -1,4 +1,4 @@
-import sqlite3
+﻿import sqlite3
 
 db_path = "../portfolio-data/treasury.db"
 conn = sqlite3.connect(db_path)
