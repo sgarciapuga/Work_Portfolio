@@ -20,6 +20,22 @@ relationship 353979b6-277b-c75f-eef3-54c66b0bf8f5
 	toColumn: dim_date.date
 
 relationship 32f7df4d-509e-5cef-2dae-d148ad3f5376
-	fromColumn: 'public fx_rates'.date
+	fromColumn: fx_rates.date
 	toColumn: dim_date.date
+
+relationship AutoDetected_5faa647f-48a8-475f-b113-20fa884ef434
+	fromColumn: balances.currency
+	toColumn: dim_currencies.currency_code
+
+relationship AutoDetected_2a0f7812-2a28-4957-9a0e-4d281cce07bc
+	fromColumn: movements.currency
+	toColumn: dim_currencies.currency_code
+
+relationship AutoDetected_6ab9113f-7e08-4376-95f5-3cee659ec080
+	fromColumn: fx_rates.currency
+	toColumn: dim_currencies.currency_code
+
+relationship AutoDetected_8b619d08-b845-4517-a070-2a207904ffb6
+	fromColumn: dim_accounts.bank_id
+	toColumn: dim_banks.bank_id
 

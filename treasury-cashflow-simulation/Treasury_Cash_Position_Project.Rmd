@@ -59,28 +59,75 @@ treasury-cashflow-simulation/
 
 
 
-```{python}
-import os
-import sys
-
-project_root = os.environ["PROJECT_ROOT"]
-sys.path.append(project_root)
-
-from utils.paths import get_db_path
-
-print("Project root:", project_root)
-print("DB path:", get_db_path())
-print("Exists:", os.path.exists(get_db_path()))
-
-```
 
 ---
 
 # Python Simulation Pipeline
 
+## Load Python modules
+
+```{python}
+import sys
+import os
+
+# Get project root from R
+project_root = os.environ["PROJECT_ROOT"]
+
+# Add your src folder to Python path
+src_path = os.path.join(project_root, "treasury-cashflow-simulation", "src")
+sys.path.append(src_path)
+
+print("Python path configured:")
+print(src_path)
+```
+
+## Run the simulation pipeline
+```{python}
+from simulate_pipeline import simulate_pipeline
+
+print("Starting simulation...")
+simulate_pipeline()
+print("Simulation complete.")
+```
+
+## Check output folders
+```{Python}
+from paths import get_balances_path, get_movements_path
+
+print("Balances stored in:", get_balances_path())
+print("Movements stored in:", get_movements_path())
+```
+
+## Preview latest balances
+```{python}
+from config import get_connection
+import pandas as pd
+
+conn = get_connection()
+
+df = pd.read_sql("SELECT * FROM balances ORDER BY date DESC LIMIT 10", conn)
+conn.close()
+
+df
+```
+
+## Preview latest movements
+
+```{python}
+conn = get_connection()
+
+df = pd.read_sql("SELECT * FROM movements ORDER BY date DESC LIMIT 10", conn)
+conn.close()
+
+df
+```
+
+
+
 ```{python}
 import pandas as pd
 import random
+import sys
 import os
 import sqlite3
 from datetime import datetime, timedelta
@@ -92,6 +139,7 @@ from datetime import datetime, timedelta
 # ---------------------------------------------------------
 
 project_root = os.environ["PROJECT_ROOT"]
+sys.path.append(project_root)
 
 # ---------------------------------------------------------
 # Database connection

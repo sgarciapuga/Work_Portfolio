@@ -1,56 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "77587f504731beb0c5b2",
+  "name": "e5e02bf36296bd08d813",
   "position": {
-    "x": 22.293777718048648,
-    "y": 16.720333288536487,
-    "z": 0,
-    "height": 353.91372127402229,
-    "width": 1873.6062357210051,
-    "tabOrder": 0
+    "x": 1476.9123149671059,
+    "y": 30.315750925164476,
+    "z": 8000,
+    "height": 114.94736842105263,
+    "width": 180,
+    "tabOrder": 8000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_accounts"
-                    }
-                  },
-                  "Property": "bank_name"
-                }
-              },
-              "queryRef": "dim_accounts.bank_name",
-              "nativeQueryRef": "bank_name",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_accounts"
-                    }
-                  },
-                  "Property": "currency"
-                }
-              },
-              "queryRef": "dim_accounts.currency",
-              "nativeQueryRef": "currency"
-            }
-          ]
-        },
-        "Y": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -60,11 +23,12 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Movements"
+                  "Property": "Closing Balance (In Currency)"
                 }
               },
-              "queryRef": "Measures_Table.Daily Net Movements",
-              "nativeQueryRef": "Daily Net Movements"
+              "queryRef": "Measures_Table.Closing Balance (In Currency)",
+              "nativeQueryRef": "EUR",
+              "displayName": "EUR"
             }
           ]
         }
@@ -79,28 +43,75 @@
                     "Entity": "Measures_Table"
                   }
                 },
-                "Property": "Movements"
+                "Property": "Closing Balance (In Currency)"
               }
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
+    },
+    "objects": {
+      "label": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'aboveValue'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Closing Balance (In Currency)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "63e68ecd744e7b13e009",
+        "name": "32d0ba207638db0012b6",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_movement_types"
+                "Entity": "dim_currencies"
               }
             },
-            "Property": "Type"
+            "Property": "currency_code"
           }
         },
         "type": "Categorical",
@@ -109,7 +120,7 @@
           "From": [
             {
               "Name": "d",
-              "Entity": "dim_movement_types",
+              "Entity": "dim_currencies",
               "Type": 0
             }
           ],
@@ -125,7 +136,7 @@
                             "Source": "d"
                           }
                         },
-                        "Property": "Type"
+                        "Property": "currency_code"
                       }
                     }
                   ],
@@ -133,7 +144,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Internal Sweep'"
+                          "Value": "'EUR'"
                         }
                       }
                     ]
@@ -144,6 +155,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "4824f7d08ee1964033a0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Closing Balance (In Currency)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

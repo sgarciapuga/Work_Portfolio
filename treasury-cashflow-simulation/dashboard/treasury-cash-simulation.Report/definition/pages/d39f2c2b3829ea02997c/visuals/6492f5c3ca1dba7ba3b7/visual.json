@@ -4,10 +4,10 @@
   "position": {
     "x": 10,
     "y": 775,
-    "z": 2,
+    "z": 1000,
     "height": 236,
     "width": 834,
-    "tabOrder": 2
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "advancedSlicerVisual",
@@ -83,23 +83,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "16bd0e3ad28a3dbbb130",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_accounts"
-              }
-            },
-            "Property": "account_number"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

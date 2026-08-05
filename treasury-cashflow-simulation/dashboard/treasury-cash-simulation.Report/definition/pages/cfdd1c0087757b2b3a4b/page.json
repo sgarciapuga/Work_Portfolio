@@ -1,8 +1,20 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "cfdd1c0087757b2b3a4b",
-  "displayName": "Page 1",
+  "displayName": "Dashboard",
   "displayOption": "FitToPage",
   "height": 1080,
-  "width": 1920
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "1bae43686706b0e36d02",
+      "target": "9540390a1a09310770ae",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1bae43686706b0e36d02",
+      "target": "94edda087d4cd4b37157",
+      "type": "NoFilter"
+    }
+  ]
 }

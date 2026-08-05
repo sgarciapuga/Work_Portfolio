@@ -39,7 +39,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "public fx_rates"
+                      "Entity": "fx_rates"
                     }
                   },
                   "Property": "currency"
@@ -175,7 +175,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "public fx_rates"
+                "Entity": "fx_rates"
               }
             },
             "Property": "currency"
@@ -187,7 +187,7 @@
           "From": [
             {
               "Name": "p",
-              "Entity": "public fx_rates",
+              "Entity": "fx_rates",
               "Type": 0
             }
           ],
@@ -240,34 +240,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "d7bf10207ba23a84b181",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "5c3a34c66c3c4ba3b2bb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "FX Rate"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

@@ -1,0 +1,5 @@
+project:
+  type: website
+
+execute:
+  python: "C:/Users/44784/miniconda3/envs/env_1/python.exe"

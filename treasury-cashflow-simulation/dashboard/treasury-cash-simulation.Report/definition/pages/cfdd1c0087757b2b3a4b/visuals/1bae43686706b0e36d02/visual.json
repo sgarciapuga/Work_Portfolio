@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "742bad7838045a88a024",
+  "name": "1bae43686706b0e36d02",
   "position": {
-    "x": 10,
-    "y": 0,
-    "z": 0,
-    "height": 280,
-    "width": 280,
-    "tabOrder": 0
+    "x": 12.631578947368421,
+    "y": 79.578947368421055,
+    "z": 6000,
+    "height": 120,
+    "width": 280.42105263157896,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "listSlicer",
@@ -23,11 +23,11 @@
                       "Entity": "dim_date"
                     }
                   },
-                  "Property": "date"
+                  "Property": "Date (Latest)"
                 }
               },
-              "queryRef": "dim_date.date",
-              "nativeQueryRef": "date",
+              "queryRef": "dim_date.Date (Latest)",
+              "nativeQueryRef": "Date (Latest)",
               "active": true
             }
           ]
@@ -43,7 +43,7 @@
                     "Entity": "dim_date"
                   }
                 },
-                "Property": "date"
+                "Property": "Date (Latest)"
               }
             },
             "direction": "Descending"
@@ -77,7 +77,7 @@
                                   "Source": "d"
                                 }
                               },
-                              "Property": "date"
+                              "Property": "Date (Latest)"
                             }
                           }
                         ],
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "datetime'2026-08-01T00:00:00'"
+                                "Value": "'Latests Date'"
                               }
                             }
                           ]
@@ -98,6 +98,79 @@
             }
           }
         }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "data": [
+        {
+          "properties": {}
+        }
+      ],
+      "overFlow": [
+        {
+          "properties": {
+            "overFlowStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Select Date'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -105,7 +178,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "8e4ef47b37040ebc8765",
+        "name": "74e213ef8e1b43183022",
         "field": {
           "Column": {
             "Expression": {
@@ -113,7 +186,7 @@
                 "Entity": "dim_date"
               }
             },
-            "Property": "date"
+            "Property": "Date (Latest)"
           }
         },
         "type": "Categorical"

@@ -1,0 +1,609 @@
+│   .env
+│   .gitattributes
+│   .gitignore
+│   .RData
+│   .Rhistory
+│   field-description-cash_movements.csv
+│   field-description-COB_Balances.csv
+│   field-description-synthetic_accounts.csv
+│   field-description-transactions.csv
+│   requirements.txt
+│   synthetyc_accounts_data.csv
+│
+├───.github
+│   └───workflows
+│           daily_pipeline.yml
+│
+├───daily-fx-rates
+│   │   .Rhistory
+│   │   daily_fx_rates.nb.html
+│   │   daily_fx_rates.Rmd
+│   │   delete_data_from_fx_table_in_database.py
+│   │
+│   ├───data
+│   │       fx_rates.csv
+│   │
+│   └───src
+│           daily_fx_rates.py
+│
+├───portfolio-data
+│       treasury.db
+│
+├───treasury-cashflow-simulation
+│   │   .Rhistory
+│   │   Treasury_Cash_Position_Project.Rmd
+│   │
+│   ├───dashboard
+│   │   │   treasury-cash-simulation.pbip
+│   │   │
+│   │   ├───treasury-cash-simulation.Report
+│   │   │   │   .platform
+│   │   │   │   definition.pbir
+│   │   │   │
+│   │   │   ├───.pbi
+│   │   │   │       localSettings.json
+│   │   │   │
+│   │   │   ├───definition
+│   │   │   │   │   report.json
+│   │   │   │   │   version.json
+│   │   │   │   │
+│   │   │   │   └───pages
+│   │   │   │       │   pages.json
+│   │   │   │       │
+│   │   │   │       ├───257a6fc7099bc2ed6006
+│   │   │   │       │   │   page.json
+│   │   │   │       │   │
+│   │   │   │       │   └───visuals
+│   │   │   │       │       ├───75f9c0fd84498201b51c
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       └───77587f504731beb0c5b2
+│   │   │   │       │               visual.json
+│   │   │   │       │
+│   │   │   │       ├───262634bf818082e66046
+│   │   │   │       │   │   page.json
+│   │   │   │       │   │
+│   │   │   │       │   └───visuals
+│   │   │   │       │       └───6da5a197431b6ea402a9
+│   │   │   │       │               visual.json
+│   │   │   │       │
+│   │   │   │       ├───bb32c46b7a501716627a
+│   │   │   │       │   │   page.json
+│   │   │   │       │   │
+│   │   │   │       │   └───visuals
+│   │   │   │       │       ├───718c3dc0bc70e32008c0
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───ad7efe1ed3bd319b249b
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       └───ba33b74fd7871545733b
+│   │   │   │       │               visual.json
+│   │   │   │       │
+│   │   │   │       ├───cfdd1c0087757b2b3a4b
+│   │   │   │       │   │   page.json
+│   │   │   │       │   │
+│   │   │   │       │   └───visuals
+│   │   │   │       │       ├───17e6c800b1550526d15b
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───1bae43686706b0e36d02
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───496df9188c5eb8ae22ac
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───6e1bc73919610e9130c8
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───7240ec670d85e4ac2840
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───94edda087d4cd4b37157
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───9540390a1a09310770ae
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───ccbc16708a26a41d597e
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───e55bd4e5c325b10c0da6
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───e5e02bf36296bd08d813
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       ├───e767f22ce93c5bc455d6
+│   │   │   │       │       │       visual.json
+│   │   │   │       │       │
+│   │   │   │       │       └───fa1f2fe84c103be175e1
+│   │   │   │       │               visual.json
+│   │   │   │       │
+│   │   │   │       └───d39f2c2b3829ea02997c
+│   │   │   │           │   page.json
+│   │   │   │           │
+│   │   │   │           └───visuals
+│   │   │   │               ├───305a6f33ac1b459854d0
+│   │   │   │               │       visual.json
+│   │   │   │               │
+│   │   │   │               └───6492f5c3ca1dba7ba3b7
+│   │   │   │                       visual.json
+│   │   │   │
+│   │   │   └───StaticResources
+│   │   │       └───SharedResources
+│   │   │           └───BaseThemes
+│   │   │                   Fluent2-CY26SU07.json
+│   │   │
+│   │   └───treasury-cash-simulation.SemanticModel
+│   │       │   .platform
+│   │       │   definition.pbism
+│   │       │   diagramLayout.json
+│   │       │
+│   │       ├───.pbi
+│   │       │       cache.abf
+│   │       │       editorSettings.json
+│   │       │       localSettings.json
+│   │       │
+│   │       └───definition
+│   │           │   database.tmdl
+│   │           │   model.tmdl
+│   │           │   relationships.tmdl
+│   │           │
+│   │           ├───cultures
+│   │           │       en-US.tmdl
+│   │           │
+│   │           └───tables
+│   │                   balances.tmdl
+│   │                   dim_accounts.tmdl
+│   │                   dim_banks.tmdl
+│   │                   dim_currencies.tmdl
+│   │                   dim_date.tmdl
+│   │                   dim_movement_types.tmdl
+│   │                   fx_rates.tmdl
+│   │                   Measures_Table.tmdl
+│   │                   movements.tmdl
+│   │
+│   ├───data
+│   │   │   setup.xlsx
+│   │   │
+│   │   ├───Balances
+│   │   │       balances_20260102.csv
+│   │   │       balances_20260103.csv
+│   │   │       balances_20260104.csv
+│   │   │       balances_20260105.csv
+│   │   │       balances_20260106.csv
+│   │   │       balances_20260107.csv
+│   │   │       balances_20260108.csv
+│   │   │       balances_20260109.csv
+│   │   │       balances_20260110.csv
+│   │   │       balances_20260111.csv
+│   │   │       balances_20260112.csv
+│   │   │       balances_20260113.csv
+│   │   │       balances_20260114.csv
+│   │   │       balances_20260115.csv
+│   │   │       balances_20260116.csv
+│   │   │       balances_20260117.csv
+│   │   │       balances_20260118.csv
+│   │   │       balances_20260119.csv
+│   │   │       balances_20260120.csv
+│   │   │       balances_20260121.csv
+│   │   │       balances_20260122.csv
+│   │   │       balances_20260123.csv
+│   │   │       balances_20260124.csv
+│   │   │       balances_20260125.csv
+│   │   │       balances_20260126.csv
+│   │   │       balances_20260127.csv
+│   │   │       balances_20260128.csv
+│   │   │       balances_20260129.csv
+│   │   │       balances_20260130.csv
+│   │   │       balances_20260131.csv
+│   │   │       balances_20260201.csv
+│   │   │       balances_20260202.csv
+│   │   │       balances_20260203.csv
+│   │   │       balances_20260204.csv
+│   │   │       balances_20260205.csv
+│   │   │       balances_20260206.csv
+│   │   │       balances_20260207.csv
+│   │   │       balances_20260208.csv
+│   │   │       balances_20260209.csv
+│   │   │       balances_20260210.csv
+│   │   │       balances_20260211.csv
+│   │   │       balances_20260212.csv
+│   │   │       balances_20260213.csv
+│   │   │       balances_20260214.csv
+│   │   │       balances_20260215.csv
+│   │   │       balances_20260216.csv
+│   │   │       balances_20260217.csv
+│   │   │       balances_20260218.csv
+│   │   │       balances_20260219.csv
+│   │   │       balances_20260220.csv
+│   │   │       balances_20260221.csv
+│   │   │       balances_20260222.csv
+│   │   │       balances_20260223.csv
+│   │   │       balances_20260224.csv
+│   │   │       balances_20260225.csv
+│   │   │       balances_20260226.csv
+│   │   │       balances_20260227.csv
+│   │   │       balances_20260228.csv
+│   │   │       balances_20260301.csv
+│   │   │       balances_20260302.csv
+│   │   │       balances_20260303.csv
+│   │   │       balances_20260304.csv
+│   │   │       balances_20260305.csv
+│   │   │       balances_20260306.csv
+│   │   │       balances_20260307.csv
+│   │   │       balances_20260308.csv
+│   │   │       balances_20260309.csv
+│   │   │       balances_20260310.csv
+│   │   │       balances_20260311.csv
+│   │   │       balances_20260312.csv
+│   │   │       balances_20260313.csv
+│   │   │       balances_20260314.csv
+│   │   │       balances_20260315.csv
+│   │   │       balances_20260316.csv
+│   │   │       balances_20260317.csv
+│   │   │       balances_20260318.csv
+│   │   │       balances_20260319.csv
+│   │   │       balances_20260320.csv
+│   │   │       balances_20260321.csv
+│   │   │       balances_20260322.csv
+│   │   │       balances_20260323.csv
+│   │   │       balances_20260324.csv
+│   │   │       balances_20260325.csv
+│   │   │       balances_20260326.csv
+│   │   │       balances_20260327.csv
+│   │   │       balances_20260328.csv
+│   │   │       balances_20260329.csv
+│   │   │       balances_20260330.csv
+│   │   │       balances_20260331.csv
+│   │   │       balances_20260401.csv
+│   │   │       balances_20260402.csv
+│   │   │       balances_20260403.csv
+│   │   │       balances_20260404.csv
+│   │   │       balances_20260405.csv
+│   │   │       balances_20260406.csv
+│   │   │       balances_20260407.csv
+│   │   │       balances_20260408.csv
+│   │   │       balances_20260409.csv
+│   │   │       balances_20260410.csv
+│   │   │       balances_20260411.csv
+│   │   │       balances_20260412.csv
+│   │   │       balances_20260413.csv
+│   │   │       balances_20260414.csv
+│   │   │       balances_20260415.csv
+│   │   │       balances_20260416.csv
+│   │   │       balances_20260417.csv
+│   │   │       balances_20260418.csv
+│   │   │       balances_20260419.csv
+│   │   │       balances_20260420.csv
+│   │   │       balances_20260421.csv
+│   │   │       balances_20260422.csv
+│   │   │       balances_20260423.csv
+│   │   │       balances_20260424.csv
+│   │   │       balances_20260425.csv
+│   │   │       balances_20260426.csv
+│   │   │       balances_20260427.csv
+│   │   │       balances_20260428.csv
+│   │   │       balances_20260429.csv
+│   │   │       balances_20260430.csv
+│   │   │       balances_20260501.csv
+│   │   │       balances_20260502.csv
+│   │   │       balances_20260503.csv
+│   │   │       balances_20260504.csv
+│   │   │       balances_20260505.csv
+│   │   │       balances_20260506.csv
+│   │   │       balances_20260507.csv
+│   │   │       balances_20260508.csv
+│   │   │       balances_20260509.csv
+│   │   │       balances_20260510.csv
+│   │   │       balances_20260511.csv
+│   │   │       balances_20260512.csv
+│   │   │       balances_20260513.csv
+│   │   │       balances_20260514.csv
+│   │   │       balances_20260515.csv
+│   │   │       balances_20260516.csv
+│   │   │       balances_20260517.csv
+│   │   │       balances_20260518.csv
+│   │   │       balances_20260519.csv
+│   │   │       balances_20260520.csv
+│   │   │       balances_20260521.csv
+│   │   │       balances_20260522.csv
+│   │   │       balances_20260523.csv
+│   │   │       balances_20260524.csv
+│   │   │       balances_20260525.csv
+│   │   │       balances_20260526.csv
+│   │   │       balances_20260527.csv
+│   │   │       balances_20260528.csv
+│   │   │       balances_20260529.csv
+│   │   │       balances_20260530.csv
+│   │   │       balances_20260531.csv
+│   │   │       balances_20260601.csv
+│   │   │       balances_20260602.csv
+│   │   │       balances_20260603.csv
+│   │   │       balances_20260604.csv
+│   │   │       balances_20260605.csv
+│   │   │       balances_20260606.csv
+│   │   │       balances_20260607.csv
+│   │   │       balances_20260608.csv
+│   │   │       balances_20260609.csv
+│   │   │       balances_20260610.csv
+│   │   │       balances_20260611.csv
+│   │   │       balances_20260612.csv
+│   │   │       balances_20260613.csv
+│   │   │       balances_20260614.csv
+│   │   │       balances_20260615.csv
+│   │   │       balances_20260616.csv
+│   │   │       balances_20260617.csv
+│   │   │       balances_20260618.csv
+│   │   │       balances_20260619.csv
+│   │   │       balances_20260620.csv
+│   │   │       balances_20260621.csv
+│   │   │       balances_20260622.csv
+│   │   │       balances_20260623.csv
+│   │   │       balances_20260624.csv
+│   │   │       balances_20260625.csv
+│   │   │       balances_20260626.csv
+│   │   │       balances_20260627.csv
+│   │   │       balances_20260628.csv
+│   │   │       balances_20260629.csv
+│   │   │       balances_20260630.csv
+│   │   │       balances_20260701.csv
+│   │   │       balances_20260702.csv
+│   │   │       balances_20260703.csv
+│   │   │       balances_20260704.csv
+│   │   │       balances_20260705.csv
+│   │   │       balances_20260706.csv
+│   │   │       balances_20260707.csv
+│   │   │       balances_20260708.csv
+│   │   │       balances_20260709.csv
+│   │   │       balances_20260710.csv
+│   │   │       balances_20260711.csv
+│   │   │       balances_20260712.csv
+│   │   │       balances_20260713.csv
+│   │   │       balances_20260714.csv
+│   │   │       balances_20260715.csv
+│   │   │       balances_20260716.csv
+│   │   │       balances_20260717.csv
+│   │   │       balances_20260718.csv
+│   │   │       balances_20260719.csv
+│   │   │       balances_20260720.csv
+│   │   │       balances_20260721.csv
+│   │   │       balances_20260722.csv
+│   │   │       balances_20260723.csv
+│   │   │       balances_20260724.csv
+│   │   │       balances_20260725.csv
+│   │   │       balances_20260726.csv
+│   │   │       balances_20260727.csv
+│   │   │       balances_20260728.csv
+│   │   │       balances_20260729.csv
+│   │   │       balances_20260730.csv
+│   │   │       balances_20260731.csv
+│   │   │       balances_20260801.csv
+│   │   │       balances_20260802.csv
+│   │   │       balances_20260803.csv
+│   │   │
+│   │   └───Movements
+│   │           movements_20260102.csv
+│   │           movements_20260103.csv
+│   │           movements_20260104.csv
+│   │           movements_20260105.csv
+│   │           movements_20260106.csv
+│   │           movements_20260107.csv
+│   │           movements_20260108.csv
+│   │           movements_20260109.csv
+│   │           movements_20260110.csv
+│   │           movements_20260111.csv
+│   │           movements_20260112.csv
+│   │           movements_20260113.csv
+│   │           movements_20260114.csv
+│   │           movements_20260115.csv
+│   │           movements_20260116.csv
+│   │           movements_20260117.csv
+│   │           movements_20260118.csv
+│   │           movements_20260119.csv
+│   │           movements_20260120.csv
+│   │           movements_20260121.csv
+│   │           movements_20260122.csv
+│   │           movements_20260123.csv
+│   │           movements_20260124.csv
+│   │           movements_20260125.csv
+│   │           movements_20260126.csv
+│   │           movements_20260127.csv
+│   │           movements_20260128.csv
+│   │           movements_20260129.csv
+│   │           movements_20260130.csv
+│   │           movements_20260131.csv
+│   │           movements_20260201.csv
+│   │           movements_20260202.csv
+│   │           movements_20260203.csv
+│   │           movements_20260204.csv
+│   │           movements_20260205.csv
+│   │           movements_20260206.csv
+│   │           movements_20260207.csv
+│   │           movements_20260208.csv
+│   │           movements_20260209.csv
+│   │           movements_20260210.csv
+│   │           movements_20260211.csv
+│   │           movements_20260212.csv
+│   │           movements_20260213.csv
+│   │           movements_20260214.csv
+│   │           movements_20260215.csv
+│   │           movements_20260216.csv
+│   │           movements_20260217.csv
+│   │           movements_20260218.csv
+│   │           movements_20260219.csv
+│   │           movements_20260220.csv
+│   │           movements_20260221.csv
+│   │           movements_20260222.csv
+│   │           movements_20260223.csv
+│   │           movements_20260224.csv
+│   │           movements_20260225.csv
+│   │           movements_20260226.csv
+│   │           movements_20260227.csv
+│   │           movements_20260228.csv
+│   │           movements_20260301.csv
+│   │           movements_20260302.csv
+│   │           movements_20260303.csv
+│   │           movements_20260304.csv
+│   │           movements_20260305.csv
+│   │           movements_20260306.csv
+│   │           movements_20260307.csv
+│   │           movements_20260308.csv
+│   │           movements_20260309.csv
+│   │           movements_20260310.csv
+│   │           movements_20260311.csv
+│   │           movements_20260312.csv
+│   │           movements_20260313.csv
+│   │           movements_20260314.csv
+│   │           movements_20260315.csv
+│   │           movements_20260316.csv
+│   │           movements_20260317.csv
+│   │           movements_20260318.csv
+│   │           movements_20260319.csv
+│   │           movements_20260320.csv
+│   │           movements_20260321.csv
+│   │           movements_20260322.csv
+│   │           movements_20260323.csv
+│   │           movements_20260324.csv
+│   │           movements_20260325.csv
+│   │           movements_20260326.csv
+│   │           movements_20260327.csv
+│   │           movements_20260328.csv
+│   │           movements_20260329.csv
+│   │           movements_20260330.csv
+│   │           movements_20260331.csv
+│   │           movements_20260401.csv
+│   │           movements_20260402.csv
+│   │           movements_20260403.csv
+│   │           movements_20260404.csv
+│   │           movements_20260405.csv
+│   │           movements_20260406.csv
+│   │           movements_20260407.csv
+│   │           movements_20260408.csv
+│   │           movements_20260409.csv
+│   │           movements_20260410.csv
+│   │           movements_20260411.csv
+│   │           movements_20260412.csv
+│   │           movements_20260413.csv
+│   │           movements_20260414.csv
+│   │           movements_20260415.csv
+│   │           movements_20260416.csv
+│   │           movements_20260417.csv
+│   │           movements_20260418.csv
+│   │           movements_20260419.csv
+│   │           movements_20260420.csv
+│   │           movements_20260421.csv
+│   │           movements_20260422.csv
+│   │           movements_20260423.csv
+│   │           movements_20260424.csv
+│   │           movements_20260425.csv
+│   │           movements_20260426.csv
+│   │           movements_20260427.csv
+│   │           movements_20260428.csv
+│   │           movements_20260429.csv
+│   │           movements_20260430.csv
+│   │           movements_20260501.csv
+│   │           movements_20260502.csv
+│   │           movements_20260503.csv
+│   │           movements_20260504.csv
+│   │           movements_20260505.csv
+│   │           movements_20260506.csv
+│   │           movements_20260507.csv
+│   │           movements_20260508.csv
+│   │           movements_20260509.csv
+│   │           movements_20260510.csv
+│   │           movements_20260511.csv
+│   │           movements_20260512.csv
+│   │           movements_20260513.csv
+│   │           movements_20260514.csv
+│   │           movements_20260515.csv
+│   │           movements_20260516.csv
+│   │           movements_20260517.csv
+│   │           movements_20260518.csv
+│   │           movements_20260519.csv
+│   │           movements_20260520.csv
+│   │           movements_20260521.csv
+│   │           movements_20260522.csv
+│   │           movements_20260523.csv
+│   │           movements_20260524.csv
+│   │           movements_20260525.csv
+│   │           movements_20260526.csv
+│   │           movements_20260527.csv
+│   │           movements_20260528.csv
+│   │           movements_20260529.csv
+│   │           movements_20260530.csv
+│   │           movements_20260531.csv
+│   │           movements_20260601.csv
+│   │           movements_20260602.csv
+│   │           movements_20260603.csv
+│   │           movements_20260604.csv
+│   │           movements_20260605.csv
+│   │           movements_20260606.csv
+│   │           movements_20260607.csv
+│   │           movements_20260608.csv
+│   │           movements_20260609.csv
+│   │           movements_20260610.csv
+│   │           movements_20260611.csv
+│   │           movements_20260612.csv
+│   │           movements_20260613.csv
+│   │           movements_20260614.csv
+│   │           movements_20260615.csv
+│   │           movements_20260616.csv
+│   │           movements_20260617.csv
+│   │           movements_20260618.csv
+│   │           movements_20260619.csv
+│   │           movements_20260620.csv
+│   │           movements_20260621.csv
+│   │           movements_20260622.csv
+│   │           movements_20260623.csv
+│   │           movements_20260624.csv
+│   │           movements_20260625.csv
+│   │           movements_20260626.csv
+│   │           movements_20260627.csv
+│   │           movements_20260628.csv
+│   │           movements_20260629.csv
+│   │           movements_20260630.csv
+│   │           movements_20260701.csv
+│   │           movements_20260702.csv
+│   │           movements_20260703.csv
+│   │           movements_20260704.csv
+│   │           movements_20260705.csv
+│   │           movements_20260706.csv
+│   │           movements_20260707.csv
+│   │           movements_20260708.csv
+│   │           movements_20260709.csv
+│   │           movements_20260710.csv
+│   │           movements_20260711.csv
+│   │           movements_20260712.csv
+│   │           movements_20260713.csv
+│   │           movements_20260714.csv
+│   │           movements_20260715.csv
+│   │           movements_20260716.csv
+│   │           movements_20260717.csv
+│   │           movements_20260718.csv
+│   │           movements_20260719.csv
+│   │           movements_20260720.csv
+│   │           movements_20260721.csv
+│   │           movements_20260722.csv
+│   │           movements_20260723.csv
+│   │           movements_20260724.csv
+│   │           movements_20260725.csv
+│   │           movements_20260726.csv
+│   │           movements_20260727.csv
+│   │           movements_20260728.csv
+│   │           movements_20260729.csv
+│   │           movements_20260730.csv
+│   │           movements_20260731.csv
+│   │           movements_20260801.csv
+│   │           movements_20260802.csv
+│   │           movements_20260803.csv
+│   │
+│   └───src
+└───utils
+    │   paths.py
+    │   __init__.py
+    │
+    └───__pycache__
+            paths.cpython-314.pyc
+            __init__.cpython-314.pyc

@@ -1,0 +1,49 @@
+table dim_currencies
+	lineageTag: b83efda4-cdd0-4eba-a679-de48c62e3699
+
+	column currency_code
+		dataType: string
+		lineageTag: 2d6f8390-a873-4dd3-9027-655b7c1f098d
+		summarizeBy: none
+		sourceColumn: currency_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency_name
+		dataType: string
+		lineageTag: cf6ce8cc-111d-47cd-836a-802c30e990c2
+		summarizeBy: none
+		sourceColumn: currency_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column symbol
+		dataType: string
+		lineageTag: 4f8bf333-5738-4794-b061-159e28c3c1d2
+		summarizeBy: none
+		sourceColumn: symbol
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 21a44255-2869-4886-88a7-3d08153ef9aa
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_currencies = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				    public_currencies = Source{[Schema="public",Item="currencies"]}[Data]
+				in
+				    public_currencies
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

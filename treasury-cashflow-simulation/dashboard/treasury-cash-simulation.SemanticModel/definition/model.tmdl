@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["balances","movements","dim_accounts","dim_movement_types","dim_date","Measures_Table","public fx_rates"]
+annotation PBI_QueryOrder = ["balances","movements","dim_accounts","dim_movement_types","dim_date","Measures_Table","fx_rates","dim_currencies","dim_banks"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -19,7 +19,9 @@ ref table dim_accounts
 ref table dim_movement_types
 ref table dim_date
 ref table Measures_Table
-ref table 'public fx_rates'
+ref table fx_rates
+ref table dim_currencies
+ref table dim_banks
 
 ref cultureInfo en-US
 

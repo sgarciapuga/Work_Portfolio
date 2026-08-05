@@ -55,6 +55,9 @@ table dim_date
 		lineageTag: bbf31b55-79d2-4df5-ba4c-4012d8b5cb7d
 		summarizeBy: none
 		sourceColumn: month_name
+		sortByColumn: year_month
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
@@ -106,6 +109,17 @@ table dim_date
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Date (Latest)' = ```
+			IF(dim_date[date] = MAX(dim_date[date]), "Latests Date", FORMAT(dim_date[date], "DD-MMM-YYYY")) 
+			```
+		lineageTag: 2a7c14f4-e81a-471f-914e-58bc493bac76
+		summarizeBy: none
+		sortByColumn: date
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_date = m
 		mode: import
 		source =
@@ -121,6 +135,10 @@ table dim_date
 
 		calendarColumnGroup = year
 			primaryColumn: year
+
+		calendarColumnGroup = monthOfYear
+			primaryColumn: year_month
+			associatedColumn: month_name
 
 		calendarColumnGroup = date
 			primaryColumn: date

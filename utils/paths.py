@@ -1,13 +1,16 @@
 import os
 
-def get_project_root():
-    # Case 1: R Markdown passes the root
-    if "PROJECT_ROOT" in os.environ:
-        return os.environ["PROJECT_ROOT"]
+def project_root():
+    return os.getcwd()
 
-    # Case 2: Python script knows its own location
-    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def data_path(project_name):
+    return os.path.join(project_root(), project_name, "data")
 
-def get_db_path():
-    root = get_project_root()
-    return os.path.join(root, "portfolio-data", "treasury.db")
+def balances_path(project_name):
+    return os.path.join(data_path(project_name), "Balances")
+
+def movements_path(project_name):
+    return os.path.join(data_path(project_name), "Movements")
+
+def db_path():
+    return os.path.join(project_root(), "portfolio-data", "treasury.db")

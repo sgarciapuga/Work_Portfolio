@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 440,
-            "y": 496.5
+            "x": 427.04392236976514,
+            "y": 883.02298263534215
           },
           "nodeIndex": "balances",
           "nodeLineageTag": "e7a5e6db-7661-4d73-89f6-efb86b224a30",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 71,
-            "y": 776.5
+            "x": 718.80388151174668,
+            "y": 23.967824310520918
           },
           "nodeIndex": "dim_movement_types",
           "nodeLineageTag": "09b12f32-6b2a-460e-b0a5-cbd3b5ad537b",
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 862,
-            "y": 489.5
+            "x": 939.73646578140961,
+            "y": 839.31409601634323
           },
           "nodeIndex": "movements",
           "nodeLineageTag": "9f714543-ecc9-433d-90ef-5615eaab6057",
@@ -75,8 +75,8 @@
         },
         {
           "location": {
-            "x": 1517,
-            "y": 420.75
+            "x": 1715.6598569969358,
+            "y": 0
           },
           "nodeIndex": "Measures_Table",
           "nodeLineageTag": "1f1cb31f-8341-4134-81c0-d0af2977bc44",
@@ -88,19 +88,266 @@
         },
         {
           "location": {
-            "x": 1158.9999847412109,
-            "y": 804.75
+            "x": 1601.5188968335035,
+            "y": 239.22076098059244
           },
-          "nodeIndex": "public fx_rates",
-          "nodeLineageTag": "347b4182-faa9-4ee3-bdfa-a064d4c8511f",
+          "nodeIndex": "dim_currencies",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1902.6598569969358,
+            "y": 479.65704800817161
+          },
+          "nodeIndex": "dim_banks",
+          "nodeLineageTag": "671cd784-2b4b-48ae-8097-66bf4e6ec3d4",
           "size": {
             "height": 152,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1336.0663790210886,
+            "y": 880.32711950970372
+          },
+          "nodeIndex": "fx_rates",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
+      "zoomValue": 92.620624408703875,
+      "pinKeyFieldsToTop": true,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 902.33333206176758,
+            "y": 347
+          },
+          "nodeIndex": "balances",
+          "nodeLineageTag": "e7a5e6db-7661-4d73-89f6-efb86b224a30",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 607.33333206176758,
+            "y": 171
+          },
+          "nodeIndex": "dim_accounts",
+          "nodeLineageTag": "58623372-5cd6-491b-9542-987db219a17d",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1288.3333320617676,
+            "y": 541
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "7f3f1283-00ae-43cf-8b0b-69bd899a068e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1033.3333320617676,
+            "y": 123
+          },
+          "nodeIndex": "dim_currencies",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 161.33333206176758,
+            "y": 19
+          },
+          "nodeIndex": "dim_banks",
+          "nodeLineageTag": "671cd784-2b4b-48ae-8097-66bf4e6ec3d4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Balances",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": true,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 2,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1169.3333320617676,
+            "y": 191
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "7f3f1283-00ae-43cf-8b0b-69bd899a068e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 545.33333206176758,
+            "y": 185
+          },
+          "nodeIndex": "dim_currencies",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 789.33333206176758,
+            "y": 389
+          },
+          "nodeIndex": "fx_rates",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "FX Rates",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": true,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 3,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 723.33333206176758,
+            "y": 376
+          },
+          "nodeIndex": "movements",
+          "nodeLineageTag": "9f714543-ecc9-433d-90ef-5615eaab6057",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1048.3333320617676,
+            "y": 105
+          },
+          "nodeIndex": "dim_accounts",
+          "nodeLineageTag": "58623372-5cd6-491b-9542-987db219a17d",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 615.33333206176758,
+            "y": 123
+          },
+          "nodeIndex": "dim_movement_types",
+          "nodeLineageTag": "09b12f32-6b2a-460e-b0a5-cbd3b5ad537b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1112.3333320617676,
+            "y": 697
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "7f3f1283-00ae-43cf-8b0b-69bd899a068e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 179.33333206176758,
+            "y": 281
+          },
+          "nodeIndex": "dim_currencies",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1510.3333320617676,
+            "y": 37
+          },
+          "nodeIndex": "dim_banks",
+          "nodeLineageTag": "671cd784-2b4b-48ae-8097-66bf4e6ec3d4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Movements",
       "zoomValue": 100,
       "pinKeyFieldsToTop": true,
       "showExtraHeaderInfo": false,
@@ -108,6 +355,6 @@
       "tablesLocked": false
     }
   ],
-  "selectedDiagram": "All tables",
+  "selectedDiagram": "Movements",
   "defaultDiagram": "All tables"
 }

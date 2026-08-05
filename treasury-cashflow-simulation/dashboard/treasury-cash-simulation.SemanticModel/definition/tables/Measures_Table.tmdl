@@ -1,12 +1,12 @@
 table Measures_Table
 	lineageTag: 1f1cb31f-8341-4134-81c0-d0af2977bc44
 
-	measure 'Total Liquidity' = SUM(balances[closing_balance])
+	measure 'Closing Balance (In Currency)' = SUM(balances[closing_balance])
 		lineageTag: b618b760-2684-4b61-b284-48620ec508fd
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Daily Net Movements' = SUM(movements[amount])
+	measure Movements = SUM(movements[amount])
 		lineageTag: c715c84e-2366-4c94-b357-ef9ad8112150
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -14,7 +14,7 @@ table Measures_Table
 	measure 'MTD Movements' =
 			
 			CALCULATE(
-			    [Daily Net Movements],
+			    [Movements],
 			    DATESMTD(dim_date[date])
 			)
 		lineageTag: 2e489c7e-310f-4d86-9631-278a0ba323b9
@@ -24,7 +24,7 @@ table Measures_Table
 	measure 'Month End Balance' =
 			
 			CALCULATE(
-			    [Total Liquidity],
+			    [Closing Balance (In Currency)],
 			    dim_date[is_month_end] = 1
 			)
 		lineageTag: 1bf26727-312c-4390-a3b7-a4ff707e0f6a
@@ -90,10 +90,98 @@ table Measures_Table
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'FX Rate' = SUM('public fx_rates'[fx_rate])
+	measure 'FX Rate' = SUM('fx_rates'[fx_rate])
 		lineageTag: ac4e04f7-7dd6-4204-a43b-8cacb3f73f6d
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Closing Balance (In USD)' = ```
+			
+			SUMX(
+			    balances,
+			    balances[closing_balance] * 
+			    LOOKUPVALUE(
+			        fx_rates[fx_rate],
+			        fx_rates[date], balances[date],
+			        fx_rates[currency], balances[currency]
+			    )
+			)
+			
+			```
+		lineageTag: 5a9422ff-2b9e-4f4a-9592-d40ca82a8794
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Deposits MTD (In USD)' =
+			
+			CALCULATE(
+			    [Movements (In USD)],
+			    dim_movement_types[Type] = "Deposit",
+			    DATESMTD(dim_date[date])
+			)
+		lineageTag: 110aac54-39a8-40a3-be50-2c6ad89a0c08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Movements (In USD)' = ```
+			
+			SUMX(
+			    movements,
+			    movements[amount] * 
+			    LOOKUPVALUE(
+			        fx_rates[fx_rate],
+			        fx_rates[date], movements[date],
+			        fx_rates[currency], movements[currency]
+			    )
+			)
+			
+			```
+		lineageTag: b314220a-8e4d-44a4-be97-94540d86de7a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Withdrawals (In USD)' =
+			
+			CALCULATE(
+			    ABS([Movements (In USD)]),
+			    dim_movement_types[Type] = "Withdraw",
+			    DATESMTD(dim_date[date])
+			)
+		lineageTag: a49d359f-f954-4b5b-a051-4c14215d822e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CLosing Balance EOM (In USD)' =
+			
+			
+			CALCULATE(
+			    [Closing Balance (In USD)],
+			    dim_date[is_month_end] = 1
+			)
+		formatString: #,0
+		lineageTag: fd0e8b17-42d6-4d13-946f-8ff5c6cf62f5
+
+	measure 'Latest Date' = Max(dim_date[date])
+		formatString: General Date
+		lineageTag: 2f11648d-372c-47ac-b395-c2eae47609b6
+
+	measure Measure = SELECTEDVALUE(dim_date[date])
+		formatString: General Date
+		lineageTag: 5cdd5678-ecde-4b50-9688-717650f023b7
+
+	measure 'YTD Movements (USD)' =
+			
+			CALCULATE(
+			    [Movements (In USD)],
+			    DATESYTD(dim_date[date])
+			)
+		lineageTag: 576404e3-6b17-4f63-a237-325b7fc375dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Date' = SELECTEDVALUE(dim_date[date])
+		formatString: Long Date
+		lineageTag: f3bdff2d-cc31-4ad7-9a65-414abdf1fb51
 
 	partition Measures_Table = m
 		mode: import

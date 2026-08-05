@@ -76,7 +76,7 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Daily Net Movements"
+                  "Property": "Movements"
                 }
               },
               "queryRef": "Measures_Table.Daily Net Movements",
@@ -163,65 +163,5 @@
       }
     ],
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ffa5017700ab76c81730",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "61640b80aa8a80226a38",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_movement_types"
-              }
-            },
-            "Property": "Type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e598270d03e209e7127b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Daily Net Movements"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "45b1e512ab358a208aa9",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_accounts"
-              }
-            },
-            "Property": "bank_name"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

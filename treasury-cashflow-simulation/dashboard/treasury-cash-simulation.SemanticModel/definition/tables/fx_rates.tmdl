@@ -1,4 +1,4 @@
-table 'public fx_rates'
+table fx_rates
 	lineageTag: 347b4182-faa9-4ee3-bdfa-a064d4c8511f
 
 	column date
@@ -40,7 +40,7 @@ table 'public fx_rates'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition 'public fx_rates' = m
+	partition fx_rates = m
 		mode: import
 		source =
 				let

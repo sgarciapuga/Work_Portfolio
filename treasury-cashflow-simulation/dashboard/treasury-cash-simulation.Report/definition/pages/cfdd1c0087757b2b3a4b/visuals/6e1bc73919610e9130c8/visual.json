@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "6e1bc73919610e9130c8",
   "position": {
-    "x": 324.77064220183485,
-    "y": 0,
-    "z": 1,
-    "height": 104.58715596330275,
-    "width": 450.2752293577982,
-    "tabOrder": 1
+    "x": 323.36842105263162,
+    "y": 122.52631578947368,
+    "z": 0,
+    "height": 77.05263157894737,
+    "width": 617.68421052631584,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "advancedSlicerVisual",
@@ -20,34 +20,17 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_accounts"
+                      "Entity": "dim_banks"
                     }
                   },
-                  "Property": "bank_name"
+                  "Property": "bank_code"
                 }
               },
-              "queryRef": "dim_accounts.bank_name",
-              "nativeQueryRef": "bank_name"
+              "queryRef": "dim_banks.bank_code",
+              "nativeQueryRef": "bank_code"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "dim_accounts"
-                  }
-                },
-                "Property": "bank_name"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "objects": {
@@ -97,15 +80,15 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "38c46dd03c30aee4b0ab",
+        "name": "6d9bef3590cde501d49a",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_accounts"
+                "Entity": "dim_banks"
               }
             },
-            "Property": "bank_name"
+            "Property": "bank_code"
           }
         },
         "type": "Categorical"

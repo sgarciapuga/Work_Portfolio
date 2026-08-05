@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "17e6c800b1550526d15b",
   "position": {
-    "x": 389.72477064220186,
-    "y": 320.36697247706422,
-    "z": 3,
-    "height": 439.26605504587155,
-    "width": 692.47706422018348,
-    "tabOrder": 3
+    "x": 976.421052631579,
+    "y": 334.73684210526318,
+    "z": 1000,
+    "height": 728.84210526315792,
+    "width": 928.421052631579,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -60,11 +60,11 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Total Liquidity"
+                  "Property": "Closing Balance (In Currency)"
                 }
               },
-              "queryRef": "Measures_Table.Total Liquidity",
-              "nativeQueryRef": "Total Liquidity"
+              "queryRef": "Measures_Table.Closing Balance (In Currency)",
+              "nativeQueryRef": "Closing Balance (In Currency)"
             }
           ]
         }
@@ -79,7 +79,7 @@
                     "Entity": "Measures_Table"
                   }
                 },
-                "Property": "Total Liquidity"
+                "Property": "Closing Balance (In Currency)"
               }
             },
             "direction": "Descending"
@@ -87,6 +87,93 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "dynamicLabelValue": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Closing Balance (In Currency)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "highlightMatching": 1
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "innerPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "20L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TopCenter'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
@@ -104,51 +191,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0449028d3d4a4d008db9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Total Liquidity"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "906a40d593615cc8b8a9",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_accounts"
-              }
-            },
-            "Property": "bank_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f93c3730b3e3b3a50339",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_accounts"
-              }
-            },
-            "Property": "currency"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }
