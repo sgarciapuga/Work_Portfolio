@@ -1,0 +1,40 @@
+table dim_banks
+	lineageTag: 671cd784-2b4b-48ae-8097-66bf4e6ec3d4
+
+	column bank_id
+		dataType: string
+		lineageTag: 12b0c644-cc9c-4415-b4cb-2a60fa2934d7
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_name
+		dataType: string
+		lineageTag: 45b66383-2030-4eb7-b0e2-b0c3204393e4
+		summarizeBy: none
+		sourceColumn: bank_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column bank_code
+		dataType: string
+		lineageTag: f7365619-7eaf-46ed-9492-65714edf9204
+		summarizeBy: none
+		sourceColumn: bank_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_banks = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				    public_banks = Source{[Schema="public",Item="banks"]}[Data]
+				in
+				    public_banks
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

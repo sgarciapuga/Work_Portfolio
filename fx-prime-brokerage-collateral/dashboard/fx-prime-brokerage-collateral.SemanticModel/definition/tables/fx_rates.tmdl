@@ -1,0 +1,57 @@
+table fx_rates
+	lineageTag: 347b4182-faa9-4ee3-bdfa-a064d4c8511f
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f172b31f-b1bf-458b-9561-b0bfaf7c8fff
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column currency
+		dataType: string
+		lineageTag: aa0cf7fa-80cc-44b1-858b-e62cba1469e6
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column fx_to_usd
+		dataType: double
+		lineageTag: 10844d0e-b562-4b95-a8f8-05bc70870707
+		summarizeBy: sum
+		sourceColumn: fx_to_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fx_rate
+		dataType: double
+		lineageTag: ca8b924e-8dfc-4560-8f35-ea21bf52a134
+		summarizeBy: sum
+		sourceColumn: fx_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fx_rates = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				  #"Navigation 1" = Source{[Schema = "public", Item = "fx_rates"]}[Data],
+				    #"Added Custom" = Table.AddColumn(#"Navigation 1", "fx_rate", each Value.Divide(1, [fx_to_usd])),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"fx_rate", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

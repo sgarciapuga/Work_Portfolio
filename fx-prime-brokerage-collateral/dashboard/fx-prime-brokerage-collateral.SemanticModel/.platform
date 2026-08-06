@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "fx-prime-brokerage-collateral"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9debaa52-e0a0-42c2-8e71-49444e514a0d"
+  }
+}

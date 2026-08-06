@@ -1,0 +1,163 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "da41740cd1eca45c4794",
+  "position": {
+    "x": 1011.743119266055,
+    "y": 307.1559633027523,
+    "z": 11004,
+    "height": 424.76987447698747,
+    "width": 727.02928870292885,
+    "tabOrder": 11004
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "calendar_date"
+                }
+              },
+              "queryRef": "dim_date.calendar_date",
+              "nativeQueryRef": "calendar_date",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Colalteral Posted"
+                }
+              },
+              "queryRef": "Measures_Table.Colalteral Posted",
+              "nativeQueryRef": "Colalteral Posted"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Initial Margin (Inverse)"
+                }
+              },
+              "queryRef": "Measures_Table.Initial Margin (Inverse)",
+              "nativeQueryRef": "Initial Margin (Inverse)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Excess / Deficit"
+                }
+              },
+              "queryRef": "Measures_Table.Excess / Deficit",
+              "nativeQueryRef": "Excess / Deficit"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_date"
+                  }
+                },
+                "Property": "calendar_date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a865ab45b019001b5d5a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "calendar_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1ddec856ba8a06d96836",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Colalteral Posted"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "29b81f035870856446d8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Initial Margin (Inverse)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "516483694ada0c07a03c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Excess / Deficit"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

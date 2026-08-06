@@ -1,0 +1,25 @@
+relationship AutoDetected_6ab9113f-7e08-4376-95f5-3cee659ec080
+	fromColumn: fx_rates.currency
+	toColumn: dim_currencies.currency_code
+
+relationship AutoDetected_3fb3439a-3a32-470e-904a-64f1a95c4d03
+	fromColumn: fx_portfolio.bank_id
+	toColumn: dim_banks.bank_id
+
+relationship AutoDetected_76a13856-c636-4ae8-80b1-d03e3f6fa9bc
+	fromColumn: limits.bank_id
+	toColumn: dim_banks.bank_id
+
+relationship 68f2e5fd-4ef5-a1ad-d06f-7be3f976bd2e
+	crossFilteringBehavior: bothDirections
+	fromColumn: mtm_report.report_date
+	toColumn: dim_date.calendar_date
+
+relationship e71f3458-be3e-263a-4e66-2fcf8b47c697
+	fromColumn: fx_portfolio.report_date
+	toColumn: dim_date.calendar_date
+
+relationship 7b12bce1-206b-fcdb-6bff-f0c6abd59405
+	fromColumn: limits.as_of_date
+	toColumn: dim_date.calendar_date
+

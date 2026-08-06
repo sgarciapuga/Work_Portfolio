@@ -1,0 +1,101 @@
+table fx_portfolio
+	lineageTag: ef77adfd-6ba1-4901-b9f7-9bdd407e0b95
+
+	column report_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 89713602-ae82-4a5c-adc0-38e0ed46cdf8
+		summarizeBy: none
+		sourceColumn: report_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column bank_id
+		dataType: string
+		lineageTag: ffb73b90-2ac2-4529-a37d-cd2e42341afc
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column trade_id
+		dataType: string
+		lineageTag: 3c2a796f-c92e-42c6-a35a-ed2ec54af5e4
+		summarizeBy: none
+		sourceColumn: trade_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: f7a563d3-e35b-4389-a1cc-3b87b70dd72b
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column trade_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1b6ac2b3-3278-43fc-8e1d-2d40074cb677
+		summarizeBy: none
+		sourceColumn: trade_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column value_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 859fdbbb-5bc7-4012-8a53-67034ad4902c
+		summarizeBy: none
+		sourceColumn: value_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column currency_pair
+		dataType: string
+		lineageTag: 3600e48e-2a86-48fc-b727-9c17ca3a8b19
+		summarizeBy: none
+		sourceColumn: currency_pair
+
+		annotation SummarizationSetBy = Automatic
+
+	column trade_size_usd
+		dataType: double
+		lineageTag: e1d339a5-a1c0-426e-a0c7-43ca2052099c
+		summarizeBy: sum
+		sourceColumn: trade_size_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column leg_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 246978ff-7ce9-44df-a19d-c561acc915a1
+		summarizeBy: sum
+		sourceColumn: leg_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fx_portfolio = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Mis_cosas\Coding\Work_Portfolio\fx-prime-brokerage-collateral\data\FX-portfolio\portfolio.csv"), [Delimiter = ",", Columns = 9, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"report_date", type date}, {"bank_id", type text}, {"trade_id", type text}, {"type", type text}, {"trade_date", type date}, {"value_date", type date}, {"currency_pair", type text}, {"trade_size_usd", type number}, {"leg_id", Int64.Type}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,65 @@
+table limits
+	lineageTag: ed2a4577-d16a-49d0-a473-b816fa3fd500
+
+	column as_of_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6091e3f9-1379-4ef1-a68f-a57e2b3795e4
+		summarizeBy: none
+		sourceColumn: as_of_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column bank_id
+		dataType: string
+		lineageTag: afe5fe57-adb8-4980-8278-551c7d4a67ad
+		summarizeBy: none
+		sourceColumn: bank_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_limit_usd
+		dataType: int64
+		formatString: 0
+		lineageTag: b57b8315-3089-4cf9-8d28-fb5e5158b0f6
+		summarizeBy: sum
+		sourceColumn: credit_limit_usd
+
+		annotation SummarizationSetBy = Automatic
+
+	column counterparty_exposure_usd
+		dataType: double
+		lineageTag: e7b1401a-98b3-4231-ad14-db0cf3c75fec
+		summarizeBy: sum
+		sourceColumn: counterparty_exposure_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column limit_available_usd
+		dataType: double
+		lineageTag: 3f59c1b5-05ea-4864-9148-47ef7233a31a
+		summarizeBy: sum
+		sourceColumn: limit_available_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition limits = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Mis_cosas\Coding\Work_Portfolio\fx-prime-brokerage-collateral\data\Limits\limits.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"as_of_date", type date}, {"bank_id", type text}, {"credit_limit_usd", Int64.Type}, {"counterparty_exposure_usd", type number}, {"limit_available_usd", type number}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

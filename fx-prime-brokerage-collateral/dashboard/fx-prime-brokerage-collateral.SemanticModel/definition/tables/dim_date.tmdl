@@ -1,0 +1,199 @@
+table dim_date
+	lineageTag: 7f3f1283-00ae-43cf-8b0b-69bd899a068e
+
+	column year
+		dataType: int64
+		lineageTag: 20b051ba-6ceb-4677-8089-d1cadb5dfe53
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column month
+		dataType: int64
+		lineageTag: 211728cb-94d6-43f9-955b-3dbd3dce02eb
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column day
+		dataType: int64
+		lineageTag: 2bd3df74-deed-49f3-b16c-e00726acd425
+		summarizeBy: sum
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column year_month
+		dataType: string
+		lineageTag: c429dc5f-eac3-40c0-80da-b03424c80f24
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: bbf31b55-79d2-4df5-ba4c-4012d8b5cb7d
+		summarizeBy: none
+		sourceColumn: month_name
+		sortByColumn: year_month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		lineageTag: 9cb07182-be03-477f-ac6c-a9dc1f232d64
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_month_end
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3b8548bc-177c-4a4c-8bdd-574f26de598b
+		summarizeBy: none
+		sourceColumn: is_month_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_month_start
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cc540533-b986-42f2-a401-b4840c235c77
+		summarizeBy: none
+		sourceColumn: is_month_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_num
+		dataType: int64
+		lineageTag: 7c54b66b-9a0c-4238-91d2-afef71b935fc
+		summarizeBy: sum
+		sourceColumn: week_num
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Date (Latest)' = ```
+			IF(dim_date[calendar_date] = MAX(dim_date[calendar_date]), "Latests Date", FORMAT(dim_date[calendar_date], "DD-MMM-YYYY")) 
+			```
+		lineageTag: 2a7c14f4-e81a-471f-914e-58bc493bac76
+		summarizeBy: none
+		sortByColumn: calendar_date
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 29fb8f1a-5cc5-40ac-8e2a-513d8cddea6a
+		summarizeBy: none
+		sourceColumn: calendar_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fbbec98-8d99-463a-9f15-abb626f1da0a
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: eca6d51c-edbf-4105-9128-f91857b08cb4
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday
+		dataType: int64
+		formatString: 0
+		lineageTag: d64b59ed-1c8f-4d2d-8af1-a85a0387b5c2
+		summarizeBy: sum
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f8bb1ee5-d968-4f3c-acf0-8ada37008af0
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_quarter
+		dataType: string
+		lineageTag: 7eb9db7b-0dbf-470e-9241-bfd246cf004a
+		summarizeBy: none
+		sourceColumn: year_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 70177f0f-cc94-45a9-a917-d3f100862c39
+		summarizeBy: sum
+		sourceColumn: iso_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column iso_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 57a10300-0d1c-425b-8372-37c427e26c5e
+		summarizeBy: sum
+		sourceColumn: iso_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				    public_date_table = Source{[Schema="public",Item="date_table"]}[Data]
+				in
+				    public_date_table
+
+	calendar Normal
+		lineageTag: 2fdd0f7e-03dd-4d02-9845-4e4769a7d115
+
+		calendarColumnGroup = year
+			primaryColumn: year
+
+		calendarColumnGroup = monthOfYear
+			primaryColumn: year_month
+			associatedColumn: month_name
+
+		calendarColumnGroup = date
+			primaryColumn: calendar_date
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

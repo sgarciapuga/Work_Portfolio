@@ -1,0 +1,77 @@
+table mtm_report
+	lineageTag: 76810573-8be4-4160-a8f9-2886d959406c
+
+	column report_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 297d727e-9acd-43b3-8341-c5fa5b57bff3
+		summarizeBy: none
+		sourceColumn: report_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column initial_margin
+		dataType: double
+		lineageTag: 850ec2e4-24d7-422b-8a7e-673057530a66
+		summarizeBy: sum
+		sourceColumn: initial_margin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column variation_margin
+		dataType: double
+		lineageTag: 78483827-1601-4e5d-8350-76a3f1caca2e
+		summarizeBy: sum
+		sourceColumn: variation_margin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column collateral_posted
+		dataType: int64
+		formatString: 0
+		lineageTag: d4547d8e-ca1b-4c3d-bebb-f161f056796c
+		summarizeBy: sum
+		sourceColumn: collateral_posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column excess_deficit
+		dataType: double
+		lineageTag: 316261d7-d49b-496c-af28-aaecf4391658
+		summarizeBy: sum
+		sourceColumn: excess_deficit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column collateral_required
+		dataType: double
+		lineageTag: ae866576-9fe5-4018-a769-aecc0f2f9167
+		summarizeBy: sum
+		sourceColumn: collateral_required
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mtm_report = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Mis_cosas\Coding\Work_Portfolio\fx-prime-brokerage-collateral\data\Mark-to-market\mtm_report.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"report_date", type date}, {"initial_margin", type number}, {"variation_margin", type number}, {"collateral_required", type number}, {"collateral_posted", Int64.Type}, {"excess_deficit", type number}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

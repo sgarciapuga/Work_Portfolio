@@ -1,0 +1,213 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "4f8904740730edbc0e02",
+  "position": {
+    "x": 321.2209972560035,
+    "y": 39.903229472795466,
+    "z": 11002,
+    "height": 149.637110522983,
+    "width": 908.79605124291675,
+    "tabOrder": 11002
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Initial Margin"
+                }
+              },
+              "queryRef": "Measures_Table.Initial Margin",
+              "nativeQueryRef": "Initial Margin"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Variation Margin"
+                }
+              },
+              "queryRef": "Measures_Table.Variation Margin",
+              "nativeQueryRef": "Variation Margin"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Collateral Required"
+                }
+              },
+              "queryRef": "Measures_Table.Total Exposure",
+              "nativeQueryRef": "Collateral Required"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Colalteral Posted"
+                }
+              },
+              "queryRef": "Measures_Table.Colalteral Posted",
+              "nativeQueryRef": "Colalteral Posted"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Excess / Deficit"
+                }
+              },
+              "queryRef": "Measures_Table.Excess / Deficit",
+              "nativeQueryRef": "Excess / Deficit"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Measures_Table"
+                  }
+                },
+                "Property": "Initial Margin"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'FX Prime Broker'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Exposure (In USD)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0f560d43b290db50d8a4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Initial Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "199c58331030d1d1613c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Variation Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "93204f42ca9b665c9dc3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Collateral Required"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dc694ba1a82d8b6c3906",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Colalteral Posted"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dc68cfd3b390960b6c9d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Excess / Deficit"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

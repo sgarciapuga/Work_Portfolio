@@ -1,0 +1,81 @@
+table Measures_Table
+	lineageTag: 1f1cb31f-8341-4134-81c0-d0af2977bc44
+
+	measure 'Selected Date' = SELECTEDVALUE(dim_date[calendar_date])
+		lineageTag: f3bdff2d-cc31-4ad7-9a65-414abdf1fb51
+
+	measure 'Initial Margin' = SUM(mtm_report[initial_margin])
+		lineageTag: f32b64f0-93f3-40e3-a7a7-5776d78f4ef0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variation Margin' = SUM(mtm_report[variation_margin])
+		lineageTag: a2559f93-9a0f-43e0-b464-76a886740875
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Collateral Required' = SUM(mtm_report[collateral_required])
+		lineageTag: d2b837c7-390d-4a73-be4f-f4d9cf053c81
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Colalteral Posted' = SUM(mtm_report[collateral_posted])
+		formatString: #,0
+		lineageTag: 64d893c1-a98c-4334-bb68-0124d827d879
+
+	measure 'Excess / Deficit' = SUM(mtm_report[excess_deficit])
+		lineageTag: 078c303a-9ce4-4c0b-9457-9d6a64dd6a8c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IM 30 Day Moving Average' =
+			
+			
+			
+			CALCULATE(
+			    AVERAGEX(
+			        DATESINPERIOD(
+			            dim_date[calendar_date],
+			            MAX(dim_date[calendar_date]),
+			            -30,
+			            DAY
+			        ),
+			        [Initial Margin (Inverse)]
+			    )
+			)
+		lineageTag: 61c82803-8554-4d83-afbb-83366d41eeb9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variation Margin (Inverse)' = -1 * SUM(mtm_report[variation_margin])
+		lineageTag: e23d74c4-56a8-4f61-b5ce-0b44651bf349
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Initial Margin (Inverse)' = -1 * SUM(mtm_report[initial_margin])
+		lineageTag: 1984a8ef-9503-49a3-8ad4-1e26c61d7065
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Counterparty Limits' = SUM(limits[credit_limit_usd])
+		formatString: 0
+		lineageTag: 7d4d5501-1f70-467e-acf0-cd4a5a8dde25
+
+	measure 'FX Portfolio Size' = SUM(fx_portfolio[trade_size_usd])
+		lineageTag: cfdd378a-ff8e-4533-ad87-ea7b7cd2a93f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Measures_Table = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
