@@ -1,5 +1,7 @@
 # Create Date Table
 
+![Create Date Table](https://github.com/sgarciapuga/Work_Portfolio/actions/workflows/create_date_table.yml/badge.svg)
+
 This folder contains a reusable script to build and populate a shared PostgreSQL `date_table`.
 
 The table covers every date from `2026-01-01` through today and includes standard calendar attributes.

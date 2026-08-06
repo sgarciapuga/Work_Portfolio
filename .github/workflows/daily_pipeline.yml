@@ -47,3 +47,10 @@ jobs:
         with:
           name: fx-rates-csv
           path: daily-fx-rates/data/fx_rates.csv
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          payload=$(jq -n --arg text "Workflow '${{ github.workflow }}' failed for ${{ github.ref }} (run: ${{ github.run_number }}). <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>" '{text: $text}')
+          curl -s -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK"

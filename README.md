@@ -1,5 +1,7 @@
 # Treasury Cashflow Simulation
 
+![Create Date Table workflow](https://github.com/sgarciapuga/Work_Portfolio/actions/workflows/create_date_table.yml/badge.svg)
+
 This repository contains a Python-based treasury cashflow simulation.
 It generates synthetic daily transactions, applies internal sweeps, updates account balances, and persists results into a SQLite database.
 
