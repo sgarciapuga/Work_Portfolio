@@ -1,0 +1,336 @@
+---
+title: "Treasury Cashflow Simulation - Full Python Walkthrough"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+jupyter: python3
+editor: visual
+---
+
+## Purpose
+
+This Quarto report documents the full `treasury-cashflow-simulation` Python project. It explains the purpose of every script, shows how the modules work, and includes example outputs from the key functions.
+
+## Best overview for reviewers
+
+If you are reviewing this project quickly, use the table of contents to jump to:
+
+- **Setup and import paths** — verify that the notebook imports the project correctly.
+- **`run_pipeline.py`** — understand the high-level execution flow.
+- **Simulation package modules** — inspect each core script with examples.
+- **Example output from the project** — see the actual CSV and DB results.
+
+## Setup and import paths
+
+This report uses repo-relative paths only. It locates the repository root by walking up from the current working directory until it finds `README.md`, then adds `utils/` and `treasury-cashflow-simulation/src/` to `sys.path`.
+
+This ensures the notebook works from any clone of the repository and does not depend on personal PC paths.
+
+```{python}
+from pathlib import Path
+import sys
+import os
+
+repo_root = Path.cwd()
+while not (repo_root / "README.md").exists() and repo_root.parent != repo_root:
+    repo_root = repo_root.parent
+
+utils_path = repo_root / "utils"
+src_path = repo_root / "treasury-cashflow-simulation" / "src"
+
+sys.path.insert(0, str(repo_root))
+sys.path.insert(0, str(utils_path))
+sys.path.insert(0, str(src_path))
+
+print("Repository root:", repo_root)
+print("Added python paths:")
+print(" -", utils_path)
+print(" -", src_path)
+
+# Reload modules if this notebook is rerun in the same kernel.
+import importlib
+for module_name in [
+    "utils.paths",
+    "utils.db",
+    "utils.dates",
+    "utils.logging",
+    "config",
+    "load_static",
+    "generate_movements",
+    "sweep_engine",
+    "balances_engine",
+    "simulate_pipeline",
+]:
+    if module_name in sys.modules:
+        del sys.modules[module_name]
+```
+
+## Overview of the project structure
+
+The project is organized into shared utilities and a dedicated simulation package.
+
+- `run_pipeline.py` — lightweight CLI entrypoint that configures import paths and runs the simulation.
+- `utils/` — common helpers used by the simulation package.
+- `treasury-cashflow-simulation/src/` — the simulation package itself.
+
+## Recommended navigation
+
+If you are reading this report for the first time, start with:
+
+1.  **Setup and import paths** — ensures the notebook can import project modules correctly.
+2.  **`run_pipeline.py`** — shows the high-level entrypoint for the entire simulation.
+3.  **`utils/` helpers** — explains shared utilities that support the pipeline.
+4.  **Simulation package modules** — reviews each core module and how it contributes to the simulation.
+5.  **Example output from the project** — demonstrates the CSV and database outputs produced by the run.
+
+## `run_pipeline.py`
+
+This script is the repository-level entrypoint. It ensures the `utils` and simulation package directories are importable before calling `simulate_pipeline()`.
+
+```{python}
+from pathlib import Path
+
+run_pipeline_path = Path("run_pipeline.py").resolve()
+print(run_pipeline_path)
+with open(run_pipeline_path, "r", encoding="utf-8") as f:
+    print("\n".join(f.readlines()[:30]))
+```
+
+### How to execute the full pipeline
+
+```{python eval=false}
+from simulate_pipeline import simulate_pipeline
+simulate_pipeline()
+```
+
+> Note: this cell is disabled for automatic evaluation so the report can render quickly. Remove `eval=false` when you want to execute the entire simulation from this notebook.
+
+## `utils/` helpers
+
+### `utils.paths.py`
+
+This module defines repository paths and file locations.
+
+```{python}
+from utils.paths import get_project_root, get_data_path, db_path
+
+print("Project root:", get_project_root())
+print("Data path:", get_data_path())
+print("Database path:", db_path())
+```
+
+### `utils.db.py`
+
+This module opens the SQLite database and creates the `portfolio-data` folder automatically.
+
+```{python}
+from utils.db import db_path, get_connection
+
+print("Resolved DB path:", db_path())
+conn = get_connection()
+print("Connection type:", type(conn))
+conn.close()
+```
+
+### `utils.dates.py`
+
+Date helpers used by the simulation.
+
+```{python}
+from utils.dates import is_month_end, today_str
+from datetime import datetime
+
+sample_date = datetime.strptime("2026-01-31", "%Y-%m-%d")
+print("Sample date:", sample_date)
+print("Is month end?", is_month_end(sample_date))
+print("Today string:", today_str())
+```
+
+### `utils.logging.py`
+
+This module configures a basic logger used by the pipeline.
+
+```{python}
+from utils.logging import setup_logging
+logger = setup_logging("treasury-simulation-doc")
+logger.info("Logging helper loaded successfully.")
+```
+
+## Simulation package modules
+
+### `treasury-cashflow-simulation/src/config.py`
+
+This module re-exports path helpers used by the simulation.
+
+```{python}
+from config import get_balances_path, get_movements_path
+
+print("Balances path:", get_balances_path())
+print("Movements path:", get_movements_path())
+```
+
+### `treasury-cashflow-simulation/src/load_static.py`
+
+Loads static configuration from `treasury-cashflow-simulation/data/setup.xlsx`.
+
+```{python}
+from load_static import load_static_data
+accounts_df, movement_types_df = load_static_data()
+print("Accounts shape:", accounts_df.shape)
+print(accounts_df.head())
+print("Movement types shape:", movement_types_df.shape)
+print(movement_types_df.head())
+```
+
+### `treasury-cashflow-simulation/src/generate_movements.py`
+
+Generates a synthetic set of daily movements for every account.
+
+```{python}
+from balances_engine import prepare_accounts_df
+from generate_movements import generate_movements
+
+prepared_accounts = prepare_accounts_df(accounts_df.copy())
+print("Prepared accounts shape:", prepared_accounts.shape)
+print(prepared_accounts.head())
+
+sample_date = "2026-01-31"
+movements = generate_movements(sample_date, prepared_accounts)
+print("Generated movements rows:", len(movements))
+movements.head(10)
+```
+
+### `treasury-cashflow-simulation/src/sweep_engine.py`
+
+Applies internal sweeps to move surplus cash to deficit accounts within each currency.
+
+```{python}
+from sweep_engine import sweep_cash
+import pandas as pd
+
+# Create a sample daily snapshot with a few synthetic closing balances.
+sample_daily = pd.DataFrame([
+    {"date": sample_date, "account_number": "1001", "currency": "USD", "starting_balance": 25000.00, "total_movements": -30000.00, "closing_balance": -5000.00},
+    {"date": sample_date, "account_number": "1002", "currency": "USD", "starting_balance": 120000.00, "total_movements": 5000.00, "closing_balance": 125000.00},
+    {"date": sample_date, "account_number": "2001", "currency": "EUR", "starting_balance": 8000.00, "total_movements": -12000.00, "closing_balance": -4000.00},
+    {"date": sample_date, "account_number": "2002", "currency": "EUR", "starting_balance": 20000.00, "total_movements": 3000.00, "closing_balance": 23000.00},
+])
+print("Before sweep:")
+print(sample_daily)
+
+swept_daily, sweep_movements = sweep_cash(sample_daily.copy())
+print("After sweep:")
+print(swept_daily)
+print("Sweep transactions:")
+print(sweep_movements)
+```
+
+### `treasury-cashflow-simulation/src/balances_engine.py`
+
+Prepares account balances for incremental simulation runs by loading the latest closing balances from the database.
+
+```{python}
+from balances_engine import prepare_accounts_df
+sample_accounts = accounts_df.copy()
+prepared = prepare_accounts_df(sample_accounts)
+print("Prepared accounts shape:", prepared.shape)
+print(prepared.head())
+```
+
+### `treasury-cashflow-simulation/src/simulate_pipeline.py`
+
+This module orchestrates the full daily simulation. It loads static data, generates movements, applies sweeps, exports CSVs, and inserts results into the SQLite database.
+
+```{python}
+from simulate_pipeline import simulate_pipeline
+print(simulate_pipeline.__doc__)
+```
+
+## Example output from the project
+
+This section demonstrates the types of output produced by a run.
+
+```{python}
+import pandas as pd
+from pathlib import Path
+
+balances_dir = Path(get_balances_path())
+movements_dir = Path(get_movements_path())
+
+print("Balances output directory:", balances_dir)
+print("Movements output directory:", movements_dir)
+print("Sample balances files:", list(balances_dir.glob("balances_*.csv"))[:5])
+print("Sample movements files:", list(movements_dir.glob("movements_*.csv"))[:5])
+```
+
+```{python}
+if balances_dir.exists():
+    sample_balance_file = sorted(balances_dir.glob("balances_*.csv"))[-1]
+    sample_balance_df = pd.read_csv(sample_balance_file)
+    print("Latest balances file:", sample_balance_file.name)
+    sample_balance_df.head()
+else:
+    print("No balances files found yet.")
+```
+
+```{python}
+if movements_dir.exists():
+    sample_movement_file = sorted(movements_dir.glob("movements_*.csv"))[-1]
+    sample_movement_df = pd.read_csv(sample_movement_file)
+    print("Latest movements file:", sample_movement_file.name)
+    sample_movement_df.head()
+else:
+    print("No movements files found yet.")
+```
+
+```{python}
+from utils.db import get_connection
+conn = get_connection()
+print(pd.read_sql("SELECT COUNT(*) AS count FROM balances", conn))
+print(pd.read_sql("SELECT COUNT(*) AS count FROM movements", conn))
+conn.close()
+```
+
+## Project summary
+
+This project simulates daily treasury cashflow for a set of accounts. It is built from modular Python components that:
+
+- load static account and movement configuration from `treasury-cashflow-simulation/data/setup.xlsx`
+- generate synthetic daily transactions with deposits, withdrawals, bank charges, and month-end interest
+- calculate daily closing balances for each account
+- apply internal cash sweeps to move surplus funds to accounts with shortfalls
+- export results as per-day CSV files and persist them in a SQLite database
+
+The key modules are:
+
+- `load_static.py`: reads account and movement configuration
+- `generate_movements.py`: creates daily transaction rows for each account
+- `sweep_engine.py`: balances intraday cash using internal sweep transfers
+- `balances_engine.py`: prepares starting balances for incremental simulation
+- `simulate_pipeline.py`: orchestrates the full daily simulation and writes outputs
+
+This document is designed to explain the code, show sample module outputs, and illustrate the data produced by the pipeline.
+
+## Recommended best approach for this report
+
+1.  Keep the notebook in the repository root so it can locate `utils/` and `treasury-cashflow-simulation/src/` consistently.
+2.  Document each Python module with a short explanation, its inputs, outputs, and why it exists.
+3.  Show concrete examples using the module functions rather than only showing the source code.
+4.  Use `eval=false` for the full `simulate_pipeline()` execution during render, then run it manually when you want to generate actual outputs.
+5.  If you want an output-focused report, include the generated CSV samples and the SQL query results from `portfolio-data/treasury.db`.
+
+## How to render this report
+
+From the repository root:
+
+``` bash
+quarto render treasury-cashflow-simulation-full-doc.qmd
+```
+
+If you prefer to preview locally:
+
+``` bash
+quarto preview treasury-cashflow-simulation-full-doc.qmd
+```

@@ -18,6 +18,36 @@ pip install -r requirements.txt
 python run_pipeline.py
 ```
 
+## Environment and help
+
+This project is designed to run from the repository root with relative paths.
+
+- Create or activate a Python environment before installing dependencies.
+- Install Quarto separately if you want to render documentation.
+- Use relative paths and always run commands from the repo root.
+
+If you want to render the documentation report:
+
+```bash
+quarto render treasury-cashflow-simulation-full-doc.qmd
+```
+
+If Quarto reports a missing Python module when executing notebook cells, install the Jupyter-related packages:
+
+```bash
+pip install notebook nbformat pyyaml
+```
+
+For GitHub or CI, ensure the repo is checked out and these commands are run from the repository root.
+
+## Quarto showcase
+
+Render the project report with:
+
+```bash
+python run_pipeline.py
+```
+
 ## Quarto showcase
 
 Render the project report with:
