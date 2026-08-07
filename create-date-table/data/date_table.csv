@@ -217,3 +217,4 @@ calendar_date,year,quarter,month,month_name,day,day_of_week,day_name,weekday,is_
 2026-08-04,2026,3,8,August,4,2,Tuesday,1,False,False,False,32,2026-08,2026-Q3,32,2026
 2026-08-05,2026,3,8,August,5,3,Wednesday,2,False,False,False,32,2026-08,2026-Q3,32,2026
 2026-08-06,2026,3,8,August,6,4,Thursday,3,False,False,False,32,2026-08,2026-Q3,32,2026
+2026-08-07,2026,3,8,August,7,5,Friday,4,False,False,False,32,2026-08,2026-Q3,32,2026
