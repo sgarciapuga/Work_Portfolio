@@ -1,17 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "7fb1eab1a1c24e74a56b",
+  "name": "24ff1076b18633c86839",
   "position": {
-    "x": 653.085501858736,
-    "y": 130.8550185873606,
-    "z": 2000,
-    "height": 409.2193308550186,
-    "width": 423.49442379182159,
-    "tabOrder": 2000
+    "x": 313.83467992541949,
+    "y": 25.059042883778744,
+    "z": 5000,
+    "height": 349.74314201400409,
+    "width": 407.67605510834829,
+    "tabOrder": 5000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
-    "autoSelectVisualType": true,
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -24,11 +23,11 @@
                       "Entity": "dim_banks"
                     }
                   },
-                  "Property": "bank_name"
+                  "Property": "bank_code"
                 }
               },
-              "queryRef": "dim_banks.bank_name",
-              "nativeQueryRef": "bank_name",
+              "queryRef": "dim_banks.bank_code",
+              "nativeQueryRef": "bank_code",
               "active": true
             }
           ]
@@ -69,6 +68,34 @@
           }
         ]
       }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Portfolio Allocation'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'By Bank'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

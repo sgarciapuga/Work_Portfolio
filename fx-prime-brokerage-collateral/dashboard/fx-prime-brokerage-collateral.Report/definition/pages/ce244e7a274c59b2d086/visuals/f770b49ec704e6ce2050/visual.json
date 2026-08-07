@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "f770b49ec704e6ce2050",
+  "position": {
+    "x": 1189.7078931013052,
+    "y": 486.86140459912991,
+    "z": 4000,
+    "height": 579.93784959602237,
+    "width": 720.74580484773151,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fx_portfolio"
+                    }
+                  },
+                  "Property": "trade_id"
+                }
+              },
+              "queryRef": "fx_portfolio.trade_id",
+              "nativeQueryRef": "trade_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fx_portfolio"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "fx_portfolio.type",
+              "nativeQueryRef": "type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fx_portfolio"
+                    }
+                  },
+                  "Property": "currency_pair"
+                }
+              },
+              "queryRef": "fx_portfolio.currency_pair",
+              "nativeQueryRef": "currency_pair"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_banks"
+                    }
+                  },
+                  "Property": "bank_code"
+                }
+              },
+              "queryRef": "dim_banks.bank_code",
+              "nativeQueryRef": "bank_code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fx_portfolio"
+                    }
+                  },
+                  "Property": "trade_date"
+                }
+              },
+              "queryRef": "fx_portfolio.trade_date",
+              "nativeQueryRef": "trade_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fx_portfolio"
+                    }
+                  },
+                  "Property": "value_date"
+                }
+              },
+              "queryRef": "fx_portfolio.value_date",
+              "nativeQueryRef": "value_date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "FX Portfolio Size"
+                }
+              },
+              "queryRef": "Measures_Table.FX Portfolio Size",
+              "nativeQueryRef": "FX Portfolio Size"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fx_portfolio"
+                  }
+                },
+                "Property": "trade_id"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Portfolio'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

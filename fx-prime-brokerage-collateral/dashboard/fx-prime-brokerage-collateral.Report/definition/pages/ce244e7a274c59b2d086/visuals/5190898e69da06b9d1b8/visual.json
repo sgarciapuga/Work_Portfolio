@@ -1,34 +1,33 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "2440840590a10003d0b2",
+  "name": "5190898e69da06b9d1b8",
   "position": {
-    "x": 131.2616532007458,
-    "y": 205.24549409571162,
-    "z": 3000,
-    "height": 424.76987447698747,
-    "width": 727.02928870292885,
-    "tabOrder": 3000
+    "x": 1204.0273461777501,
+    "y": 25.059042883778744,
+    "z": 1000,
+    "height": 349.74314201400409,
+    "width": 407.67605510834829,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
-        "Category": {
+        "Series": {
           "projections": [
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_date"
+                      "Entity": "fx_portfolio"
                     }
                   },
-                  "Property": "calendar_date"
+                  "Property": "type"
                 }
               },
-              "queryRef": "dim_date.calendar_date",
-              "nativeQueryRef": "calendar_date",
-              "active": true
+              "queryRef": "fx_portfolio.type",
+              "nativeQueryRef": "type"
             }
           ]
         },
@@ -42,27 +41,11 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Initial Margin (Inverse)"
+                  "Property": "FX Portfolio Size"
                 }
               },
-              "queryRef": "Measures_Table.Initial Margin (Inverse)",
-              "nativeQueryRef": "IM",
-              "displayName": "IM"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Measures_Table"
-                    }
-                  },
-                  "Property": "IM 30 Day Moving Average"
-                }
-              },
-              "queryRef": "Measures_Table.IM 30 Day Moving Average",
-              "nativeQueryRef": "30 Day Moving Average",
-              "displayName": "30 Day Moving Average"
+              "queryRef": "Measures_Table.FX Portfolio Size",
+              "nativeQueryRef": "FX Portfolio Size"
             }
           ]
         }
@@ -71,45 +54,48 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dim_date"
+                    "Entity": "Measures_Table"
                   }
                 },
-                "Property": "calendar_date"
+                "Property": "FX Portfolio Size"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
-      "lineStyles": [
+      "labels": [
         {
           "properties": {
-            "strokeWidth": {
+            "labelStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "'Category, data value, percent of total'"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'outside'"
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "Measures_Table.IM 30 Day Moving Average"
           }
         }
       ],
       "legend": [
         {
           "properties": {
-            "position": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'TopRight'"
+                  "Value": "false"
                 }
               }
             }
@@ -124,7 +110,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Initial Margin'"
+                  "Value": "'Portfolio Allocation'"
                 }
               }
             }
@@ -134,10 +120,10 @@
       "subTitle": [
         {
           "properties": {
-            "show": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'By type'"
                 }
               }
             }
@@ -150,46 +136,32 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d8f47f151a032374300c",
+        "name": "dc8a2ee442abc858e287",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f0e5ebc05ae28332b0b4",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_date"
+                "Entity": "fx_portfolio"
               }
             },
-            "Property": "calendar_date"
+            "Property": "type"
           }
         },
         "type": "Categorical"
-      },
-      {
-        "name": "94788a8440400d4b0559",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Initial Margin (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6ea914007e3cdeed5c04",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "IM 30 Day Moving Average"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

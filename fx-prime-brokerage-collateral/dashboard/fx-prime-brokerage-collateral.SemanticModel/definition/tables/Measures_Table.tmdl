@@ -2,28 +2,36 @@ table Measures_Table
 	lineageTag: 1f1cb31f-8341-4134-81c0-d0af2977bc44
 
 	measure 'Selected Date' = SELECTEDVALUE(dim_date[calendar_date])
+		formatString: dd/mmm/yyyy
 		lineageTag: f3bdff2d-cc31-4ad7-9a65-414abdf1fb51
 
+		annotation PBI_FormatHint = {"isCustom":true}
+
 	measure 'Initial Margin' = SUM(mtm_report[initial_margin])
+		displayFolder: MTM
 		lineageTag: f32b64f0-93f3-40e3-a7a7-5776d78f4ef0
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Variation Margin' = SUM(mtm_report[variation_margin])
+		displayFolder: MTM
 		lineageTag: a2559f93-9a0f-43e0-b464-76a886740875
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Collateral Required' = SUM(mtm_report[collateral_required])
+		displayFolder: MTM
 		lineageTag: d2b837c7-390d-4a73-be4f-f4d9cf053c81
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Colalteral Posted' = SUM(mtm_report[collateral_posted])
 		formatString: #,0
+		displayFolder: MTM
 		lineageTag: 64d893c1-a98c-4334-bb68-0124d827d879
 
 	measure 'Excess / Deficit' = SUM(mtm_report[excess_deficit])
+		displayFolder: MTM
 		lineageTag: 078c303a-9ce4-4c0b-9457-9d6a64dd6a8c
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -43,16 +51,19 @@ table Measures_Table
 			        [Initial Margin (Inverse)]
 			    )
 			)
+		displayFolder: MTM
 		lineageTag: 61c82803-8554-4d83-afbb-83366d41eeb9
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Variation Margin (Inverse)' = -1 * SUM(mtm_report[variation_margin])
+		displayFolder: MTM
 		lineageTag: e23d74c4-56a8-4f61-b5ce-0b44651bf349
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Initial Margin (Inverse)' = -1 * SUM(mtm_report[initial_margin])
+		displayFolder: MTM
 		lineageTag: 1984a8ef-9503-49a3-8ad4-1e26c61d7065
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -63,6 +74,36 @@ table Measures_Table
 
 	measure 'FX Portfolio Size' = SUM(fx_portfolio[trade_size_usd])
 		lineageTag: cfdd378a-ff8e-4533-ad87-ea7b7cd2a93f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Open Trades' = COUNTROWS(fx_portfolio)
+		formatString: 0
+		lineageTag: c3291695-b1b4-44d9-81a7-6a9bc8a80319
+
+	measure 'Collateral Required (Inverse)' = -1 * SUM(mtm_report[collateral_required])
+		displayFolder: MTM
+		lineageTag: f7b52d97-eadb-4b74-8bb5-f1f7dea0317a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'VM 30 Day Moving Average' =
+			
+			
+			
+			CALCULATE(
+			    AVERAGEX(
+			        DATESINPERIOD(
+			            dim_date[calendar_date],
+			            MAX(dim_date[calendar_date]),
+			            -30,
+			            DAY
+			        ),
+			        [Variation Margin (Inverse)]
+			    )
+			)
+		displayFolder: MTM
+		lineageTag: ca048677-4bc0-4e62-99f4-2bf26e77e35c
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

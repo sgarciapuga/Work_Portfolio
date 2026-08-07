@@ -4,12 +4,13 @@ model Model
 	sourceQueryCulture: en-GB
 	valueFilterBehavior: independent
 	dataAccessOptions
+		fastCombine
 		legacyRedirects
 		returnErrorValuesAsNull
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["dim_date","dim_currencies","dim_banks","Measures_Table","fx_rates","fx_portfolio","limits","mtm_report"]
+annotation PBI_QueryOrder = ["dim_date","dim_currencies","dim_banks","Measures_Table","fx_rates","fx_portfolio","limits","mtm_report","Latest_date"]
 
 annotation PBI_ProTooling = ["DevMode"]
 

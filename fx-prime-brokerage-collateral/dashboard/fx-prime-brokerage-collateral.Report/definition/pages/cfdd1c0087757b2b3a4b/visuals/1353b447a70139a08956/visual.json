@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "2440840590a10003d0b2",
+  "name": "1353b447a70139a08956",
   "position": {
     "x": 131.2616532007458,
-    "y": 205.24549409571162,
-    "z": 3000,
+    "y": 643.18210068365443,
+    "z": 6001,
     "height": 424.76987447698747,
     "width": 727.02928870292885,
-    "tabOrder": 3000
+    "tabOrder": 6001
   },
   "visual": {
     "visualType": "lineChart",
@@ -42,12 +42,12 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Initial Margin (Inverse)"
+                  "Property": "Variation Margin (Inverse)"
                 }
               },
-              "queryRef": "Measures_Table.Initial Margin (Inverse)",
-              "nativeQueryRef": "IM",
-              "displayName": "IM"
+              "queryRef": "Measures_Table.Variation Margin (Inverse)",
+              "nativeQueryRef": "VM",
+              "displayName": "VM"
             },
             {
               "field": {
@@ -57,10 +57,10 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "IM 30 Day Moving Average"
+                  "Property": "VM 30 Day Moving Average"
                 }
               },
-              "queryRef": "Measures_Table.IM 30 Day Moving Average",
+              "queryRef": "Measures_Table.VM 30 Day Moving Average",
               "nativeQueryRef": "30 Day Moving Average",
               "displayName": "30 Day Moving Average"
             }
@@ -87,22 +87,6 @@
       }
     },
     "objects": {
-      "lineStyles": [
-        {
-          "properties": {
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Measures_Table.IM 30 Day Moving Average"
-          }
-        }
-      ],
       "legend": [
         {
           "properties": {
@@ -115,6 +99,22 @@
             }
           }
         }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.VM 30 Day Moving Average"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -124,7 +124,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Initial Margin'"
+                  "Value": "'Variation Margin'"
                 }
               }
             }
@@ -150,7 +150,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d8f47f151a032374300c",
+        "name": "197c62f362971866a707",
         "field": {
           "Column": {
             "Expression": {
@@ -164,7 +164,7 @@
         "type": "Categorical"
       },
       {
-        "name": "94788a8440400d4b0559",
+        "name": "8682f2ebb355c10113a2",
         "field": {
           "Measure": {
             "Expression": {
@@ -172,13 +172,13 @@
                 "Entity": "Measures_Table"
               }
             },
-            "Property": "Initial Margin (Inverse)"
+            "Property": "Variation Margin (Inverse)"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "6ea914007e3cdeed5c04",
+        "name": "b2069ec3ba9006757300",
         "field": {
           "Measure": {
             "Expression": {
@@ -186,7 +186,7 @@
                 "Entity": "Measures_Table"
               }
             },
-            "Property": "IM 30 Day Moving Average"
+            "Property": "VM 30 Day Moving Average"
           }
         },
         "type": "Advanced"

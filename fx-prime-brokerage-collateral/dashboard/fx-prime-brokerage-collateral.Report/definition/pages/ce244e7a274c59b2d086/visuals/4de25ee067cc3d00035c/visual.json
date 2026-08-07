@@ -1,17 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "7fb1eab1a1c24e74a56b",
+  "name": "4de25ee067cc3d00035c",
   "position": {
-    "x": 653.085501858736,
-    "y": 130.8550185873606,
-    "z": 2000,
-    "height": 409.2193308550186,
-    "width": 423.49442379182159,
-    "tabOrder": 2000
+    "x": 32.218769422001245,
+    "y": 397.36482287134868,
+    "z": 7000,
+    "height": 324.57426973275329,
+    "width": 887.80609073958976,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
-    "autoSelectVisualType": true,
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -21,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_banks"
+                      "Entity": "fx_portfolio"
                     }
                   },
-                  "Property": "bank_name"
+                  "Property": "value_date"
                 }
               },
-              "queryRef": "dim_banks.bank_name",
-              "nativeQueryRef": "bank_name",
+              "queryRef": "fx_portfolio.value_date",
+              "nativeQueryRef": "value_date",
               "active": true
             }
           ]
@@ -69,6 +68,49 @@
           }
         ]
       }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Maturities'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

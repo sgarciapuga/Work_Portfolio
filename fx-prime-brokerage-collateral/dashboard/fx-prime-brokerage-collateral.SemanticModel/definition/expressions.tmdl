@@ -1,0 +1,14 @@
+expression Latest_date =
+		let
+		    Source = mtm_report,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"report_date"}),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Other Columns", let latest = List.Max(#"Removed Other Columns"[report_date]) in each [report_date] = latest),
+		    report_date = #"Filtered Rows"{0}[report_date]
+		in
+		    report_date
+	lineageTag: 8215cc19-2b2b-4495-95c5-4bf8dd5d405a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
+

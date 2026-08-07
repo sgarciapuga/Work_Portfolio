@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "da41740cd1eca45c4794",
   "position": {
-    "x": 1011.743119266055,
-    "y": 307.1559633027523,
-    "z": 11004,
+    "x": 922.41143567433187,
+    "y": 205.24549409571162,
+    "z": 4000,
     "height": 424.76987447698747,
     "width": 727.02928870292885,
-    "tabOrder": 11004
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineChart",
@@ -56,11 +56,11 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Initial Margin (Inverse)"
+                  "Property": "Excess / Deficit"
                 }
               },
-              "queryRef": "Measures_Table.Initial Margin (Inverse)",
-              "nativeQueryRef": "Initial Margin (Inverse)"
+              "queryRef": "Measures_Table.Excess / Deficit",
+              "nativeQueryRef": "Excess / Deficit"
             },
             {
               "field": {
@@ -70,11 +70,12 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Excess / Deficit"
+                  "Property": "Collateral Required (Inverse)"
                 }
               },
-              "queryRef": "Measures_Table.Excess / Deficit",
-              "nativeQueryRef": "Excess / Deficit"
+              "queryRef": "Measures_Table.Collateral Required (Inverse)",
+              "nativeQueryRef": "Collateral Required",
+              "displayName": "Collateral Required"
             }
           ]
         }
@@ -98,12 +99,83 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Colalteral Posted"
+          }
+        },
+        {
+          "properties": {
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Collateral Required (Inverse)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Colalteral Required vs Collateral Posted'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "a865ab45b019001b5d5a",
+        "name": "f6a95a6971d33452b9b1",
         "field": {
           "Column": {
             "Expression": {
@@ -117,7 +189,7 @@
         "type": "Categorical"
       },
       {
-        "name": "1ddec856ba8a06d96836",
+        "name": "640b3e003ea69e120d14",
         "field": {
           "Measure": {
             "Expression": {
@@ -131,21 +203,7 @@
         "type": "Advanced"
       },
       {
-        "name": "29b81f035870856446d8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Initial Margin (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "516483694ada0c07a03c",
+        "name": "f2eba97760446ae007a1",
         "field": {
           "Measure": {
             "Expression": {
@@ -154,6 +212,20 @@
               }
             },
             "Property": "Excess / Deficit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1fb8c0b3e040100e2307",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Collateral Required (Inverse)"
           }
         },
         "type": "Advanced"

@@ -171,14 +171,36 @@ table dim_date
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Continuous Workday' = ```
+			
+			IF(
+			    WEEKDAY('dim_date'[calendar_date], 2) <= 5, -- Keeps Monday (1) through Friday (5)
+			    CALCULATE(
+			        COUNTROWS('dim_date'),
+			        FILTER(
+			            'dim_date',
+			            'dim_date'[calendar_date]<= EARLIER('dim_date'[calendar_date]) && 
+			            WEEKDAY('dim_date'[calendar_date], 2) <= 5
+			        )
+			    ),
+			    BLANK() -- Leaves weekends empty
+			)
+			```
+		formatString: 0
+		lineageTag: f6e6c8f4-bf90-424d-8849-0e3b8598e3fc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_date = m
 		mode: import
 		source =
 				let
 				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
-				    public_date_table = Source{[Schema="public",Item="date_table"]}[Data]
+				    public_date_table = Source{[Schema="public",Item="date_table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(public_date_table, each [calendar_date] <= Latest_date)
 				in
-				    public_date_table
+				    #"Filtered Rows"
 
 	calendar Normal
 		lineageTag: 2fdd0f7e-03dd-4d02-9845-4e4769a7d115

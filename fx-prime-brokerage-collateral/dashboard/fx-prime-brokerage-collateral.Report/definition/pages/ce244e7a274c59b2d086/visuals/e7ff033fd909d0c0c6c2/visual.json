@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "459c6e00ea75c09511b7",
+  "name": "e7ff033fd909d0c0c6c2",
   "position": {
     "x": 12.631578947368421,
     "y": 79.578947368421055,
-    "z": 0,
+    "z": 2000,
     "height": 120,
     "width": 280.42105263157896,
-    "tabOrder": 0
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "listSlicer",
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'04-Aug-2026'"
+                                "Value": "'Latests Date'"
                               }
                             }
                           ]
@@ -172,6 +172,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "Date (Latest)",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }
