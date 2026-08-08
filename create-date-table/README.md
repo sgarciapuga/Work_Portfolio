@@ -1,49 +1,67 @@
 # Create Date Table
 
-![Create Date Table](https://github.com/sgarciapuga/Work_Portfolio/actions/workflows/create_date_table.yml/badge.svg)
+This mini-project builds and maintains a reusable calendar dimension table for analytics and reporting pipelines.
 
-This folder contains a reusable script to build and populate a shared PostgreSQL `date_table`.
+## What it does
 
-The table covers every date from `2026-01-01` through today and includes standard calendar attributes.
+The script creates a PostgreSQL table called date_table with one row per calendar day. It includes common business-calendar attributes such as month, quarter, weekday, ISO week, and month start/end flags.
 
-## Table fields
+## Table structure
 
-- `calendar_date`
-- `year`
-- `quarter`
-- `month`
-- `month_name`
-- `day`
-- `day_of_week`
-- `day_name`
-- `weekday`
-- `is_weekend`
-- `is_month_start`
-- `is_month_end`
-- `week_num`
-- `year_month`
-- `year_quarter`
-- `iso_week`
-- `iso_year`
+The generated table contains the following columns:
+
+- calendar_date
+- year
+- quarter
+- month
+- month_name
+- day
+- day_of_week
+- day_name
+- weekday
+- is_weekend
+- is_month_start
+- is_month_end
+- week_num
+- year_month
+- year_quarter
+- iso_week
+- iso_year
+
+## How it works
+
+The workflow is implemented in [create-date-table/create_date_table.py](create-date-table/create_date_table.py):
+
+1. It reads DATABASE_URL from the repository .env file.
+2. It creates the date_table table if it does not already exist.
+3. It generates a date range from 2026-01-01 through today.
+4. It inserts only the missing dates, making the script suitable for incremental runs.
 
 ## Usage
 
-From the repository root, run:
+Run it from the repository root:
 
 ```bash
 python create-date-table/create_date_table.py
 ```
 
-This script uses `DATABASE_URL` from the repository `.env` file to connect to PostgreSQL.
+## Dependencies
 
-## GitHub Actions
+The script requires:
 
-The script is intended to be run automatically in CI just like the `daily-fx-rates` project.
-A GitHub Action should:
+- pandas
+- python-dotenv
+- sqlalchemy
+- psycopg2-binary
+
+## CI and automation
+
+The project is designed to be scheduled or invoked in CI. The workflow can:
 
 1. check out the repository
-2. install Python dependencies from `requirements.txt`
-3. run `python create-date-table/create_date_table.py`
+2. install the Python dependencies
+3. run the script with the DATABASE_URL secret configured in GitHub Actions
 
-This repository now includes a matching workflow at `.github/workflows/create_date_table.yml`.
-The action is configured to use the same `DATABASE_URL` secret used by `daily-fx-rates`.
+## Notes
+
+This is a reusable building block for downstream reporting, data marts, and dashboard refreshes.

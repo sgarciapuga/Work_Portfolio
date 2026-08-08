@@ -1,80 +1,72 @@
-# Treasury Cashflow Simulation
+# Work Portfolio
 
-![Create Date Table workflow](https://github.com/sgarciapuga/Work_Portfolio/actions/workflows/create_date_table.yml/badge.svg)
+This repository collects a set of treasury, data engineering, and analytics projects that work together as a practical portfolio of financial-data workflows.
 
-This repository contains a Python-based treasury cashflow simulation.
-It generates synthetic daily transactions, applies internal sweeps, updates account balances, and persists results into a SQLite database.
+## Portfolio overview
 
-## Quick start
+### Projects
 
-1. Activate your Python environment.
-2. Install dependencies:
+- Treasury cashflow simulation
+  - Simulates daily account movements, month-end interest, bank charges, deposits, withdrawals, and internal sweeps.
+  - Stores results in CSV files and a SQLite database for downstream reporting.
+
+- FX prime brokerage collateral
+  - Generates synthetic FX portfolio and collateral metrics such as initial margin, variation margin, and collateral surplus/deficit.
+  - Produces collateral reports that are suitable for analysis and dashboarding.
+
+- Daily FX rates
+  - Loads daily FX rates from the Frankfurter API into a local CSV and SQLite dataset.
+  - Supports historical backfill and incremental updates.
+
+- Create date table
+  - Builds and maintains a reusable calendar dimension table in PostgreSQL for reporting and date-based analytics.
+
+## Repository structure
+
+```text
+Work_Portfolio/
+├── README.md
+├── run_pipeline.py
+├── requirements.txt
+├── create-date-table/
+├── daily-fx-rates/
+├── fx-prime-brokerage-collateral/
+├── treasury-cashflow-simulation/
+├── portfolio-data/
+└── utils/
+```
+
+## Getting started
+
+1. Create or activate a Python environment.
+2. Install dependencies from the repository root:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the simulation:
+3. Run the projects you need:
 
 ```bash
 python run_pipeline.py
 ```
 
-## Environment and help
+For the individual mini-projects, use their own entry points as documented in their subfolders.
 
-This project is designed to run from the repository root with relative paths.
+## Documentation
 
-- Create or activate a Python environment before installing dependencies.
-- Install Quarto separately if you want to render documentation.
-- Use relative paths and always run commands from the repo root.
+Each project folder includes:
 
-If you want to render the documentation report:
+- a GitHub-friendly README
+- a Quarto or R Markdown report for narrative documentation and project walkthroughs
 
-```bash
-quarto render treasury-cashflow-simulation-full-doc.qmd
-```
+## Recommended workflow
 
-If Quarto reports a missing Python module when executing notebook cells, install the Jupyter-related packages:
-
-```bash
-pip install notebook nbformat pyyaml
-```
-
-For GitHub or CI, ensure the repo is checked out and these commands are run from the repository root.
-
-## Quarto showcase
-
-Render the project report with:
-
-```bash
-python run_pipeline.py
-```
-
-## Quarto showcase
-
-Render the project report with:
-
-```bash
-quarto render treasury-cashflow-simulation.qmd
-```
-
-## What is included
-
-- `run_pipeline.py` — lightweight CLI entrypoint
-- `treasury-cashflow-simulation/src/` — simulation package
-- `utils/` — shared utilities
-- `treasury-cashflow-simulation/data/` — generated CSV outputs and setup file
-- `portfolio-data/treasury.db` — persisted simulation results
-
-## Output files
-
-After running `python run_pipeline.py`, the following outputs are generated:
-
-- `treasury-cashflow-simulation/data/Balances/` — daily balance CSV files named `balances_YYYYMMDD.csv`
-- `treasury-cashflow-simulation/data/Movements/` — daily movement CSV files named `movements_YYYYMMDD.csv`
-- `portfolio-data/treasury.db` — SQLite database containing `balances` and `movements` tables
+- Use the repository root as the working directory for shared scripts.
+- Keep environment variables such as DATABASE_URL in a local .env file.
+- Render Quarto documents from the repo root when you want a polished HTML report.
 
 ## Notes
 
-- Run from the repository root so the paths resolve correctly.
-- The Quarto document is designed to present the simulation results as a project showcase.
+- The portfolio is designed to be expanded over time.
+- New projects should follow the same pattern: a README, clear entry-point scripts, and an accompanying report or notebook for explanation.
