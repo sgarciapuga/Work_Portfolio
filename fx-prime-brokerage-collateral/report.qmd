@@ -1,0 +1,94 @@
+---
+title: "FX Prime Brokerage Collateral — Project Report"
+author: "Sergio"
+date: 2026-08-08
+format: html
+---
+
+# Overview
+
+This Quarto report documents the synthetic dataset generators for FX prime brokerage collateral analysis.
+
+# Setup
+
+Install repository dependencies:
+
+```bash
+pip install -r requirements.txt
+# or, for a minimal environment for this project:
+# pip install -r fx-prime-brokerage-collateral/requirements.txt
+```
+
+# Run
+
+From the repository root:
+
+```bash
+python fx-prime-brokerage-collateral/src/generate_fx_datasets.py
+```
+
+Or target a custom output directory:
+
+```bash
+python fx-prime-brokerage-collateral/src/generate_fx_datasets.py --out ./tmp-output
+```
+
+# Key modules
+
+- `fx-prime-brokerage-collateral/src/generate_fx_portfolio.py`
+- `fx-prime-brokerage-collateral/src/generate_mark_to_market.py`
+- `fx-prime-brokerage-collateral/src/generate_mtm_for_portfolio.py`
+- `fx-prime-brokerage-collateral/src/generate_limits.py`
+- `fx-prime-brokerage-collateral/src/generate_mtm_report.py`
+
+# Outputs
+
+- `data/FX-portfolio/portfolio.csv`
+- `data/Limits/limits.csv`
+- `data/Mark-to-market/mark_to_market_portfolio.csv`
+- `data/Mark-to-market/mtm_report.csv`
+
+# Example
+
+```{python}
+import pandas as pd
+from pathlib import Path
+from IPython.display import display
+
+p = Path('fx-prime-brokerage-collateral/data/Mark-to-market/mtm_report.csv')
+if p.exists():
+    display(pd.read_csv(p).head())
+else:
+    print('MTM report not found; generating a small sample for illustration:')
+    sample = pd.DataFrame({
+        'report_date':['2026-07-29','2026-07-30','2026-07-31'],
+        'initial_margin':[-5000,-4500,-4800],
+        'variation_margin':[-1200,1300,-300],
+        'collateral_required':[-6200,-3200,-5100],
+        'collateral_posted':[500000,500000,500000],
+        'excess_deficit':[493800,496800,494900]
+    })
+    display(sample)
+```
+
+```{python}
+# Visual: collateral_required over sample dates (safe if real file missing)
+import matplotlib.pyplot as plt
+if p.exists():
+    df = pd.read_csv(p)
+else:
+    df = sample
+
+plt.figure(figsize=(8,3))
+plt.plot(pd.to_datetime(df['report_date']), df['collateral_required'], marker='o')
+plt.title('Collateral required (sample)')
+plt.xlabel('Date')
+plt.ylabel('Collateral required')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
+
+# Notes
+
+The synthetic rules are documented in comments inside the `src` scripts. This project is meant for demonstration and analysis rather than production risk calculations.

@@ -1,0 +1,85 @@
+---
+title: "Daily FX Rates — Project Report"
+author: "Sergio"
+date: 2026-08-08
+format: html
+---
+
+# Overview
+
+This report documents the maintained FX rates loader in [src/daily_fx_rates.py](src/daily_fx_rates.py), which fetches daily FX rates from the Frankfurter API and stores them in a CSV file and Neon PostgreSQL table.
+
+The loader normalizes keys before deduplication, backfills missing business-day rows, and tracks provisional rows with `fx_quality_flag` so they can be revalidated on later runs.
+
+# Setup
+
+```bash
+pip install -r requirements.txt
+```
+
+# Run
+
+Run the maintained loader from the repository root:
+
+```bash
+python src/daily_fx_rates.py
+```
+
+The legacy [daily_fx_rates.Rmd](daily_fx_rates.Rmd) is kept only as historical context for the original prototype.
+
+If you want to render the report itself with Quarto:
+
+```bash
+quarto render daily-fx-rates/report.qmd
+```
+
+# Outputs
+
+- `daily-fx-rates/data/fx_rates.csv`
+- Neon PostgreSQL (table: `fx_rates`)
+
+# Example
+
+```{python}
+import pandas as pd
+from pathlib import Path
+from IPython.display import display
+
+p = Path('daily-fx-rates/data/fx_rates.csv')
+if p.exists():
+    display(pd.read_csv(p).tail())
+else:
+    print('No fx_rates.csv present; creating a small sample for demonstration:')
+    sample = pd.DataFrame({
+        'date':['2026-08-06','2026-08-07','2026-08-08'],
+        'currency':['USD','EUR','GBP'],
+        'fx_to_usd':[1.0,0.91,0.78]
+    })
+    display(sample)
+```
+
+```{python}
+# Visual: simple FX time series example (synthetic if CSV missing)
+import matplotlib.pyplot as plt
+if p.exists():
+    df = pd.read_csv(p)
+    # pivot to wide if long
+    df_wide = df.pivot(index='date', columns='currency', values='fx_to_usd')
+else:
+    df_wide = pd.DataFrame({
+        'date':['2026-08-06','2026-08-07','2026-08-08'],
+        'USD':[1.0,1.0,1.0],
+        'EUR':[0.905,0.907,0.91],
+        'GBP':[0.775,0.78,0.78]
+    }).set_index('date')
+
+df_wide.plot(figsize=(8,3))
+plt.title('FX to USD (sample)')
+plt.xlabel('Date')
+plt.tight_layout()
+plt.show()
+```
+
+# Notes
+
+The current implementation uses USD as base and loads EUR and GBP. It tags source rows as `raw` and any forward-filled rows as `filled`, then rechecks recently filled rows on later runs so late-published source data can replace provisional values.

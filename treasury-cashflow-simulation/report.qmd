@@ -1,0 +1,102 @@
+---
+title: "Treasury Cashflow Simulation — Project Report"
+author: "Sergio"
+date: 2026-08-08
+format: html
+---
+
+# Overview
+
+This Quarto report documents the `treasury-cashflow-simulation` pipeline: how synthetic daily transactions are generated, internal sweeps applied, CSV outputs produced, and results persisted into `portfolio-data/treasury.db`.
+
+# Setup
+
+Install repository dependencies from the project root:
+
+```bash
+pip install -r requirements.txt
+```
+
+# Run
+
+From the repository root:
+
+```bash
+python run_pipeline.py
+```
+
+# Pipeline architecture
+
+- Entry point: `run_pipeline.py`
+- Main pipeline: `treasury-cashflow-simulation/src/simulate_pipeline.py`
+- Static data loader: `treasury-cashflow-simulation/src/load_static.py`
+- Movement generator: `treasury-cashflow-simulation/src/generate_movements.py`
+- Sweep engine: `treasury-cashflow-simulation/src/sweep_engine.py`
+- Balances preparation: `treasury-cashflow-simulation/src/balances_engine.py`
+
+# Outputs
+
+- `treasury-cashflow-simulation/data/Balances/balances_YYYYMMDD.csv`
+- `treasury-cashflow-simulation/data/Movements/movements_YYYYMMDD.csv`
+- `portfolio-data/treasury.db` (tables: `balances`, `movements`)
+
+# Code walkthrough
+
+Explain key modules and functions used in the simulation. Use the code cells below to show examples and small excerpts.
+
+```{python}
+# Example: show latest 5 movements from the DB (safe if DB missing)
+import sqlite3
+import pandas as pd
+from pathlib import Path
+
+db_path = Path('../portfolio-data/treasury.db')
+if db_path.exists():
+    conn = sqlite3.connect(db_path)
+    try:
+        df = pd.read_sql('SELECT * FROM movements ORDER BY date DESC LIMIT 5', conn)
+        display(df)
+    finally:
+        conn.close()
+else:
+    print('Database not found. Showing a generated sample:')
+    sample = pd.DataFrame({
+        'date': ['2026-07-30','2026-07-30','2026-07-29'],
+        'transaction_id': ['TX20260730000001','TX20260730000002','TX20260729000001'],
+        'account_number': ['1001','1002','1001'],
+        'amount': [1250.0, -500.0, 3000.0]
+    })
+    display(sample)
+```
+
+# Visual example: plot latest balances (reads CSV if present, otherwise uses sample)
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+balances_dir = Path('treasury-cashflow-simulation/data/Balances')
+csvs = sorted(balances_dir.glob('balances_*.csv')) if balances_dir.exists() else []
+if csvs:
+    # load last 7 days (if available)
+    frames = [pd.read_csv(p) for p in csvs[-7:]]
+    df_all = pd.concat(frames, ignore_index=True)
+    latest = df_all.groupby('account_number')['closing_balance'].last().reset_index()
+else:
+    latest = pd.DataFrame({'account_number':['1001','1002','1003'],'closing_balance':[120000,80000,45000]})
+
+plt.figure(figsize=(7,3))
+plt.bar(latest['account_number'], latest['closing_balance'])
+plt.title('Sample latest closing balances by account')
+plt.xlabel('Account')
+plt.ylabel('Closing balance')
+plt.tight_layout()
+plt.show()
+```
+
+# Notes
+
+This report is intended as a narrative guide; run the pipeline to generate sample outputs before rendering the full HTML report.
+
+If you want, I can run `quarto render treasury-cashflow-simulation/report.qmd` next to produce an HTML file (requires Quarto installed).

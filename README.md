@@ -15,8 +15,8 @@ This repository collects a set of treasury, data engineering, and analytics proj
   - Produces collateral reports that are suitable for analysis and dashboarding.
 
 - Daily FX rates
-  - Loads daily FX rates from the Frankfurter API into a local CSV and SQLite dataset.
-  - Supports historical backfill and incremental updates.
+  - Loads daily FX rates from the Frankfurter API into a local CSV backup and Neon PostgreSQL table.
+  - Supports historical backfill, incremental updates, idempotent reruns, and a `fx_quality_flag` for raw versus filled rows.
 
 - Create date table
   - Builds and maintains a reusable calendar dimension table in PostgreSQL for reporting and date-based analytics.
@@ -65,6 +65,33 @@ Each project folder includes:
 - Use the repository root as the working directory for shared scripts.
 - Keep environment variables such as DATABASE_URL in a local .env file.
 - Render Quarto documents from the repo root when you want a polished HTML report.
+
+### Render reports with the dedicated Quarto environment
+
+If you want a simple way to render Quarto reports without switching environments manually, use the helper script in the scripts folder.
+
+From PowerShell:
+
+```powershell
+pwsh -File .\scripts\render_report.ps1 -ReportPath "treasury-cashflow-simulation/report.qmd" -Execute
+```
+
+You can render any other report by changing the report path, for example:
+
+```powershell
+pwsh -File .\scripts\render_report.ps1 -ReportPath "treasury-cashflow-simulation-full-doc.qmd" -Execute
+```
+
+The script uses a dedicated conda environment named quarto_render and sets the Quarto Python executable automatically.
+
+If you have not created that environment yet, run:
+
+```powershell
+& "C:\Users\44784\miniconda3\shell\condabin\conda-hook.ps1"
+conda create -n quarto_render python=3.11 -y
+conda activate quarto_render
+conda install -c conda-forge jupyter ipykernel matplotlib pandas pyarrow -y
+```
 
 ## Notes
 

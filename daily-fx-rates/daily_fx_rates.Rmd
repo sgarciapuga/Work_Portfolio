@@ -3,6 +3,8 @@ title: "Daily FX Rate Loader"
 output: html_document
 ---
 
+This R Markdown file is kept as historical prototype documentation. The maintained loader now lives in [src/daily_fx_rates.py](src/daily_fx_rates.py).
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 

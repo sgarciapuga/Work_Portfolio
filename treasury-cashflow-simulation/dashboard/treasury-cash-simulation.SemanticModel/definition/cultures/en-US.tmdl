@@ -2838,17 +2838,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "In Currency": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
-			          "USD": {
+			          "GBP": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -2868,7 +2858,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "GBP": {
+			          "USD": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4126,16 +4116,6 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "In USD": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        },
-			        {
 			          "Balance (In USD)": {
 			            "State": "Suggested",
 			            "Source": {
@@ -4850,16 +4830,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.727
 			          }
-			        },
-			        {
-			          "Currency": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -5404,16 +5374,6 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.727
-			          }
-			        },
-			        {
-			          "Bank": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]

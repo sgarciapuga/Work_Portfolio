@@ -1,0 +1,65 @@
+---
+title: "Create Date Table — Project Report"
+author: "Sergio"
+date: 2026-08-08
+format: html
+---
+
+# Overview
+
+This mini-project creates and maintains a `date_table` in PostgreSQL, providing a canonical calendar dimension for reporting.
+
+# Setup
+
+Ensure `DATABASE_URL` is available in the repository `.env` file.
+
+```bash
+pip install -r requirements.txt
+```
+
+# Run
+
+From the repository root:
+
+```bash
+python create-date-table/create_date_table.py
+```
+
+# Table schema
+
+The script generates a table with `calendar_date`, `year`, `month`, `quarter`, `weekday`, `is_weekend`, `is_month_start`, `is_month_end`, and ISO week/year.
+
+# Notes
+
+The script is idempotent and inserts only missing dates, making it safe for scheduled incremental runs in CI.
+
+# Example: preview calendar rows (safe local sample if DB not available)
+
+```{python}
+import pandas as pd
+from pathlib import Path
+from IPython.display import display
+csv_path = Path('create-date-table/sample_dates_preview.csv')
+if csv_path.exists():
+	display(pd.read_csv(csv_path).head())
+else:
+	# Generate a small in-memory sample
+	import datetime
+	dates = pd.date_range(start='2026-07-25', periods=7, freq='D')
+	df = pd.DataFrame({'calendar_date': dates.date})
+	df['year'] = df['calendar_date'].apply(lambda d: d.year)
+	df['month'] = df['calendar_date'].apply(lambda d: d.month)
+	df['is_weekend'] = df['calendar_date'].apply(lambda d: d.weekday()>=5)
+	display(df.head())
+```
+
+```{python}
+# Visual: count of weekend vs weekday in the sample
+import matplotlib.pyplot as plt
+counts = df['is_weekend'].value_counts().sort_index()
+counts.index = ['weekday','weekend']
+counts.plot(kind='bar', figsize=(4,3))
+plt.title('Weekday vs Weekend (sample)')
+plt.tight_layout()
+plt.show()
+```

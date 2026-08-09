@@ -1,11 +1,10 @@
 ---
-ehav---
 title: "Treasury Cashflow Simulation - Full Python Walkthrough"
 format:
-  html:
-    theme: cosmo
-    toc: true
-    toc-depth: 3
+    html:
+        theme: cosmo
+        toc: true
+        toc-depth: 3
 jupyter: python3
 editor: visual
 ---

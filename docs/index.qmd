@@ -1,0 +1,14 @@
+---
+title: "Project Reports Index"
+author: "Sergio"
+date: 2026-08-08
+format: html
+---
+
+# Project Reports
+
+- Treasury cashflow simulation: [treasury-cashflow-simulation/report.qmd](../treasury-cashflow-simulation/report.qmd)
+- FX prime brokerage collateral: [fx-prime-brokerage-collateral/report.qmd](../fx-prime-brokerage-collateral/report.qmd)
+- Daily FX rates: [daily-fx-rates/report.qmd](../daily-fx-rates/report.qmd)
+- Create date table: [create-date-table/report.qmd](../create-date-table/report.qmd)
+
