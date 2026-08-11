@@ -33,6 +33,12 @@ fx-prime-brokerage-collateral/
 
 The entry point is the script in [fx-prime-brokerage-collateral/src/generate_fx_datasets.py](fx-prime-brokerage-collateral/src/generate_fx_datasets.py).
 
+Before running the generator, set `DATABASE_URL` in the repository `.env` file (repo root):
+
+```text
+DATABASE_URL=postgresql+psycopg2://<user>:<password>@<host>/<database>?sslmode=require
+```
+
 Run it from the repository root:
 
 ```bash
@@ -54,9 +60,36 @@ The pipeline writes the following files:
 - data/Mark-to-market/mtm_report.csv
 - data/FX-portfolio/portfolio.csv
 
+It also saves data to PostgreSQL using idempotent upserts (`INSERT ... ON CONFLICT DO UPDATE`) into:
+
+- fx_prime_limits
+- fx_prime_mark_to_market_portfolio
+- fx_prime_mtm_report
+- fx_prime_portfolio
+
+For each table the flow is:
+
+- `CREATE TABLE IF NOT EXISTS`
+- delete legacy duplicates on unique keys
+- `CREATE UNIQUE INDEX IF NOT EXISTS`
+- stage rows into a temporary table
+- upsert into the target table
+
 ## Dependencies
 
-The project uses pandas and numpy. Install them with the repo-level requirements or the project-local requirements file.
+The project uses:
+
+- pandas
+- numpy
+- sqlalchemy
+- psycopg2-binary
+- python-dotenv
+
+Install with the project-local requirements file:
+
+```bash
+pip install -r fx-prime-brokerage-collateral/requirements.txt
+```
 
 ## Notes
 

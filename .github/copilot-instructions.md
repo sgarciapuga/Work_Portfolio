@@ -8,3 +8,8 @@
 - Ask before any expensive action (broad refactor, multi-agent run, full test suite, or long-context pass).
 - Prefer targeted tests/lint checks over full-suite runs.
 - Stop after delivering the requested result; avoid extra exploratory work.
+
+## Repeatable process for data projects
+- Follow docs/REPEATABLE_DATA_PROJECT_PLAYBOOK.md for phase-by-phase delivery.
+- Use prompt patterns from docs/COPILOT_LOW_TOKEN_PROMPTS.md.
+- Prefer template reuse over free-form planning when task is repetitive.

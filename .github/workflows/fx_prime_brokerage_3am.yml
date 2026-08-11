@@ -1,0 +1,72 @@
+name: FX Prime Brokerage - 3AM Local
+
+on:
+  schedule:
+    # Runs automatically at 03:00 UTC every day
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fx-prime-brokerage-3am
+  cancel-in-progress: false
+
+jobs:
+  run-fx-prime:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v5.4.0
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r fx-prime-brokerage-collateral/requirements.txt
+
+      - name: Execute FX Prime dataset script
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python fx-prime-brokerage-collateral/src/generate_fx_datasets.py
+
+      - name: Upload generated CSV artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fx-prime-csv
+          path: |
+            fx-prime-brokerage-collateral/data/Limits/limits.csv
+            fx-prime-brokerage-collateral/data/Mark-to-market/mark_to_market_portfolio.csv
+            fx-prime-brokerage-collateral/data/Mark-to-market/mtm_report.csv
+            fx-prime-brokerage-collateral/data/FX-portfolio/portfolio.csv
+
+      - name: Commit and push CSV backup
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fx-prime-brokerage-collateral/data/Limits/limits.csv || true
+          git add fx-prime-brokerage-collateral/data/Mark-to-market/mark_to_market_portfolio.csv || true
+          git add fx-prime-brokerage-collateral/data/Mark-to-market/mtm_report.csv || true
+          git add fx-prime-brokerage-collateral/data/FX-portfolio/portfolio.csv || true
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+          else
+            git commit -m "auto: update fx-prime brokerage CSVs [skip ci]"
+            git push
+          fi
+
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          payload=$(jq -n --arg text "Workflow '${{ github.workflow }}' failed for ${{ github.ref }} (run: ${{ github.run_number }}). <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>" '{text: $text}')
+          curl -s -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK"
