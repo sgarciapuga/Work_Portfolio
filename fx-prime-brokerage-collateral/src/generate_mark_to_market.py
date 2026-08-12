@@ -7,6 +7,7 @@ from pandas.tseries.offsets import CustomBusinessDay
 
 
 def generate_mark_to_market(n_trades=100, days=30, seed=2026):
+    """Create standalone synthetic trade-level MTM and P&L observations."""
     rng = np.random.default_rng(seed)
     trade_ids = [f"T{100000 + i}" for i in range(n_trades)]
     counterparties = [f"CP_{i:03d}" for i in range(1, 1 + max(10, n_trades//10))]
@@ -48,6 +49,7 @@ def generate_mark_to_market(n_trades=100, days=30, seed=2026):
 
 
 def main(out_path=None):
+    """Generate standalone MTM data and write it to ``mark_to_market.csv``."""
     out_dir = out_path or os.path.join(os.path.dirname(__file__), "..", "data", "Mark-to-market")
     out_dir = os.path.abspath(out_dir)
     os.makedirs(out_dir, exist_ok=True)

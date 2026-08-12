@@ -56,7 +56,7 @@ table Measures_Table
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Variation Margin (Inverse)' = -1 * SUM(mtm_report[variation_margin])
+	measure 'Variation Margin (Inverse)' = SUM(mtm_report[variation_margin])
 		displayFolder: MTM
 		lineageTag: e23d74c4-56a8-4f61-b5ce-0b44651bf349
 

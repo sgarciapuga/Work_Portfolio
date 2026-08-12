@@ -17,15 +17,18 @@ BANK_LIMITS = {
 
 
 def get_business_days(start_date, end_date):
+    """Return US Federal holiday-aware business dates between two endpoints."""
     business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
     return pd.date_range(start=start_date, end=end_date, freq=business_day)
 
 
 def round_limit(value):
+    """Round a credit limit to the project's 250,000 USD increment."""
     return float(round(value / 250_000) * 250_000)
 
 
 def build_limit_schedule(end_date=None, seed=42):
+    """Create a dated credit-limit schedule with semiannual reviews."""
     if end_date is None:
         business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
         previous = pd.date_range(end=date.today(), periods=2, freq=business_day)
@@ -71,6 +74,7 @@ def build_limit_schedule(end_date=None, seed=42):
 
 
 def exposures_from_portfolio(portfolio_df):
+    """Aggregate portfolio trade size by reporting date and bank."""
     if portfolio_df is None or portfolio_df.empty:
         return {}
 
@@ -83,6 +87,7 @@ def exposures_from_portfolio(portfolio_df):
 
 
 def generate_limits(end_date=None, portfolio_df=None, seed=42):
+    """Return daily bank limits, exposure, and remaining capacity as a DataFrame."""
     if end_date is None:
         business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
         previous = pd.date_range(end=date.today(), periods=2, freq=business_day)
@@ -146,6 +151,7 @@ def generate_limits(end_date=None, portfolio_df=None, seed=42):
 
 
 def main(out_path=None):
+    """Generate the limits table and write it to ``limits.csv``."""
     out_dir = out_path or os.path.join(os.path.dirname(__file__), "..", "data", "Limits")
     out_dir = os.path.abspath(out_dir)
     os.makedirs(out_dir, exist_ok=True)

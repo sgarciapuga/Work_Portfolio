@@ -12,23 +12,27 @@ MIN_MOVE = 50_000.0
 
 
 def get_business_days(start_date, end_date):
+    """Return US Federal holiday-aware business dates between two endpoints."""
     business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
     return pd.date_range(start=start_date, end=end_date, freq=business_day)
 
 
-def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None):
+def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=None):
     """Generate a daily MTM collateral report.
 
     The report outputs the following columns:
     - report_date
     - initial_margin: negative values indicate IM payable by us
-    - variation_margin: negative values indicate VM payable by us
+    - variation_margin: positive values are favourable P&L; negative values are payable by us
     - collateral_required: negative values indicate total collateral required from us
     - collateral_posted: collateral posted today
     - excess_deficit: positive means excess collateral, negative means deficit
 
-    Sign convention: report fields are flipped so positive values are in our favour
-    and negative values are against us.
+    Sign convention: initial margin is always negative because it is posted to the
+    broker. Variation margin keeps the MTM/P&L sign: positive P&L reduces the
+    collateral requirement and negative P&L increases it.
+
+    Returns one row per business date and writes the result to ``mtm_report.csv``.
     """
     # load data if not provided
     base_dir = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -77,17 +81,20 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None):
 
         # collateral displayed is collateral_current (posted amount shown today)
         collateral_display = collateral_current
-        total_exposure = im_raw + vm_raw
+        # Positive P&L offsets the initial-margin obligation; negative P&L adds to it.
+        total_exposure = im_raw - vm_raw
         # excess_deficit: positive => excess (collateral > exposure), negative => deficit
         # (positive is good, negative is bad)
         excess_deficit = collateral_display - total_exposure
 
-        # For reporting, flip signs so positive = in our favour, negative = against us.
+        # Initial margin is an amount posted to the broker; VM keeps the P&L sign.
+        initial_margin = round(-im_raw, 2)
+        variation_margin = round(vm_raw, 2)
         rows.append({
             "report_date": rd_str,
-            "initial_margin": round(-im_raw, 2),
-            "variation_margin": round(-vm_raw, 2),
-            "collateral_required": round(-(im_raw + vm_raw), 2),
+            "initial_margin": initial_margin,
+            "variation_margin": variation_margin,
+            "collateral_required": round(initial_margin + variation_margin, 2),
             "collateral_posted": round(collateral_display, 2),
             "excess_deficit": round(excess_deficit, 2),
         })
@@ -125,7 +132,7 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None):
         collateral_current = collateral_next
 
     df = pd.DataFrame(rows)
-    out_dir = os.path.join(base_dir, "Mark-to-market")
+    out_dir = out_path or os.path.join(base_dir, "Mark-to-market")
     os.makedirs(out_dir, exist_ok=True)
     out_file = os.path.join(out_dir, "mtm_report.csv")
     try:

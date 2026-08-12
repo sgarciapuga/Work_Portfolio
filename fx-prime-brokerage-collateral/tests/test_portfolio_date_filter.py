@@ -1,4 +1,5 @@
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -8,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from generate_fx_portfolio import generate_fx_portfolio
 from generate_limits import build_limit_schedule
+from generate_mtm_report import generate_mtm_report
 
 
 class PortfolioDateFilterTests(unittest.TestCase):
@@ -41,6 +43,31 @@ class PortfolioDateFilterTests(unittest.TestCase):
                 breaches.append((report_date, bank_id, exposure, limit))
 
         self.assertEqual([], breaches)
+
+    def test_collateral_report_preserves_variation_margin_sign(self):
+        portfolio = pd.DataFrame({
+            "trade_date": ["2026-01-02", "2026-01-05"],
+            "report_date": ["2026-01-02", "2026-01-05"],
+            "trade_size_usd": [100_000, 100_000],
+        })
+        mtm = pd.DataFrame({
+            "report_date": ["2026-01-02", "2026-01-05"],
+            "pnl": [1_000, -1_000],
+        })
+
+        with tempfile.TemporaryDirectory() as output_dir:
+            result = generate_mtm_report(
+                portfolio_df=portfolio,
+                mtm_df=mtm,
+                end_date="2026-01-05",
+                out_path=output_dir,
+            )
+
+        self.assertEqual(-5_000, result.loc[0, "initial_margin"])
+        self.assertEqual(1_000, result.loc[0, "variation_margin"])
+        self.assertEqual(-4_000, result.loc[0, "collateral_required"])
+        self.assertEqual(-1_000, result.loc[1, "variation_margin"])
+        self.assertEqual(-6_000, result.loc[1, "collateral_required"])
 
 
 if __name__ == "__main__":

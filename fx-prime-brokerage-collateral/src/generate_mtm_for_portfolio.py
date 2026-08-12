@@ -9,11 +9,13 @@ START_DATE = "2026-01-01"
 
 
 def get_business_days(start_date, end_date):
+    """Return US Federal holiday-aware business dates between two endpoints."""
     business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
     return pd.date_range(start=start_date, end=end_date, freq=business_day)
 
 
 def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
+    """Simulate daily MTM and P&L for each active generated portfolio trade."""
     if portfolio_df is None:
         path = os.path.join(os.path.dirname(__file__), "..", "data", "FX-portfolio", "portfolio.csv")
         if not os.path.exists(path):
@@ -82,6 +84,7 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
 
 
 def main(out_path=None):
+    """Generate portfolio MTM data and write it to its CSV output."""
     df = generate_mtm_for_portfolio()
     out_dir = out_path or os.path.join(os.path.dirname(__file__), "..", "data", "Mark-to-market")
     os.makedirs(out_dir, exist_ok=True)

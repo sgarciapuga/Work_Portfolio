@@ -240,6 +240,7 @@ def _save_to_database(df_limits, df_mtm_portfolio, df_mtm_report, df_fx_portfoli
 
 # The generated FX datasets are intended to run up to yesterday COB by default.
 def run_all(out_dir=None):
+    """Generate all four datasets, write CSV files, and persist them to PostgreSQL."""
     base = Path(out_dir) if out_dir else Path(__file__).resolve().parent.parent / "data"
     limits_dir = base / "Limits"
     mtm_dir = base / "Mark-to-market"
@@ -274,6 +275,7 @@ def run_all(out_dir=None):
 
 
 def main():
+    """Parse the command-line output directory and run the complete pipeline."""
     p = argparse.ArgumentParser(description="Generate synthetic FX prime brokerage collateral datasets")
     p.add_argument("--out", help="Output base directory (defaults to repo fx-prime-brokerage-collateral/data)")
     args = p.parse_args()

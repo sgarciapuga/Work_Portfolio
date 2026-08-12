@@ -14,11 +14,13 @@ TRADE_TYPES = ["spot", "forward", "swap"]
 
 
 def get_business_days(start_date, end_date):
+    """Return US Federal holiday-aware business dates between two endpoints."""
     business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
     return pd.date_range(start=start_date, end=end_date, freq=business_day)
 
 
 def ensure_business_day(timestamp, business_days):
+    """Move a date to itself or the next available business date."""
     if timestamp in business_days:
         return timestamp
     idx = business_days.get_indexer([timestamp], method="bfill")[0]
@@ -26,6 +28,7 @@ def ensure_business_day(timestamp, business_days):
 
 
 def allocate_trade_across_banks(total_trade_exposure, remaining_capacity):
+    """Allocate one trade across banks when no single bank has enough capacity."""
     usable = {
         bank: float(capacity)
         for bank, capacity in remaining_capacity.items()
@@ -59,6 +62,11 @@ def allocate_trade_across_banks(total_trade_exposure, remaining_capacity):
 
 
 def generate_fx_portfolio(end_date=None, seed=42):
+    """Create reproducible trade-leg rows for active synthetic FX positions.
+
+    Returns one row per active leg and reporting date, with exposure assigned to
+    a bank and constrained by the generated credit-limit schedule.
+    """
     if end_date is None:
         business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())
         previous = pd.date_range(end=date.today(), periods=2, freq=business_day)
@@ -208,6 +216,7 @@ def generate_fx_portfolio(end_date=None, seed=42):
 
 
 def main(out_path=None):
+    """Generate the portfolio and write it to ``portfolio.csv``."""
     out_dir = out_path or os.path.join(os.path.dirname(__file__), "..", "data", "FX-portfolio")
     out_dir = os.path.abspath(out_dir)
     os.makedirs(out_dir, exist_ok=True)
