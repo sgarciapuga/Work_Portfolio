@@ -132,37 +132,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "dc8a2ee442abc858e287",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "FX Portfolio Size"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f0e5ebc05ae28332b0b4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fx_portfolio"
-              }
-            },
-            "Property": "type"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "1353b447a70139a08956",
   "position": {
-    "x": 131.2616532007458,
-    "y": 643.18210068365443,
-    "z": 6001,
-    "height": 424.76987447698747,
-    "width": 727.02928870292885,
-    "tabOrder": 6001
+    "x": 70.573384333648391,
+    "y": 656.13104028827979,
+    "z": 6000,
+    "height": 411,
+    "width": 863,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "lineChart",
@@ -150,8 +150,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
+                      "ColorId": 4,
+                      "Percent": -0.25
                     }
                   }
                 }
@@ -184,6 +184,26 @@
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'VM vs 30 Day Moving Average'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
                   "Value": "false"
                 }
               }
@@ -193,51 +213,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "197c62f362971866a707",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8682f2ebb355c10113a2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Variation Margin (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b2069ec3ba9006757300",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "VM 30 Day Moving Average"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

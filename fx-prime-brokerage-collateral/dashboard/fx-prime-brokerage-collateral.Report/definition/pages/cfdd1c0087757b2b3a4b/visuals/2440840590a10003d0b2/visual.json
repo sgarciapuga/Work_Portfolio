@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "2440840590a10003d0b2",
   "position": {
-    "x": 131.2616532007458,
-    "y": 205.24549409571162,
+    "x": 70.573384333648391,
+    "y": 227.85126713137996,
     "z": 3000,
-    "height": 424.76987447698747,
-    "width": 727.02928870292885,
+    "height": 411,
+    "width": 863,
     "tabOrder": 3000
   },
   "visual": {
@@ -198,6 +198,26 @@
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'IM vs 30 Day Moving Average'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
                   "Value": "false"
                 }
               }
@@ -207,51 +227,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d8f47f151a032374300c",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "94788a8440400d4b0559",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Initial Margin (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6ea914007e3cdeed5c04",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "IM 30 Day Moving Average"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

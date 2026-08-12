@@ -89,7 +89,7 @@ table dim_date
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Date (Latest)' = ```
-			IF(dim_date[calendar_date] = MAX(dim_date[calendar_date]), "Latests Date", FORMAT(dim_date[calendar_date], "DD-MMM-YYYY")) 
+			IF(dim_date[calendar_date] = MAX(dim_date[calendar_date]), "Latest Date", FORMAT(dim_date[calendar_date], "DD-MMM-YYYY")) 
 			```
 		lineageTag: 2a7c14f4-e81a-471f-914e-58bc493bac76
 		summarizeBy: none

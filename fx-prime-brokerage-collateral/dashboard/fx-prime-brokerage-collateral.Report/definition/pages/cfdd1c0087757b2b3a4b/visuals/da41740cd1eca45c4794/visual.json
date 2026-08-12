@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "da41740cd1eca45c4794",
   "position": {
-    "x": 922.41143567433187,
-    "y": 205.24549409571162,
+    "x": 967.05731628071828,
+    "y": 227.85126713137996,
     "z": 4000,
-    "height": 424.76987447698747,
-    "width": 727.02928870292885,
+    "height": 411,
+    "width": 863,
     "tabOrder": 4000
   },
   "visual": {
@@ -46,21 +46,8 @@
                 }
               },
               "queryRef": "Measures_Table.Colalteral Posted",
-              "nativeQueryRef": "Collateral Posted"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Measures_Table"
-                    }
-                  },
-                  "Property": "Excess / Deficit"
-                }
-              },
-              "queryRef": "Measures_Table.Excess / Deficit",
-              "nativeQueryRef": "Excess / Deficit"
+              "nativeQueryRef": "Posted",
+              "displayName": "Posted"
             },
             {
               "field": {
@@ -74,8 +61,8 @@
                 }
               },
               "queryRef": "Measures_Table.Collateral Required (Inverse)",
-              "nativeQueryRef": "Collateral Required",
-              "displayName": "Collateral Required"
+              "nativeQueryRef": "Required",
+              "displayName": "Required"
             }
           ]
         }
@@ -140,10 +127,28 @@
             "metadata": "Measures_Table.Collateral Required (Inverse)"
           }
         }
-      ]
-    },
-    "visualContainerObjects": {
-      "subTitle": [
+      ],
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'TopRight'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "seriesLabels": [
         {
           "properties": {
             "show": {
@@ -156,13 +161,88 @@
           }
         }
       ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Colalteral Posted"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Collateral Required (Inverse)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Posted vs Required'"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Colalteral Required vs Collateral Posted'"
+                  "Value": "'Collateral: Required vs Posted'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -171,65 +251,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f6a95a6971d33452b9b1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "640b3e003ea69e120d14",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Collateral Posted"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f2eba97760446ae007a1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Excess / Deficit"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1fb8c0b3e040100e2307",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Collateral Required (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

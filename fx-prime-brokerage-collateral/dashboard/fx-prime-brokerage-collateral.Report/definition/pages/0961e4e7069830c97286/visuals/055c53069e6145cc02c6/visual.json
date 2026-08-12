@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "459c6e00ea75c09511b7",
+  "name": "055c53069e6145cc02c6",
   "position": {
-    "x": 12.631578947368421,
-    "y": 79.578947368421055,
+    "x": 1696.855189558732,
+    "y": 84.723430702299567,
     "z": 0,
-    "height": 120,
-    "width": 280.42105263157896,
+    "height": 120.52206339341205,
+    "width": 212.40522063393414,
     "tabOrder": 0
   },
   "visual": {
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'04-Aug-2026'"
+                                "Value": "'10-Aug-2026'"
                               }
                             }
                           ]
@@ -106,24 +106,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "data": [
-        {
-          "properties": {}
-        }
-      ],
-      "overFlow": [
-        {
-          "properties": {
-            "overFlowStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
                 }
               }
             }
@@ -173,6 +155,29 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "Date (Latest)",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "be565ce76c4a829bec1e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "Date (Latest)"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

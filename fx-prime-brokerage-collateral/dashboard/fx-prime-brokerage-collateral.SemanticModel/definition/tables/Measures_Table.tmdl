@@ -69,14 +69,13 @@ table Measures_Table
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Counterparty Limits' = SUM(limits[credit_limit_usd])
-		formatString: 0
+		formatString: #,0
 		lineageTag: 7d4d5501-1f70-467e-acf0-cd4a5a8dde25
 
 	measure 'FX Portfolio Size' = SUM(fx_portfolio[trade_size_usd])
+		formatString: #,0.00
 		displayFolder: Portfolio
 		lineageTag: cfdd378a-ff8e-4533-ad87-ea7b7cd2a93f
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Open Trades' = COUNTROWS(fx_portfolio)
 		formatString: 0
@@ -342,6 +341,140 @@ table Measures_Table
 		formatString: 0
 		displayFolder: MTM
 		lineageTag: b37ad6fc-d468-41d9-87c7-7fcee640f07a
+
+	measure 'FX Portfolio Size (Previous Day)' =
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR PreviousDateWithData =
+			    CALCULATE(
+			        MAX(fx_portfolio[trade_date]),
+			        REMOVEFILTERS(dim_date),
+			        dim_date[calendar_date] < CurrentDate
+			    )
+			RETURN
+			    CALCULATE(
+			        [FX Portfolio Size],
+			        REMOVEFILTERS(dim_date),
+			        dim_date[calendar_date] = PreviousDateWithData
+			    )
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: 11242c08-bdc4-45b8-9341-cb65be639a3d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'FX Portfolio Size (Daily Change)' = [FX Portfolio Size] - [FX Portfolio Size (Previous Day)]
+		displayFolder: Portfolio
+		lineageTag: 457d6632-d1f0-4916-aa0b-2d2d6223eb86
+
+		formatStringDefinition =
+				VAR Change = [FX Portfolio Size (Daily Change)]
+				RETURN
+				
+				    SWITCH(
+				    TRUE(),
+				    Change> 0, "▲ " & "#,0",
+				    Change < 0, "▼ " & "#,0",
+				    "- -"
+				)
+
+	measure 'FX Portfolio Size Change Colour' =
+			SWITCH(
+			    TRUE(),
+			    [FX Portfolio Size (Daily Change)] > 0, "#1F7A4D",
+			    [FX Portfolio Size (Daily Change)] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: Portfolio
+		lineageTag: bc3042b9-bbec-42f4-ad57-bc9a1ce1d857
+
+	measure 'Open Trades (Previous Day)' =
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR PreviousDateWithData =
+			    CALCULATE(
+			        MAX(fx_portfolio[trade_date]),
+			        REMOVEFILTERS(dim_date),
+			        dim_date[calendar_date] < CurrentDate
+			    )
+			RETURN
+			    CALCULATE(
+			        [Open Trades],
+			        REMOVEFILTERS(dim_date),
+			        dim_date[calendar_date] = PreviousDateWithData
+			    )
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: 627f9bda-53ba-45a8-91bd-4d520536a3d9
+
+	measure 'Open Trades (Daily Change)' = [Open Trades] - [Open Trades (Previous Day)]
+		displayFolder: Portfolio
+		lineageTag: 23f2b1b5-9e2c-4333-8da4-39a7ced8baaa
+
+		formatStringDefinition =
+				VAR Change = [Open Trades (Daily Change)]
+				RETURN
+				
+				    SWITCH(
+				    TRUE(),
+				    Change> 0, "▲ " & "#,0",
+				    Change < 0, "▼ " & "#,0",
+				    "- -"
+				)
+
+	measure 'Open Trades Change Colour' =
+			SWITCH(
+			    TRUE(),
+			    [Open Trades (Daily Change)] > 0, "#1F7A4D",
+			    [Open Trades (Daily Change)] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: Portfolio
+		lineageTag: 1fcd5191-27b1-47bc-8982-873c1ac3e1d7
+
+	measure 'Excess / Deficit  Colour' =
+			SWITCH(
+			    TRUE(),
+			    [Excess / Deficit] > 0, "#1F7A4D",
+			    [Excess / Deficit] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: MTM
+		lineageTag: 2bda6c93-9c3d-438b-a4c0-6cff05a7a871
+
+	measure 'Total Limit' =
+			CALCULATE(
+			    SUM(limits[credit_limit_usd]),
+			    ALLEXCEPT(limits, limits[as_of_date])
+			)
+		displayFolder: Portfolio
+		lineageTag: 6d486fe4-6e96-4d8d-b349-00e53b5a7992
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Credit Limit Utilization' = ```
+			
+			DIVIDE(
+			    SUM('limits'[counterparty_exposure_usd]), 
+			    SUM('limits'[credit_limit_usd]), 
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6e0511d5-c596-4adc-90f7-b0c7c500537e
+
+	measure 'Bank Theme Color' =
+			
+			VAR SelectedBank = SELECTEDVALUE('dim_banks'[bank_code])
+			RETURN
+			    SWITCH(
+			        SelectedBank,
+			        "SAN", "#EC0000",  -- Official Santander Red
+			        "CITI", "#003B70",  -- Official Citi Blue
+			        "HSBC", "#800020",  -- Official HSBC Red
+			        "JPM", "#117ACA",  -- Official JPMorgan Blue
+			        "FXPB", "#E28743",  -- Distinct Accent Orange
+			        "#888888"                      -- Default Grey
+			    )
+		lineageTag: 76a60422-5570-4dec-8fe9-4968fe3ac957
 
 	partition Measures_Table = m
 		mode: import
