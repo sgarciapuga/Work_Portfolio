@@ -192,6 +192,19 @@ table dim_date
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Has Data' = ```
+			
+			IF(
+			    dim_date[calendar_date] IN VALUES(mtm_report[report_date]), 
+			    "Yes", 
+			    "No"
+			)
+			```
+		lineageTag: 50b8f249-b4fe-4ad0-91f6-57c332b229a2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition dim_date = m
 		mode: import
 		source =

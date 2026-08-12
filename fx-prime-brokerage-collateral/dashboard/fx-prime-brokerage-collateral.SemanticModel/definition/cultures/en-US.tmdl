@@ -2806,7 +2806,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Measures_Table",
-			          "ConceptualProperty": "Colalteral Posted"
+			          "ConceptualProperty": "Collateral Posted"
 			        }
 			      },
 			      "State": "Generated",

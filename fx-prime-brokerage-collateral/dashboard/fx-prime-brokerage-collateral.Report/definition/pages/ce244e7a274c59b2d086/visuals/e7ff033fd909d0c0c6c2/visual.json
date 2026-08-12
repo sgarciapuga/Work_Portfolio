@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Latests Date'"
+                                "Value": "'07-Aug-2026'"
                               }
                             }
                           ]
@@ -179,5 +179,24 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8fbceacb7a110a41075d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Has Data Flag"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ]
   }
 }

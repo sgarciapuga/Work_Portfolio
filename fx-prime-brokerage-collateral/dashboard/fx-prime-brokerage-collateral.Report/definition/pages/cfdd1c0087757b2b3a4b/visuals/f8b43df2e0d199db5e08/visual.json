@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "1353b447a70139a08956",
+  "name": "f8b43df2e0d199db5e08",
   "position": {
-    "x": 131.2616532007458,
-    "y": 643.18210068365443,
-    "z": 6001,
-    "height": 424.76987447698747,
-    "width": 727.02928870292885,
-    "tabOrder": 6001
+    "x": 921.70212765957444,
+    "y": 643.40425531914889,
+    "z": 6002,
+    "height": 425.10638297872339,
+    "width": 727.65957446808511,
+    "tabOrder": 6002
   },
   "visual": {
     "visualType": "lineChart",
@@ -42,27 +42,11 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Variation Margin (Inverse)"
+                  "Property": "Collateral Required (Daily Change)"
                 }
               },
-              "queryRef": "Measures_Table.Variation Margin (Inverse)",
-              "nativeQueryRef": "VM",
-              "displayName": "VM"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Measures_Table"
-                    }
-                  },
-                  "Property": "VM 30 Day Moving Average"
-                }
-              },
-              "queryRef": "Measures_Table.VM 30 Day Moving Average",
-              "nativeQueryRef": "30 Day Moving Average",
-              "displayName": "30 Day Moving Average"
+              "queryRef": "Measures_Table.Collateral Required (Daily Change)",
+              "nativeQueryRef": "Collateral Required (Daily Change)"
             }
           ]
         }
@@ -87,16 +71,104 @@
       }
     },
     "objects": {
-      "legend": [
+      "lineStyles": [
         {
           "properties": {
-            "position": {
+            "areaShow": {
               "expr": {
                 "Literal": {
-                  "Value": "'TopRight'"
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             },
+            "labelDensity": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "optimizeLabelDisplay": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "leaderLines": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Collateral Required  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -106,78 +178,9 @@
             }
           }
         }
-      ],
-      "lineStyles": [
-        {
-          "properties": {
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Measures_Table.VM 30 Day Moving Average"
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Measures_Table.Variation Margin (Inverse)"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 5,
-                      "Percent": -0.5
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Measures_Table.VM 30 Day Moving Average"
-          }
-        }
       ]
     },
     "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Variation Margin'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "subTitle": [
         {
           "properties": {
@@ -190,6 +193,19 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Collateral Required (Daily Change)'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -197,7 +213,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "197c62f362971866a707",
+        "name": "ef29aef902d6dd9370e8",
         "field": {
           "Column": {
             "Expression": {
@@ -208,10 +224,10 @@
             "Property": "calendar_date"
           }
         },
-        "type": "Categorical"
+        "type": "RelativeDate"
       },
       {
-        "name": "8682f2ebb355c10113a2",
+        "name": "7fc2c8780bba001b4191",
         "field": {
           "Measure": {
             "Expression": {
@@ -219,21 +235,7 @@
                 "Entity": "Measures_Table"
               }
             },
-            "Property": "Variation Margin (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b2069ec3ba9006757300",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "VM 30 Day Moving Average"
+            "Property": "Collateral Required (Daily Change)"
           }
         },
         "type": "Advanced"

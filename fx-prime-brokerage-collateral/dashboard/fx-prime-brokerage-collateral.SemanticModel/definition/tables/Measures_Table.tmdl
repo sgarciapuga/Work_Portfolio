@@ -25,7 +25,7 @@ table Measures_Table
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Colalteral Posted' = SUM(mtm_report[collateral_posted])
+	measure 'Collateral Posted' = SUM(mtm_report[collateral_posted])
 		formatString: #,0
 		displayFolder: MTM
 		lineageTag: 64d893c1-a98c-4334-bb68-0124d827d879
@@ -73,12 +73,14 @@ table Measures_Table
 		lineageTag: 7d4d5501-1f70-467e-acf0-cd4a5a8dde25
 
 	measure 'FX Portfolio Size' = SUM(fx_portfolio[trade_size_usd])
+		displayFolder: Portfolio
 		lineageTag: cfdd378a-ff8e-4533-ad87-ea7b7cd2a93f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Open Trades' = COUNTROWS(fx_portfolio)
 		formatString: 0
+		displayFolder: Portfolio
 		lineageTag: c3291695-b1b4-44d9-81a7-6a9bc8a80319
 
 	measure 'Collateral Required (Inverse)' = -1 * SUM(mtm_report[collateral_required])
@@ -106,6 +108,240 @@ table Measures_Table
 		lineageTag: ca048677-4bc0-4e62-99f4-2bf26e77e35c
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Collateral Posted (Previous Day)' = ```
+			
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR PRevious_DateWithData = 
+			CALCULATE(
+			    MAX(mtm_report[report_date]),
+			    REMOVEFILTERS(dim_date),
+			    dim_date[calendar_date] < CurrentDate
+			)
+			
+			RETURN
+			
+			CALCULATE(
+			    [Collateral Posted],
+			    REMOVEFILTERS(dim_date),
+			    dim_date[calendar_date] = PRevious_DateWithData
+			)
+			```
+		displayFolder: MTM
+		lineageTag: 92f23517-749e-4102-8350-b80a3a0c90c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Collateral Posted (Daily Change)' = [Collateral Posted] - [Collateral Posted (Previous Day)]
+		displayFolder: MTM
+		lineageTag: b29180a0-884d-4737-a09d-0d127343c454
+
+		formatStringDefinition =
+				VAR Change = [Collateral Posted (Daily Change)]
+				RETURN
+				
+				    SWITCH(
+				    TRUE(),
+				    Change> 0, "▲ " & "#,0",
+				    Change < 0, "▼ " & "#,0",
+				    "- -"
+				)
+
+	measure 'Collateral Posted  Change Colour' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Collateral Posted (Daily Change)] > 0, "#1F7A4D",   // green
+			    [Collateral Posted (Daily Change)]  < 0, "#7A0C1E",   // red
+			    "#808080"                        // grey for no change
+			)
+		displayFolder: MTM
+		lineageTag: d986cf09-8716-42dd-89d5-3edd0b9fc23b
+
+	measure 'Initial Margin (Previous Day)' =
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR Previous_DateWithData =
+			    CALCULATE(
+			        MAX(mtm_report[report_date]),
+			        dim_date[calendar_date] < CurrentDate
+			    )
+			RETURN
+			    CALCULATE(
+			        [Initial Margin],
+			        dim_date[calendar_date] = Previous_DateWithData
+			    )
+		displayFolder: MTM
+		lineageTag: 70101313-758e-4470-91d7-3d66a312f29d
+
+	measure 'Initial Margin (Daily Change)' = [Initial Margin] - [Initial Margin (Previous Day)]
+		displayFolder: MTM
+		lineageTag: 01493bb8-a5c4-4e56-832f-316583ed9bc9
+
+		formatStringDefinition =
+				VAR Change = [Initial Margin (Daily Change)]
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        Change > 0, "▲ " & "#,0",
+				        Change < 0, "▼ " & "#,0",
+				        "- -"
+				    )
+
+	measure 'Initial Margin  Change Colour' =
+			SWITCH(
+			    TRUE(),
+			    [Initial Margin (Daily Change)] > 0, "#1F7A4D",
+			    [Initial Margin (Daily Change)] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: MTM
+		lineageTag: 726c738a-67b2-42d1-9fa3-319788546515
+
+	measure 'Variation Margin (Previous Day)' =
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR Previous_DateWithData =
+			    CALCULATE(
+			        MAX(mtm_report[report_date]),
+			        dim_date[calendar_date] < CurrentDate
+			    )
+			RETURN
+			    CALCULATE(
+			        [Variation Margin],
+			        dim_date[calendar_date] = Previous_DateWithData
+			    )
+		displayFolder: MTM
+		lineageTag: 6a9fbba3-d1fa-4fd0-bde8-f8cb20640f23
+
+	measure 'Variation Margin (Daily Change)' = [Variation Margin] - [Variation Margin (Previous Day)]
+		displayFolder: MTM
+		lineageTag: 5a6c30d0-a4b6-4844-b9b5-45dc0d0209a7
+
+		formatStringDefinition =
+				VAR Change = [Variation Margin (Daily Change)]
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        Change > 0, "▲ " & "#,0",
+				        Change < 0, "▼ " & "#,0",
+				        "- -"
+				    )
+
+	measure 'Variation Margin  Change Colour' =
+			SWITCH(
+			    TRUE(),
+			    [Variation Margin (Daily Change)] > 0, "#1F7A4D",
+			    [Variation Margin (Daily Change)] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: MTM
+		lineageTag: 8006f05a-0d04-4942-ae74-9160754c363e
+
+	measure 'Collateral Required (Previous Day)' =
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR Previous_DateWithData =
+			    CALCULATE(
+			        MAX(mtm_report[report_date]),
+			        dim_date[calendar_date] < CurrentDate
+			    )
+			RETURN
+			    CALCULATE(
+			        [Collateral Required],
+			        dim_date[calendar_date] = Previous_DateWithData
+			    )
+		displayFolder: MTM
+		lineageTag: fea2d830-f09d-41aa-8570-63a07ccbff03
+
+	measure 'Collateral Required (Daily Change)' = [Collateral Required] - [Collateral Required (Previous Day)]
+		displayFolder: MTM
+		lineageTag: adcdc05f-6164-4a8c-95cd-b27b906d55a4
+
+		formatStringDefinition =
+				VAR Change = [Collateral Required (Daily Change)]
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        Change > 0, "▲ " & "#,0",
+				        Change < 0, "▼ " & "#,0",
+				        "- -"
+				    )
+
+	measure 'Collateral Required  Change Colour' =
+			SWITCH(
+			    TRUE(),
+			    [Collateral Required (Daily Change)] > 0, "#1F7A4D",
+			    [Collateral Required (Daily Change)] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: MTM
+		lineageTag: f51c99de-6b73-4184-b4ee-dbd922b5ac4e
+
+	measure 'Excess / Deficit (Previous Day)' =
+			VAR CurrentDate = MAX(dim_date[calendar_date])
+			VAR Previous_DateWithData =
+			    CALCULATE(
+			        MAX(mtm_report[report_date]),
+			        dim_date[calendar_date] < CurrentDate
+			    )
+			RETURN
+			    CALCULATE(
+			        [Excess / Deficit],
+			        dim_date[calendar_date] = Previous_DateWithData
+			    )
+		displayFolder: MTM
+		lineageTag: 21183501-836f-4254-8a7b-91b1927dc458
+
+	measure 'Excess / Deficit (Daily Change)' = [Excess / Deficit] - [Excess / Deficit (Previous Day)]
+		displayFolder: MTM
+		lineageTag: 78ea46a8-62c6-4061-bd17-bf445bc1c043
+
+		formatStringDefinition =
+				VAR Change = [Excess / Deficit (Daily Change)]
+				RETURN
+				    SWITCH(
+				        TRUE(),
+				        Change > 0, "▲ " & "#,0",
+				        Change < 0, "▼ " & "#,0",
+				        "- -"
+				    )
+
+	measure 'Excess / Deficit  Change Colour' =
+			SWITCH(
+			    TRUE(),
+			    [Excess / Deficit (Daily Change)] > 0, "#1F7A4D",
+			    [Excess / Deficit (Daily Change)] < 0, "#7A0C1E",
+			    "#808080"
+			)
+		displayFolder: MTM
+		lineageTag: ebf063d4-cf44-44d2-a94c-e0078e12ec52
+
+	measure 'Initial Margin (% Daily Change)' = DIVIDE([Initial Margin] - [Initial Margin (Previous Day)], [Initial Margin (Previous Day)])
+		displayFolder: MTM
+		lineageTag: cd35cbc2-fbc2-426b-9ff2-eaa7ae265221
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IM Jump Flag' = IF([Initial Margin (% Daily Change)] > 0.1, 1, 0)
+		formatString: 0
+		displayFolder: MTM
+		lineageTag: 800c5f28-4197-4be3-ace6-f617e1b8eaee
+
+	measure 'IM Jump Marker' = IF([IM Jump Flag] = 1, [Initial Margin (Inverse)], BLANK())
+		displayFolder: MTM
+		lineageTag: b40a3f23-181a-46ed-a34f-6c75fbe7ac83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Has Data Flag' = ```
+			
+			IF(
+			    NOT ISEMPTY(mtm_report), 
+			    1, 
+			    0
+			)
+			```
+		formatString: 0
+		displayFolder: MTM
+		lineageTag: b37ad6fc-d468-41d9-87c7-7fcee640f07a
 
 	partition Measures_Table = m
 		mode: import

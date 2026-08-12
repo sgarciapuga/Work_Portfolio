@@ -33,7 +33,7 @@ table mtm_report
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column collateral_posted
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: d4547d8e-ca1b-4c3d-bebb-f161f056796c
 		summarizeBy: sum
@@ -65,11 +65,10 @@ table mtm_report
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\Mis_cosas\Coding\Work_Portfolio\fx-prime-brokerage-collateral\data\Mark-to-market\mtm_report.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
-				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"report_date", type date}, {"initial_margin", type number}, {"variation_margin", type number}, {"collateral_required", type number}, {"collateral_posted", Int64.Type}, {"excess_deficit", type number}}, "en-US")
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				    public_fx_prime_mtm_report = Source{[Schema="public",Item="fx_prime_mtm_report"]}[Data]
 				in
-				  #"Changed column type"
+				    public_fx_prime_mtm_report
 
 	annotation PBI_NavigationStepName = Navigation
 

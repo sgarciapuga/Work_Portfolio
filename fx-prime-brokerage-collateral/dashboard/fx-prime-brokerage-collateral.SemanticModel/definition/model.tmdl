@@ -12,7 +12,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["dim_date","dim_currencies","dim_banks","Measures_Table","fx_rates","fx_portfolio","limits","mtm_report","Latest_date"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
 ref table dim_date
 ref table Measures_Table

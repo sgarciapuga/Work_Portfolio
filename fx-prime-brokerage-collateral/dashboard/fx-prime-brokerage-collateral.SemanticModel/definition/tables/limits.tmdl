@@ -21,7 +21,7 @@ table limits
 		annotation SummarizationSetBy = Automatic
 
 	column credit_limit_usd
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: b57b8315-3089-4cf9-8d28-fb5e5158b0f6
 		summarizeBy: sum
@@ -53,11 +53,10 @@ table limits
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\Mis_cosas\Coding\Work_Portfolio\fx-prime-brokerage-collateral\data\Limits\limits.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
-				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"as_of_date", type date}, {"bank_id", type text}, {"credit_limit_usd", Int64.Type}, {"counterparty_exposure_usd", type number}, {"limit_available_usd", type number}}, "en-US")
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				    public_fx_prime_limits = Source{[Schema="public",Item="fx_prime_limits"]}[Data]
 				in
-				  #"Changed column type"
+				    public_fx_prime_limits
 
 	annotation PBI_NavigationStepName = Navigation
 

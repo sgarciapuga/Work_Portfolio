@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "4f8904740730edbc0e02",
   "position": {
-    "x": 400.94468614045991,
-    "y": 10.739589807333747,
+    "x": 400.46783625730995,
+    "y": 11.228070175438598,
     "z": 2000,
-    "height": 110.97576134244872,
-    "width": 1295.9105034182721,
+    "height": 145.96491228070175,
+    "width": 1296.2183235867446,
     "tabOrder": 2000
   },
   "visual": {
@@ -65,11 +65,11 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Colalteral Posted"
+                  "Property": "Collateral Posted"
                 }
               },
               "queryRef": "Measures_Table.Colalteral Posted",
-              "nativeQueryRef": "Colalteral Posted"
+              "nativeQueryRef": "Collateral Posted"
             },
             {
               "field": {
@@ -109,7 +109,19 @@
     "objects": {
       "value": [
         {
-          "properties": {},
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F7A4D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "selector": {
             "id": "default"
           }
@@ -145,7 +157,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#D64550'"
+                              "Value": "'#7A0C1E'"
                             }
                           }
                         }
@@ -198,7 +210,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#D64550'"
+                              "Value": "'#7A0C1E'"
                             }
                           }
                         }
@@ -251,7 +263,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#D64550'"
+                              "Value": "'#7A0C1E'"
                             }
                           }
                         }
@@ -292,7 +304,7 @@
                                       "Entity": "Measures_Table"
                                     }
                                   },
-                                  "Property": "Colalteral Posted"
+                                  "Property": "Collateral Posted"
                                 }
                               },
                               "Right": {
@@ -304,7 +316,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#D64550'"
+                              "Value": "'#7A0C1E'"
                             }
                           }
                         }
@@ -357,7 +369,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#D64550'"
+                              "Value": "'#7A0C1E'"
                             }
                           }
                         }
@@ -377,6 +389,582 @@
               }
             ],
             "metadata": "Measures_Table.Excess / Deficit"
+          }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Colalteral Posted"
+          }
+        }
+      ],
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Collateral Posted (Daily Change)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Colalteral Posted",
+            "id": "field-fc3e7194-5219-48a7-e54c-56a042cd4a61",
+            "order": 0
+          }
+        },
+        {
+          "properties": {
+            "paddingIndividual": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "backgroundShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Initial Margin (Daily Change)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Initial Margin",
+            "id": "field-3f29f3d9-f67f-3b5d-9a97-75169fb6549a",
+            "order": 0
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Variation Margin (Daily Change)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Variation Margin",
+            "id": "field-5557b8a1-1e62-8f27-11ba-34947d7ba6ec",
+            "order": 0
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Collateral Required (Daily Change)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Total Exposure",
+            "id": "field-7299f918-1a1f-5e72-d476-afca9b116d2e",
+            "order": 0
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Excess / Deficit (Daily Change)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Excess / Deficit",
+            "id": "field-9d23945f-8eae-2d07-f985-77c57f0aab4d",
+            "order": 0
+          }
+        },
+        {
+          "properties": {
+            "backgroundShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Excess / Deficit"
+          }
+        }
+      ],
+      "referenceLabelTitle": [
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily Change:'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Colalteral Posted",
+            "id": "field-fc3e7194-5219-48a7-e54c-56a042cd4a61"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily Change'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Initial Margin",
+            "id": "field-3f29f3d9-f67f-3b5d-9a97-75169fb6549a"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Initial Margin",
+            "id": "field-3f29f3d9-f67f-3b5d-9a97-75169fb6549a"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily Change'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Variation Margin",
+            "id": "field-5557b8a1-1e62-8f27-11ba-34947d7ba6ec"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily Change'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Total Exposure",
+            "id": "field-7299f918-1a1f-5e72-d476-afca9b116d2e"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily Change'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Excess / Deficit",
+            "id": "field-9d23945f-8eae-2d07-f985-77c57f0aab4d"
+          }
+        }
+      ],
+      "referenceLabelLayout": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            },
+            "verticalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'top'"
+                }
+              }
+            },
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'sentence'"
+                }
+              }
+            },
+            "labelSpace": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelValue": [
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Collateral Posted  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Colalteral Posted",
+            "id": "field-fc3e7194-5219-48a7-e54c-56a042cd4a61"
+          }
+        },
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Initial Margin  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Initial Margin",
+            "id": "field-3f29f3d9-f67f-3b5d-9a97-75169fb6549a"
+          }
+        },
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Variation Margin  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Variation Margin",
+            "id": "field-5557b8a1-1e62-8f27-11ba-34947d7ba6ec"
+          }
+        },
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Collateral Required  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Total Exposure",
+            "id": "field-7299f918-1a1f-5e72-d476-afca9b116d2e"
+          }
+        },
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Excess / Deficit  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Excess / Deficit",
+            "id": "field-9d23945f-8eae-2d07-f985-77c57f0aab4d"
+          }
+        }
+      ],
+      "cardCalloutArea": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelDetail": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Initial Margin",
+            "id": "field-3f29f3d9-f67f-3b5d-9a97-75169fb6549a"
           }
         }
       ]
@@ -417,5 +1005,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c8b42c02a7c36c9a03d9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Initial Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d51ae87b09884bb00025",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Variation Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6f68204ca6a502337734",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Collateral Required"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f2516786aa839eeb3c84",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Collateral Posted"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9558676bab2d268380e8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Excess / Deficit"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

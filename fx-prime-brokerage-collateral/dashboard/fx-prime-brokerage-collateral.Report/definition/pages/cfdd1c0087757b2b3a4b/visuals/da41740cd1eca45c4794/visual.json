@@ -42,11 +42,11 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Colalteral Posted"
+                  "Property": "Collateral Posted"
                 }
               },
               "queryRef": "Measures_Table.Colalteral Posted",
-              "nativeQueryRef": "Colalteral Posted"
+              "nativeQueryRef": "Collateral Posted"
             },
             {
               "field": {
@@ -197,7 +197,7 @@
                 "Entity": "Measures_Table"
               }
             },
-            "Property": "Colalteral Posted"
+            "Property": "Collateral Posted"
           }
         },
         "type": "Advanced"

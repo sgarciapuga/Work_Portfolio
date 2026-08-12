@@ -89,11 +89,10 @@ table fx_portfolio
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\Mis_cosas\Coding\Work_Portfolio\fx-prime-brokerage-collateral\data\FX-portfolio\portfolio.csv"), [Delimiter = ",", Columns = 9, QuoteStyle = QuoteStyle.None]),
-				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"report_date", type date}, {"bank_id", type text}, {"trade_id", type text}, {"type", type text}, {"trade_date", type date}, {"value_date", type date}, {"currency_pair", type text}, {"trade_size_usd", type number}, {"leg_id", Int64.Type}}, "en-US")
+				  Source = PostgreSQL.Database("ep-green-lab-za8if885-pooler.c-2.eu-west-2.aws.neon.tech", "neondb"),
+				    public_fx_prime_portfolio = Source{[Schema="public",Item="fx_prime_portfolio"]}[Data]
 				in
-				  #"Changed column type"
+				    public_fx_prime_portfolio
 
 	annotation PBI_NavigationStepName = Navigation
 

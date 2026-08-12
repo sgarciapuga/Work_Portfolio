@@ -40,6 +40,14 @@ table fx_rates
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column fx_quality_flag
+		dataType: string
+		lineageTag: 5fa1bf5c-ba12-41d1-8ec9-9f2877fa63a6
+		summarizeBy: none
+		sourceColumn: fx_quality_flag
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fx_rates = m
 		mode: import
 		source =
