@@ -22,12 +22,12 @@ pip install -r requirements.txt
 From the repository root:
 
 ```bash
-python run_pipeline.py
+python treasury-cashflow-simulation/run_pipeline.py
 ```
 
 # Pipeline architecture
 
-- Entry point: `run_pipeline.py`
+- Entry point: `treasury-cashflow-simulation/run_pipeline.py`
 - Main pipeline: `treasury-cashflow-simulation/src/simulate_pipeline.py`
 - Static data loader: `treasury-cashflow-simulation/src/load_static.py`
 - Movement generator: `treasury-cashflow-simulation/src/generate_movements.py`

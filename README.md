@@ -26,7 +26,6 @@ This repository collects a set of treasury, data engineering, and analytics proj
 ```text
 Work_Portfolio/
 ├── README.md
-├── run_pipeline.py
 ├── requirements.txt
 ├── create-date-table/
 ├── daily-fx-rates/
@@ -47,7 +46,7 @@ pip install -r requirements.txt
 3. Run the projects you need:
 
 ```bash
-python run_pipeline.py
+python treasury-cashflow-simulation/run_pipeline.py
 ```
 
 For the individual mini-projects, use their own entry points as documented in their subfolders.
