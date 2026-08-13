@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - fx-prime-brokerage-collateral/presentation/**
   render:
     - index.qmd
     - fx-prime-brokerage-collateral/report.qmd

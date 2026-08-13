@@ -15,9 +15,9 @@ This is an example of a workflow improvement project I developed for a financial
 
 In the below presentation, I provide an overview of the project, including the problem statement, methodology, and results:
 
-[View presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-prime-brokerage-collateral.pdf){target="_blank"}
+[View presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pdf){target="_blank"}
 
-[Download PowerPoint](presentation/fx-prime-brokerage-collateral.pptx)
+[Download PowerPoint](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pptx)
 
 The full report includes detailed analysis, code snippets, and visualizations that demonstrate the improvements made.
 
