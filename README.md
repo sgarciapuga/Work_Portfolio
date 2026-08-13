@@ -8,7 +8,7 @@ This repository collects a set of treasury, data engineering, and analytics proj
 
 - Treasury cashflow simulation
   - Simulates daily account movements, month-end interest, bank charges, deposits, withdrawals, and internal sweeps.
-  - Stores results in CSV files and a SQLite database for downstream reporting.
+  - Stores results in CSV files and PostgreSQL tables for downstream reporting.
 
 - FX prime brokerage collateral
   - Generates synthetic FX portfolio and collateral metrics such as initial margin, variation margin, and collateral surplus/deficit.
@@ -32,7 +32,6 @@ Work_Portfolio/
 ├── daily-fx-rates/
 ├── fx-prime-brokerage-collateral/
 ├── treasury-cashflow-simulation/
-├── portfolio-data/
 └── utils/
 ```
 
@@ -58,7 +57,7 @@ For the individual mini-projects, use their own entry points as documented in th
 Each project folder includes:
 
 - a GitHub-friendly README
-- a Quarto or R Markdown report for narrative documentation and project walkthroughs
+- a Quarto report for narrative documentation and project walkthroughs
 
 ## Recommended workflow
 

@@ -9,7 +9,7 @@
 <meta name="author" content="Sergio">
 <meta name="dcterms.date" content="2026-08-08">
 
-<title>Treasury Cashflow Simulation — Project Report</title>
+<title>Create Date Table — Project Report – Work Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -67,6 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -81,13 +82,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d0cfe7a3482e0d49a74229a8f3b76718.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -116,20 +117,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Work Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../fx-prime-brokerage-collateral/report.html"> 
+<span class="menu-text">FX Prime Brokerage Collateral</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../treasury-cashflow-simulation/report.html"> 
+<span class="menu-text">Treasury Cashflow Simulation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../daily-fx-rates/report.html"> 
+<span class="menu-text">Daily FX Rates</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../create-date-table/report.html" aria-current="page"> 
+<span class="menu-text">Create Date Table</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#run" id="toc-run" class="nav-link" data-scroll-target="#run">Run</a></li>
+  <li><a href="#table-schema" id="toc-table-schema" class="nav-link" data-scroll-target="#table-schema">Table schema</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#example-preview-calendar-rows-safe-local-sample-if-db-not-available" id="toc-example-preview-calendar-rows-safe-local-sample-if-db-not-available" class="nav-link" data-scroll-target="#example-preview-calendar-rows-safe-local-sample-if-db-not-available">Example: preview calendar rows (safe local sample if DB not available)</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Treasury Cashflow Simulation — Project Report</h1>
+<h1 class="title">Create Date Table — Project Report</h1>
 </div>
 
 
@@ -160,63 +215,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>This Quarto report documents the <code>treasury-cashflow-simulation</code> pipeline: how synthetic daily transactions are generated, internal sweeps applied, CSV outputs produced, and results persisted into <code>portfolio-data/treasury.db</code>.</p>
+<p>This mini-project creates and maintains a <code>date_table</code> in PostgreSQL, providing a canonical calendar dimension for reporting.</p>
 </section>
 <section id="setup" class="level1">
 <h1>Setup</h1>
-<p>Install repository dependencies from the project root:</p>
+<p>Ensure <code>DATABASE_URL</code> is available in the repository <code>.env</code> file.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="run" class="level1">
 <h1>Run</h1>
 <p>From the repository root:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> run_pipeline.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> create-date-table/create_date_table.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="pipeline-architecture" class="level1">
-<h1>Pipeline architecture</h1>
-<ul>
-<li>Entry point: <code>run_pipeline.py</code></li>
-<li>Main pipeline: <code>treasury-cashflow-simulation/src/simulate_pipeline.py</code></li>
-<li>Static data loader: <code>treasury-cashflow-simulation/src/load_static.py</code></li>
-<li>Movement generator: <code>treasury-cashflow-simulation/src/generate_movements.py</code></li>
-<li>Sweep engine: <code>treasury-cashflow-simulation/src/sweep_engine.py</code></li>
-<li>Balances preparation: <code>treasury-cashflow-simulation/src/balances_engine.py</code></li>
-</ul>
+<section id="table-schema" class="level1">
+<h1>Table schema</h1>
+<p>The script generates a table with <code>calendar_date</code>, <code>year</code>, <code>month</code>, <code>quarter</code>, <code>weekday</code>, <code>is_weekend</code>, <code>is_month_start</code>, <code>is_month_end</code>, and ISO week/year.</p>
 </section>
-<section id="outputs" class="level1">
-<h1>Outputs</h1>
-<ul>
-<li><code>treasury-cashflow-simulation/data/Balances/balances_YYYYMMDD.csv</code></li>
-<li><code>treasury-cashflow-simulation/data/Movements/movements_YYYYMMDD.csv</code></li>
-<li><code>portfolio-data/treasury.db</code> (tables: <code>balances</code>, <code>movements</code>)</li>
-</ul>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<p>The script is idempotent and inserts only missing dates, making it safe for scheduled incremental runs in CI.</p>
 </section>
-<section id="code-walkthrough" class="level1">
-<h1>Code walkthrough</h1>
-<p>Explain key modules and functions used in the simulation. Use the code cells below to show examples and small excerpts.</p>
-<div id="85a7c295" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: show latest 5 movements from the DB (safe if DB missing)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>db_path <span class="op">=</span> Path(<span class="st">'../portfolio-data/treasury.db'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> db_path.exists():</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_path)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_sql(<span class="st">'SELECT * FROM movements ORDER BY date DESC LIMIT 5'</span>, conn)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        display(df)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        conn.close()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Database not found. Showing a generated sample:'</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    sample <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'date'</span>: [<span class="st">'2026-07-30'</span>,<span class="st">'2026-07-30'</span>,<span class="st">'2026-07-29'</span>],</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'transaction_id'</span>: [<span class="st">'TX20260730000001'</span>,<span class="st">'TX20260730000002'</span>,<span class="st">'TX20260729000001'</span>],</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'account_number'</span>: [<span class="st">'1001'</span>,<span class="st">'1002'</span>,<span class="st">'1001'</span>],</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'amount'</span>: [<span class="fl">1250.0</span>, <span class="op">-</span><span class="fl">500.0</span>, <span class="fl">3000.0</span>]</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    display(sample)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="example-preview-calendar-rows-safe-local-sample-if-db-not-available" class="level1">
+<h1>Example: preview calendar rows (safe local sample if DB not available)</h1>
+<div id="725d4f30" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>csv_path <span class="op">=</span> Path(<span class="st">'create-date-table/sample_dates_preview.csv'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> csv_path.exists():</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    display(pd.read_csv(csv_path).head())</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a small in-memory sample</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> datetime</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    dates <span class="op">=</span> pd.date_range(start<span class="op">=</span><span class="st">'2026-07-25'</span>, periods<span class="op">=</span><span class="dv">7</span>, freq<span class="op">=</span><span class="st">'D'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame({<span class="st">'calendar_date'</span>: dates.date})</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'calendar_date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> d: d.year)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'month'</span>] <span class="op">=</span> df[<span class="st">'calendar_date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> d: d.month)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'is_weekend'</span>] <span class="op">=</span> df[<span class="st">'calendar_date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> d: d.weekday()<span class="op">&gt;=</span><span class="dv">5</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    display(df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -225,71 +261,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">date</th>
-<th data-quarto-table-cell-role="th">transaction_id</th>
-<th data-quarto-table-cell-role="th">account_number</th>
-<th data-quarto-table-cell-role="th">currency</th>
-<th data-quarto-table-cell-role="th">type</th>
-<th data-quarto-table-cell-role="th">category</th>
-<th data-quarto-table-cell-role="th">amount</th>
-<th data-quarto-table-cell-role="th">description</th>
+<th data-quarto-table-cell-role="th">calendar_date</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">is_weekend</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
-<td>2026-08-08</td>
-<td>TX20260808000001</td>
-<td>1000000001</td>
-<td>USD</td>
-<td>Deposit</td>
-<td>Transactions</td>
-<td>49611.86</td>
-<td>Deposit movement</td>
+<td>2026-07-25</td>
+<td>2026</td>
+<td>7</td>
+<td>True</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
-<td>2026-08-08</td>
-<td>TX20260808000002</td>
-<td>1000000001</td>
-<td>USD</td>
-<td>Withdraw</td>
-<td>Transactions</td>
-<td>-24998.44</td>
-<td>Withdraw movement</td>
+<td>2026-07-26</td>
+<td>2026</td>
+<td>7</td>
+<td>True</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>2026-08-08</td>
-<td>TX20260808000003</td>
-<td>1000000002</td>
-<td>EUR</td>
-<td>Deposit</td>
-<td>Transactions</td>
-<td>13895.05</td>
-<td>Deposit movement</td>
+<td>2026-07-27</td>
+<td>2026</td>
+<td>7</td>
+<td>False</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>2026-08-08</td>
-<td>TX20260808000004</td>
-<td>1000000002</td>
-<td>EUR</td>
-<td>Withdraw</td>
-<td>Transactions</td>
-<td>-20347.63</td>
-<td>Withdraw movement</td>
+<td>2026-07-28</td>
+<td>2026</td>
+<td>7</td>
+<td>False</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>2026-08-08</td>
-<td>TX20260808000005</td>
-<td>1000000003</td>
-<td>GBP</td>
-<td>Deposit</td>
-<td>Transactions</td>
-<td>30051.39</td>
-<td>Deposit movement</td>
+<td>2026-07-29</td>
+<td>2026</td>
+<td>7</td>
+<td>False</td>
 </tr>
 </tbody>
 </table>
@@ -297,44 +309,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="visual-example-plot-latest-balances-reads-csv-if-present-otherwise-uses-sample" class="level1">
-<h1>Visual example: plot latest balances (reads CSV if present, otherwise uses sample)</h1>
-<div id="73c6432b" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div id="6e661346" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: count of weekend vs weekday in the sample</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>balances_dir <span class="op">=</span> Path(<span class="st">'treasury-cashflow-simulation/data/Balances'</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>csvs <span class="op">=</span> <span class="bu">sorted</span>(balances_dir.glob(<span class="st">'balances_*.csv'</span>)) <span class="cf">if</span> balances_dir.exists() <span class="cf">else</span> []</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> csvs:</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load last 7 days (if available)</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    frames <span class="op">=</span> [pd.read_csv(p) <span class="cf">for</span> p <span class="kw">in</span> csvs[<span class="op">-</span><span class="dv">7</span>:]]</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    df_all <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    latest <span class="op">=</span> df_all.groupby(<span class="st">'account_number'</span>)[<span class="st">'closing_balance'</span>].last().reset_index()</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    latest <span class="op">=</span> pd.DataFrame({<span class="st">'account_number'</span>:[<span class="st">'1001'</span>,<span class="st">'1002'</span>,<span class="st">'1003'</span>],<span class="st">'closing_balance'</span>:[<span class="dv">120000</span>,<span class="dv">80000</span>,<span class="dv">45000</span>]})</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">3</span>))</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.bar(latest[<span class="st">'account_number'</span>], latest[<span class="st">'closing_balance'</span>])</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sample latest closing balances by account'</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Account'</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Closing balance'</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">'is_weekend'</span>].value_counts().sort_index()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>counts.index <span class="op">=</span> [<span class="st">'weekday'</span>,<span class="st">'weekend'</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>counts.plot(kind<span class="op">=</span><span class="st">'bar'</span>, figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Weekday vs Weekend (sample)'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/cell-3-output-1.png" width="665" height="278" class="figure-img"></p>
+<p><img src="report_files/figure-html/cell-3-output-1.png" width="375" height="280" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="notes" class="level1">
-<h1>Notes</h1>
-<p>This report is intended as a narrative guide; run the pipeline to generate sample outputs before rendering the full HTML report.</p>
-<p>If you want, I can run <code>quarto render treasury-cashflow-simulation/report.qmd</code> next to produce an HTML file (requires Quarto installed).</p>
 
 
 </section>

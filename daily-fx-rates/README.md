@@ -28,8 +28,6 @@ It currently covers:
 
 The current loader logic is implemented in [src/daily_fx_rates.py](src/daily_fx_rates.py).
 
-The R Markdown file [daily_fx_rates.Rmd](daily_fx_rates.Rmd) is kept as historical documentation of the original prototype.
-
 ## Outputs
 
 The workflow writes to:

@@ -1,16 +1,18 @@
 ﻿import pandas as pd
-from utils.db import get_connection
+from sqlalchemy import text
+
+from utils.db import get_engine
 
 def load_latest_balances():
-    conn = get_connection()
-    query = """
+    query = text(
+        """
         SELECT account_number, closing_balance
-        FROM balances
-        WHERE date = (SELECT MAX(date) FROM balances)
-    """
-    df = pd.read_sql(query, conn)
-    conn.close()
-    return df
+        FROM treasury_balances
+        WHERE date = (SELECT MAX(date) FROM treasury_balances)
+        """
+    )
+    with get_engine().connect() as connection:
+        return pd.read_sql(query, connection)
 
 def prepare_accounts_df(accounts_df: pd.DataFrame) -> pd.DataFrame:
     latest = load_latest_balances()

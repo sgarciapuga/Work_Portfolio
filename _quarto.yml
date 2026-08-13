@@ -5,6 +5,9 @@ project:
     - fx-prime-brokerage-collateral/presentation/**
   render:
     - index.qmd
+    - treasury-cashflow-simulation/report.qmd
+    - daily-fx-rates/report.qmd
+    - create-date-table/report.qmd
     - fx-prime-brokerage-collateral/report.qmd
 
 website:
@@ -15,6 +18,12 @@ website:
         text: Home
       - href: fx-prime-brokerage-collateral/report.qmd
         text: FX Prime Brokerage Collateral
+      - href: treasury-cashflow-simulation/report.qmd
+        text: Treasury Cashflow Simulation
+      - href: daily-fx-rates/report.qmd
+        text: Daily FX Rates
+      - href: create-date-table/report.qmd
+        text: Create Date Table
 
 format:
   html:

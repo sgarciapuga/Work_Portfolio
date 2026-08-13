@@ -23,8 +23,20 @@ The full report includes detailed analysis, code snippets, and visualizations th
 
 [Open the report](fx-prime-brokerage-collateral/report.qmd)
 
-## Coming next
+### Treasury Cashflow Simulation
 
-- Treasury cashflow simulation
-- Daily FX rates pipeline
-- Date table generation
+Synthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.
+
+[Open the report](treasury-cashflow-simulation/report.qmd)
+
+### Daily FX Rates
+
+Daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.
+
+[Open the report](daily-fx-rates/report.qmd)
+
+### Create Date Table
+
+Reusable PostgreSQL calendar dimension for reporting and time intelligence.
+
+[Open the report](create-date-table/report.qmd)

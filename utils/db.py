@@ -1,13 +1,65 @@
 ﻿import os
-import sqlite3
+from pathlib import Path
 
-def db_path():
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    portfolio_path = os.path.join(repo_root, "portfolio-data")
-    data_root = portfolio_path if os.path.isdir(portfolio_path) else os.path.join(repo_root, "data")
-    return os.path.join(data_root, "treasury.db")
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
 
-def get_connection():
-    p = db_path()
-    os.makedirs(os.path.dirname(p), exist_ok=True)
-    return sqlite3.connect(p)
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+
+
+def get_engine():
+    database_url = os.getenv("DATABASE_URL")
+    if not database_url:
+        raise ValueError("DATABASE_URL missing from environment variables.")
+    return create_engine(database_url)
+
+
+def initialize_treasury_schema(engine):
+    with engine.begin() as connection:
+        connection.execute(
+            text(
+                """
+                CREATE TABLE IF NOT EXISTS treasury_balances (
+                    date DATE NOT NULL,
+                    account_number TEXT NOT NULL,
+                    currency TEXT NOT NULL,
+                    starting_balance DOUBLE PRECISION NOT NULL,
+                    total_movements DOUBLE PRECISION NOT NULL,
+                    closing_balance DOUBLE PRECISION NOT NULL
+                )
+                """
+            )
+        )
+        connection.execute(
+            text(
+                """
+                CREATE UNIQUE INDEX IF NOT EXISTS treasury_balances_date_account_uidx
+                ON treasury_balances (date, account_number)
+                """
+            )
+        )
+        connection.execute(
+            text(
+                """
+                CREATE TABLE IF NOT EXISTS treasury_movements (
+                    date DATE NOT NULL,
+                    transaction_id TEXT NOT NULL,
+                    account_number TEXT NOT NULL,
+                    currency TEXT NOT NULL,
+                    type TEXT NOT NULL,
+                    category TEXT NOT NULL,
+                    amount DOUBLE PRECISION NOT NULL,
+                    description TEXT NOT NULL
+                )
+                """
+            )
+        )
+        connection.execute(
+            text(
+                """
+                CREATE UNIQUE INDEX IF NOT EXISTS treasury_movements_date_transaction_account_uidx
+                ON treasury_movements (date, transaction_id, account_number)
+                """
+            )
+        )

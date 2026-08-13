@@ -7,7 +7,7 @@ format: html
 
 # Overview
 
-This Quarto report documents the `treasury-cashflow-simulation` pipeline: how synthetic daily transactions are generated, internal sweeps applied, CSV outputs produced, and results persisted into `portfolio-data/treasury.db`.
+This Quarto report documents the `treasury-cashflow-simulation` pipeline: how synthetic daily transactions are generated, internal sweeps applied, CSV outputs produced, and results persisted into PostgreSQL.
 
 # Setup
 
@@ -38,28 +38,33 @@ python run_pipeline.py
 
 - `treasury-cashflow-simulation/data/Balances/balances_YYYYMMDD.csv`
 - `treasury-cashflow-simulation/data/Movements/movements_YYYYMMDD.csv`
-- `portfolio-data/treasury.db` (tables: `balances`, `movements`)
+- PostgreSQL tables: `treasury_balances`, `treasury_movements`
 
 # Code walkthrough
 
 Explain key modules and functions used in the simulation. Use the code cells below to show examples and small excerpts.
 
 ```{python}
-# Example: show latest 5 movements from the DB (safe if DB missing)
-import sqlite3
+# Example: show latest 5 movements from PostgreSQL (safe if DATABASE_URL is missing)
+import os
 import pandas as pd
-from pathlib import Path
 
-db_path = Path('../portfolio-data/treasury.db')
-if db_path.exists():
-    conn = sqlite3.connect(db_path)
-    try:
-        df = pd.read_sql('SELECT * FROM movements ORDER BY date DESC LIMIT 5', conn)
+try:
+    from dotenv import load_dotenv
+    from sqlalchemy import create_engine, text
+
+    load_dotenv()
+    database_url = os.getenv('DATABASE_URL')
+except ModuleNotFoundError:
+    database_url = None
+
+if database_url:
+    engine = create_engine(database_url)
+    with engine.connect() as conn:
+        df = pd.read_sql(text('SELECT * FROM treasury_movements ORDER BY date DESC LIMIT 5'), conn)
         display(df)
-    finally:
-        conn.close()
 else:
-    print('Database not found. Showing a generated sample:')
+    print('DATABASE_URL not found. Showing a generated sample:')
     sample = pd.DataFrame({
         'date': ['2026-07-30','2026-07-30','2026-07-29'],
         'transaction_id': ['TX20260730000001','TX20260730000002','TX20260729000001'],
