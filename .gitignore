@@ -1,6 +1,3 @@
-**/.pbi/localSettings.json
-**/.pbi/cache.abf
-
 # Exclude environment secrets
 .env
 .env.*
@@ -17,7 +14,6 @@ __pycache__/
 .Ruserdata
 *_files/
 *_cache/
-*.html
 
 # Power BI Project (.pbip) ignore rules
 *.tmp
@@ -25,5 +21,3 @@ __pycache__/
 *.pbi/cache.abf
 *.pbi/localSettings.json
 *.pbi/userSettings.json
-/.quarto/
-**/*.quarto_ipynb

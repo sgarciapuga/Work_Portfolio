@@ -1,0 +1,23 @@
+{
+  "treasury-cashflow-simulation-full-doc.qmd": {
+    "treasury-cashflow-simulation-full-doc.html": "13b82a20"
+  },
+  "daily-fx-rates/daily_fx_rates.Rmd": {
+    "daily_fx_rates.html": "9f8dcc0c"
+  },
+  "docs/index.qmd": {
+    "index.html": "793385e2"
+  },
+  "treasury-cashflow-simulation/report.qmd": {
+    "report.html": "2e991e2d"
+  },
+  "fx-prime-brokerage-collateral/report.qmd": {
+    "report.html": "da9a126b"
+  },
+  "daily-fx-rates/report.qmd": {
+    "report.html": "f1f8a857"
+  },
+  "create-date-table/report.qmd": {
+    "report.html": "33f2f37e"
+  }
+}
