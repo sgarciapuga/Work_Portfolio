@@ -10,6 +10,6 @@
 - Stop after delivering the requested result; avoid extra exploratory work.
 
 ## Repeatable process for data projects
-- Follow docs/REPEATABLE_DATA_PROJECT_PLAYBOOK.md for phase-by-phase delivery.
-- Use prompt patterns from docs/COPILOT_LOW_TOKEN_PROMPTS.md.
+- Follow docs-internal/REPEATABLE_DATA_PROJECT_PLAYBOOK.md for phase-by-phase delivery.
+- Use prompt patterns from docs-internal/COPILOT_LOW_TOKEN_PROMPTS.md.
 - Prefer template reuse over free-form planning when task is repetitive.

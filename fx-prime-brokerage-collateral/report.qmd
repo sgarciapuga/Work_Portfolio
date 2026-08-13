@@ -292,7 +292,7 @@ latest_portfolio = portfolio.loc[portfolio["report_date"] == latest_date]
 previous_portfolio = portfolio.loc[portfolio["report_date"] == previous_date]
 
 cards = [
-    ("Initial Margin", latest_report["initial_margin"], latest_report["initial_margin"] - previous_report["initial_margin"]),
+    ("Initial Margin", latest_report["initiadddddddddddddddddddivvgin"], latest_report["initial_margin"] - previous_report["initial_margin"]),
     ("Variation Margin", latest_report["variation_margin"], latest_report["variation_margin"] - previous_report["variation_margin"]),
     ("Collateral Required", latest_report["collateral_required"], latest_report["collateral_required"] - previous_report["collateral_required"]),
     ("Collateral Posted", latest_report["collateral_posted"], latest_report["collateral_posted"] - previous_report["collateral_posted"]),

@@ -1,0 +1,27 @@
+Quarto rendering quick reference
+===============================
+
+Run these commands from the repository root:
+
+  C:\Mis_cosas\Coding\Work_Portfolio
+
+Render an existing report without executing its code cells:
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "fx-prime-brokerage-collateral/report.qmd"
+
+Render and execute code cells before creating the HTML output:
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "fx-prime-brokerage-collateral/report.qmd" -Execute
+
+Other examples:
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "treasury-cashflow-simulation/report.qmd" -Execute
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "index.qmd"
+
+If the report is omitted, the script renders:
+
+  treasury-cashflow-simulation/report.qmd
+
+The script activates the conda environment named env_quarto and writes the rendered
+HTML file beside the source .qmd file, unless the Quarto project configuration says
+otherwise.

@@ -3,13 +3,23 @@ title: "Work Portfolio"
 subtitle: "Financial data, treasury, and analytics projects"
 ---
 
-This portfolio collects reproducible projects spanning data engineering, treasury workflows, and analytics.
+This portfolio collects a series of real projects I have developed at work, with a focus on financial data, treasury workflows, and analytics. The projects are designed to be reproducible and demonstrate my skills in data engineering, analysis, and visualization.
+
+This portfolio is a work in progress, and I will continue to add new projects as they are completed. The projects are organized into sections based on their focus area, and each project includes a brief description and a link to the full report.
 
 ## Projects
 
 ### FX Prime Brokerage Collateral
 
-Synthetic FX portfolio generation, mark-to-market reporting, and collateral analysis, with a supporting Power BI model.
+This is an example of a workflow improvement project I developed for a financial institution. The project involved: - Analyzing the existing collateral management process for FX prime brokerage. - Identifying inefficiencies and areas for improvement. - Implementing a new workflow that streamlined the process and reduced manual effort.
+
+In the below presentation, I provide an overview of the project, including the problem statement, methodology, and results:
+
+[View presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-prime-brokerage-collateral.pdf){target="_blank"}
+
+[Download PowerPoint](presentation/fx-prime-brokerage-collateral.pptx)
+
+The full report includes detailed analysis, code snippets, and visualizations that demonstrate the improvements made.
 
 [Open the report](fx-prime-brokerage-collateral/report.qmd)
 

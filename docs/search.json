@@ -145,5 +145,26 @@
     "title": "FX Prime Brokerage Collateral",
     "section": "Practical validation checklist",
     "text": "Practical validation checklist\n\nRefresh the source data and confirm the four CSV row counts remain stable on a repeat run.\nCheck that dim_date filters all date-bearing facts at the intended grain.\nConfirm inverse measures are used only where positive values mean required or adverse exposure.\nCompare the Power BI latest-date KPI with the last row of mtm_report.csv.\nCheck that a counterparty or date slicer does not duplicate daily collateral totals."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Work Portfolio",
+    "section": "",
+    "text": "This portfolio collects a series of real projects I have developed at work, with a focus on financial data, treasury workflows, and analytics. The projects are designed to be reproducible and demonstrate my skills in data engineering, analysis, and visualization.\nThis portfolio is a work in progress, and I will continue to add new projects as they are completed. The projects are organized into sections based on their focus area, and each project includes a brief description and a link to the full report."
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "Work Portfolio",
+    "section": "Projects",
+    "text": "Projects\n\nFX Prime Brokerage Collateral\nThis is an example of a workflow improvement project I developed for a financial institution. The project involved: - Analyzing the existing collateral management process for FX prime brokerage. - Identifying inefficiencies and areas for improvement. - Implementing a new workflow that streamlined the process and reduced manual effort.\nIn the below presentation, I provide an overview of the project, including the problem statement, methodology, and results:\nView presentation (PDF)\nDownload PowerPoint\nThe full report includes detailed analysis, code snippets, and visualizations that demonstrate the improvements made.\nOpen the report"
+  },
+  {
+    "objectID": "index.html#coming-next",
+    "href": "index.html#coming-next",
+    "title": "Work Portfolio",
+    "section": "Coming next",
+    "text": "Coming next\n\nTreasury cashflow simulation\nDaily FX rates pipeline\nDate table generation"
   }
 ]
