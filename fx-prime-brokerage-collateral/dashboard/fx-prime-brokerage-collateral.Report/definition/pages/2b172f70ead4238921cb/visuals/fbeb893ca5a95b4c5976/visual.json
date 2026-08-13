@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "d4a7702dc5c5588c3737",
+  "name": "fbeb893ca5a95b4c5976",
   "position": {
     "x": 13.821235752849429,
     "y": 6.9106178764247144,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Limits",
+                    "value": "Portfolio",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "28pt"

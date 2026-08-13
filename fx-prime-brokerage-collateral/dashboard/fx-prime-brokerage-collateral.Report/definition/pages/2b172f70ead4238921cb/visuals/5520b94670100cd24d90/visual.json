@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "f770b49ec704e6ce2050",
+  "name": "5520b94670100cd24d90",
   "position": {
-    "x": 1189.7078931013052,
-    "y": 486.86140459912991,
-    "z": 4000,
-    "height": 579.93784959602237,
-    "width": 720.74580484773151,
-    "tabOrder": 4000
+    "x": 971.65048543689329,
+    "y": 551.06796116504859,
+    "z": 5000,
+    "height": 521.94174757281553,
+    "width": 721.16504854368941,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "tableEx",
@@ -133,6 +133,40 @@
           }
         ]
       }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Bank Theme Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "dim_banks.bank_code"
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [

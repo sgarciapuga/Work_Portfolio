@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "24ff1076b18633c86839",
+  "name": "339c3d6c806244c4c4a3",
   "position": {
-    "x": 313.83467992541949,
-    "y": 25.059042883778744,
-    "z": 5000,
-    "height": 349.74314201400409,
-    "width": 407.67605510834829,
-    "tabOrder": 5000
+    "x": 400.77669902912623,
+    "y": 551.06796116504859,
+    "z": 4000,
+    "height": 521.94174757281553,
+    "width": 566.21359223300976,
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_banks"
+                      "Entity": "dim_date"
                     }
                   },
-                  "Property": "bank_code"
+                  "Property": "calendar_date"
                 }
               },
-              "queryRef": "dim_banks.bank_code",
-              "nativeQueryRef": "bank_code",
+              "queryRef": "dim_date.calendar_date",
+              "nativeQueryRef": "calendar_date",
               "active": true
             }
           ]
@@ -69,27 +69,82 @@
         ]
       }
     },
-    "visualContainerObjects": {
-      "title": [
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {}
+        }
+      ],
+      "trend": [
         {
           "properties": {
-            "text": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Portfolio Allocation'"
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Trend line 1'"
+                }
+              }
+            },
+            "autoScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "combineSeries": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "useHighlightValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
           }
         }
-      ],
+      ]
+    },
+    "visualContainerObjects": {
       "subTitle": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'By Bank'"
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Size in USD'"
                 }
               }
             }

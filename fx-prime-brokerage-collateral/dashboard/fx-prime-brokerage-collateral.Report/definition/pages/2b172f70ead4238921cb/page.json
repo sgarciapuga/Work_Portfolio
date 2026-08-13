@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "0961e4e7069830c97286",
-  "displayName": "Limits",
+  "name": "2b172f70ead4238921cb",
+  "displayName": "Portfolio",
   "displayOption": "FitToPage",
   "height": 1080,
   "width": 1920,
@@ -33,14 +33,19 @@
   },
   "visualInteractions": [
     {
-      "source": "055c53069e6145cc02c6",
-      "target": "f575234d331dcc1cc019",
+      "source": "dc35c720c4460c020ca8",
+      "target": "339c3d6c806244c4c4a3",
       "type": "NoFilter"
     },
     {
-      "source": "055c53069e6145cc02c6",
-      "target": "9632033b7e90cde44810",
-      "type": "DataFilter"
+      "source": "dc35c720c4460c020ca8",
+      "target": "063261a283b34780207b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "dc35c720c4460c020ca8",
+      "target": "ab39893da4c43531b536",
+      "type": "NoFilter"
     }
   ]
 }

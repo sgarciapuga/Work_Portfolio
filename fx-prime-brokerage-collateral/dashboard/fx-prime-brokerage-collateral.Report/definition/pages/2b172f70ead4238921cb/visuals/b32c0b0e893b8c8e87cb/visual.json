@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "4de25ee067cc3d00035c",
+  "name": "b32c0b0e893b8c8e87cb",
   "position": {
-    "x": 32.218769422001245,
-    "y": 397.36482287134868,
-    "z": 7000,
-    "height": 324.57426973275329,
-    "width": 887.80609073958976,
-    "tabOrder": 7000
+    "x": 12.815533980582526,
+    "y": 509.12621359223306,
+    "z": 6000,
+    "height": 278.44660194174759,
+    "width": 379.80582524271847,
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,11 @@
                       "Entity": "fx_portfolio"
                     }
                   },
-                  "Property": "value_date"
+                  "Property": "currency_pair"
                 }
               },
-              "queryRef": "fx_portfolio.value_date",
-              "nativeQueryRef": "value_date",
+              "queryRef": "fx_portfolio.currency_pair",
+              "nativeQueryRef": "currency_pair",
               "active": true
             }
           ]
@@ -69,21 +69,6 @@
         ]
       }
     },
-    "objects": {
-      "labels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
     "visualContainerObjects": {
       "title": [
         {
@@ -91,7 +76,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Maturities'"
+                  "Value": "'Portfolio Allocation'"
                 }
               }
             }
@@ -99,6 +84,19 @@
         }
       ],
       "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'By Currency Pair'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
         {
           "properties": {
             "show": {

@@ -476,6 +476,60 @@ table Measures_Table
 			    )
 		lineageTag: 76a60422-5570-4dec-8fe9-4968fe3ac957
 
+	measure Trades =
+			CALCULATE(
+			    COUNTROWS(fx_portfolio),
+			    ALL()
+			)
+		formatString: #,0
+		displayFolder: Portfolio
+		lineageTag: 67645f60-0e33-4c2f-ba06-ff530ca1761c
+
+	measure Swaps =
+			CALCULATE(
+			   COUNTROWS(fx_portfolio),
+			    fx_portfolio[type] = "swap",
+			    ALL()
+			)
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: 75505a89-4f91-4dc7-8f8e-4cdb102b7852
+
+	measure Spots =
+			CALCULATE(
+			   COUNTROWS(fx_portfolio),
+			    fx_portfolio[type] = "spot",
+			    ALL()
+			)
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: 603689aa-f912-4062-aa46-c7d1cf845065
+
+	measure Forwards =
+			CALCULATE(
+			   COUNTROWS(fx_portfolio),
+			    fx_portfolio[type] = "forward",
+			    ALL()
+			)
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: 3fc3383f-a311-423d-b232-8ff834f1080a
+
+	measure 'Text Limits' =
+			IF(COUNTROWS(FILTER(limits, [Credit Limit Utilization]> 0.75)), COUNTROWS(FILTER(limits, [Credit Limit Utilization]> 0.75)) &
+			" Banks above 75% of their credit utilization", "All banks below 75% of their credit utilization")
+		lineageTag: bd6aba9e-2d91-4158-adcb-26cacfa926b6
+
+	measure 'Limits breaches' = ```
+			
+			 IF(COUNTROWS(FILTER(limits, [Credit Limit Utilization]> 1.00)),
+			COUNTROWS(FILTER(limits, [Credit Limit Utilization]> 1.00)) &
+			" banks above breaching 100% of their credit utilization",
+			"No breaches"
+			 )
+			```
+		lineageTag: ab3c72e6-1dd2-4625-af7e-25b9187d7700
+
 	partition Measures_Table = m
 		mode: import
 		source =

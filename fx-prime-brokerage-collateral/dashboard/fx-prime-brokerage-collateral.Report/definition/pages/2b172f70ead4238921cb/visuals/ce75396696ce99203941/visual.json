@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "afba6806eeabb4033013",
+  "name": "ce75396696ce99203941",
   "position": {
-    "x": 32.218769422001245,
-    "y": 746.99813548788063,
-    "z": 6000,
-    "height": 319.8011187072716,
-    "width": 887.80609073958976,
-    "tabOrder": 6000
+    "x": 11.650485436893204,
+    "y": 222.52427184466021,
+    "z": 8000,
+    "height": 279.61165048543688,
+    "width": 380.97087378640776,
+    "tabOrder": 8000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_date"
+                      "Entity": "dim_banks"
                     }
                   },
-                  "Property": "calendar_date"
+                  "Property": "bank_code"
                 }
               },
-              "queryRef": "dim_date.calendar_date",
-              "nativeQueryRef": "calendar_date",
+              "queryRef": "dim_banks.bank_code",
+              "nativeQueryRef": "bank_code",
               "active": true
             }
           ]
@@ -70,106 +70,85 @@
       }
     },
     "objects": {
-      "y1AxisReferenceLine": [
+      "dataPoint": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "displayName": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Total Limit'"
-                }
-              }
-            },
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "160000000D"
-                }
-              }
-            },
-            "dataLabelShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "dataLabelText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'ValueAndName'"
-                }
-              }
-            },
-            "dataLabelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1000000D"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'front'"
-                }
-              }
-            },
-            "dataLabelVerticalPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "'under'"
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Bank Theme Color"
+                    }
+                  }
                 }
               }
             }
           },
           "selector": {
-            "id": "1"
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "end": {
-              "expr": {
-                "Literal": {
-                  "Value": "165000000D"
-                }
+            "data": [
+              {
+                "roles": [
+                  "Category"
+                ]
               }
-            }
+            ]
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "subTitle": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "''"
-                }
-              }
-            }
-          }
-        }
-      ],
       "title": [
         {
           "properties": {
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Size in USD'"
+                  "Value": "'Portfolio Allocation'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'By Bank'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -178,5 +157,40 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fb1571db59e99065c4dd",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_banks"
+              }
+            },
+            "Property": "bank_code"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "901f2c70c01aab03237c",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
   }
 }

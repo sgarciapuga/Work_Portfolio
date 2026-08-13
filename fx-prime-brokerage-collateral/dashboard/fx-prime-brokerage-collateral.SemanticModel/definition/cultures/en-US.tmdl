@@ -2802,7 +2802,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "measures_table.colalteral_posted": {
+			    "measures_table.collateral_posted": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Measures_Table",
@@ -2812,8 +2812,78 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "colalteral posted": {
+			          "collateral posted": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "security posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "surety posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "indemnity posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "warranty posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "guarantee posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "insurance posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "deposit posted": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
 			          }
 			        },
 			        {
@@ -3400,6 +3470,16 @@ cultureInfo en-US
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "Total Portfolio": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        },
 			        {
@@ -5976,23 +6056,2289 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "dim_date.has_data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_date",
+			          "ConceptualProperty": "Has Data"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "has data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "has information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "has fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "has info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "has statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "has document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "has figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "has record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.collateral_posted_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Collateral Posted (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "collateral posted (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "collateral posted": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.collateral_posted_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Collateral Posted (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "collateral posted (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "collateral posted": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.collateral_posted__change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Collateral Posted  Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "collateral posted  change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "collateral posted change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.initial_margin_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Initial Margin (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "initial margin (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "initial margin": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.initial_margin_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Initial Margin (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "initial margin (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "initial margin": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.initial_margin__change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Initial Margin  Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "initial margin  change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "initial margin change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "margin change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.variation_margin_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Variation Margin (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "variation margin (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "variation margin": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.variation_margin_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Variation Margin (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "variation margin (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "variation margin": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.variation_margin__change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Variation Margin  Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "variation margin  change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "variation margin change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "margin change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.collateral_required_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Collateral Required (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "collateral required (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "collateral required": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.collateral_required_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Collateral Required (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "collateral required (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "collateral required": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.collateral_required__change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Collateral Required  Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "collateral required  change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "collateral required change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.excess___deficit_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Excess / Deficit (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "excess / deficit (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "excess / deficit": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "excess": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "excess deficit ( previous day )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "deficit (previous day)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "extra": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "surplus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spare": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "left-over": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "leftover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "overabundance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "superfluity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "oversufficiency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "glut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "overload": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.excess___deficit_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Excess / Deficit (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "excess / deficit (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "excess / deficit": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "excess": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "excess deficit ( daily change )": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "deficit (daily change)": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "extra": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "surplus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spare": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "left-over": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "leftover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "overabundance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "superfluity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "oversufficiency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "glut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "overload": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.excess___deficit__change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Excess / Deficit  Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "excess / deficit  change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "excess": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "excess deficit change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "deficit change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "extra": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "surplus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spare": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "left-over": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "leftover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "overabundance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "superfluity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "oversufficiency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "glut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "overload": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.initial_margin__daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Initial Margin (% Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "initial margin (% daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "initial margin": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.IM_jump_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "IM Jump Flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "IM jump flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "flag": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "jump flag": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "im jump ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "im jump pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "im jump pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "im jump emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "im jump streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "jump ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "jump pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "jump pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "jump emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "jump streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.IM_jump_marker": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "IM Jump Marker"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "IM jump marker": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "marker": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "jump marker": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "im jump indication": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "im jump pointer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "jump indication": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "jump pointer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "im jump indicator": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "im jump sign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "im jump symbol": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "indication": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pointer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "jump indicator": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.has_data_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Has Data Flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "has data flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "has information flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "has fact flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "has info flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "has statistic flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "has document flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "has figure flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "has record flag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "has data ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "has data pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "has data pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.FX_portfolio_size_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "FX Portfolio Size (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "FX portfolio size (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "FX portfolio size": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.FX_portfolio_size_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "FX Portfolio Size (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "FX portfolio size (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "FX portfolio size": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.FX_portfolio_size_change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "FX Portfolio Size Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "FX portfolio size change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "size change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "portfolio size change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.open_trades_previous_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Open Trades (Previous Day)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "open trades (previous day)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "open trades": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.open_trades_daily_change": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Open Trades (Daily Change)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "open trades (daily change)": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "open trades": {
+			            "State": "Generated",
+			            "Weight": 0.75
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.open_trades_change_colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Open Trades Change Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "open trades change colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "trades change colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.excess___deficit__colour": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Excess / Deficit  Colour"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "excess / deficit  colour": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "excess": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "excess deficit colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "deficit colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "colour": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "extra": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "surplus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spare": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "left-over": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "leftover": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "overabundance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "superfluity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "oversufficiency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "glut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "overload": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.total_limit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Total Limit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total limit": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "aggregate limit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "overall limit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "total boundary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "total perimeter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "total bound": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "total border": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "total edge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "total frontier": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "total threshold": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "total constraint": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.credit_limit_utilization": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Credit Limit Utilization"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "credit limit utilization": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "utilization": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "limit utilization": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "credit limit operation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "credit limit consumption": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "credit limit exploitation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "credit limit deployment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "limit operation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "limit consumption": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "limit exploitation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "limit deployment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "credit limit use": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "credit limit application": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.bank_theme_color": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "Bank Theme Color"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "bank theme color": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "color": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "theme color": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "bank theme hue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "theme hue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "bank theme tint": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "bank theme shade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "bank theme dye": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "bank theme paint": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "bank theme pigment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "hue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "theme tint": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "theme shade": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__collateral_posted_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_Collateral Posted (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_collateral posted (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__initial_margin_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_Initial Margin (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_initial margin (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__variation_margin_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_Variation Margin (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_variation margin (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__collateral_required_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_Collateral Required (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_collateral required (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__excess___deficit_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_Excess / Deficit (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_excess / deficit (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "_excess": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "_ excess deficit ( daily change ) FormatString": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "deficit (daily change) FormatString": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "_ overabundance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "_ superfluity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "_ oversufficiency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "_ surplus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "_ glut": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "_ overload": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "_ surfeit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "_ overkill": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "_ overflow": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "_ overindulgence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.451
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__FX_portfolio_size_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_FX Portfolio Size (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_FX portfolio size (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "measures_table.entity__open_trades_daily_change_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Measures_Table",
+			          "ConceptualProperty": "_Open Trades (Daily Change) FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_open trades (daily change) FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fx_rate.fx_quality_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fx_rates",
+			          "ConceptualProperty": "fx_quality_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fx quality flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "fx_quality_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "flag": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "quality flag": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "fx quality ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "fx quality pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "fx quality pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "fx quality emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "fx quality streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "quality ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "quality pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "quality pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "quality emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "quality streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "limit_has_dim_banks": {
+			    "mtm_report_has_measures_table_collateral_posted_daily_change": {
 			      "Binding": {
-			        "ConceptualEntity": "limits"
+			        "ConceptualEntity": "mtm_report"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "limit": {
+			        "mtm_report": {
 			          "Target": {
-			            "Entity": "limit"
+			            "Entity": "mtm_report"
 			          }
 			        },
-			        "dim_banks": {
+			        "measures_table.collateral_posted_daily_change": {
 			          "Target": {
-			            "Entity": "dim_banks"
+			            "Entity": "measures_table.collateral_posted_daily_change"
 			          }
 			        }
 			      },
@@ -6000,166 +8346,81 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "limit"
+			              "Role": "mtm_report"
 			            },
 			            "Object": {
-			              "Role": "dim_banks"
+			              "Role": "measures_table.collateral_posted_daily_change"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "limits_have_dim_banks"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_banks"
-			            },
-			            "Object": {
-			              "Role": "limit"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_banks_have_limits"
+			          "ID": "mtm_reports_have_collateral_posted_daily_change"
 			        }
 			      ]
 			    },
-			    "fx_portfolio_has_dim_date": {
+			    "mtm_report_has_measures_table_collateral_posted_previous_day": {
 			      "Binding": {
-			        "ConceptualEntity": "fx_portfolio"
+			        "ConceptualEntity": "mtm_report"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "fx_portfolio": {
+			        "mtm_report": {
 			          "Target": {
-			            "Entity": "fx_portfolio"
+			            "Entity": "mtm_report"
 			          }
 			        },
+			        "measures_table.collateral_posted_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.collateral_posted_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.collateral_posted_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_collateral_posted_previous_day"
+			        }
+			      ]
+			    },
+			    "dim_date_has_has_data": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_date"
+			      },
+			      "State": "Generated",
+			      "Roles": {
 			        "dim_date": {
 			          "Target": {
 			            "Entity": "dim_date"
 			          }
+			        },
+			        "dim_date.has_data": {
+			          "Target": {
+			            "Entity": "dim_date.has_data"
+			          }
 			        }
 			      },
 			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fx_portfolio"
-			            },
-			            "Object": {
-			              "Role": "dim_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fx_portfolios_have_dim_dates"
-			        },
 			        {
 			          "Attribute": {
 			            "Subject": {
 			              "Role": "dim_date"
 			            },
 			            "Object": {
-			              "Role": "fx_portfolio"
+			              "Role": "dim_date.has_data"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dim_dates_have_fx_portfolios"
-			        }
-			      ]
-			    },
-			    "fx_portfolio_has_dim_banks": {
-			      "Binding": {
-			        "ConceptualEntity": "fx_portfolio"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fx_portfolio": {
-			          "Target": {
-			            "Entity": "fx_portfolio"
-			          }
-			        },
-			        "dim_banks": {
-			          "Target": {
-			            "Entity": "dim_banks"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fx_portfolio"
-			            },
-			            "Object": {
-			              "Role": "dim_banks"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fx_portfolios_have_dim_banks"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_banks"
-			            },
-			            "Object": {
-			              "Role": "fx_portfolio"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_banks_have_fx_portfolios"
-			        }
-			      ]
-			    },
-			    "fx_rate_has_dim_currency": {
-			      "Binding": {
-			        "ConceptualEntity": "fx_rates"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fx_rate": {
-			          "Target": {
-			            "Entity": "fx_rate"
-			          }
-			        },
-			        "dim_currency": {
-			          "Target": {
-			            "Entity": "dim_currency"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fx_rate"
-			            },
-			            "Object": {
-			              "Role": "dim_currency"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fx_rates_have_dim_currencies"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_currency"
-			            },
-			            "Object": {
-			              "Role": "fx_rate"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_currencies_have_fx_rates"
+			          "ID": "dim_dates_have_has_data"
 			        }
 			      ]
 			    },
@@ -6226,6 +8487,26 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "mtm_reports_have_collateral_required_inverse"
+			        },
+			        {
+			          "Adjective": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Adjectives": [
+			              {
+			                "Required": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Measurement": {
+			              "Role": "measures_table.collateral_required_inverse"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "collateral_required_inverse_indicates_how_Required_mtm_reports_are"
 			        }
 			      ]
 			    },
@@ -7087,7 +9368,7 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "mtm_report_has_measures_table_colalteral_posted": {
+			    "mtm_report_has_measures_table_collateral_posted": {
 			      "Binding": {
 			        "ConceptualEntity": "mtm_report"
 			      },
@@ -7098,9 +9379,9 @@ cultureInfo en-US
 			            "Entity": "mtm_report"
 			          }
 			        },
-			        "measures_table.colalteral_posted": {
+			        "measures_table.collateral_posted": {
 			          "Target": {
-			            "Entity": "measures_table.colalteral_posted"
+			            "Entity": "measures_table.collateral_posted"
 			          }
 			        }
 			      },
@@ -7111,12 +9392,12 @@ cultureInfo en-US
 			              "Role": "mtm_report"
 			            },
 			            "Object": {
-			              "Role": "measures_table.colalteral_posted"
+			              "Role": "measures_table.collateral_posted"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mtm_reports_have_colalteral_posted"
+			          "ID": "mtm_reports_have_collateral_posted1"
 			        }
 			      ]
 			    },
@@ -8551,6 +10832,1114 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_dim_currencies_are_active_dim_currencies"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_collateral_posted__change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.collateral_posted__change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.collateral_posted__change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.collateral_posted__change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_collateral_posted__change_colour"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_initial_margin_previous_day": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.initial_margin_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.initial_margin_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.initial_margin_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_initial_margin_previous_day"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_initial_margin_daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.initial_margin_daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.initial_margin_daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.initial_margin_daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_initial_margin_daily_change"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_initial_margin__change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.initial_margin__change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.initial_margin__change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.initial_margin__change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_initial_margin__change_colour"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_variation_margin_previous_day": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.variation_margin_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.variation_margin_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.variation_margin_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_variation_margin_previous_day"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_variation_margin_daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.variation_margin_daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.variation_margin_daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.variation_margin_daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_variation_margin_daily_change"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_variation_margin__change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.variation_margin__change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.variation_margin__change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.variation_margin__change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_variation_margin__change_colour"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_collateral_required_previous_day": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.collateral_required_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.collateral_required_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.collateral_required_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_collateral_required_previous_day"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_collateral_required_daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.collateral_required_daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.collateral_required_daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.collateral_required_daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_collateral_required_daily_change"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_collateral_required__change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.collateral_required__change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.collateral_required__change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.collateral_required__change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_collateral_required__change_colour"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_excess___deficit_previous_day": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.excess___deficit_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.excess___deficit_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.excess___deficit_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_excess___deficit_previous_day"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_excess___deficit_daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.excess___deficit_daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.excess___deficit_daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.excess___deficit_daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_excess___deficit_daily_change"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_excess___deficit__change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.excess___deficit__change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.excess___deficit__change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.excess___deficit__change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_excess___deficit__change_colour"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_initial_margin__daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.initial_margin__daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.initial_margin__daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.initial_margin__daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_initial_margin__daily_change"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_IM_jump_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.IM_jump_flag": {
+			          "Target": {
+			            "Entity": "measures_table.IM_jump_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.IM_jump_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_IM_jump_flag"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_IM_jump_marker": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.IM_jump_marker": {
+			          "Target": {
+			            "Entity": "measures_table.IM_jump_marker"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.IM_jump_marker"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_IM_jump_marker"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_has_data_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.has_data_flag": {
+			          "Target": {
+			            "Entity": "measures_table.has_data_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.has_data_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_has_data_flag"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_measures_table_FX_portfolio_size_previous_day": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "measures_table.FX_portfolio_size_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.FX_portfolio_size_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "measures_table.FX_portfolio_size_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_FX_portfolio_size_previous_day"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_measures_table_FX_portfolio_size_daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "measures_table.FX_portfolio_size_daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.FX_portfolio_size_daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "measures_table.FX_portfolio_size_daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_FX_portfolio_size_daily_change"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_measures_table_FX_portfolio_size_change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "measures_table.FX_portfolio_size_change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.FX_portfolio_size_change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "measures_table.FX_portfolio_size_change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_FX_portfolio_size_change_colour"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_measures_table_open_trades_previous_day": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "measures_table.open_trades_previous_day": {
+			          "Target": {
+			            "Entity": "measures_table.open_trades_previous_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "measures_table.open_trades_previous_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_open_trades_previous_day"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_measures_table_open_trades_daily_change": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "measures_table.open_trades_daily_change": {
+			          "Target": {
+			            "Entity": "measures_table.open_trades_daily_change"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "measures_table.open_trades_daily_change"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_open_trades_daily_change"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_measures_table_open_trades_change_colour": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "measures_table.open_trades_change_colour": {
+			          "Target": {
+			            "Entity": "measures_table.open_trades_change_colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "measures_table.open_trades_change_colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_open_trades_change_colour"
+			        }
+			      ]
+			    },
+			    "mtm_report_has_measures_table_excess___deficit__colour": {
+			      "Binding": {
+			        "ConceptualEntity": "mtm_report"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "mtm_report": {
+			          "Target": {
+			            "Entity": "mtm_report"
+			          }
+			        },
+			        "measures_table.excess___deficit__colour": {
+			          "Target": {
+			            "Entity": "measures_table.excess___deficit__colour"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "mtm_report"
+			            },
+			            "Object": {
+			              "Role": "measures_table.excess___deficit__colour"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mtm_reports_have_excess___deficit__colour"
+			        }
+			      ]
+			    },
+			    "limit_has_measures_table_total_limit": {
+			      "Binding": {
+			        "ConceptualEntity": "limits"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "limit": {
+			          "Target": {
+			            "Entity": "limit"
+			          }
+			        },
+			        "measures_table.total_limit": {
+			          "Target": {
+			            "Entity": "measures_table.total_limit"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "limit"
+			            },
+			            "Object": {
+			              "Role": "measures_table.total_limit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "limits_have_total_limit"
+			        }
+			      ]
+			    },
+			    "limit_has_measures_table_credit_limit_utilization": {
+			      "Binding": {
+			        "ConceptualEntity": "limits"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "limit": {
+			          "Target": {
+			            "Entity": "limit"
+			          }
+			        },
+			        "measures_table.credit_limit_utilization": {
+			          "Target": {
+			            "Entity": "measures_table.credit_limit_utilization"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "limit"
+			            },
+			            "Object": {
+			              "Role": "measures_table.credit_limit_utilization"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "limits_have_credit_limit_utilization"
+			        }
+			      ]
+			    },
+			    "dim_banks_has_measures_table_bank_theme_color": {
+			      "Binding": {
+			        "ConceptualEntity": "dim_banks"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_banks": {
+			          "Target": {
+			            "Entity": "dim_banks"
+			          }
+			        },
+			        "measures_table.bank_theme_color": {
+			          "Target": {
+			            "Entity": "measures_table.bank_theme_color"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_banks"
+			            },
+			            "Object": {
+			              "Role": "measures_table.bank_theme_color"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_banks_have_bank_theme_color"
+			        }
+			      ]
+			    },
+			    "fx_rate_has_fx_quality_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_rates"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_rate": {
+			          "Target": {
+			            "Entity": "fx_rate"
+			          }
+			        },
+			        "fx_rate.fx_quality_flag": {
+			          "Target": {
+			            "Entity": "fx_rate.fx_quality_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_rate"
+			            },
+			            "Object": {
+			              "Role": "fx_rate.fx_quality_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_rates_have_fx_quality_flags"
+			        }
+			      ]
+			    },
+			    "fx_rate_has_dim_currency": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_rates"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_rate": {
+			          "Target": {
+			            "Entity": "fx_rate"
+			          }
+			        },
+			        "dim_currency": {
+			          "Target": {
+			            "Entity": "dim_currency"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_rate"
+			            },
+			            "Object": {
+			              "Role": "dim_currency"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_rates_have_dim_currencies"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_currency"
+			            },
+			            "Object": {
+			              "Role": "fx_rate"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_currencies_have_fx_rates"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_dim_banks": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "dim_banks": {
+			          "Target": {
+			            "Entity": "dim_banks"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "dim_banks"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_dim_banks"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_banks"
+			            },
+			            "Object": {
+			              "Role": "fx_portfolio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_banks_have_fx_portfolios"
+			        }
+			      ]
+			    },
+			    "fx_portfolio_has_dim_date": {
+			      "Binding": {
+			        "ConceptualEntity": "fx_portfolio"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fx_portfolio": {
+			          "Target": {
+			            "Entity": "fx_portfolio"
+			          }
+			        },
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fx_portfolio"
+			            },
+			            "Object": {
+			              "Role": "dim_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fx_portfolios_have_dim_dates"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fx_portfolio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_fx_portfolios"
+			        }
+			      ]
+			    },
+			    "limit_has_dim_banks": {
+			      "Binding": {
+			        "ConceptualEntity": "limits"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "limit": {
+			          "Target": {
+			            "Entity": "limit"
+			          }
+			        },
+			        "dim_banks": {
+			          "Target": {
+			            "Entity": "dim_banks"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "limit"
+			            },
+			            "Object": {
+			              "Role": "dim_banks"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "limits_have_dim_banks"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_banks"
+			            },
+			            "Object": {
+			              "Role": "limit"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_banks_have_limits"
 			        }
 			      ]
 			    },

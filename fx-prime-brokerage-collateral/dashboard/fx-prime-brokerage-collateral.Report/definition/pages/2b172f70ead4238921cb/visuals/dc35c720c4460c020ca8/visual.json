@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "e7ff033fd909d0c0c6c2",
+  "name": "dc35c720c4460c020ca8",
   "position": {
-    "x": 12.631578947368421,
-    "y": 79.578947368421055,
-    "z": 2000,
-    "height": 120,
-    "width": 280.42105263157896,
-    "tabOrder": 2000
+    "x": 1705.6310679611652,
+    "y": 85.0485436893204,
+    "z": 0,
+    "height": 120.00000000000001,
+    "width": 203.88349514563109,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "listSlicer",
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'10-Aug-2026'"
+                                "Value": "'Latest Date'"
                               }
                             }
                           ]
@@ -106,24 +106,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "data": [
-        {
-          "properties": {}
-        }
-      ],
-      "overFlow": [
-        {
-          "properties": {
-            "overFlowStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
                 }
               }
             }
@@ -179,24 +161,5 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8fbceacb7a110a41075d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Has Data Flag"
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      }
-    ]
   }
 }

@@ -1,38 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "f575234d331dcc1cc019",
+  "name": "9632033b7e90cde44810",
   "position": {
-    "x": 822.52427184466023,
-    "y": 473.00970873786412,
-    "z": 4000,
-    "height": 595.33980582524271,
-    "width": 807.37864077669906,
-    "tabOrder": 4000
+    "x": 13.980582524271846,
+    "y": 72.233009708737868,
+    "z": 7000,
+    "height": 389.12621359223306,
+    "width": 1615.9223300970875,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "stackedAreaChart",
+    "visualType": "treemap",
     "query": {
       "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_date"
-                    }
-                  },
-                  "Property": "calendar_date"
-                }
-              },
-              "queryRef": "dim_date.calendar_date",
-              "nativeQueryRef": "calendar_date",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
+        "Group": {
           "projections": [
             {
               "field": {
@@ -46,11 +27,12 @@
                 }
               },
               "queryRef": "dim_banks.bank_name",
-              "nativeQueryRef": "bank_name"
+              "nativeQueryRef": "bank_name",
+              "active": true
             }
           ]
         },
-        "Y": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -60,61 +42,21 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "FX Portfolio Size"
+                  "Property": "Credit Limit Utilization"
                 }
               },
-              "queryRef": "Measures_Table.FX Portfolio Size",
-              "nativeQueryRef": "FX Portfolio Size"
+              "queryRef": "Measures_Table.Credit Limit Utilization",
+              "nativeQueryRef": "Credit Limit Utilization"
             }
           ]
         }
       },
       "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Measures_Table"
-                  }
-                },
-                "Property": "FX Portfolio Size"
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
+        "isDefaultSort": true
       }
     },
     "objects": {
-      "seriesLabels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
       "legend": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "totals": [
         {
           "properties": {
             "show": {
@@ -133,126 +75,18 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "y1AxisReferenceLine": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
                   "Value": "true"
                 }
               }
             },
-            "displayName": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "'Portfolio Limit'"
-                }
-              }
-            },
-            "dataLabelShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "160000000D"
-                }
-              }
-            },
-            "dataLabelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1000000D"
-                }
-              }
-            },
-            "dataLabelDecimalPoints": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "lineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0.2
-                    }
-                  }
-                }
-              }
-            },
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            },
-            "dataLabelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "autoScale": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'back'"
-                }
-              }
-            },
-            "dataLabelVerticalPosition": {
-              "expr": {
-                "Literal": {
-                  "Value": "'above'"
+                  "Value": "12D"
                 }
               }
             }
-          },
-          "selector": {
-            "id": "1"
           }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {}
         }
       ],
       "dataPoint": [
@@ -490,6 +324,119 @@
             ],
             "hierarchyMatching": 1
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Measures_Table"
+                            }
+                          },
+                          "Property": "Credit Limit Utilization"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#118DFF'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#D9B300'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0.7D"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#D64550'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "1D"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "tilingMethod": {
+              "expr": {
+                "Literal": {
+                  "Value": "'stableSquarified'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -499,8 +446,20 @@
           "properties": {
             "text": {
               "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Limits breaches"
+                }
+              }
+            },
+            "show": {
+              "expr": {
                 "Literal": {
-                  "Value": "'Portfolio Limits'"
+                  "Value": "true"
                 }
               }
             }
@@ -512,8 +471,13 @@
           "properties": {
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Over time'"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Text Limits"
                 }
               }
             }
@@ -595,6 +559,34 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "a4709e9c0453e015eb43",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Credit Limit Utilization"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fa789d0e386d5200dd72",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_banks"
+              }
+            },
+            "Property": "bank_name"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

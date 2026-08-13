@@ -97,8 +97,8 @@
                 }
               },
               "queryRef": "Measures_Table.FX Portfolio Size",
-              "nativeQueryRef": "Total Portfolio (In USD)",
-              "displayName": "Total Portfolio (In USD)"
+              "nativeQueryRef": "Total Portfolio",
+              "displayName": "Total Portfolio"
             },
             {
               "field": {

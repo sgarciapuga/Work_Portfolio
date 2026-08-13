@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "5190898e69da06b9d1b8",
+  "name": "17554229ec1204baaa9a",
   "position": {
-    "x": 1204.0273461777501,
-    "y": 25.059042883778744,
-    "z": 1000,
-    "height": 349.74314201400409,
-    "width": 407.67605510834829,
-    "tabOrder": 1000
+    "x": 12.815533980582526,
+    "y": 794.56310679611659,
+    "z": 7000,
+    "height": 279,
+    "width": 379.80582524271847,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "donutChart",
@@ -129,8 +129,56 @@
             }
           }
         }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3d1cca9945389bb3b68e",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2b09f5cedc546dd127d0",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
   }
 }

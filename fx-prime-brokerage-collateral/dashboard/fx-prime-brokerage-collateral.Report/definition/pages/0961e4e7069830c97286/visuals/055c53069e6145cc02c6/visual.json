@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "055c53069e6145cc02c6",
   "position": {
-    "x": 1696.855189558732,
-    "y": 84.723430702299567,
+    "x": 1696.3106796116506,
+    "y": 83.883495145631073,
     "z": 0,
     "height": 120.52206339341205,
     "width": 212.40522063393414,
@@ -85,7 +85,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'10-Aug-2026'"
+                                "Value": "'Latest Date'"
                               }
                             }
                           ]
@@ -165,7 +165,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "be565ce76c4a829bec1e",
+        "name": "ffcd627d6365e1c0db3c",
         "field": {
           "Column": {
             "Expression": {
