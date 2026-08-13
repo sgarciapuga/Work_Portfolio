@@ -26,7 +26,6 @@ This repository collects a set of treasury, data engineering, and analytics proj
 ```text
 Work_Portfolio/
 ├── README.md
-├── requirements.txt
 ├── create-date-table/
 ├── daily-fx-rates/
 ├── fx-prime-brokerage-collateral/
@@ -37,10 +36,10 @@ Work_Portfolio/
 ## Getting started
 
 1. Create or activate a Python environment.
-2. Install dependencies from the repository root:
+2. Install dependencies for the project you want to run. For example, Treasury Cashflow:
 
 ```bash
-pip install -r requirements.txt
+pip install -r treasury-cashflow-simulation/requirements.txt
 ```
 
 3. Run the projects you need:

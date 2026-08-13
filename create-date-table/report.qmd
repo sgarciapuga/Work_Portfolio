@@ -14,7 +14,7 @@ This mini-project creates and maintains a `date_table` in PostgreSQL, providing 
 Ensure `DATABASE_URL` is available in the repository `.env` file.
 
 ```bash
-pip install -r requirements.txt
+pip install -r create-date-table/requirements.txt
 ```
 
 # Run

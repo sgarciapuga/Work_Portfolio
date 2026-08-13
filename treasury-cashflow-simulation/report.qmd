@@ -11,10 +11,10 @@ This Quarto report documents the `treasury-cashflow-simulation` pipeline: how sy
 
 # Setup
 
-Install repository dependencies from the project root:
+Install Treasury Cashflow dependencies from the repository root:
 
 ```bash
-pip install -r requirements.txt
+pip install -r treasury-cashflow-simulation/requirements.txt
 ```
 
 # Run

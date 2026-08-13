@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas requests sqlalchemy psycopg2-binary python-dotenv
+          pip install -r daily-fx-rates/requirements.txt
 
       - name: Execute FX Update Script
         env:

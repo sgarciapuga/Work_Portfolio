@@ -14,7 +14,7 @@ The loader normalizes keys before deduplication, backfills missing business-day 
 # Setup
 
 ```bash
-pip install -r requirements.txt
+pip install -r daily-fx-rates/requirements.txt
 ```
 
 # Run

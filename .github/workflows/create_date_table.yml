@@ -40,7 +40,7 @@ jobs:
           count=0
           until [ $count -ge $attempts ]
           do
-            pip install -r requirements.txt && break
+            pip install -r create-date-table/requirements.txt && break
             count=$((count+1))
             sleep $((count*5))
           done

@@ -4,7 +4,7 @@
 
 2) Paste this workflow:
 
-name: Treasury Cashflow - 3:10 AM UTC
+name: Treasury Cashflow - 3:10 AM UTC - This is the name you give to the new action
 
 on:
   schedule:
@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: treasury-cashflow-310am
+  group: treasury-cashflow-310am - this is also updated depending on the name of the new action
   cancel-in-progress: false
 
 jobs:
@@ -34,9 +34,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r treasury-cashflow-simulation/requirements.txt
 
-      - name: Run Treasury cashflow simulation
+      - name: Run Treasury cashflow simulation - This also needs to be updated
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
@@ -63,6 +63,13 @@ jobs:
             git commit -m "auto: update treasury cashflow CSVs [skip ci]"
             git push
           fi
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          payload=$(jq -n --arg text "Workflow '${{ github.workflow }}' failed for ${{ github.ref }} (run: ${{ github.run_number }}). <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>" '{text: $text}')
+          curl -s -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK"
 
 
 3. Confirm that the repository has a GitHub Actions secret named DATABASE_URL:
