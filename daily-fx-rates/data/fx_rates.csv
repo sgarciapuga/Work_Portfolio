@@ -223,6 +223,7 @@ date,currency,fx_to_usd,fx_quality_flag
 2026-08-10,EUR,0.86543,raw
 2026-08-11,EUR,0.86655,raw
 2026-08-12,EUR,0.86618,raw
+2026-08-13,EUR,0.867,raw
 2026-01-01,GBP,0.74388,raw
 2026-01-02,GBP,0.74388,raw
 2026-01-03,GBP,0.74388,raw
@@ -447,6 +448,7 @@ date,currency,fx_to_usd,fx_quality_flag
 2026-08-10,GBP,0.7405,raw
 2026-08-11,GBP,0.74075,raw
 2026-08-12,GBP,0.73935,raw
+2026-08-13,GBP,0.7412,raw
 2026-01-01,USD,1.0,raw
 2026-01-02,USD,1.0,raw
 2026-01-03,USD,1.0,raw
@@ -671,3 +673,4 @@ date,currency,fx_to_usd,fx_quality_flag
 2026-08-10,USD,1.0,raw
 2026-08-11,USD,1.0,raw
 2026-08-12,USD,1.0,raw
+2026-08-13,USD,1.0,raw
