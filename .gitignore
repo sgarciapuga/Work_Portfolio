@@ -24,3 +24,7 @@ __pycache__/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Internal Docs
+docs-internal/
+
