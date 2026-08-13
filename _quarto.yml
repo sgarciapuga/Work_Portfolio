@@ -1,3 +1,21 @@
 project:
   type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - fx-prime-brokerage-collateral/report.qmd
+
+website:
+  title: "Work Portfolio"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: fx-prime-brokerage-collateral/report.qmd
+        text: FX Prime Brokerage Collateral
+
+format:
+  html:
+    theme: cosmo
+    toc: true
 

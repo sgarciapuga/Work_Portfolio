@@ -21,3 +21,6 @@ __pycache__/
 *.pbi/cache.abf
 *.pbi/localSettings.json
 *.pbi/userSettings.json
+
+/.quarto/
+**/*.quarto_ipynb

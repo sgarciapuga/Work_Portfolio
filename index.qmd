@@ -1,0 +1,20 @@
+---
+title: "Work Portfolio"
+subtitle: "Financial data, treasury, and analytics projects"
+---
+
+This portfolio collects reproducible projects spanning data engineering, treasury workflows, and analytics.
+
+## Projects
+
+### FX Prime Brokerage Collateral
+
+Synthetic FX portfolio generation, mark-to-market reporting, and collateral analysis, with a supporting Power BI model.
+
+[Open the report](fx-prime-brokerage-collateral/report.qmd)
+
+## Coming next
+
+- Treasury cashflow simulation
+- Daily FX rates pipeline
+- Date table generation
