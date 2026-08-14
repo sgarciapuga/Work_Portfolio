@@ -1,0 +1,136 @@
+Table "currencies" {
+  "currency_code" bpchar(3) [pk, not null]
+  "currency_name" text [not null]
+  "symbol" varchar(5) [not null]
+  "is_active" bool [default: true]
+}
+
+Table "banks" {
+  "bank_id" varchar(10) [pk, not null]
+  "bank_name" text [not null]
+  "bank_code" varchar(10) [unique, not null]
+}
+
+Table "date_table" {
+  "calendar_date" date [pk, not null]
+  "year" int4 [not null]
+  "quarter" int4 [not null]
+  "month" int4 [not null]
+  "month_name" varchar(20) [not null]
+  "day" int4 [not null]
+  "day_of_week" int4 [not null]
+  "day_name" varchar(20) [not null]
+  "weekday" int4 [not null]
+  "is_weekend" bool [not null]
+  "is_month_start" bool [not null]
+  "is_month_end" bool [not null]
+  "week_num" int4 [not null]
+  "year_month" varchar(7) [not null]
+  "year_quarter" varchar(8) [not null]
+  "iso_week" int4 [not null]
+  "iso_year" int4 [not null]
+}
+
+Table "fx_rates" {
+  "date" date [not null]
+  "currency" text [not null]
+  "fx_to_usd" float8
+  "fx_quality_flag" text [not null, default: 'raw']
+
+  Indexes {
+    (date, currency) [pk, type: btree, name: "primary_key"]
+    (date, currency) [type: btree, unique, name: "fx_rates_date_currency_uidx"]
+  }
+}
+
+Table "fx_prime_limits" {
+  "as_of_date" date [not null]
+  "bank_id" text [not null]
+  "credit_limit_usd" float8 [not null]
+  "counterparty_exposure_usd" float8 [not null]
+  "limit_available_usd" float8 [not null]
+
+  Indexes {
+    (as_of_date, bank_id) [type: btree, unique, name: "fx_prime_limits_as_of_date_bank_id_uidx"]
+  }
+}
+
+Table "fx_prime_mark_to_market_portfolio" {
+  "report_date" date [not null]
+  "trade_id" text [not null]
+  "bank_id" text [not null]
+  "mtm" float8 [not null]
+  "pnl" float8 [not null]
+  "trade_size_usd" float8 [not null]
+
+  Indexes {
+    (report_date, trade_id, bank_id) [type: btree, unique, name: "fx_prime_mark_to_market_portfolio_report_date_trade_id_bank_id_"]
+  }
+}
+
+Table "fx_prime_mtm_report" {
+  "report_date" date [unique, not null]
+  "initial_margin" float8 [not null]
+  "variation_margin" float8 [not null]
+  "collateral_required" float8 [not null]
+  "collateral_posted" float8 [not null]
+  "excess_deficit" float8 [not null]
+}
+
+Table "fx_prime_portfolio" {
+  "report_date" date [not null]
+  "bank_id" text [not null]
+  "trade_id" text [not null]
+  "type" text [not null]
+  "trade_date" date [not null]
+  "value_date" date [not null]
+  "currency_pair" text [not null]
+  "trade_size_usd" float8 [not null]
+  "leg_id" int4 [not null]
+
+  Indexes {
+    (report_date, bank_id, trade_id, leg_id) [type: btree, unique, name: "fx_prime_portfolio_report_date_bank_id_trade_id_leg_id_uidx"]
+  }
+}
+
+Table "treasury_balances" {
+  "date" date [not null]
+  "account_number" text [not null]
+  "currency" text [not null]
+  "starting_balance" float8 [not null]
+  "total_movements" float8 [not null]
+  "closing_balance" float8 [not null]
+
+  Indexes {
+    (date, account_number) [type: btree, unique, name: "treasury_balances_date_account_uidx"]
+  }
+}
+
+Table "treasury_movements" {
+  "date" date [not null]
+  "transaction_id" text [not null]
+  "account_number" text [not null]
+  "currency" text [not null]
+  "type" text [not null]
+  "category" text [not null]
+  "amount" float8 [not null]
+  "description" text [not null]
+
+  Indexes {
+    (date, transaction_id, account_number) [type: btree, unique, name: "treasury_movements_date_transaction_account_uidx"]
+  }
+}
+
+Ref "fx_prime_limits_date":"date_table"."calendar_date" <? "fx_prime_limits"."as_of_date"
+
+Ref "fx_prime_mark_to_market_portfolio_date":"date_table"."calendar_date" <? "fx_prime_mark_to_market_portfolio"."report_date"
+
+Ref "fx_prime_mtm_report_date":"date_table"."calendar_date" <? "fx_prime_mtm_report"."report_date"
+
+Ref "fx_prime_portfolio_date":"date_table"."calendar_date" <? "fx_prime_portfolio"."report_date"
+
+Ref "fx_rates_date":"date_table"."calendar_date" <? "fx_rates"."date"
+
+Ref "treasury_balances_date":"date_table"."calendar_date" <? "treasury_balances"."date"
+
+Ref "treasury_movements_date":"date_table"."calendar_date" <? "treasury_movements"."date"
