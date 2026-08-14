@@ -4,6 +4,7 @@ author: "Sergio"
 date: 2026-08-08
 format:
   html:
+    page-layout: full
     css: styles.css
     max-width: 100%
 ---

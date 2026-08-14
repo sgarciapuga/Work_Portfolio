@@ -1,6 +1,9 @@
 ---
 title: "Work Portfolio"
 subtitle: "Financial data, treasury, and analytics projects"
+format:
+  html:
+    page-layout: full
 ---
 
 This portfolio collects a series of real projects I have developed at work, with a focus on financial data, treasury workflows, and analytics. The projects are designed to be reproducible and demonstrate my skills in data engineering, analysis, and visualization.

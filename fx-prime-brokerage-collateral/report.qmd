@@ -10,6 +10,7 @@ format:
     code-fold: false
     code-tools: true
     theme: cosmo
+    page-layout: full
     css: styles.css
     max-width: 100%
 execute:

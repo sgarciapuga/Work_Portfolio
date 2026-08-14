@@ -5,11 +5,29 @@ Run these commands from the repository root:
 
   C:\Mis_cosas\Coding\Work_Portfolio
 
-Render an existing report without executing its code cells:
+RENDER ALL REPORTS AT ONCE
+==========================
+
+Render all reports without executing code (uses cached results):
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_all_reports.ps1
+
+Render all reports and execute code cells:
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_all_reports.ps1 -Execute
+
+Render only specific reports:
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\render_all_reports.ps1 -Reports "index.qmd","fx-prime-brokerage-collateral/report.qmd"
+
+RENDER INDIVIDUAL REPORTS
+==========================
+
+Render a single report without executing code:
 
   powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "fx-prime-brokerage-collateral/report.qmd"
 
-Render and execute code cells before creating the HTML output:
+Render and execute code cells:
 
   powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "fx-prime-brokerage-collateral/report.qmd" -Execute
 
@@ -18,10 +36,23 @@ Other examples:
   powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "treasury-cashflow-simulation/report.qmd" -Execute
   powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "index.qmd"
 
-If the report is omitted, the script renders:
+If the report is omitted, the script renders the default:
 
   treasury-cashflow-simulation/report.qmd
 
-The script activates the conda environment named env_quarto and writes the rendered
-HTML file beside the source .qmd file, unless the Quarto project configuration says
-otherwise.
+ENVIRONMENT & OUTPUT
+====================
+
+The scripts activate the conda environment named env_quarto and write the rendered
+HTML files to the docs/ folder (as configured in _quarto.yml).
+
+ADDING NEW REPORTS
+==================
+
+When you create a new Quarto report project:
+
+1. Create your .qmd file and project folder (e.g., my-new-project/report.qmd)
+2. Add it to the $AllReports array in render_all_reports.ps1
+3. Run render_all_reports.ps1 to include it in batch renders
+
+Example: add "my-new-project/report.qmd" to the registry in render_all_reports.ps1
