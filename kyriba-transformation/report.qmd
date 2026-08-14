@@ -1,0 +1,34 @@
+```{mermaid}
+%%| fig-width: 6.5
+graph TD
+    subgraph Kyriba TMS
+        A[Scheduler Trigger] --> B[Generate CSV Export Template]
+        B --> C[Email User Account - License Free]
+    end
+    
+    subgraph Automation & Delivery
+        C --> D[Group Email / FTP Location]
+        D --> E[End Users / Stakeholders]
+    end
+    
+    subgraph Data Platform Integration
+        A --> F[Kyriba Open API - REST]
+        F --> G[Data Platform / Data Lake]
+    end
+```
+
+fake metrix
+
+```{python}
+import plotly.graph_objects as go
+
+# Fake benchmark data
+categories = ['Manual Process (PDF)', 'Automated Process (CSV/API)']
+time_per_trade_sec = [180, 5]
+
+fig = go.Figure(data=[
+    go.Bar(name='Processing Time (Sec)', x=categories, y=time_per_trade_sec, marker_color=['#ef553b', '#636efa'])
+])
+fig.update_layout(title_text="Trade Confirmation Execution Speed", height=350)
+fig.show()
+```

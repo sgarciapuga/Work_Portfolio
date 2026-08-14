@@ -13,3 +13,10 @@
 - Follow docs-internal/REPEATABLE_DATA_PROJECT_PLAYBOOK.md for phase-by-phase delivery.
 - Use prompt patterns from docs-internal/COPILOT_LOW_TOKEN_PROMPTS.md.
 - Prefer template reuse over free-form planning when task is repetitive.
+
+<!-- mermaid-ai-skills:start -->
+## Mermaid Diagrams
+
+When the user asks to create, edit, or visualize a diagram, follow the
+instructions in `.github/instructions/mermaid.instructions.md`.
+<!-- mermaid-ai-skills:end -->
