@@ -1,0 +1,44 @@
+name: Update Database ERD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-erd:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install DBML CLI
+        run: npm install -g @dbml/cli
+
+      - name: Generate DBML from Neon
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          mkdir -p database
+          db2dbml postgres "$DATABASE_URL" -o database/schema.dbml
+
+      - name: Commit updated schema
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add database/schema.dbml
+
+          if git diff --cached --quiet; then
+            echo "No schema changes."
+          else
+            git commit -m "Update database ERD"
+            git push
+          fi
