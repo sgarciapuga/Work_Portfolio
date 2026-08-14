@@ -2,7 +2,10 @@
 title: "Create Date Table — Project Report"
 author: "Sergio"
 date: 2026-08-08
-format: html
+format:
+  html:
+    css: styles.css
+    max-width: 100%
 ---
 
 # Overview

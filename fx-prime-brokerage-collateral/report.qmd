@@ -10,6 +10,8 @@ format:
     code-fold: false
     code-tools: true
     theme: cosmo
+    css: styles.css
+    max-width: 100%
 execute:
   echo: true
   warning: false
