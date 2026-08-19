@@ -161,5 +161,23 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "09d120858fd1f0eb3290",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "Date (Latest)"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

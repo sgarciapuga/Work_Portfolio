@@ -77,7 +77,7 @@ table Measures_Table
 		displayFolder: Portfolio
 		lineageTag: cfdd378a-ff8e-4533-ad87-ea7b7cd2a93f
 
-	measure 'Open Trades' = COUNTROWS(fx_portfolio)
+	measure 'Open Trades' = DISTINCTCOUNT(fx_portfolio[trade_id])
 		formatString: 0
 		displayFolder: Portfolio
 		lineageTag: c3291695-b1b4-44d9-81a7-6a9bc8a80319

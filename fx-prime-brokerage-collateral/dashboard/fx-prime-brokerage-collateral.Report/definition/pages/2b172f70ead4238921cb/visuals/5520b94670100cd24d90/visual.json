@@ -197,5 +197,107 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c7197e74d652122b5fb0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "trade_id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "95fedb5e1cea08a295f1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3a61734518710972b3b3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "currency_pair"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "85ad2cdcb24ee508c376",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_banks"
+              }
+            },
+            "Property": "bank_code"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2e9fcf19d6fecf4d6250",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "trade_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "40c2781a633bcafa927d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "value_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ce18b9687f6e40a8b3d3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

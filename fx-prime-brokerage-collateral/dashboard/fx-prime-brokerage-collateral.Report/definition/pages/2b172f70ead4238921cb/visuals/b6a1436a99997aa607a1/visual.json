@@ -496,5 +496,93 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a5920b60d67a6e05fd52",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "49bd95c535c4674910f2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Open Trades"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "034730c8e8551580fc06",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Trades"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6c06c978e22f00b1b2a4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Spots"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d4377c05f7aed799c5d8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Forwards"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b3278f6f85fca19a3cd1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Swaps"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

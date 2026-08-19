@@ -1196,5 +1196,107 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fb3f153bcb180112173a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Initial Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7d7ca95cd4e617d200d2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Variation Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d706d4dae4d25f7468f8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Collateral Required"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b6f40c6df15fa3d8ace2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Collateral Posted"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bf1cd3b77a8cd9d69127",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Excess / Deficit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aa2dd0dcfc9a03734819",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a012b25a15e0ebb7d29f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Open Trades"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
