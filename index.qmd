@@ -14,7 +14,7 @@ This portfolio is a work in progress, and I will continue to add new projects as
 
 ### FX Prime Brokerage Collateral
 
-This is an example of a workflow improvement project I developed for a financial institution.
+This project demonstrates a workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem.
 
 The project involved:
 
