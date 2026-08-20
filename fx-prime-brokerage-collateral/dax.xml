@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="dax" version="1" kateversion="5.0" section="Other" extensions="*.dax" mimetype="">
+  <highlighting>
+    <list name="keywords">
+      <item>VAR</item>
+      <item>RETURN</item>
+      <item>IN</item>
+      <item>NOT</item>
+      <item>AND</item>
+      <item>OR</item>
+      <item>TRUE</item>
+      <item>FALSE</item>
+      <item>BLANK</item>
+      <item>DEFINE</item>
+      <item>MEASURE</item>
+      <item>EVALUATE</item>
+      <item>ORDER</item>
+      <item>BY</item>
+      <item>ASC</item>
+      <item>DESC</item>
+    </list>
+    <list name="functions">
+      <item>SUM</item>
+      <item>SUMX</item>
+      <item>AVERAGE</item>
+      <item>AVERAGEX</item>
+      <item>COUNT</item>
+      <item>COUNTX</item>
+      <item>COUNTA</item>
+      <item>COUNTROWS</item>
+      <item>DISTINCTCOUNT</item>
+      <item>MIN</item>
+      <item>MINX</item>
+      <item>MAX</item>
+      <item>MAXX</item>
+      <item>CALCULATE</item>
+      <item>CALCULATETABLE</item>
+      <item>FILTER</item>
+      <item>ALL</item>
+      <item>ALLEXCEPT</item>
+      <item>ALLSELECTED</item>
+      <item>REMOVEFILTERS</item>
+      <item>KEEPFILTERS</item>
+      <item>RELATED</item>
+      <item>RELATEDTABLE</item>
+      <item>VALUES</item>
+      <item>DISTINCT</item>
+      <item>SELECTEDVALUE</item>
+      <item>IF</item>
+      <item>IFERROR</item>
+      <item>SWITCH</item>
+      <item>DATESINPERIOD</item>
+      <item>DATESYTD</item>
+      <item>DATESQTD</item>
+      <item>DATESMTD</item>
+      <item>SAMEPERIODLASTYEAR</item>
+      <item>PARALLELPERIOD</item>
+      <item>PREVIOUSDAY</item>
+      <item>PREVIOUSMONTH</item>
+      <item>PREVIOUSYEAR</item>
+      <item>TOTALYTD</item>
+      <item>TOTALQTD</item>
+      <item>TOTALMTD</item>
+      <item>RANKX</item>
+      <item>TOPN</item>
+      <item>DIVIDE</item>
+      <item>CONCATENATE</item>
+      <item>CONCATENATEX</item>
+      <item>FORMAT</item>
+      <item>MAX</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <DetectSpaces/>
+        <Detect2Chars char="-" char1="-" attribute="Comment" context="Comment"/>
+        <Detect2Chars char="/" char1="/" attribute="Comment" context="Comment"/>
+        <Detect2Chars char="/" char1="*" attribute="Comment" context="BlockComment" beginRegion="Comment"/>
+        <DetectChar char="&quot;" attribute="String" context="String"/>
+        <keyword String="keywords" attribute="Keyword" context="#stay"/>
+        <keyword String="functions" attribute="Function" context="#stay"/>
+        <Float attribute="Number" context="#stay"/>
+        <Int attribute="Number" context="#stay"/>
+        <AnyChar String="+-*/=&lt;&gt;,()[]{}" attribute="Operator" context="#stay"/>
+      </context>
+      <context name="Comment" attribute="Comment" lineEndContext="#pop">
+        <DetectSpaces/>
+      </context>
+      <context name="BlockComment" attribute="Comment" lineEndContext="#stay">
+        <Detect2Chars char="*" char1="/" attribute="Comment" context="#pop" endRegion="Comment"/>
+      </context>
+      <context name="String" attribute="String" lineEndContext="#pop">
+        <DetectChar char="&quot;" attribute="String" context="#pop"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+      <itemData name="Function" defStyleNum="dsFunction"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="Number" defStyleNum="dsDecVal"/>
+      <itemData name="Operator" defStyleNum="dsOperator"/>
+    </itemDatas>
+  </highlighting>
+</language>

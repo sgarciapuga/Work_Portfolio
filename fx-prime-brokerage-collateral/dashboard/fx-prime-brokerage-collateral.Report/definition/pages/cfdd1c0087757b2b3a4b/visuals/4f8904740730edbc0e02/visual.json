@@ -40,7 +40,7 @@
                   "Property": "Variation Margin"
                 }
               },
-              "queryRef": "Measures_Table.Variation Margin",
+              "queryRef": "Measures_Table.Variation Margin (Inverse)",
               "nativeQueryRef": "Variation Margin"
             },
             {
@@ -667,6 +667,34 @@
             "id": "field-ce891af8-b12c-6d5e-169c-b4d8b76aaf8e",
             "order": 0
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Variation Margin (Daily Change)"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Variation Margin (Inverse)",
+            "id": "field-06880978-b704-7b2c-1d66-e92b3d1be1cc",
+            "order": 0
+          }
         }
       ],
       "referenceLabelTitle": [
@@ -836,6 +864,28 @@
           "selector": {
             "metadata": "Measures_Table.Open Trades",
             "id": "field-ce891af8-b12c-6d5e-169c-b4d8b76aaf8e"
+          }
+        },
+        {
+          "properties": {
+            "titleContentType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'custom'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Change:'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Variation Margin (Inverse)",
+            "id": "field-06880978-b704-7b2c-1d66-e92b3d1be1cc"
           }
         }
       ],
@@ -1124,6 +1174,37 @@
             "metadata": "Measures_Table.Open Trades",
             "id": "field-ce891af8-b12c-6d5e-169c-b4d8b76aaf8e"
           }
+        },
+        {
+          "properties": {
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Measures_Table"
+                        }
+                      },
+                      "Property": "Variation Margin  Change Colour"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Variation Margin (Inverse)",
+            "id": "field-06880978-b704-7b2c-1d66-e92b3d1be1cc"
+          }
         }
       ],
       "cardCalloutArea": [
@@ -1214,20 +1295,6 @@
         "type": "Advanced"
       },
       {
-        "name": "7d7ca95cd4e617d200d2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Variation Margin"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
         "name": "d706d4dae4d25f7468f8",
         "field": {
           "Measure": {
@@ -1293,6 +1360,20 @@
               }
             },
             "Property": "Open Trades"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0bdccb8e630f07327402",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Variation Margin"
           }
         },
         "type": "Advanced"

@@ -42,7 +42,7 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Variation Margin (Inverse)"
+                  "Property": "Variation Margin"
                 }
               },
               "queryRef": "Measures_Table.Variation Margin (Inverse)",
@@ -239,7 +239,7 @@
                 "Entity": "Measures_Table"
               }
             },
-            "Property": "Variation Margin (Inverse)"
+            "Property": "Variation Margin"
           }
         },
         "type": "Advanced"

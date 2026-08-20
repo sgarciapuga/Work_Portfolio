@@ -40,6 +40,21 @@ If the report is omitted, the script renders the default:
 
   treasury-cashflow-simulation/report.qmd
 
+LIVE PREVIEW
+============
+
+Do NOT use the Quarto VS Code extension's built-in "Preview" button — it runs
+`quarto preview` in the default env (env_1), not env_quarto, so it hangs silently
+at "Starting env_1 kernel..." and never opens a preview window.
+
+Instead, run the live preview from the terminal:
+
+  powershell -ExecutionPolicy Bypass -File .\scripts\preview_in_env_quarto.ps1 -ReportPath "fx-prime-brokerage-collateral/report.qmd"
+
+This activates env_quarto, sets QUARTO_PYTHON, and starts a live-reloading preview
+server that opens in your browser. Leave the terminal running while you edit; press
+Ctrl+C to stop it. If omitted, ReportPath defaults to treasury-cashflow-simulation/report.qmd.
+
 ENVIRONMENT & OUTPUT
 ====================
 

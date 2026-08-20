@@ -1,5 +1,5 @@
 ---
-title: "Work Portfolio"
+title: "Professional Portfolio"
 subtitle: "Financial data, treasury, and analytics projects"
 format:
   html:
@@ -14,7 +14,17 @@ This portfolio is a work in progress, and I will continue to add new projects as
 
 ### FX Prime Brokerage Collateral
 
-This is an example of a workflow improvement project I developed for a financial institution. The project involved: - Analyzing the existing collateral management process for FX prime brokerage. - Identifying inefficiencies and areas for improvement. - Implementing a new workflow that streamlined the process and reduced manual effort.
+This is an example of a workflow improvement project I developed for a financial institution.
+
+The project involved:
+
+\- Analyzing the existing collateral management process for FX prime brokerage.
+
+\- Identifying inefficiencies and areas for improvement.
+
+\- Implementing a new workflow that streamlined the process and reduced manual effort.
+
+\- New Power BI dashboards for collateral reporting and monitoring.
 
 In the below presentation, I provide an overview of the project, including the problem statement, methodology, and results:
 

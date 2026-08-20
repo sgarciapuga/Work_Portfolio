@@ -1,6 +1,6 @@
-# Work Portfolio
+# Professional Portfolio
 
-This repository collects a set of treasury, data engineering, and analytics projects that work together as a practical portfolio of financial-data workflows.
+A curated portfolio of professional projects and case studies demonstrating experience across treasury, financial data, analytics, business processes, and technology. The projects showcase practical problem-solving, data-driven analysis, and the ability to translate business requirements into clear, actionable solutions.
 
 ## Portfolio overview
 

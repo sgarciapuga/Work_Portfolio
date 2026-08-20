@@ -13,12 +13,6 @@ table Measures_Table
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Variation Margin' = SUM(mtm_report[variation_margin])
-		displayFolder: MTM
-		lineageTag: a2559f93-9a0f-43e0-b464-76a886740875
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Collateral Required' = SUM(mtm_report[collateral_required])
 		displayFolder: MTM
 		lineageTag: d2b837c7-390d-4a73-be4f-f4d9cf053c81
@@ -56,7 +50,7 @@ table Measures_Table
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Variation Margin (Inverse)' = SUM(mtm_report[variation_margin])
+	measure 'Variation Margin' = SUM(mtm_report[variation_margin])
 		displayFolder: MTM
 		lineageTag: e23d74c4-56a8-4f61-b5ce-0b44651bf349
 
@@ -100,7 +94,7 @@ table Measures_Table
 			            -30,
 			            DAY
 			        ),
-			        [Variation Margin (Inverse)]
+			        [Variation Margin]
 			    )
 			)
 		displayFolder: MTM
