@@ -611,5 +611,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "769142584892dbead1f6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_banks"
+              }
+            },
+            "Property": "bank_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e04781052a1aedba7a77",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
