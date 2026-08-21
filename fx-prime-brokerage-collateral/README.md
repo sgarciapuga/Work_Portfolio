@@ -31,7 +31,7 @@ fx-prime-brokerage-collateral/
 
 ## Main workflow
 
-The entry point is the script in [fx-prime-brokerage-collateral/src/generate_fx_datasets.py](fx-prime-brokerage-collateral/src/generate_fx_datasets.py).
+The entry point is the script in [src/generate_fx_datasets.py](fx-prime-brokerage-collateral/src/generate_fx_datasets.py).
 
 Before running the generator, set `DATABASE_URL` in the repository `.env` file (repo root):
 

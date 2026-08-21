@@ -69,6 +69,29 @@ class PortfolioDateFilterTests(unittest.TestCase):
         self.assertEqual(-1_000, result.loc[1, "variation_margin"])
         self.assertEqual(-6_000, result.loc[1, "collateral_required"])
 
+    def test_recall_does_not_leave_next_day_below_buffer(self):
+        portfolio = pd.DataFrame({
+            "trade_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
+            "report_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
+            "trade_size_usd": [1_000_000, 0, 4_000_000],
+        })
+        mtm = pd.DataFrame({
+            "report_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
+            "pnl": [0, 0, 0],
+        })
+
+        with tempfile.TemporaryDirectory() as output_dir:
+            result = generate_mtm_report(
+                portfolio_df=portfolio,
+                mtm_df=mtm,
+                end_date="2026-01-06",
+                out_path=output_dir,
+            )
+
+        self.assertEqual(550_000, result.loc[1, "collateral_posted"])
+        self.assertEqual(550_000, result.loc[2, "collateral_posted"])
+        self.assertLess(result.loc[2, "excess_deficit"], 500_000)
+
 
 if __name__ == "__main__":
     unittest.main()
