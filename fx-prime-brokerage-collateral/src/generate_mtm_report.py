@@ -117,8 +117,15 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
                 move_amount = max(moves, MIN_MOVE)
                 collateral_next = collateral_display + float(move_amount)
         else:
-            # A recall is posted on the next report date, so size it against
-            # the next day's exposure to keep the delivered balance above the buffer.
+            # A recall is triggered by today's excess, then posted on the next
+            # report date. Size approved recalls against next-day exposure so
+            # the delivered balance remains above the buffer.
+            recall_possible = excess_deficit - BUFFER
+            if recall_possible < MIN_MOVE:
+                collateral_next = collateral_display
+                collateral_current = collateral_next
+                continue
+
             if index + 1 < len(report_dates):
                 next_rd_str = report_dates[index + 1].date().isoformat()
                 next_exposure = 0.05 * exposure_map.get(next_rd_str, 0.0)
@@ -126,16 +133,16 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
                 next_total_exposure = next_exposure - next_vm
             else:
                 next_total_exposure = total_exposure
-            surplus = collateral_display - next_total_exposure
-            recall_possible = surplus - BUFFER
-            if recall_possible >= MIN_MOVE:
+            next_day_recall_limit = collateral_display - next_total_exposure - BUFFER
+            recall_possible = min(recall_possible, next_day_recall_limit)
+            if recall_possible < MIN_MOVE:
+                collateral_next = collateral_display
+            else:
                 # round down recall to MOVE_INCREMENT
                 recall = np.floor(recall_possible / MOVE_INCREMENT) * MOVE_INCREMENT
                 recall_amount = max(recall, MIN_MOVE)
                 new_posted = collateral_display - float(recall_amount)
                 collateral_next = max(new_posted, BUFFER)
-            else:
-                collateral_next = collateral_display
 
         collateral_current = collateral_next
 

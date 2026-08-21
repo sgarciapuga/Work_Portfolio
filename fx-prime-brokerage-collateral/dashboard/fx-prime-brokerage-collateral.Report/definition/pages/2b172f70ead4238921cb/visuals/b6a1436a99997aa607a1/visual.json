@@ -53,11 +53,39 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Trades"
+                  "Property": "New Trades"
+                }
+              },
+              "queryRef": "Measures_Table.New Trades",
+              "nativeQueryRef": "New Trades"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Matured Trades"
+                }
+              },
+              "queryRef": "Measures_Table.Matured Trades",
+              "nativeQueryRef": "Matured Trades"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Total Trades"
                 }
               },
               "queryRef": "Measures_Table.Trades",
-              "nativeQueryRef": "Trades"
+              "nativeQueryRef": "Total Trades"
             },
             {
               "field": {
@@ -148,7 +176,7 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
@@ -162,7 +190,14 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -176,7 +211,7 @@
             "labelPrecision": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "0L"
                 }
               }
             }
@@ -536,7 +571,7 @@
                 "Entity": "Measures_Table"
               }
             },
-            "Property": "Trades"
+            "Property": "Total Trades"
           }
         },
         "type": "Advanced"
@@ -579,6 +614,34 @@
               }
             },
             "Property": "Swaps"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9ac0597f629ed3320820",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "New Trades"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2c689594ff7fc0aab98c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Matured Trades"
           }
         },
         "type": "Advanced"

@@ -11,6 +11,9 @@ START_DATE = "2026-01-01"
 BANK_IDS = ["bank_1", "bank_2", "bank_3", "bank_4", "fx_pb_1"]
 CURRENCY_PAIRS = ["EUR/USD", "GBP/USD", "EUR/GBP"]
 TRADE_TYPES = ["spot", "forward", "swap"]
+TRADE_TYPE_CODES = {"spot": "SP", "forward": "FW", "swap": "SW"}
+WEEKLY_TRADE_MEAN = 3.5
+MAX_WEEKLY_TRADES = 7
 
 
 def get_business_days(start_date, end_date):
@@ -61,6 +64,24 @@ def allocate_trade_across_banks(total_trade_exposure, remaining_capacity):
     return allocations
 
 
+def sample_weekly_trade_count(rng):
+    """Sample a realistic weekly trade count, bounded to the project range."""
+    while True:
+        trade_count = int(rng.poisson(WEEKLY_TRADE_MEAN))
+        if trade_count <= MAX_WEEKLY_TRADES:
+            return trade_count
+
+
+def create_trade_id(trade_type, trade_date, daily_trade_numbers):
+    """Create an ID unique to an economic trade, regardless of its legs."""
+    date_key = trade_date.date().isoformat()
+    sequence = daily_trade_numbers.get(date_key, 0) + 1
+    if sequence > 9_999:
+        raise ValueError(f"More than 9,999 trades generated for {date_key}.")
+    daily_trade_numbers[date_key] = sequence
+    return f"{TRADE_TYPE_CODES[trade_type]}{trade_date:%Y%m%d}{sequence:04d}"
+
+
 def generate_fx_portfolio(end_date=None, seed=42):
     """Create reproducible trade-leg rows for active synthetic FX positions.
 
@@ -80,12 +101,17 @@ def generate_fx_portfolio(end_date=None, seed=42):
     rng = np.random.default_rng(seed)
 
     trades = []
-    trade_id = 1
+    daily_trade_numbers = {}
     limit_schedule = build_limit_schedule(end_date=end_date, seed=seed)
 
     weekly_groups = report_business_days.to_series().groupby(report_business_days.to_series().dt.to_period("W")).apply(list)
     for trade_week in weekly_groups:
-        sample_dates = rng.choice(trade_week, size=min(5, len(trade_week)), replace=False)
+        trade_count = sample_weekly_trade_count(rng)
+        sample_dates = rng.choice(
+            trade_week,
+            size=trade_count,
+            replace=trade_count > len(trade_week),
+        )
         for trade_date in sorted(sample_dates):
             trade_type = rng.choice(TRADE_TYPES, p=[0.4, 0.35, 0.25])
             currency_pair = rng.choice(CURRENCY_PAIRS)
@@ -142,8 +168,9 @@ def generate_fx_portfolio(end_date=None, seed=42):
                 weights = np.array([remaining_capacity[bank] for bank in valid_banks], dtype=float)
                 prob = weights / weights.sum()
                 bank_id = rng.choice(valid_banks, p=prob)
+                trade_id = create_trade_id(trade_type, trade_date, daily_trade_numbers)
                 trades.append({
-                    "trade_id": f"T{trade_id:05d}",
+                    "trade_id": trade_id,
                     "trade_date": trade_date,
                     "bank_id": bank_id,
                     "type": trade_type,
@@ -151,18 +178,19 @@ def generate_fx_portfolio(end_date=None, seed=42):
                     "trade_size_usd": trade_size_usd,
                     "legs": legs,
                 })
-                trade_id += 1
                 continue
 
             split_allocations = allocate_trade_across_banks(total_trade_exposure, remaining_capacity)
             if split_allocations is None:
                 warnings.warn(
-                    f"Skipping trade {trade_id} of size {total_trade_exposure:.2f}; "
+                    f"Skipping {trade_type} trade on {trade_date:%Y-%m-%d} of size "
+                    f"{total_trade_exposure:.2f}; "
                     "insufficient aggregate bank capacity.",
                     UserWarning,
                 )
                 continue
 
+            trade_id = create_trade_id(trade_type, trade_date, daily_trade_numbers)
             for bank_id, allocated_exposure in split_allocations.items():
                 ratio = allocated_exposure / total_trade_exposure
                 split_legs = []
@@ -181,7 +209,7 @@ def generate_fx_portfolio(end_date=None, seed=42):
                     })
 
                 trades.append({
-                    "trade_id": f"T{trade_id:05d}",
+                    "trade_id": trade_id,
                     "trade_date": trade_date,
                     "bank_id": bank_id,
                     "type": trade_type,
@@ -189,8 +217,6 @@ def generate_fx_portfolio(end_date=None, seed=42):
                     "trade_size_usd": allocated_exposure,
                     "legs": split_legs,
                 })
-                trade_id += 1
-
     rows = []
     for report_date in report_business_days:
         for trade in trades:
