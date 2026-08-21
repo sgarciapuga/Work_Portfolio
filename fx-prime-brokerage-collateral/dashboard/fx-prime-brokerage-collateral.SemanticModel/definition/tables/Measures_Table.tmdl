@@ -71,7 +71,7 @@ table Measures_Table
 		displayFolder: Portfolio
 		lineageTag: cfdd378a-ff8e-4533-ad87-ea7b7cd2a93f
 
-	measure 'Open Trades' = DISTINCTCOUNT(fx_portfolio[trade_id])
+	measure 'Open Trades' = COUNTROWS(fx_portfolio)
 		formatString: 0
 		displayFolder: Portfolio
 		lineageTag: c3291695-b1b4-44d9-81a7-6a9bc8a80319
@@ -340,7 +340,7 @@ table Measures_Table
 			VAR CurrentDate = MAX(dim_date[calendar_date])
 			VAR PreviousDateWithData =
 			    CALCULATE(
-			        MAX(fx_portfolio[trade_date]),
+			        MAX(fx_portfolio[report_date]),
 			        REMOVEFILTERS(dim_date),
 			        dim_date[calendar_date] < CurrentDate
 			    )
@@ -385,7 +385,7 @@ table Measures_Table
 			VAR CurrentDate = MAX(dim_date[calendar_date])
 			VAR PreviousDateWithData =
 			    CALCULATE(
-			        MAX(fx_portfolio[trade_date]),
+			        MAX(fx_portfolio[report_date]),
 			        REMOVEFILTERS(dim_date),
 			        dim_date[calendar_date] < CurrentDate
 			    )
@@ -470,10 +470,17 @@ table Measures_Table
 			    )
 		lineageTag: 76a60422-5570-4dec-8fe9-4968fe3ac957
 
-	measure Trades =
+	measure 'Total Trades' =
+			
 			CALCULATE(
-			    COUNTROWS(fx_portfolio),
-			    ALL()
+			    COUNTROWS(
+			        SUMMARIZE(
+			            fx_portfolio,
+			            fx_portfolio[trade_id],
+			            fx_portfolio[leg_id]
+			        )
+			    ),
+			    REMOVEFILTERS(dim_date)
 			)
 		formatString: #,0
 		displayFolder: Portfolio
@@ -481,7 +488,7 @@ table Measures_Table
 
 	measure Swaps =
 			CALCULATE(
-			   COUNTROWS(fx_portfolio),
+			   DISTINCTCOUNT(fx_portfolio[trade_id]),
 			    fx_portfolio[type] = "swap",
 			    ALL()
 			)
@@ -491,7 +498,7 @@ table Measures_Table
 
 	measure Spots =
 			CALCULATE(
-			   COUNTROWS(fx_portfolio),
+			   DISTINCTCOUNT(fx_portfolio[trade_id]),
 			    fx_portfolio[type] = "spot",
 			    ALL()
 			)
@@ -501,7 +508,7 @@ table Measures_Table
 
 	measure Forwards =
 			CALCULATE(
-			   COUNTROWS(fx_portfolio),
+			   DISTINCTCOUNT(fx_portfolio[trade_id]),
 			    fx_portfolio[type] = "forward",
 			    ALL()
 			)
@@ -523,6 +530,44 @@ table Measures_Table
 			 )
 			```
 		lineageTag: ab3c72e6-1dd2-4625-af7e-25b9187d7700
+
+	measure 'New Trades' =
+			
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            fx_portfolio,
+			            fx_portfolio[trade_id],
+			            fx_portfolio[leg_id]
+			        )
+			    ),
+			    USERELATIONSHIP(
+			        dim_date[calendar_date],
+			        fx_portfolio[trade_date]
+			    )
+			)
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: 6a5c2688-253f-4246-8f38-916aaf44f536
+
+	measure 'Matured Trades' =
+			
+			CALCULATE(
+			    COUNTROWS(
+			        SUMMARIZE(
+			            fx_portfolio,
+			            fx_portfolio[trade_id],
+			            fx_portfolio[leg_id]
+			        )
+			    ),
+			    USERELATIONSHIP(
+			        dim_date[calendar_date],
+			        fx_portfolio[value_date]
+			    )
+			)
+		formatString: 0
+		displayFolder: Portfolio
+		lineageTag: e7967519-05bf-44bc-9f0c-ded617d21a9b
 
 	partition Measures_Table = m
 		mode: import

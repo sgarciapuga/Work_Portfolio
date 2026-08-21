@@ -23,3 +23,13 @@ relationship 7b12bce1-206b-fcdb-6bff-f0c6abd59405
 	fromColumn: limits.as_of_date
 	toColumn: dim_date.calendar_date
 
+relationship 5668e00b-cf2f-f3ba-0207-f72ff62281cf
+	isActive: false
+	fromColumn: fx_portfolio.value_date
+	toColumn: dim_date.calendar_date
+
+relationship 054a1b5c-9285-ddb9-17c0-d3816f7141e4
+	isActive: false
+	fromColumn: fx_portfolio.trade_date
+	toColumn: dim_date.calendar_date
+

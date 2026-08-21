@@ -126,7 +126,7 @@
                     "Entity": "fx_portfolio"
                   }
                 },
-                "Property": "trade_id"
+                "Property": "value_date"
               }
             },
             "direction": "Ascending"
