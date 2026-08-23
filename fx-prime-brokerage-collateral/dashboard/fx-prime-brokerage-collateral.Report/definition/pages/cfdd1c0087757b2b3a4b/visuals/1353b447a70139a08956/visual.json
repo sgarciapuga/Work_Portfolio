@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "1353b447a70139a08956",
   "position": {
     "x": 70.573384333648391,
@@ -213,51 +213,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "45cf159103e7addd8a8b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ad8c4983bc0230d52bf7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Variation Margin"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d1e89b31531656d18977",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "VM 30 Day Moving Average"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

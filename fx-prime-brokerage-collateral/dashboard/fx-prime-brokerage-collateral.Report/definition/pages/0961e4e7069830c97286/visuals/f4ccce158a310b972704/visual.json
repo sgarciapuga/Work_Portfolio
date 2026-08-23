@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "f4ccce158a310b972704",
   "position": {
-    "x": 1697.47572815534,
-    "y": 703.68932038834953,
+    "x": 1700.4115975647435,
+    "y": 595.0654447791178,
     "z": 6000,
     "height": 327.37864077669906,
     "width": 212.03883495145632,
@@ -114,5 +114,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6732490a8f1f0e74384e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

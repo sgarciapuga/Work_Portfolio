@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "9632033b7e90cde44810",
   "position": {
-    "x": 13.980582524271846,
-    "y": 72.233009708737868,
+    "x": 14.311926605504587,
+    "y": 72.660550458715591,
     "z": 7000,
-    "height": 389.12621359223306,
-    "width": 1615.9223300970875,
+    "height": 388.62385321100919,
+    "width": 1666.7889908256882,
     "tabOrder": 7000
   },
   "visual": {
@@ -561,21 +561,7 @@
         "howCreated": "User"
       },
       {
-        "name": "a4709e9c0453e015eb43",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Credit Limit Utilization"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "fa789d0e386d5200dd72",
+        "name": "cb48cb7b39d48493cc18",
         "field": {
           "Column": {
             "Expression": {
@@ -587,6 +573,20 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "2cf7a2078c52fa588287",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Credit Limit Utilization"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

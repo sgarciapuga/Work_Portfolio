@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "4f8904740730edbc0e02",
   "position": {
     "x": 13.308128544423441,
@@ -1334,7 +1334,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "fb3f153bcb180112173a",
+        "name": "556800c1927ad6cbc883",
         "field": {
           "Measure": {
             "Expression": {
@@ -1348,7 +1348,21 @@
         "type": "Advanced"
       },
       {
-        "name": "d706d4dae4d25f7468f8",
+        "name": "b6e27f2a3dd4fb1164b7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Variation Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "52690be0abeea0cb9e2c",
         "field": {
           "Measure": {
             "Expression": {
@@ -1362,7 +1376,7 @@
         "type": "Advanced"
       },
       {
-        "name": "b6f40c6df15fa3d8ace2",
+        "name": "a6dd6985d5df31b1b6c6",
         "field": {
           "Measure": {
             "Expression": {
@@ -1376,7 +1390,7 @@
         "type": "Advanced"
       },
       {
-        "name": "bf1cd3b77a8cd9d69127",
+        "name": "72a755df1621a276f966",
         "field": {
           "Measure": {
             "Expression": {
@@ -1390,7 +1404,7 @@
         "type": "Advanced"
       },
       {
-        "name": "aa2dd0dcfc9a03734819",
+        "name": "fc1fcd81bd1c6c110c4a",
         "field": {
           "Measure": {
             "Expression": {
@@ -1404,7 +1418,7 @@
         "type": "Advanced"
       },
       {
-        "name": "a012b25a15e0ebb7d29f",
+        "name": "244deaa7df3081ae377f",
         "field": {
           "Measure": {
             "Expression": {
@@ -1413,20 +1427,6 @@
               }
             },
             "Property": "Open Trades"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0bdccb8e630f07327402",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Variation Margin"
           }
         },
         "type": "Advanced"

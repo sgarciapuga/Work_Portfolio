@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "8d2081387c22e4d51c13",
   "position": {
     "x": 967.05731628071828,
@@ -444,37 +444,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "de5f86657a2f40e8843b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "abb5f162017ae37afb86",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Excess / Deficit"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

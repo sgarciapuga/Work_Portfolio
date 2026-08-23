@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "f575234d331dcc1cc019",
   "position": {
-    "x": 822.52427184466023,
-    "y": 473.00970873786412,
+    "x": 824.58715596330273,
+    "y": 473.39449541284404,
     "z": 4000,
-    "height": 595.33980582524271,
-    "width": 807.37864077669906,
+    "height": 595.59633027522932,
+    "width": 856.51376146788994,
     "tabOrder": 4000
   },
   "visual": {
@@ -595,6 +595,48 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "13cdd9abf06e87936e89",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_date"
+              }
+            },
+            "Property": "calendar_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b6db026d6ccf390b48c8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_banks"
+              }
+            },
+            "Property": "bank_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9311cadb697806910ca6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "FX Portfolio Size"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

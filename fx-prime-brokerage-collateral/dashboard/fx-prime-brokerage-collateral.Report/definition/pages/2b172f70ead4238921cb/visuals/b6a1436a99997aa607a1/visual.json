@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "b6a1436a99997aa607a1",
   "position": {
-    "x": 13.308128544423441,
-    "y": 84.688090737240074,
+    "x": 13.211009174311927,
+    "y": 101.28440366972477,
     "z": 10000,
-    "height": 133.0812854442344,
-    "width": 1668.3553875236296,
+    "height": 120,
+    "width": 1667.8899082568807,
     "tabOrder": 10000
   },
   "visual": {
@@ -535,7 +535,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a5920b60d67a6e05fd52",
+        "name": "2c4f27bb73b59da80206",
         "field": {
           "Measure": {
             "Expression": {
@@ -549,7 +549,7 @@
         "type": "Advanced"
       },
       {
-        "name": "49bd95c535c4674910f2",
+        "name": "4dc4a2e8b53a06725102",
         "field": {
           "Measure": {
             "Expression": {
@@ -563,63 +563,7 @@
         "type": "Advanced"
       },
       {
-        "name": "034730c8e8551580fc06",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Total Trades"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6c06c978e22f00b1b2a4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Spots"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d4377c05f7aed799c5d8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Forwards"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b3278f6f85fca19a3cd1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Swaps"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "9ac0597f629ed3320820",
+        "name": "0339a9b0a71f4568df7b",
         "field": {
           "Measure": {
             "Expression": {
@@ -633,7 +577,7 @@
         "type": "Advanced"
       },
       {
-        "name": "2c689594ff7fc0aab98c",
+        "name": "8e86bd7c7a86094059d8",
         "field": {
           "Measure": {
             "Expression": {
@@ -642,6 +586,62 @@
               }
             },
             "Property": "Matured Trades"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f67627224048da9f7ee6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Total Trades"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d21658ebda0425f3cc5d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Spots"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7487b4aa52fba9c6b9da",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Forwards"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "308449b50fbd936bd9f3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Swaps"
           }
         },
         "type": "Advanced"

@@ -33,18 +33,13 @@
   },
   "visualInteractions": [
     {
-      "source": "dc35c720c4460c020ca8",
+      "source": "312a73dc29d034ff2420",
       "target": "339c3d6c806244c4c4a3",
       "type": "NoFilter"
     },
     {
-      "source": "dc35c720c4460c020ca8",
+      "source": "312a73dc29d034ff2420",
       "target": "063261a283b34780207b",
-      "type": "NoFilter"
-    },
-    {
-      "source": "dc35c720c4460c020ca8",
-      "target": "ab39893da4c43531b536",
       "type": "NoFilter"
     }
   ]

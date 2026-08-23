@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "2440840590a10003d0b2",
   "position": {
     "x": 70.573384333648391,
@@ -227,51 +227,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "04b1230c71dcca433bd3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3beafc7d0e05bc76ebc2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Initial Margin (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4acc99edfd47e02fd5f6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "IM 30 Day Moving Average"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -101,7 +101,7 @@ table dim_date
 
 	column calendar_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: dd mmm yy
 		lineageTag: 29fb8f1a-5cc5-40ac-8e2a-513d8cddea6a
 		summarizeBy: none
 		sourceColumn: calendar_date
@@ -109,6 +109,8 @@ table dim_date
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
 
 	column day_of_week
 		dataType: int64

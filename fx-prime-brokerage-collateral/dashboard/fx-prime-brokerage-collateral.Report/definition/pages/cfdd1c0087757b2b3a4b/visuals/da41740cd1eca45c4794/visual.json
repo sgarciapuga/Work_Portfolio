@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "da41740cd1eca45c4794",
   "position": {
     "x": 967.05731628071828,
@@ -251,51 +251,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c844f21afe2c1bd56409",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b6466dcfd767428c1a2f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Collateral Posted"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "73199a2faedf02bf8e15",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Collateral Required (Inverse)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

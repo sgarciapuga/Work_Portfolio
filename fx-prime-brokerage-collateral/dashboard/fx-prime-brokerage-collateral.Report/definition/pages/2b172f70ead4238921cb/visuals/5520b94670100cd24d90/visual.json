@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "5520b94670100cd24d90",
   "position": {
-    "x": 971.65048543689329,
-    "y": 551.06796116504859,
+    "x": 940.57896557178356,
+    "y": 555.04038194799068,
     "z": 5000,
-    "height": 521.94174757281553,
-    "width": 721.16504854368941,
+    "height": 521.83486238532112,
+    "width": 756.33027522935777,
     "tabOrder": 5000
   },
   "visual": {
@@ -197,107 +197,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c7197e74d652122b5fb0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fx_portfolio"
-              }
-            },
-            "Property": "trade_id"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "95fedb5e1cea08a295f1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fx_portfolio"
-              }
-            },
-            "Property": "type"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3a61734518710972b3b3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fx_portfolio"
-              }
-            },
-            "Property": "currency_pair"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "85ad2cdcb24ee508c376",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_banks"
-              }
-            },
-            "Property": "bank_code"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2e9fcf19d6fecf4d6250",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fx_portfolio"
-              }
-            },
-            "Property": "trade_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "40c2781a633bcafa927d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fx_portfolio"
-              }
-            },
-            "Property": "value_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ce18b9687f6e40a8b3d3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "FX Portfolio Size"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
