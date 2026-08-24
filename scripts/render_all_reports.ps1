@@ -39,6 +39,8 @@ param(
 # ============================================================================
 $AllReports = @(
     "index.qmd",
+    "kyriba-transformation/report.qmd",
+    "kyriba-transformation/accounting/report.qmd",
     "fx-prime-brokerage-collateral/report.qmd",
     "treasury-cashflow-simulation/report.qmd",
     "daily-fx-rates/report.qmd",

@@ -9,7 +9,7 @@
 <meta name="author" content="Sergio">
 <meta name="dcterms.date" content="2026-08-12">
 
-<title>FX Prime Brokerage Collateral – Work Portfolio</title>
+<title>FX Prime Brokerage Collateral – Professional Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -118,6 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
+<link rel="stylesheet" href="../styles/portfolio.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -129,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Work Portfolio</span>
+    <span class="navbar-title">Professional Portfolio</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -142,6 +144,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyriba-transformation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Kyriba Transformation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyriba-transformation">    
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/report.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/accounting/report.html">
+ <span class="dropdown-text">Accounting Deep Dive</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link active" href="../fx-prime-brokerage-collateral/report.html" aria-current="page"> 
 <span class="menu-text">FX Prime Brokerage Collateral</span></a>
@@ -480,121 +497,121 @@ Figure&nbsp;2: Code Workflow
 <th data-quarto-table-cell-role="th">0</th>
 <td>2026-01-02</td>
 <td>fx_pb_1</td>
-<td>T00001</td>
+<td>SW202601020001</td>
 <td>swap</td>
 <td>2026-01-02</td>
 <td>2026-01-05</td>
-<td>GBP/USD</td>
-<td>6810679.66</td>
+<td>EUR/GBP</td>
+<td>1152661.24</td>
 <td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>2026-01-02</td>
 <td>fx_pb_1</td>
-<td>T00001</td>
+<td>SW202601020001</td>
 <td>swap</td>
 <td>2026-01-02</td>
-<td>2026-04-02</td>
-<td>GBP/USD</td>
-<td>9034992.49</td>
+<td>2026-06-02</td>
+<td>EUR/GBP</td>
+<td>1326098.26</td>
 <td>2</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>2026-01-05</td>
-<td>fx_pb_1</td>
-<td>T00001</td>
-<td>swap</td>
 <td>2026-01-02</td>
-<td>2026-04-02</td>
+<td>bank_4</td>
+<td>FW202601020002</td>
+<td>forward</td>
+<td>2026-01-02</td>
+<td>2026-06-02</td>
 <td>GBP/USD</td>
-<td>9034992.49</td>
-<td>2</td>
+<td>1454477.44</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
+<td>2026-01-02</td>
+<td>bank_2</td>
+<td>SP202601020003</td>
+<td>spot</td>
+<td>2026-01-02</td>
 <td>2026-01-05</td>
-<td>bank_1</td>
-<td>T00002</td>
-<td>swap</td>
-<td>2026-01-05</td>
-<td>2026-01-07</td>
 <td>EUR/GBP</td>
-<td>5396370.83</td>
+<td>2516175.48</td>
 <td>1</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>2026-01-05</td>
-<td>bank_1</td>
-<td>T00002</td>
+<td>2026-01-02</td>
+<td>bank_2</td>
+<td>SW202601020004</td>
 <td>swap</td>
+<td>2026-01-02</td>
 <td>2026-01-05</td>
-<td>2026-05-05</td>
 <td>EUR/GBP</td>
-<td>6611668.85</td>
-<td>2</td>
+<td>7772858.58</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
-<td>2026-01-06</td>
-<td>fx_pb_1</td>
-<td>T00001</td>
+<td>2026-01-02</td>
+<td>bank_2</td>
+<td>SW202601020004</td>
 <td>swap</td>
 <td>2026-01-02</td>
-<td>2026-04-02</td>
-<td>GBP/USD</td>
-<td>9034992.49</td>
+<td>2026-06-02</td>
+<td>EUR/GBP</td>
+<td>8504197.11</td>
 <td>2</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
-<td>2026-01-06</td>
-<td>bank_1</td>
-<td>T00002</td>
-<td>swap</td>
 <td>2026-01-05</td>
-<td>2026-01-07</td>
+<td>fx_pb_1</td>
+<td>SW202601020001</td>
+<td>swap</td>
+<td>2026-01-02</td>
+<td>2026-06-02</td>
 <td>EUR/GBP</td>
-<td>5396370.83</td>
-<td>1</td>
+<td>1326098.26</td>
+<td>2</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
-<td>2026-01-06</td>
-<td>bank_1</td>
-<td>T00002</td>
-<td>swap</td>
 <td>2026-01-05</td>
-<td>2026-05-05</td>
-<td>EUR/GBP</td>
-<td>6611668.85</td>
-<td>2</td>
+<td>bank_4</td>
+<td>FW202601020002</td>
+<td>forward</td>
+<td>2026-01-02</td>
+<td>2026-06-02</td>
+<td>GBP/USD</td>
+<td>1454477.44</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
-<td>2026-01-06</td>
-<td>fx_pb_1</td>
-<td>T00003</td>
+<td>2026-01-05</td>
+<td>bank_2</td>
+<td>SW202601020004</td>
 <td>swap</td>
-<td>2026-01-06</td>
-<td>2026-01-08</td>
-<td>EUR/USD</td>
-<td>1701540.15</td>
-<td>1</td>
+<td>2026-01-02</td>
+<td>2026-06-02</td>
+<td>EUR/GBP</td>
+<td>8504197.11</td>
+<td>2</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
-<td>2026-01-06</td>
-<td>fx_pb_1</td>
-<td>T00003</td>
-<td>swap</td>
-<td>2026-01-06</td>
-<td>2026-05-06</td>
+<td>2026-01-05</td>
+<td>bank_2</td>
+<td>FW202601050001</td>
+<td>forward</td>
+<td>2026-01-05</td>
+<td>2026-05-05</td>
 <td>EUR/USD</td>
-<td>1938010.50</td>
-<td>2</td>
+<td>2665356.39</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -640,8 +657,8 @@ Figure&nbsp;2: Code Workflow
 <td>2026-01-02</td>
 <td>bank_2</td>
 <td>32500000.0</td>
-<td>0.00</td>
-<td>32500000.00</td>
+<td>18793231.17</td>
+<td>13706768.83</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
@@ -656,32 +673,32 @@ Figure&nbsp;2: Code Workflow
 <td>2026-01-02</td>
 <td>bank_4</td>
 <td>27750000.0</td>
-<td>0.00</td>
-<td>27750000.00</td>
+<td>1454477.44</td>
+<td>26295522.56</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>2026-01-02</td>
 <td>fx_pb_1</td>
 <td>53250000.0</td>
-<td>15845672.15</td>
-<td>37404327.85</td>
+<td>2478759.50</td>
+<td>50771240.50</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
 <td>2026-01-05</td>
 <td>bank_1</td>
 <td>23000000.0</td>
-<td>12008039.68</td>
-<td>10991960.32</td>
+<td>0.00</td>
+<td>23000000.00</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
 <td>2026-01-05</td>
 <td>bank_2</td>
 <td>32500000.0</td>
-<td>0.00</td>
-<td>32500000.00</td>
+<td>11169553.50</td>
+<td>21330446.50</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
@@ -696,16 +713,16 @@ Figure&nbsp;2: Code Workflow
 <td>2026-01-05</td>
 <td>bank_4</td>
 <td>27750000.0</td>
-<td>0.00</td>
-<td>27750000.00</td>
+<td>1454477.44</td>
+<td>26295522.56</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
 <td>2026-01-05</td>
 <td>fx_pb_1</td>
 <td>53250000.0</td>
-<td>9034992.49</td>
-<td>44215007.51</td>
+<td>1326098.26</td>
+<td>51923901.74</td>
 </tr>
 </tbody>
 </table>
@@ -741,92 +758,92 @@ Figure&nbsp;2: Code Workflow
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>2026-01-02</td>
-<td>T00001</td>
-<td>fx_pb_1</td>
-<td>-0.002204</td>
-<td>-15008.96</td>
-<td>6810679.66</td>
+<td>FW202601020002</td>
+<td>bank_4</td>
+<td>0.001479</td>
+<td>2151.52</td>
+<td>1454477.44</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
-<td>2026-01-05</td>
-<td>T00001</td>
-<td>fx_pb_1</td>
-<td>-0.000719</td>
-<td>-4899.53</td>
-<td>6810679.66</td>
+<td>2026-01-02</td>
+<td>SP202601020003</td>
+<td>bank_2</td>
+<td>-0.000676</td>
+<td>-1701.92</td>
+<td>2516175.48</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>2026-01-05</td>
-<td>T00002</td>
-<td>bank_1</td>
-<td>0.000310</td>
-<td>1673.75</td>
-<td>5396370.83</td>
+<td>2026-01-02</td>
+<td>SW202601020001</td>
+<td>fx_pb_1</td>
+<td>-0.002204</td>
+<td>-2540.17</td>
+<td>1152661.24</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>2026-01-06</td>
-<td>T00001</td>
-<td>fx_pb_1</td>
-<td>-0.000084</td>
-<td>-569.57</td>
-<td>6810679.66</td>
+<td>2026-01-02</td>
+<td>SW202601020004</td>
+<td>bank_2</td>
+<td>-0.000845</td>
+<td>-6564.76</td>
+<td>7772858.58</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>2026-01-06</td>
-<td>T00002</td>
-<td>bank_1</td>
-<td>-0.000416</td>
-<td>-2247.09</td>
-<td>5396370.83</td>
+<td>2026-01-05</td>
+<td>FW202601020002</td>
+<td>bank_4</td>
+<td>0.000534</td>
+<td>776.08</td>
+<td>1454477.44</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
-<td>2026-01-06</td>
-<td>T00003</td>
-<td>fx_pb_1</td>
-<td>0.000477</td>
-<td>811.39</td>
-<td>1701540.15</td>
+<td>2026-01-05</td>
+<td>FW202601050001</td>
+<td>bank_2</td>
+<td>-0.000104</td>
+<td>-277.94</td>
+<td>2665356.39</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
-<td>2026-01-07</td>
-<td>T00001</td>
-<td>fx_pb_1</td>
-<td>-0.000490</td>
-<td>-3338.03</td>
-<td>6810679.66</td>
+<td>2026-01-05</td>
+<td>SP202601020003</td>
+<td>bank_2</td>
+<td>-0.001310</td>
+<td>-3294.96</td>
+<td>2516175.48</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
-<td>2026-01-07</td>
-<td>T00002</td>
-<td>bank_1</td>
-<td>-0.000168</td>
-<td>-905.28</td>
-<td>5396370.83</td>
+<td>2026-01-05</td>
+<td>SW202601020001</td>
+<td>fx_pb_1</td>
+<td>-0.000719</td>
+<td>-829.21</td>
+<td>1152661.24</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
-<td>2026-01-07</td>
-<td>T00003</td>
-<td>fx_pb_1</td>
-<td>-0.000352</td>
-<td>-599.40</td>
-<td>1701540.15</td>
+<td>2026-01-05</td>
+<td>SW202601020004</td>
+<td>bank_2</td>
+<td>-0.001276</td>
+<td>-9919.59</td>
+<td>7772858.58</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
-<td>2026-01-07</td>
-<td>T00004</td>
+<td>2026-01-06</td>
+<td>FW202601020002</td>
 <td>bank_4</td>
-<td>0.002435</td>
-<td>178.09</td>
-<td>73143.42</td>
+<td>-0.002260</td>
+<td>-3287.57</td>
+<td>1454477.44</td>
 </tr>
 </tbody>
 </table>
@@ -868,28 +885,28 @@ Figure&nbsp;2: Code Workflow
 <th data-quarto-table-cell-role="th">0</th>
 <td>portfolio</td>
 <td>data\FX-portfolio\portfolio.csv</td>
-<td>5308</td>
+<td>3324</td>
 <td>9</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>limits</td>
 <td>data\Limits\limits.csv</td>
-<td>795</td>
+<td>805</td>
 <td>5</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>mark_to_market</td>
 <td>data\Mark-to-market\mark_to_market_portfolio.csv</td>
-<td>5351</td>
+<td>3338</td>
 <td>6</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>mtm_report</td>
 <td>data\Mark-to-market\mtm_report.csv</td>
-<td>159</td>
+<td>161</td>
 <td>6</td>
 </tr>
 </tbody>
@@ -921,19 +938,19 @@ Figure&nbsp;2: Code Workflow
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>GBP/USD</td>
-<td>5.114118e+09</td>
-</tr>
-<tr class="even">
 <th data-quarto-table-cell-role="th">0</th>
 <td>EUR/GBP</td>
-<td>5.108124e+09</td>
+<td>3.768687e+09</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>EUR/USD</td>
-<td>3.621857e+09</td>
+<td>3.425249e+09</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>GBP/USD</td>
+<td>2.124165e+09</td>
 </tr>
 </tbody>
 </table>
@@ -1024,92 +1041,92 @@ Figure&nbsp;3: Collateral Process Flow
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>2026-01-02</td>
-<td>-792283.61</td>
-<td>-15008.96</td>
-<td>-807292.57</td>
+<td>-1136323.41</td>
+<td>-8655.33</td>
+<td>-1144978.74</td>
 <td>0.0</td>
-<td>-807292.57</td>
+<td>-1144978.74</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>2026-01-05</td>
-<td>-1052151.61</td>
-<td>-3225.78</td>
-<td>-1055377.39</td>
-<td>1310000.0</td>
-<td>254622.61</td>
+<td>-697506.46</td>
+<td>-13545.62</td>
+<td>-711052.08</td>
+<td>1650000.0</td>
+<td>938947.92</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>2026-01-06</td>
-<td>-1234129.14</td>
-<td>-2005.27</td>
-<td>-1236134.41</td>
-<td>1310000.0</td>
-<td>73865.59</td>
+<td>-1261125.96</td>
+<td>-10511.61</td>
+<td>-1271637.57</td>
+<td>1650000.0</td>
+<td>378362.43</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>2026-01-07</td>
-<td>-967967.77</td>
-<td>-4664.62</td>
-<td>-972632.39</td>
-<td>1310000.0</td>
-<td>337367.61</td>
+<td>-1377611.05</td>
+<td>-15329.81</td>
+<td>-1392940.86</td>
+<td>1650000.0</td>
+<td>257059.14</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>2026-01-08</td>
-<td>-1143272.47</td>
-<td>-12797.23</td>
-<td>-1156069.70</td>
-<td>1310000.0</td>
-<td>153930.30</td>
+<td>-1114987.47</td>
+<td>-15335.62</td>
+<td>-1130323.09</td>
+<td>1650000.0</td>
+<td>519676.91</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
 <td>2026-01-09</td>
-<td>-1172300.66</td>
-<td>-16374.90</td>
-<td>-1188675.56</td>
-<td>1310000.0</td>
-<td>121324.44</td>
+<td>-1220345.41</td>
+<td>-9461.17</td>
+<td>-1229806.58</td>
+<td>1650000.0</td>
+<td>420193.42</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
 <td>2026-01-12</td>
-<td>-1428889.90</td>
-<td>-12908.19</td>
-<td>-1441798.09</td>
-<td>1310000.0</td>
-<td>-131798.09</td>
+<td>-1164863.53</td>
+<td>-4945.42</td>
+<td>-1169808.95</td>
+<td>1650000.0</td>
+<td>480191.05</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
 <td>2026-01-13</td>
-<td>-1161268.80</td>
-<td>-11233.65</td>
-<td>-1172502.45</td>
-<td>1950000.0</td>
-<td>777497.55</td>
+<td>-1300203.83</td>
+<td>-15904.58</td>
+<td>-1316108.41</td>
+<td>1650000.0</td>
+<td>333891.58</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
 <td>2026-01-14</td>
-<td>-1289341.70</td>
-<td>-7203.81</td>
-<td>-1296545.51</td>
-<td>1680000.0</td>
-<td>383454.49</td>
+<td>-1164863.53</td>
+<td>-17924.89</td>
+<td>-1182788.42</td>
+<td>1650000.0</td>
+<td>467211.58</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
 <td>2026-01-15</td>
-<td>-1326077.82</td>
-<td>3006.98</td>
-<td>-1323070.84</td>
-<td>1680000.0</td>
-<td>356929.16</td>
+<td>-1164863.53</td>
+<td>-10273.91</td>
+<td>-1175137.44</td>
+<td>1650000.0</td>
+<td>474862.56</td>
 </tr>
 </tbody>
 </table>
@@ -1152,27 +1169,27 @@ Figure&nbsp;3: Collateral Process Flow
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>Report dates</td>
-<td>159</td>
+<td>161</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>Latest report date</td>
-<td>2026-08-19</td>
+<td>2026-08-21</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>Minimum excess / deficit</td>
-<td>$-809,896</td>
+<td>$-1,144,979</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>Maximum collateral posted</td>
-<td>$6,990,000</td>
+<td>$5,320,000</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>Deficit days</td>
-<td>16</td>
+<td>12</td>
 </tr>
 </tbody>
 </table>
@@ -1301,7 +1318,7 @@ Figure&nbsp;3: Collateral Process Flow
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/collateral-position-chart-output-1.png" id="collateral-position-chart" width="1049" height="422" class="figure-img"></p>
+<p><img src="report_files/figure-html/collateral-position-chart-output-1.png" id="collateral-position-chart" width="1050" height="422" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1338,7 +1355,7 @@ Figure&nbsp;3: Collateral Process Flow
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/initial-margin-chart-output-1.png" id="initial-margin-chart" width="1046" height="422" class="figure-img"></p>
+<p><img src="report_files/figure-html/initial-margin-chart-output-1.png" id="initial-margin-chart" width="1048" height="422" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1378,7 +1395,7 @@ Figure&nbsp;3: Collateral Process Flow
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/variation-margin-chart-output-1.png" id="variation-margin-chart" width="1049" height="422" class="figure-img"></p>
+<p><img src="report_files/figure-html/variation-margin-chart-output-1.png" id="variation-margin-chart" width="1051" height="422" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1983,606 +2000,608 @@ Figure&nbsp;3: Collateral Process Flow
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-08-12</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">    css: styles.css</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">    css: styles.css</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">    max-width: 100%</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">    syntax-definitions:</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">      - dax.xml</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">  output: true</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># Executive summary</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">    max-width: 100%</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">    smooth-scroll: true</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">    syntax-definitions:</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">      - dax.xml</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">  output: true</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>This report documents the **FX Prime Brokerage Collateral** project as a reproducible analysis. It walks through the Python pipeline, renders outputs from the generated CSV files, and connects those calculations to the Power BI semantic model and dashboard.</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># Executive summary</span></span>
 <span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>The project is synthetic and intended for portfolio demonstration and training. It is not a production margin or collateral engine.</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>This report documents the **FX Prime Brokerage Collateral** project as a reproducible analysis. It walks through the Python pipeline, renders outputs from the generated CSV files, and connects those calculations to the Power BI semantic model and dashboard.</span>
 <span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>The project is synthetic and intended for portfolio demonstration and training. It is not a production margin or collateral engine.</span>
 <span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>Start by importing the required modules and loading the generated CSV files. The <span class="in">`find_project_root()`</span> function locates the project folder based on the presence of <span class="in">`data/`</span> and <span class="in">`src/`</span> subfolders. The four datasets are read into a dictionary of DataFrames for later use.</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
 <span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>The pipeline produces four core datasets: the FX portfolio, counterparty limits, mark-to-market data, and the final MTM collateral report.</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>Start by importing the required modules and loading the generated CSV files. The <span class="in">`find_project_root()`</span> function locates the project folder based on the presence of <span class="in">`data/`</span> and <span class="in">`src/`</span> subfolders. The four datasets are read into a dictionary of DataFrames for later use.</span>
 <span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_project_root():</span>
-<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> [Path.cwd(), Path.cwd() <span class="op">/</span> <span class="st">"fx-prime-brokerage-collateral"</span>]</span>
-<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> candidate <span class="kw">in</span> candidates:</span>
-<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (candidate <span class="op">/</span> <span class="st">"data"</span>).is_dir() <span class="kw">and</span> (candidate <span class="op">/</span> <span class="st">"src"</span>).is_dir():</span>
-<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> candidate</span>
-<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not locate the FX collateral project folder"</span>)</span>
-<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> find_project_root()</span>
-<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a>DATA_ROOT <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"data"</span></span>
-<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> {</span>
-<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">"portfolio"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"FX-portfolio"</span> <span class="op">/</span> <span class="st">"portfolio.csv"</span>,</span>
-<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a>    <span class="st">"limits"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"Limits"</span> <span class="op">/</span> <span class="st">"limits.csv"</span>,</span>
-<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mark_to_market"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"Mark-to-market"</span> <span class="op">/</span> <span class="st">"mark_to_market_portfolio.csv"</span>,</span>
-<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mtm_report"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"Mark-to-market"</span> <span class="op">/</span> <span class="st">"mtm_report.csv"</span>,</span>
-<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {name: pd.read_csv(path) <span class="cf">for</span> name, path <span class="kw">in</span> paths.items()}</span>
-<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"mtm_report"</span>][<span class="st">"report_date"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"mtm_report"</span>][<span class="st">"report_date"</span>])</span>
-<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"portfolio"</span>][<span class="st">"report_date"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"portfolio"</span>][<span class="st">"report_date"</span>])</span>
-<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the pipeline produces</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>The pipeline produces four core datasets: the FX portfolio, counterparty limits, mark-to-market data, and the final MTM collateral report.</span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_project_root():</span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> [Path.cwd(), Path.cwd() <span class="op">/</span> <span class="st">"fx-prime-brokerage-collateral"</span>]</span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> candidate <span class="kw">in</span> candidates:</span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (candidate <span class="op">/</span> <span class="st">"data"</span>).is_dir() <span class="kw">and</span> (candidate <span class="op">/</span> <span class="st">"src"</span>).is_dir():</span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> candidate</span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not locate the FX collateral project folder"</span>)</span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> find_project_root()</span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a>DATA_ROOT <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"data"</span></span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> {</span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">"portfolio"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"FX-portfolio"</span> <span class="op">/</span> <span class="st">"portfolio.csv"</span>,</span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"limits"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"Limits"</span> <span class="op">/</span> <span class="st">"limits.csv"</span>,</span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mark_to_market"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"Mark-to-market"</span> <span class="op">/</span> <span class="st">"mark_to_market_portfolio.csv"</span>,</span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mtm_report"</span>: DATA_ROOT <span class="op">/</span> <span class="st">"Mark-to-market"</span> <span class="op">/</span> <span class="st">"mtm_report.csv"</span>,</span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {name: pd.read_csv(path) <span class="cf">for</span> name, path <span class="kw">in</span> paths.items()}</span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"mtm_report"</span>][<span class="st">"report_date"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"mtm_report"</span>][<span class="st">"report_date"</span>])</span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"portfolio"</span>][<span class="st">"report_date"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"portfolio"</span>][<span class="st">"report_date"</span>])</span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a>As a summary, the pipeline produces four core datasets: the FX portfolio, counterparty limits, mark-to-market data, and the final collateral report (mtm_report). Each serves a specific purpose in the overall workflow.</span>
+<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the pipeline produces</span></span>
 <span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dataset <span class="pp">|</span> Grain <span class="pp">|</span> Purpose <span class="pp">|</span></span>
-<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
-<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fx_portfolio`</span> <span class="pp">|</span> trade leg and reporting date <span class="pp">|</span> FX trades and USD portfolio size <span class="pp">|</span></span>
-<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`limits`</span> <span class="pp">|</span> counterparty and as-of date <span class="pp">|</span> credit limit, exposure, and availability <span class="pp">|</span></span>
-<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mark_to_market_portfolio`</span> <span class="pp">|</span> trade leg and reporting date <span class="pp">|</span> daily FX movement and P&amp;L <span class="pp">|</span></span>
-<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mtm_report`</span> <span class="pp">|</span> reporting date <span class="pp">|</span> margin, collateral, and excess/deficit <span class="pp">|</span></span>
-<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Understand the Python pipeline</span></span>
+<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a>As a summary, the pipeline produces four core datasets: the FX portfolio, counterparty limits, mark-to-market data, and the final collateral report (mtm_report). Each serves a specific purpose in the overall workflow.</span>
+<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dataset <span class="pp">|</span> Grain <span class="pp">|</span> Purpose <span class="pp">|</span></span>
+<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
+<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`fx_portfolio`</span> <span class="pp">|</span> trade leg and reporting date <span class="pp">|</span> FX trades and USD portfolio size <span class="pp">|</span></span>
+<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`limits`</span> <span class="pp">|</span> counterparty and as-of date <span class="pp">|</span> credit limit, exposure, and availability <span class="pp">|</span></span>
+<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mark_to_market_portfolio`</span> <span class="pp">|</span> trade leg and reporting date <span class="pp">|</span> daily FX movement and P&amp;L <span class="pp">|</span></span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`mtm_report`</span> <span class="pp">|</span> reporting date <span class="pp">|</span> margin, collateral, and excess/deficit <span class="pp">|</span></span>
 <span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Start with the modules</span></span>
+<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Understand the Python pipeline</span></span>
 <span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a>Each dataset is generated by a dedicated module, which is called in dependency order by the orchestrator <span class="in">`generate_fx_datasets.py`</span>.</span>
+<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Start with the modules</span></span>
 <span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Module <span class="pp">|</span> What it does <span class="pp">|</span> Output used by <span class="pp">|</span></span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
-<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_fx_portfolio.py`</span> <span class="pp">|</span> creates trade legs, dates, currency pairs, and bank assignments <span class="pp">|</span> limits and portfolio MTM <span class="pp">|</span></span>
-<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_limits.py`</span> <span class="pp">|</span> creates counterparty credit limits and calculates available capacity <span class="pp">|</span> portfolio generation and the Limits page <span class="pp">|</span></span>
-<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_mtm_for_portfolio.py`</span> <span class="pp">|</span> simulates daily MTM and P&amp;L for the generated portfolio <span class="pp">|</span> collateral report <span class="pp">|</span></span>
-<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_mtm_report.py`</span> <span class="pp">|</span> applies margin, collateral, buffer, and deficit/recall rules <span class="pp">|</span> dashboard and analysis <span class="pp">|</span></span>
-<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_fx_datasets.py`</span> <span class="pp">|</span> calls the stages in order and optionally saves them to PostgreSQL <span class="pp">|</span> the complete workflow <span class="pp">|</span></span>
-<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a>The dependency direction is:</span>
+<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a>Each dataset is generated by a dedicated module, which is called in dependency order by the orchestrator <span class="in">`generate_fx_datasets.py`</span>.</span>
+<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Module <span class="pp">|</span> What it does <span class="pp">|</span> Output used by <span class="pp">|</span></span>
+<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
+<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_fx_portfolio.py`</span> <span class="pp">|</span> creates trade legs, dates, currency pairs, and bank assignments <span class="pp">|</span> limits and portfolio MTM <span class="pp">|</span></span>
+<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_limits.py`</span> <span class="pp">|</span> creates counterparty credit limits and calculates available capacity <span class="pp">|</span> portfolio generation and the Limits page <span class="pp">|</span></span>
+<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_mtm_for_portfolio.py`</span> <span class="pp">|</span> simulates daily MTM and P&amp;L for the generated portfolio <span class="pp">|</span> collateral report <span class="pp">|</span></span>
+<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_mtm_report.py`</span> <span class="pp">|</span> applies margin, collateral, buffer, and deficit/recall rules <span class="pp">|</span> dashboard and analysis <span class="pp">|</span></span>
+<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`generate_fx_datasets.py`</span> <span class="pp">|</span> calls the stages in order and optionally saves them to PostgreSQL <span class="pp">|</span> the complete workflow <span class="pp">|</span></span>
 <span id="cb22-98"><a href="#cb22-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-101"><a href="#cb22-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb22-102"><a href="#cb22-102" aria-hidden="true" tabindex="-1"></a>%%| label: fig-pipeline</span>
-<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">End-to-end FX collateral data pipeline.</span><span class="ot">"</span></span>
-<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
-<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb22-106"><a href="#cb22-106" aria-hidden="true" tabindex="-1"></a>    A[Portfolio &amp; limit rules] --&gt; B[Generate FX portfolio]</span>
-<span id="cb22-107"><a href="#cb22-107" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[fx_portfolio.csv]</span>
-<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-109"><a href="#cb22-109" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[Generate limits]</span>
-<span id="cb22-110"><a href="#cb22-110" aria-hidden="true" tabindex="-1"></a>    C --&gt; E[Generate daily MTM]</span>
-<span id="cb22-111"><a href="#cb22-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-112"><a href="#cb22-112" aria-hidden="true" tabindex="-1"></a>    D --&gt; F[limits.csv]</span>
-<span id="cb22-113"><a href="#cb22-113" aria-hidden="true" tabindex="-1"></a>    E --&gt; G[mark_to_market_portfolio.csv]</span>
-<span id="cb22-114"><a href="#cb22-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-115"><a href="#cb22-115" aria-hidden="true" tabindex="-1"></a>    G --&gt; H[Generate collateral report]</span>
-<span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a>    F --&gt; H[Generate collateral report]</span>
-<span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a>    H --&gt; I[mtm_report.csv]</span>
-<span id="cb22-118"><a href="#cb22-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-119"><a href="#cb22-119" aria-hidden="true" tabindex="-1"></a>    I --&gt; J[Power BI semantic model]</span>
-<span id="cb22-120"><a href="#cb22-120" aria-hidden="true" tabindex="-1"></a>    J --&gt; K[Dashboard]</span>
-<span id="cb22-121"><a href="#cb22-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-122"><a href="#cb22-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-123"><a href="#cb22-123" aria-hidden="true" tabindex="-1"></a>This ordering matters. The collateral report cannot be calculated until the portfolio exposure and daily P&amp;L exist.</span>
+<span id="cb22-99"><a href="#cb22-99" aria-hidden="true" tabindex="-1"></a>The dependency direction is:</span>
+<span id="cb22-100"><a href="#cb22-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a>%%| label: fig-pipeline</span>
+<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">End-to-end FX collateral data pipeline.</span><span class="ot">"</span></span>
+<span id="cb22-106"><a href="#cb22-106" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb22-107"><a href="#cb22-107" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a>    A[Portfolio &amp; limit rules] --&gt; B[Generate FX portfolio]</span>
+<span id="cb22-109"><a href="#cb22-109" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[fx_portfolio.csv]</span>
+<span id="cb22-110"><a href="#cb22-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-111"><a href="#cb22-111" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[Generate limits]</span>
+<span id="cb22-112"><a href="#cb22-112" aria-hidden="true" tabindex="-1"></a>    C --&gt; E[Generate daily MTM]</span>
+<span id="cb22-113"><a href="#cb22-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-114"><a href="#cb22-114" aria-hidden="true" tabindex="-1"></a>    D --&gt; F[limits.csv]</span>
+<span id="cb22-115"><a href="#cb22-115" aria-hidden="true" tabindex="-1"></a>    E --&gt; G[mark_to_market_portfolio.csv]</span>
+<span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a>    G --&gt; H[Generate collateral report]</span>
+<span id="cb22-118"><a href="#cb22-118" aria-hidden="true" tabindex="-1"></a>    F --&gt; H[Generate collateral report]</span>
+<span id="cb22-119"><a href="#cb22-119" aria-hidden="true" tabindex="-1"></a>    H --&gt; I[mtm_report.csv]</span>
+<span id="cb22-120"><a href="#cb22-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-121"><a href="#cb22-121" aria-hidden="true" tabindex="-1"></a>    I --&gt; J[Power BI semantic model]</span>
+<span id="cb22-122"><a href="#cb22-122" aria-hidden="true" tabindex="-1"></a>    J --&gt; K[Dashboard]</span>
+<span id="cb22-123"><a href="#cb22-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-124"><a href="#cb22-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-127"><a href="#cb22-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb22-128"><a href="#cb22-128" aria-hidden="true" tabindex="-1"></a>%%| label: fig-pipeline</span>
-<span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Code Workflow</span><span class="ot">"</span></span>
-<span id="cb22-130"><a href="#cb22-130" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
-<span id="cb22-131"><a href="#cb22-131" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb22-132"><a href="#cb22-132" aria-hidden="true" tabindex="-1"></a>    A[generate_fx_portfolio.py]</span>
-<span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a>    B[generate_limits.py]</span>
-<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>    C[generate_mtm_for_portfolio.py]</span>
-<span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a>    D[generate_mtm_report.py]</span>
-<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a>    E[generate_fx_datasets.py]</span>
-<span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-138"><a href="#cb22-138" aria-hidden="true" tabindex="-1"></a>    E --&gt; A</span>
-<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a>    E --&gt; B</span>
-<span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a>    E --&gt; C</span>
-<span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a>    E --&gt; D</span>
-<span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-143"><a href="#cb22-143" aria-hidden="true" tabindex="-1"></a>    A --&gt; B</span>
-<span id="cb22-144"><a href="#cb22-144" aria-hidden="true" tabindex="-1"></a>    A --&gt; C</span>
-<span id="cb22-145"><a href="#cb22-145" aria-hidden="true" tabindex="-1"></a>    C --&gt; D</span>
-<span id="cb22-146"><a href="#cb22-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-147"><a href="#cb22-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-148"><a href="#cb22-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 1: create the portfolio</span></span>
+<span id="cb22-125"><a href="#cb22-125" aria-hidden="true" tabindex="-1"></a>This ordering matters. The collateral report cannot be calculated until the portfolio exposure and daily P&amp;L exist.</span>
+<span id="cb22-126"><a href="#cb22-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb22-130"><a href="#cb22-130" aria-hidden="true" tabindex="-1"></a>%%| label: fig-pipeline</span>
+<span id="cb22-131"><a href="#cb22-131" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Code Workflow</span><span class="ot">"</span></span>
+<span id="cb22-132"><a href="#cb22-132" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a>    A[generate_fx_portfolio.py]</span>
+<span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a>    B[generate_limits.py]</span>
+<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a>    C[generate_mtm_for_portfolio.py]</span>
+<span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a>    D[generate_mtm_report.py]</span>
+<span id="cb22-138"><a href="#cb22-138" aria-hidden="true" tabindex="-1"></a>    E[generate_fx_datasets.py]</span>
+<span id="cb22-139"><a href="#cb22-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a>    E --&gt; A</span>
+<span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a>    E --&gt; B</span>
+<span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a>    E --&gt; C</span>
+<span id="cb22-143"><a href="#cb22-143" aria-hidden="true" tabindex="-1"></a>    E --&gt; D</span>
+<span id="cb22-144"><a href="#cb22-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-145"><a href="#cb22-145" aria-hidden="true" tabindex="-1"></a>    A --&gt; B</span>
+<span id="cb22-146"><a href="#cb22-146" aria-hidden="true" tabindex="-1"></a>    A --&gt; C</span>
+<span id="cb22-147"><a href="#cb22-147" aria-hidden="true" tabindex="-1"></a>    C --&gt; D</span>
+<span id="cb22-148"><a href="#cb22-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-149"><a href="#cb22-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-150"><a href="#cb22-150" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_fx_portfolio.py`</span> creates synthetic trades. It chooses a trade type and currency pair, creates one leg for spot/forward trades or two legs for swaps, and assigns exposure to a bank while respecting available capacity.</span>
+<span id="cb22-150"><a href="#cb22-150" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 1: create the portfolio</span></span>
 <span id="cb22-151"><a href="#cb22-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a>The central function is:</span>
+<span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_fx_portfolio.py`</span> creates synthetic trades. It chooses a trade type and currency pair, creates one leg for spot/forward trades or two legs for swaps, and assigns exposure to a bank while respecting available capacity.</span>
 <span id="cb22-153"><a href="#cb22-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
-<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_fx_portfolio(end_date<span class="op">=</span><span class="va">None</span>, seed<span class="op">=</span><span class="dv">42</span>):`</span>
-<span id="cb22-156"><a href="#cb22-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-157"><a href="#cb22-157" aria-hidden="true" tabindex="-1"></a><span class="co"># create business dates and a reproducible random generator`</span></span>
+<span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a>The central function is:</span>
+<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-156"><a href="#cb22-156" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb22-157"><a href="#cb22-157" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_fx_portfolio(end_date<span class="op">=</span><span class="va">None</span>, seed<span class="op">=</span><span class="dv">42</span>):`</span>
 <span id="cb22-158"><a href="#cb22-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-159"><a href="#cb22-159" aria-hidden="true" tabindex="-1"></a><span class="co"># create trades and their settlement legs`</span></span>
+<span id="cb22-159"><a href="#cb22-159" aria-hidden="true" tabindex="-1"></a><span class="co"># create business dates and a reproducible random generator`</span></span>
 <span id="cb22-160"><a href="#cb22-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-161"><a href="#cb22-161" aria-hidden="true" tabindex="-1"></a><span class="co"># assign each trade to one or more banks`</span></span>
+<span id="cb22-161"><a href="#cb22-161" aria-hidden="true" tabindex="-1"></a><span class="co"># create trades and their settlement legs`</span></span>
 <span id="cb22-162"><a href="#cb22-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-163"><a href="#cb22-163" aria-hidden="true" tabindex="-1"></a><span class="co"># expand active legs into one row per report date`</span></span>
+<span id="cb22-163"><a href="#cb22-163" aria-hidden="true" tabindex="-1"></a><span class="co"># assign each trade to one or more banks`</span></span>
 <span id="cb22-164"><a href="#cb22-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-165"><a href="#cb22-165" aria-hidden="true" tabindex="-1"></a>`return portfolio_dataframe</span>
-<span id="cb22-166"><a href="#cb22-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-167"><a href="#cb22-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-168"><a href="#cb22-168" aria-hidden="true" tabindex="-1"></a>The same seed produces the same synthetic portfolio. FX Spot and Forward trades have a single leg, while Swaps have two legs. Each trade remains visible on each reporting date until it is settled.</span>
+<span id="cb22-165"><a href="#cb22-165" aria-hidden="true" tabindex="-1"></a><span class="co"># expand active legs into one row per report date`</span></span>
+<span id="cb22-166"><a href="#cb22-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-167"><a href="#cb22-167" aria-hidden="true" tabindex="-1"></a>`return portfolio_dataframe</span>
+<span id="cb22-168"><a href="#cb22-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-169"><a href="#cb22-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-172"><a href="#cb22-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-173"><a href="#cb22-173" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: portfolio-output</span></span>
-<span id="cb22-174"><a href="#cb22-174" aria-hidden="true" tabindex="-1"></a>portfolio <span class="op">=</span> data[<span class="st">"portfolio"</span>]</span>
-<span id="cb22-175"><a href="#cb22-175" aria-hidden="true" tabindex="-1"></a>display(portfolio.head(<span class="dv">10</span>))</span>
-<span id="cb22-176"><a href="#cb22-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-177"><a href="#cb22-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-178"><a href="#cb22-178" aria-hidden="true" tabindex="-1"></a>Daily data is required to calculate the portfolio size in USD for each currency pair. This size is later used to calculate the different elements of the collateral report.</span>
+<span id="cb22-170"><a href="#cb22-170" aria-hidden="true" tabindex="-1"></a>The same seed produces the same synthetic portfolio. FX Spot and Forward trades have a single leg, while Swaps have two legs. Each trade remains visible on each reporting date until it is settled.</span>
+<span id="cb22-171"><a href="#cb22-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-174"><a href="#cb22-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-175"><a href="#cb22-175" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: portfolio-output</span></span>
+<span id="cb22-176"><a href="#cb22-176" aria-hidden="true" tabindex="-1"></a>portfolio <span class="op">=</span> data[<span class="st">"portfolio"</span>]</span>
+<span id="cb22-177"><a href="#cb22-177" aria-hidden="true" tabindex="-1"></a>display(portfolio.head(<span class="dv">10</span>))</span>
+<span id="cb22-178"><a href="#cb22-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-179"><a href="#cb22-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-180"><a href="#cb22-180" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 2: derive limits</span></span>
+<span id="cb22-180"><a href="#cb22-180" aria-hidden="true" tabindex="-1"></a>Daily data is required to calculate the portfolio size in USD for each currency pair. This size is later used to calculate the different elements of the collateral report.</span>
 <span id="cb22-181"><a href="#cb22-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-182"><a href="#cb22-182" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_limits.py`</span> creates a limit schedule for each bank and subtracts the portfolio exposure from the limit:</span>
+<span id="cb22-182"><a href="#cb22-182" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 2: derive limits</span></span>
 <span id="cb22-183"><a href="#cb22-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
-<span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a>limit_available_usd <span class="op">=</span> credit_limit_usd <span class="op">-</span> counterparty_exposure_usd</span>
-<span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-188"><a href="#cb22-188" aria-hidden="true" tabindex="-1"></a>This is a control dataset, not a market valuation. It answers: **how much unused counterparty capacity remains?** If portfolio exposure exceeds the limit, available capacity becomes negative, indicating that no additional trades should be allocated to that bank until capacity is restored. In practice, a limit breach may restrict the bank's ability to offer additional transactions until exposure drops back within limits.</span>
+<span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_limits.py`</span> creates a limit schedule for each bank and subtracts the portfolio exposure from the limit:</span>
+<span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a>limit_available_usd <span class="op">=</span> credit_limit_usd <span class="op">-</span> counterparty_exposure_usd</span>
+<span id="cb22-188"><a href="#cb22-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-189"><a href="#cb22-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-192"><a href="#cb22-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-193"><a href="#cb22-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: limits-output</span></span>
-<span id="cb22-194"><a href="#cb22-194" aria-hidden="true" tabindex="-1"></a>display(data[<span class="st">"limits"</span>].head(<span class="dv">10</span>))</span>
-<span id="cb22-195"><a href="#cb22-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-196"><a href="#cb22-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-197"><a href="#cb22-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 3: calculate mark-to-market</span></span>
+<span id="cb22-190"><a href="#cb22-190" aria-hidden="true" tabindex="-1"></a>This is a control dataset, not a market valuation. It answers: **how much unused counterparty capacity remains?** If portfolio exposure exceeds the limit, available capacity becomes negative, indicating that no additional trades should be allocated to that bank until capacity is restored. In practice, a limit breach may restrict the bank's ability to offer additional transactions until exposure drops back within limits.</span>
+<span id="cb22-191"><a href="#cb22-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-194"><a href="#cb22-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-195"><a href="#cb22-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: limits-output</span></span>
+<span id="cb22-196"><a href="#cb22-196" aria-hidden="true" tabindex="-1"></a>display(data[<span class="st">"limits"</span>].head(<span class="dv">10</span>))</span>
+<span id="cb22-197"><a href="#cb22-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-198"><a href="#cb22-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_mtm_for_portfolio.py`</span> takes each active portfolio trade and creates a reproducible random-walk MTM series until settlement. P&amp;L is then scaled by trade size:</span>
+<span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 3: calculate mark-to-market</span></span>
 <span id="cb22-200"><a href="#cb22-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-201"><a href="#cb22-201" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
-<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a>pnl <span class="op">=</span> mtm <span class="op">*</span> trade_size_usd</span>
-<span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a>This makes the output useful for demonstrating aggregation and visualisation without presenting the synthetic values as real market data.</span>
+<span id="cb22-201"><a href="#cb22-201" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_mtm_for_portfolio.py`</span> takes each active portfolio trade and creates a reproducible random-walk MTM series until settlement. P&amp;L is then scaled by trade size:</span>
+<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a>pnl <span class="op">=</span> mtm <span class="op">*</span> trade_size_usd</span>
+<span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-206"><a href="#cb22-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-209"><a href="#cb22-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-210"><a href="#cb22-210" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: mtm-output</span></span>
-<span id="cb22-211"><a href="#cb22-211" aria-hidden="true" tabindex="-1"></a>display(data[<span class="st">"mark_to_market"</span>].head(<span class="dv">10</span>))</span>
-<span id="cb22-212"><a href="#cb22-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-213"><a href="#cb22-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-214"><a href="#cb22-214" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 4: orchestrate the workflow</span></span>
+<span id="cb22-207"><a href="#cb22-207" aria-hidden="true" tabindex="-1"></a>This makes the output useful for demonstrating aggregation and visualisation without presenting the synthetic values as real market data.</span>
+<span id="cb22-208"><a href="#cb22-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-211"><a href="#cb22-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-212"><a href="#cb22-212" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: mtm-output</span></span>
+<span id="cb22-213"><a href="#cb22-213" aria-hidden="true" tabindex="-1"></a>display(data[<span class="st">"mark_to_market"</span>].head(<span class="dv">10</span>))</span>
+<span id="cb22-214"><a href="#cb22-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-215"><a href="#cb22-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-216"><a href="#cb22-216" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_fx_datasets.py`</span> is the entry point. Its job is coordination: call the generators in dependency order, write the four CSV files, and, when <span class="in">`DATABASE_URL`</span> is configured, upsert the same datasets into PostgreSQL. It should not contain the business logic for every calculation; that logic belongs in the stage modules above.</span>
+<span id="cb22-216"><a href="#cb22-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stage 4: orchestrate the workflow</span></span>
 <span id="cb22-217"><a href="#cb22-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-218"><a href="#cb22-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## Inspect the generated files</span></span>
+<span id="cb22-218"><a href="#cb22-218" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_fx_datasets.py`</span> is the entry point. Its job is coordination: call the generators in dependency order, write the four CSV files, and, when <span class="in">`DATABASE_URL`</span> is configured, upsert the same datasets into PostgreSQL. It should not contain the business logic for every calculation; that logic belongs in the stage modules above.</span>
 <span id="cb22-219"><a href="#cb22-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-222"><a href="#cb22-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-223"><a href="#cb22-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-outputs</span></span>
-<span id="cb22-224"><a href="#cb22-224" aria-hidden="true" tabindex="-1"></a>output_inventory <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb22-225"><a href="#cb22-225" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dataset"</span>: <span class="bu">list</span>(paths),</span>
-<span id="cb22-226"><a href="#cb22-226" aria-hidden="true" tabindex="-1"></a>    <span class="st">"path"</span>: [<span class="bu">str</span>(path.relative_to(PROJECT_ROOT)) <span class="cf">for</span> path <span class="kw">in</span> paths.values()],</span>
-<span id="cb22-227"><a href="#cb22-227" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows"</span>: [<span class="bu">len</span>(frame) <span class="cf">for</span> frame <span class="kw">in</span> data.values()],</span>
-<span id="cb22-228"><a href="#cb22-228" aria-hidden="true" tabindex="-1"></a>    <span class="st">"columns"</span>: [<span class="bu">len</span>(frame.columns) <span class="cf">for</span> frame <span class="kw">in</span> data.values()],</span>
-<span id="cb22-229"><a href="#cb22-229" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb22-230"><a href="#cb22-230" aria-hidden="true" tabindex="-1"></a>display(output_inventory)</span>
-<span id="cb22-231"><a href="#cb22-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-232"><a href="#cb22-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-233"><a href="#cb22-233" aria-hidden="true" tabindex="-1"></a>The table above is executed against the files in <span class="in">`data/`</span>, so it is a quick check that the report and the pipeline are pointing at the same artifacts.</span>
+<span id="cb22-220"><a href="#cb22-220" aria-hidden="true" tabindex="-1"></a><span class="fu">## Inspect the generated files</span></span>
+<span id="cb22-221"><a href="#cb22-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-224"><a href="#cb22-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-225"><a href="#cb22-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-outputs</span></span>
+<span id="cb22-226"><a href="#cb22-226" aria-hidden="true" tabindex="-1"></a>output_inventory <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb22-227"><a href="#cb22-227" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dataset"</span>: <span class="bu">list</span>(paths),</span>
+<span id="cb22-228"><a href="#cb22-228" aria-hidden="true" tabindex="-1"></a>    <span class="st">"path"</span>: [<span class="bu">str</span>(path.relative_to(PROJECT_ROOT)) <span class="cf">for</span> path <span class="kw">in</span> paths.values()],</span>
+<span id="cb22-229"><a href="#cb22-229" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rows"</span>: [<span class="bu">len</span>(frame) <span class="cf">for</span> frame <span class="kw">in</span> data.values()],</span>
+<span id="cb22-230"><a href="#cb22-230" aria-hidden="true" tabindex="-1"></a>    <span class="st">"columns"</span>: [<span class="bu">len</span>(frame.columns) <span class="cf">for</span> frame <span class="kw">in</span> data.values()],</span>
+<span id="cb22-231"><a href="#cb22-231" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb22-232"><a href="#cb22-232" aria-hidden="true" tabindex="-1"></a>display(output_inventory)</span>
+<span id="cb22-233"><a href="#cb22-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-234"><a href="#cb22-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-235"><a href="#cb22-235" aria-hidden="true" tabindex="-1"></a>The portfolio aggregation answers a business question rather than only displaying raw rows: what is the volume of trades by currency pair? The following code cell groups the portfolio by <span class="in">`currency_pair`</span> and sums the <span class="in">`trade_size_usd`</span> for each pair.</span>
+<span id="cb22-235"><a href="#cb22-235" aria-hidden="true" tabindex="-1"></a>The table above is executed against the files in <span class="in">`data/`</span>, so it is a quick check that the report and the pipeline are pointing at the same artifacts.</span>
 <span id="cb22-236"><a href="#cb22-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-239"><a href="#cb22-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-240"><a href="#cb22-240" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: portfolio-by-pair</span></span>
-<span id="cb22-241"><a href="#cb22-241" aria-hidden="true" tabindex="-1"></a>portfolio_by_pair <span class="op">=</span> (</span>
-<span id="cb22-242"><a href="#cb22-242" aria-hidden="true" tabindex="-1"></a>    portfolio.groupby(<span class="st">"currency_pair"</span>, as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"trade_size_usd"</span>]</span>
-<span id="cb22-243"><a href="#cb22-243" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">sum</span>()</span>
-<span id="cb22-244"><a href="#cb22-244" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"trade_size_usd"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb22-245"><a href="#cb22-245" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-246"><a href="#cb22-246" aria-hidden="true" tabindex="-1"></a>display(portfolio_by_pair)</span>
-<span id="cb22-247"><a href="#cb22-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-248"><a href="#cb22-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-249"><a href="#cb22-249" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Collateral mechanics and observed outputs</span></span>
+<span id="cb22-237"><a href="#cb22-237" aria-hidden="true" tabindex="-1"></a>The portfolio aggregation answers a business question rather than only displaying raw rows: what is the volume of trades by currency pair? The following code cell groups the portfolio by <span class="in">`currency_pair`</span> and sums the <span class="in">`trade_size_usd`</span> for each pair.</span>
+<span id="cb22-238"><a href="#cb22-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-241"><a href="#cb22-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-242"><a href="#cb22-242" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: portfolio-by-pair</span></span>
+<span id="cb22-243"><a href="#cb22-243" aria-hidden="true" tabindex="-1"></a>portfolio_by_pair <span class="op">=</span> (</span>
+<span id="cb22-244"><a href="#cb22-244" aria-hidden="true" tabindex="-1"></a>    portfolio.groupby(<span class="st">"currency_pair"</span>, as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"trade_size_usd"</span>]</span>
+<span id="cb22-245"><a href="#cb22-245" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">sum</span>()</span>
+<span id="cb22-246"><a href="#cb22-246" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"trade_size_usd"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-247"><a href="#cb22-247" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-248"><a href="#cb22-248" aria-hidden="true" tabindex="-1"></a>display(portfolio_by_pair)</span>
+<span id="cb22-249"><a href="#cb22-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-250"><a href="#cb22-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-251"><a href="#cb22-251" aria-hidden="true" tabindex="-1"></a><span class="fu">## The calculation</span></span>
+<span id="cb22-251"><a href="#cb22-251" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Collateral mechanics and observed outputs</span></span>
 <span id="cb22-252"><a href="#cb22-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-255"><a href="#cb22-255" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb22-256"><a href="#cb22-256" aria-hidden="true" tabindex="-1"></a>%%| label: fig-pipeline</span>
-<span id="cb22-257"><a href="#cb22-257" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Collateral Process Flow</span><span class="ot">"</span></span>
-<span id="cb22-258"><a href="#cb22-258" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
-<span id="cb22-259"><a href="#cb22-259" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb22-260"><a href="#cb22-260" aria-hidden="true" tabindex="-1"></a>    A[Active portfolio exposure] --&gt; B[Initial Margin&lt;br/&gt;<span class="dv">5</span>% of exposure]</span>
-<span id="cb22-261"><a href="#cb22-261" aria-hidden="true" tabindex="-1"></a>    C[Daily MTM / P&amp;L] --&gt; D[Variation Margin]</span>
-<span id="cb22-262"><a href="#cb22-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-263"><a href="#cb22-263" aria-hidden="true" tabindex="-1"></a>    B --&gt; E[Collateral Required]</span>
-<span id="cb22-264"><a href="#cb22-264" aria-hidden="true" tabindex="-1"></a>    D --&gt; E</span>
-<span id="cb22-265"><a href="#cb22-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-266"><a href="#cb22-266" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[Compare with&lt;br/&gt;Collateral Posted]</span>
+<span id="cb22-253"><a href="#cb22-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## The calculation</span></span>
+<span id="cb22-254"><a href="#cb22-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-257"><a href="#cb22-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb22-258"><a href="#cb22-258" aria-hidden="true" tabindex="-1"></a>%%| label: fig-pipeline</span>
+<span id="cb22-259"><a href="#cb22-259" aria-hidden="true" tabindex="-1"></a>%%| fig-cap: <span class="ot">"</span><span class="st">Collateral Process Flow</span><span class="ot">"</span></span>
+<span id="cb22-260"><a href="#cb22-260" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb22-261"><a href="#cb22-261" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb22-262"><a href="#cb22-262" aria-hidden="true" tabindex="-1"></a>    A[Active portfolio exposure] --&gt; B[Initial Margin&lt;br/&gt;<span class="dv">5</span>% of exposure]</span>
+<span id="cb22-263"><a href="#cb22-263" aria-hidden="true" tabindex="-1"></a>    C[Daily MTM / P&amp;L] --&gt; D[Variation Margin]</span>
+<span id="cb22-264"><a href="#cb22-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-265"><a href="#cb22-265" aria-hidden="true" tabindex="-1"></a>    B --&gt; E[Collateral Required]</span>
+<span id="cb22-266"><a href="#cb22-266" aria-hidden="true" tabindex="-1"></a>    D --&gt; E</span>
 <span id="cb22-267"><a href="#cb22-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-268"><a href="#cb22-268" aria-hidden="true" tabindex="-1"></a>    F --&gt; G{Excess / Deficit}</span>
+<span id="cb22-268"><a href="#cb22-268" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[Compare with&lt;br/&gt;Collateral Posted]</span>
 <span id="cb22-269"><a href="#cb22-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-270"><a href="#cb22-270" aria-hidden="true" tabindex="-1"></a>    G --&gt;|Deficit| H[Schedule <span class="cf">next</span>-day posting]</span>
-<span id="cb22-271"><a href="#cb22-271" aria-hidden="true" tabindex="-1"></a>    H --&gt; I[Exposure + buffer]</span>
-<span id="cb22-272"><a href="#cb22-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-273"><a href="#cb22-273" aria-hidden="true" tabindex="-1"></a>    G --&gt;|Surplus| J{Above recall buffer?}</span>
-<span id="cb22-274"><a href="#cb22-274" aria-hidden="true" tabindex="-1"></a>    J --&gt;|Yes| K[Potential collateral recall]</span>
-<span id="cb22-275"><a href="#cb22-275" aria-hidden="true" tabindex="-1"></a>    J --&gt;|No| L[No movement]</span>
-<span id="cb22-276"><a href="#cb22-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-277"><a href="#cb22-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-278"><a href="#cb22-278" aria-hidden="true" tabindex="-1"></a>The core logic lives in <span class="in">`src/generate_mtm_report.py`</span>. For each business date:</span>
+<span id="cb22-270"><a href="#cb22-270" aria-hidden="true" tabindex="-1"></a>    F --&gt; G{Excess / Deficit}</span>
+<span id="cb22-271"><a href="#cb22-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-272"><a href="#cb22-272" aria-hidden="true" tabindex="-1"></a>    G --&gt;|Deficit| H[Schedule <span class="cf">next</span>-day posting]</span>
+<span id="cb22-273"><a href="#cb22-273" aria-hidden="true" tabindex="-1"></a>    H --&gt; I[Exposure + buffer]</span>
+<span id="cb22-274"><a href="#cb22-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-275"><a href="#cb22-275" aria-hidden="true" tabindex="-1"></a>    G --&gt;|Surplus| J{Above recall buffer?}</span>
+<span id="cb22-276"><a href="#cb22-276" aria-hidden="true" tabindex="-1"></a>    J --&gt;|Yes| K[Potential collateral recall]</span>
+<span id="cb22-277"><a href="#cb22-277" aria-hidden="true" tabindex="-1"></a>    J --&gt;|No| L[No movement]</span>
+<span id="cb22-278"><a href="#cb22-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-279"><a href="#cb22-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-280"><a href="#cb22-280" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Initial margin is the minimum amount of cash or collateral deposited with a broker to support a leveraged position. For this synthetic model, initial margin is calculated as 5% of active trade exposure and is stored as a negative amount because it represents an obligation to the broker.</span>
-<span id="cb22-281"><a href="#cb22-281" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Variation margin is the aggregated mark-to-market P&amp;L. It keeps its market sign: positive means favourable revaluation and negative means adverse revaluation.</span>
-<span id="cb22-282"><a href="#cb22-282" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Collateral required is the sum of initial margin and variation margin.</span>
-<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Posted collateral is the amount already posted by the client to the broker.</span>
-<span id="cb22-284"><a href="#cb22-284" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Excess/deficit compares posted collateral with the positive internal obligation. Negative means more collateral is needed; positive means excess collateral is held.</span>
-<span id="cb22-285"><a href="#cb22-285" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>A deficit schedules a next-day posting to reach the exposure plus a buffer (which is normally around \$ 500K).</span>
-<span id="cb22-286"><a href="#cb22-286" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>A surplus above the buffer can trigger a collateral recall.</span>
-<span id="cb22-287"><a href="#cb22-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-288"><a href="#cb22-288" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
-<span id="cb22-289"><a href="#cb22-289" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplified calculation from generate_mtm_report.py</span></span>
-<span id="cb22-290"><a href="#cb22-290" aria-hidden="true" tabindex="-1"></a>im_raw <span class="op">=</span> <span class="fl">0.05</span> <span class="op">*</span> exposure</span>
-<span id="cb22-291"><a href="#cb22-291" aria-hidden="true" tabindex="-1"></a>vm_raw <span class="op">=</span> daily_pnl</span>
-<span id="cb22-292"><a href="#cb22-292" aria-hidden="true" tabindex="-1"></a>initial_margin <span class="op">=</span> <span class="op">-</span>im_raw</span>
-<span id="cb22-293"><a href="#cb22-293" aria-hidden="true" tabindex="-1"></a>variation_margin <span class="op">=</span> vm_raw</span>
-<span id="cb22-294"><a href="#cb22-294" aria-hidden="true" tabindex="-1"></a>collateral_required <span class="op">=</span> initial_margin <span class="op">+</span> variation_margin</span>
-<span id="cb22-295"><a href="#cb22-295" aria-hidden="true" tabindex="-1"></a>excess_deficit <span class="op">=</span> collateral_required <span class="op">-</span> collateral_posted   </span>
-<span id="cb22-296"><a href="#cb22-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-297"><a href="#cb22-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-298"><a href="#cb22-298" aria-hidden="true" tabindex="-1"></a>The current constants are <span class="in">`INITIAL_COLLATERAL = 1_000_000`</span>, <span class="in">`BUFFER = 500_000`</span>, <span class="in">`MOVE_INCREMENT = 10_000`</span>, and <span class="in">`MIN_MOVE = 50_000`</span>.</span>
+<span id="cb22-280"><a href="#cb22-280" aria-hidden="true" tabindex="-1"></a>The core logic lives in <span class="in">`src/generate_mtm_report.py`</span>. For each business date:</span>
+<span id="cb22-281"><a href="#cb22-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-282"><a href="#cb22-282" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Initial margin is the minimum amount of cash or collateral deposited with a broker to support a leveraged position. For this synthetic model, initial margin is calculated as 5% of active trade exposure and is stored as a negative amount because it represents an obligation to the broker.</span>
+<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Variation margin is the aggregated mark-to-market P&amp;L. It keeps its market sign: positive means favourable revaluation and negative means adverse revaluation.</span>
+<span id="cb22-284"><a href="#cb22-284" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Collateral required is the sum of initial margin and variation margin.</span>
+<span id="cb22-285"><a href="#cb22-285" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Posted collateral is the amount already posted by the client to the broker.</span>
+<span id="cb22-286"><a href="#cb22-286" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Excess/deficit compares posted collateral with the positive internal obligation. Negative means more collateral is needed; positive means excess collateral is held.</span>
+<span id="cb22-287"><a href="#cb22-287" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>A deficit schedules a next-day posting to reach the exposure plus a buffer (which is normally around \$ 500K).</span>
+<span id="cb22-288"><a href="#cb22-288" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>A surplus above the buffer can trigger a collateral recall.</span>
+<span id="cb22-289"><a href="#cb22-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-290"><a href="#cb22-290" aria-hidden="true" tabindex="-1"></a><span class="in">``` python</span></span>
+<span id="cb22-291"><a href="#cb22-291" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplified calculation from generate_mtm_report.py</span></span>
+<span id="cb22-292"><a href="#cb22-292" aria-hidden="true" tabindex="-1"></a>im_raw <span class="op">=</span> <span class="fl">0.05</span> <span class="op">*</span> exposure</span>
+<span id="cb22-293"><a href="#cb22-293" aria-hidden="true" tabindex="-1"></a>vm_raw <span class="op">=</span> daily_pnl</span>
+<span id="cb22-294"><a href="#cb22-294" aria-hidden="true" tabindex="-1"></a>initial_margin <span class="op">=</span> <span class="op">-</span>im_raw</span>
+<span id="cb22-295"><a href="#cb22-295" aria-hidden="true" tabindex="-1"></a>variation_margin <span class="op">=</span> vm_raw</span>
+<span id="cb22-296"><a href="#cb22-296" aria-hidden="true" tabindex="-1"></a>collateral_required <span class="op">=</span> initial_margin <span class="op">+</span> variation_margin</span>
+<span id="cb22-297"><a href="#cb22-297" aria-hidden="true" tabindex="-1"></a>excess_deficit <span class="op">=</span> collateral_required <span class="op">-</span> collateral_posted   </span>
+<span id="cb22-298"><a href="#cb22-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-299"><a href="#cb22-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-300"><a href="#cb22-300" aria-hidden="true" tabindex="-1"></a><span class="fu">## The collateral report</span></span>
+<span id="cb22-300"><a href="#cb22-300" aria-hidden="true" tabindex="-1"></a>The current constants are <span class="in">`INITIAL_COLLATERAL = 1_000_000`</span>, <span class="in">`BUFFER = 500_000`</span>, <span class="in">`MOVE_INCREMENT = 10_000`</span>, and <span class="in">`MIN_MOVE = 50_000`</span>.</span>
 <span id="cb22-301"><a href="#cb22-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-304"><a href="#cb22-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-305"><a href="#cb22-305" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: mtm-report-output</span></span>
-<span id="cb22-306"><a href="#cb22-306" aria-hidden="true" tabindex="-1"></a>mtm_report <span class="op">=</span> data[<span class="st">"mtm_report"</span>].copy()</span>
-<span id="cb22-307"><a href="#cb22-307" aria-hidden="true" tabindex="-1"></a>display(mtm_report.head(<span class="dv">10</span>))</span>
-<span id="cb22-308"><a href="#cb22-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-309"><a href="#cb22-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-310"><a href="#cb22-310" aria-hidden="true" tabindex="-1"></a>The latest generated output can be summarised with a compact control table:</span>
+<span id="cb22-302"><a href="#cb22-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## The collateral report</span></span>
+<span id="cb22-303"><a href="#cb22-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-306"><a href="#cb22-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-307"><a href="#cb22-307" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: mtm-report-output</span></span>
+<span id="cb22-308"><a href="#cb22-308" aria-hidden="true" tabindex="-1"></a>mtm_report <span class="op">=</span> data[<span class="st">"mtm_report"</span>].copy()</span>
+<span id="cb22-309"><a href="#cb22-309" aria-hidden="true" tabindex="-1"></a>display(mtm_report.head(<span class="dv">10</span>))</span>
+<span id="cb22-310"><a href="#cb22-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-311"><a href="#cb22-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-314"><a href="#cb22-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-315"><a href="#cb22-315" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: collateral-controls</span></span>
-<span id="cb22-316"><a href="#cb22-316" aria-hidden="true" tabindex="-1"></a>control_summary <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb22-317"><a href="#cb22-317" aria-hidden="true" tabindex="-1"></a>    <span class="st">"metric"</span>: [</span>
-<span id="cb22-318"><a href="#cb22-318" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Report dates"</span>,</span>
-<span id="cb22-319"><a href="#cb22-319" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Latest report date"</span>,</span>
-<span id="cb22-320"><a href="#cb22-320" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Minimum excess / deficit"</span>,</span>
-<span id="cb22-321"><a href="#cb22-321" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Maximum collateral posted"</span>,</span>
-<span id="cb22-322"><a href="#cb22-322" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Deficit days"</span>,</span>
-<span id="cb22-323"><a href="#cb22-323" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb22-324"><a href="#cb22-324" aria-hidden="true" tabindex="-1"></a>    <span class="st">"value"</span>: [</span>
-<span id="cb22-325"><a href="#cb22-325" aria-hidden="true" tabindex="-1"></a>        <span class="bu">len</span>(mtm_report),</span>
-<span id="cb22-326"><a href="#cb22-326" aria-hidden="true" tabindex="-1"></a>        mtm_report[<span class="st">"report_date"</span>].<span class="bu">max</span>().date(),</span>
-<span id="cb22-327"><a href="#cb22-327" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"$</span><span class="sc">{</span>mtm_report[<span class="st">'excess_deficit'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>,</span>
-<span id="cb22-328"><a href="#cb22-328" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"$</span><span class="sc">{</span>mtm_report[<span class="st">'collateral_posted'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>,</span>
-<span id="cb22-329"><a href="#cb22-329" aria-hidden="true" tabindex="-1"></a>        <span class="bu">int</span>((mtm_report[<span class="st">"excess_deficit"</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">sum</span>()),</span>
-<span id="cb22-330"><a href="#cb22-330" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb22-331"><a href="#cb22-331" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb22-332"><a href="#cb22-332" aria-hidden="true" tabindex="-1"></a>display(control_summary)</span>
-<span id="cb22-333"><a href="#cb22-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-334"><a href="#cb22-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-335"><a href="#cb22-335" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: collateral KPI cards</span></span>
+<span id="cb22-312"><a href="#cb22-312" aria-hidden="true" tabindex="-1"></a>The latest generated output can be summarised with a compact control table:</span>
+<span id="cb22-313"><a href="#cb22-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-316"><a href="#cb22-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-317"><a href="#cb22-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: collateral-controls</span></span>
+<span id="cb22-318"><a href="#cb22-318" aria-hidden="true" tabindex="-1"></a>control_summary <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb22-319"><a href="#cb22-319" aria-hidden="true" tabindex="-1"></a>    <span class="st">"metric"</span>: [</span>
+<span id="cb22-320"><a href="#cb22-320" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Report dates"</span>,</span>
+<span id="cb22-321"><a href="#cb22-321" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Latest report date"</span>,</span>
+<span id="cb22-322"><a href="#cb22-322" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Minimum excess / deficit"</span>,</span>
+<span id="cb22-323"><a href="#cb22-323" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Maximum collateral posted"</span>,</span>
+<span id="cb22-324"><a href="#cb22-324" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Deficit days"</span>,</span>
+<span id="cb22-325"><a href="#cb22-325" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb22-326"><a href="#cb22-326" aria-hidden="true" tabindex="-1"></a>    <span class="st">"value"</span>: [</span>
+<span id="cb22-327"><a href="#cb22-327" aria-hidden="true" tabindex="-1"></a>        <span class="bu">len</span>(mtm_report),</span>
+<span id="cb22-328"><a href="#cb22-328" aria-hidden="true" tabindex="-1"></a>        mtm_report[<span class="st">"report_date"</span>].<span class="bu">max</span>().date(),</span>
+<span id="cb22-329"><a href="#cb22-329" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"$</span><span class="sc">{</span>mtm_report[<span class="st">'excess_deficit'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>,</span>
+<span id="cb22-330"><a href="#cb22-330" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"$</span><span class="sc">{</span>mtm_report[<span class="st">'collateral_posted'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:,.0f}</span><span class="ss">"</span>,</span>
+<span id="cb22-331"><a href="#cb22-331" aria-hidden="true" tabindex="-1"></a>        <span class="bu">int</span>((mtm_report[<span class="st">"excess_deficit"</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">sum</span>()),</span>
+<span id="cb22-332"><a href="#cb22-332" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb22-333"><a href="#cb22-333" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb22-334"><a href="#cb22-334" aria-hidden="true" tabindex="-1"></a>display(control_summary)</span>
+<span id="cb22-335"><a href="#cb22-335" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-336"><a href="#cb22-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-337"><a href="#cb22-337" aria-hidden="true" tabindex="-1"></a>The Power BI dashboard summarises the latest collateral position using KPI cards. The same metrics can be reproduced in Python for validation and comparison. The values retain the data-model sign convention. For example, Initial Margin and Collateral Required remain negative, while the card change shows the ordinary numerical difference from the previous date.</span>
+<span id="cb22-337"><a href="#cb22-337" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: collateral KPI cards</span></span>
 <span id="cb22-338"><a href="#cb22-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-341"><a href="#cb22-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-342"><a href="#cb22-342" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: collateral-kpi-cards</span></span>
-<span id="cb22-343"><a href="#cb22-343" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> FancyBboxPatch</span>
-<span id="cb22-344"><a href="#cb22-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-345"><a href="#cb22-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-346"><a href="#cb22-346" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_amount(value):</span>
-<span id="cb22-347"><a href="#cb22-347" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Format a USD value compactly for a KPI card."""</span></span>
-<span id="cb22-348"><a href="#cb22-348" aria-hidden="true" tabindex="-1"></a>    absolute_value <span class="op">=</span> <span class="bu">abs</span>(value)</span>
-<span id="cb22-349"><a href="#cb22-349" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> absolute_value <span class="op">&gt;=</span> <span class="dv">1_000_000</span>:</span>
-<span id="cb22-350"><a href="#cb22-350" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="st">'-'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span><span class="sc">}{</span>absolute_value <span class="op">/</span> <span class="dv">1_000_000</span><span class="sc">:.2f}</span><span class="ss">M"</span></span>
-<span id="cb22-351"><a href="#cb22-351" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> absolute_value <span class="op">&gt;=</span> <span class="dv">1_000</span>:</span>
-<span id="cb22-352"><a href="#cb22-352" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="st">'-'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span><span class="sc">}{</span>absolute_value <span class="op">/</span> <span class="dv">1_000</span><span class="sc">:.0f}</span><span class="ss">K"</span></span>
-<span id="cb22-353"><a href="#cb22-353" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>value<span class="sc">:,.0f}</span><span class="ss">"</span></span>
-<span id="cb22-354"><a href="#cb22-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-355"><a href="#cb22-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-356"><a href="#cb22-356" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_change(value):</span>
-<span id="cb22-357"><a href="#cb22-357" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Format a numerical daily change with an ASCII direction marker."""</span></span>
-<span id="cb22-358"><a href="#cb22-358" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb22-359"><a href="#cb22-359" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"+ </span><span class="sc">{</span>format_amount(value)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb22-360"><a href="#cb22-360" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb22-361"><a href="#cb22-361" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"- </span><span class="sc">{</span>format_amount(<span class="bu">abs</span>(value))<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb22-362"><a href="#cb22-362" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"- 0"</span></span>
-<span id="cb22-363"><a href="#cb22-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-364"><a href="#cb22-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-365"><a href="#cb22-365" aria-hidden="true" tabindex="-1"></a>latest_date <span class="op">=</span> mtm_report[<span class="st">"report_date"</span>].<span class="bu">max</span>()</span>
-<span id="cb22-366"><a href="#cb22-366" aria-hidden="true" tabindex="-1"></a>report_dates <span class="op">=</span> <span class="bu">sorted</span>(mtm_report[<span class="st">"report_date"</span>].unique())</span>
-<span id="cb22-367"><a href="#cb22-367" aria-hidden="true" tabindex="-1"></a>previous_date <span class="op">=</span> report_dates[<span class="op">-</span><span class="dv">2</span>] <span class="cf">if</span> <span class="bu">len</span>(report_dates) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> latest_date</span>
-<span id="cb22-368"><a href="#cb22-368" aria-hidden="true" tabindex="-1"></a>latest_report <span class="op">=</span> mtm_report.loc[mtm_report[<span class="st">"report_date"</span>] <span class="op">==</span> latest_date].iloc[<span class="dv">0</span>]</span>
-<span id="cb22-369"><a href="#cb22-369" aria-hidden="true" tabindex="-1"></a>previous_report <span class="op">=</span> mtm_report.loc[mtm_report[<span class="st">"report_date"</span>] <span class="op">==</span> previous_date].iloc[<span class="dv">0</span>]</span>
-<span id="cb22-370"><a href="#cb22-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-371"><a href="#cb22-371" aria-hidden="true" tabindex="-1"></a>latest_portfolio <span class="op">=</span> portfolio.loc[portfolio[<span class="st">"report_date"</span>] <span class="op">==</span> latest_date]</span>
-<span id="cb22-372"><a href="#cb22-372" aria-hidden="true" tabindex="-1"></a>previous_portfolio <span class="op">=</span> portfolio.loc[portfolio[<span class="st">"report_date"</span>] <span class="op">==</span> previous_date]</span>
-<span id="cb22-373"><a href="#cb22-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-374"><a href="#cb22-374" aria-hidden="true" tabindex="-1"></a>cards <span class="op">=</span> [</span>
-<span id="cb22-375"><a href="#cb22-375" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Initial Margin"</span>, latest_report[<span class="st">"initial_margin"</span>], latest_report[<span class="st">"initial_margin"</span>] <span class="op">-</span> previous_report[<span class="st">"initial_margin"</span>]),</span>
-<span id="cb22-376"><a href="#cb22-376" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Variation Margin"</span>, latest_report[<span class="st">"variation_margin"</span>], latest_report[<span class="st">"variation_margin"</span>] <span class="op">-</span> previous_report[<span class="st">"variation_margin"</span>]),</span>
-<span id="cb22-377"><a href="#cb22-377" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Collateral Required"</span>, latest_report[<span class="st">"collateral_required"</span>], latest_report[<span class="st">"collateral_required"</span>] <span class="op">-</span> previous_report[<span class="st">"collateral_required"</span>]),</span>
-<span id="cb22-378"><a href="#cb22-378" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Collateral Posted"</span>, latest_report[<span class="st">"collateral_posted"</span>], latest_report[<span class="st">"collateral_posted"</span>] <span class="op">-</span> previous_report[<span class="st">"collateral_posted"</span>]),</span>
-<span id="cb22-379"><a href="#cb22-379" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Excess / Deficit"</span>, latest_report[<span class="st">"excess_deficit"</span>], latest_report[<span class="st">"excess_deficit"</span>] <span class="op">-</span> previous_report[<span class="st">"excess_deficit"</span>]),</span>
-<span id="cb22-380"><a href="#cb22-380" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Total Portfolio (USD)"</span>, latest_portfolio[<span class="st">"trade_size_usd"</span>].<span class="bu">sum</span>(), latest_portfolio[<span class="st">"trade_size_usd"</span>].<span class="bu">sum</span>() <span class="op">-</span> previous_portfolio[<span class="st">"trade_size_usd"</span>].<span class="bu">sum</span>()),</span>
-<span id="cb22-381"><a href="#cb22-381" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Open Positions"</span>, latest_portfolio[<span class="st">"trade_id"</span>].nunique(), latest_portfolio[<span class="st">"trade_id"</span>].nunique() <span class="op">-</span> previous_portfolio[<span class="st">"trade_id"</span>].nunique()),</span>
-<span id="cb22-382"><a href="#cb22-382" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb22-383"><a href="#cb22-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-384"><a href="#cb22-384" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(cards), figsize<span class="op">=</span>(<span class="dv">19</span>, <span class="fl">2.2</span>))</span>
-<span id="cb22-385"><a href="#cb22-385" aria-hidden="true" tabindex="-1"></a>fig.patch.set_facecolor(<span class="st">"#f1f2ed"</span>)</span>
-<span id="cb22-386"><a href="#cb22-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-387"><a href="#cb22-387" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (title, value, change) <span class="kw">in</span> <span class="bu">zip</span>(axes, cards):</span>
-<span id="cb22-388"><a href="#cb22-388" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb22-389"><a href="#cb22-389" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb22-390"><a href="#cb22-390" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
-<span id="cb22-391"><a href="#cb22-391" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(</span>
-<span id="cb22-392"><a href="#cb22-392" aria-hidden="true" tabindex="-1"></a>        FancyBboxPatch(</span>
-<span id="cb22-393"><a href="#cb22-393" aria-hidden="true" tabindex="-1"></a>            (<span class="fl">0.01</span>, <span class="fl">0.03</span>),</span>
-<span id="cb22-394"><a href="#cb22-394" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.98</span>,</span>
-<span id="cb22-395"><a href="#cb22-395" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.94</span>,</span>
-<span id="cb22-396"><a href="#cb22-396" aria-hidden="true" tabindex="-1"></a>            boxstyle<span class="op">=</span><span class="st">"round,pad=0.015,rounding_size=0.04"</span>,</span>
-<span id="cb22-397"><a href="#cb22-397" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="fl">0.8</span>,</span>
-<span id="cb22-398"><a href="#cb22-398" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">"#d9ddd5"</span>,</span>
-<span id="cb22-399"><a href="#cb22-399" aria-hidden="true" tabindex="-1"></a>            facecolor<span class="op">=</span><span class="st">"#ffffff"</span>,</span>
-<span id="cb22-400"><a href="#cb22-400" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb22-401"><a href="#cb22-401" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-402"><a href="#cb22-402" aria-hidden="true" tabindex="-1"></a>    value_color <span class="op">=</span> <span class="st">"#1f7a4d"</span> <span class="cf">if</span> value <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"#8b1e2d"</span></span>
-<span id="cb22-403"><a href="#cb22-403" aria-hidden="true" tabindex="-1"></a>    change_color <span class="op">=</span> <span class="st">"#1f7a4d"</span> <span class="cf">if</span> change <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"#8b1e2d"</span></span>
-<span id="cb22-404"><a href="#cb22-404" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.08</span>, <span class="fl">0.79</span>, title, fontsize<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">"#6b6f6b"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
-<span id="cb22-405"><a href="#cb22-405" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.08</span>, <span class="fl">0.52</span>, format_amount(value), fontsize<span class="op">=</span><span class="dv">17</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>value_color, va<span class="op">=</span><span class="st">"center"</span>)</span>
-<span id="cb22-406"><a href="#cb22-406" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.08</span>, <span class="fl">0.20</span>, <span class="ss">f"Change: </span><span class="sc">{</span>format_change(change)<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span>change_color, va<span class="op">=</span><span class="st">"center"</span>)</span>
-<span id="cb22-407"><a href="#cb22-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-408"><a href="#cb22-408" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
-<span id="cb22-409"><a href="#cb22-409" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Collateral snapshot | </span><span class="sc">{</span>latest_date<span class="sc">.</span>date()<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb22-410"><a href="#cb22-410" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="fl">0.01</span>,</span>
-<span id="cb22-411"><a href="#cb22-411" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="fl">1.08</span>,</span>
-<span id="cb22-412"><a href="#cb22-412" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"left"</span>,</span>
-<span id="cb22-413"><a href="#cb22-413" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb22-414"><a href="#cb22-414" aria-hidden="true" tabindex="-1"></a>    fontweight<span class="op">=</span><span class="st">"bold"</span>,</span>
-<span id="cb22-415"><a href="#cb22-415" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#333333"</span>,</span>
-<span id="cb22-416"><a href="#cb22-416" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-417"><a href="#cb22-417" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb22-418"><a href="#cb22-418" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-419"><a href="#cb22-419" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-420"><a href="#cb22-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-421"><a href="#cb22-421" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: collateral position over time</span></span>
+<span id="cb22-339"><a href="#cb22-339" aria-hidden="true" tabindex="-1"></a>The Power BI dashboard summarises the latest collateral position using KPI cards. The same metrics can be reproduced in Python for validation and comparison. The values retain the data-model sign convention. For example, Initial Margin and Collateral Required remain negative, while the card change shows the ordinary numerical difference from the previous date.</span>
+<span id="cb22-340"><a href="#cb22-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-343"><a href="#cb22-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-344"><a href="#cb22-344" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: collateral-kpi-cards</span></span>
+<span id="cb22-345"><a href="#cb22-345" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> FancyBboxPatch</span>
+<span id="cb22-346"><a href="#cb22-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-347"><a href="#cb22-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-348"><a href="#cb22-348" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_amount(value):</span>
+<span id="cb22-349"><a href="#cb22-349" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Format a USD value compactly for a KPI card."""</span></span>
+<span id="cb22-350"><a href="#cb22-350" aria-hidden="true" tabindex="-1"></a>    absolute_value <span class="op">=</span> <span class="bu">abs</span>(value)</span>
+<span id="cb22-351"><a href="#cb22-351" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> absolute_value <span class="op">&gt;=</span> <span class="dv">1_000_000</span>:</span>
+<span id="cb22-352"><a href="#cb22-352" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="st">'-'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span><span class="sc">}{</span>absolute_value <span class="op">/</span> <span class="dv">1_000_000</span><span class="sc">:.2f}</span><span class="ss">M"</span></span>
+<span id="cb22-353"><a href="#cb22-353" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> absolute_value <span class="op">&gt;=</span> <span class="dv">1_000</span>:</span>
+<span id="cb22-354"><a href="#cb22-354" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="st">'-'</span> <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span><span class="sc">}{</span>absolute_value <span class="op">/</span> <span class="dv">1_000</span><span class="sc">:.0f}</span><span class="ss">K"</span></span>
+<span id="cb22-355"><a href="#cb22-355" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>value<span class="sc">:,.0f}</span><span class="ss">"</span></span>
+<span id="cb22-356"><a href="#cb22-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-357"><a href="#cb22-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-358"><a href="#cb22-358" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_change(value):</span>
+<span id="cb22-359"><a href="#cb22-359" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Format a numerical daily change with an ASCII direction marker."""</span></span>
+<span id="cb22-360"><a href="#cb22-360" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb22-361"><a href="#cb22-361" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"+ </span><span class="sc">{</span>format_amount(value)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb22-362"><a href="#cb22-362" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb22-363"><a href="#cb22-363" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"- </span><span class="sc">{</span>format_amount(<span class="bu">abs</span>(value))<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb22-364"><a href="#cb22-364" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"- 0"</span></span>
+<span id="cb22-365"><a href="#cb22-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-366"><a href="#cb22-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-367"><a href="#cb22-367" aria-hidden="true" tabindex="-1"></a>latest_date <span class="op">=</span> mtm_report[<span class="st">"report_date"</span>].<span class="bu">max</span>()</span>
+<span id="cb22-368"><a href="#cb22-368" aria-hidden="true" tabindex="-1"></a>report_dates <span class="op">=</span> <span class="bu">sorted</span>(mtm_report[<span class="st">"report_date"</span>].unique())</span>
+<span id="cb22-369"><a href="#cb22-369" aria-hidden="true" tabindex="-1"></a>previous_date <span class="op">=</span> report_dates[<span class="op">-</span><span class="dv">2</span>] <span class="cf">if</span> <span class="bu">len</span>(report_dates) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> latest_date</span>
+<span id="cb22-370"><a href="#cb22-370" aria-hidden="true" tabindex="-1"></a>latest_report <span class="op">=</span> mtm_report.loc[mtm_report[<span class="st">"report_date"</span>] <span class="op">==</span> latest_date].iloc[<span class="dv">0</span>]</span>
+<span id="cb22-371"><a href="#cb22-371" aria-hidden="true" tabindex="-1"></a>previous_report <span class="op">=</span> mtm_report.loc[mtm_report[<span class="st">"report_date"</span>] <span class="op">==</span> previous_date].iloc[<span class="dv">0</span>]</span>
+<span id="cb22-372"><a href="#cb22-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-373"><a href="#cb22-373" aria-hidden="true" tabindex="-1"></a>latest_portfolio <span class="op">=</span> portfolio.loc[portfolio[<span class="st">"report_date"</span>] <span class="op">==</span> latest_date]</span>
+<span id="cb22-374"><a href="#cb22-374" aria-hidden="true" tabindex="-1"></a>previous_portfolio <span class="op">=</span> portfolio.loc[portfolio[<span class="st">"report_date"</span>] <span class="op">==</span> previous_date]</span>
+<span id="cb22-375"><a href="#cb22-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-376"><a href="#cb22-376" aria-hidden="true" tabindex="-1"></a>cards <span class="op">=</span> [</span>
+<span id="cb22-377"><a href="#cb22-377" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Initial Margin"</span>, latest_report[<span class="st">"initial_margin"</span>], latest_report[<span class="st">"initial_margin"</span>] <span class="op">-</span> previous_report[<span class="st">"initial_margin"</span>]),</span>
+<span id="cb22-378"><a href="#cb22-378" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Variation Margin"</span>, latest_report[<span class="st">"variation_margin"</span>], latest_report[<span class="st">"variation_margin"</span>] <span class="op">-</span> previous_report[<span class="st">"variation_margin"</span>]),</span>
+<span id="cb22-379"><a href="#cb22-379" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Collateral Required"</span>, latest_report[<span class="st">"collateral_required"</span>], latest_report[<span class="st">"collateral_required"</span>] <span class="op">-</span> previous_report[<span class="st">"collateral_required"</span>]),</span>
+<span id="cb22-380"><a href="#cb22-380" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Collateral Posted"</span>, latest_report[<span class="st">"collateral_posted"</span>], latest_report[<span class="st">"collateral_posted"</span>] <span class="op">-</span> previous_report[<span class="st">"collateral_posted"</span>]),</span>
+<span id="cb22-381"><a href="#cb22-381" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Excess / Deficit"</span>, latest_report[<span class="st">"excess_deficit"</span>], latest_report[<span class="st">"excess_deficit"</span>] <span class="op">-</span> previous_report[<span class="st">"excess_deficit"</span>]),</span>
+<span id="cb22-382"><a href="#cb22-382" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Total Portfolio (USD)"</span>, latest_portfolio[<span class="st">"trade_size_usd"</span>].<span class="bu">sum</span>(), latest_portfolio[<span class="st">"trade_size_usd"</span>].<span class="bu">sum</span>() <span class="op">-</span> previous_portfolio[<span class="st">"trade_size_usd"</span>].<span class="bu">sum</span>()),</span>
+<span id="cb22-383"><a href="#cb22-383" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Open Positions"</span>, latest_portfolio[<span class="st">"trade_id"</span>].nunique(), latest_portfolio[<span class="st">"trade_id"</span>].nunique() <span class="op">-</span> previous_portfolio[<span class="st">"trade_id"</span>].nunique()),</span>
+<span id="cb22-384"><a href="#cb22-384" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb22-385"><a href="#cb22-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-386"><a href="#cb22-386" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(cards), figsize<span class="op">=</span>(<span class="dv">19</span>, <span class="fl">2.2</span>))</span>
+<span id="cb22-387"><a href="#cb22-387" aria-hidden="true" tabindex="-1"></a>fig.patch.set_facecolor(<span class="st">"#f1f2ed"</span>)</span>
+<span id="cb22-388"><a href="#cb22-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-389"><a href="#cb22-389" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (title, value, change) <span class="kw">in</span> <span class="bu">zip</span>(axes, cards):</span>
+<span id="cb22-390"><a href="#cb22-390" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb22-391"><a href="#cb22-391" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb22-392"><a href="#cb22-392" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb22-393"><a href="#cb22-393" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(</span>
+<span id="cb22-394"><a href="#cb22-394" aria-hidden="true" tabindex="-1"></a>        FancyBboxPatch(</span>
+<span id="cb22-395"><a href="#cb22-395" aria-hidden="true" tabindex="-1"></a>            (<span class="fl">0.01</span>, <span class="fl">0.03</span>),</span>
+<span id="cb22-396"><a href="#cb22-396" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.98</span>,</span>
+<span id="cb22-397"><a href="#cb22-397" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.94</span>,</span>
+<span id="cb22-398"><a href="#cb22-398" aria-hidden="true" tabindex="-1"></a>            boxstyle<span class="op">=</span><span class="st">"round,pad=0.015,rounding_size=0.04"</span>,</span>
+<span id="cb22-399"><a href="#cb22-399" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb22-400"><a href="#cb22-400" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">"#d9ddd5"</span>,</span>
+<span id="cb22-401"><a href="#cb22-401" aria-hidden="true" tabindex="-1"></a>            facecolor<span class="op">=</span><span class="st">"#ffffff"</span>,</span>
+<span id="cb22-402"><a href="#cb22-402" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb22-403"><a href="#cb22-403" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-404"><a href="#cb22-404" aria-hidden="true" tabindex="-1"></a>    value_color <span class="op">=</span> <span class="st">"#1f7a4d"</span> <span class="cf">if</span> value <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"#8b1e2d"</span></span>
+<span id="cb22-405"><a href="#cb22-405" aria-hidden="true" tabindex="-1"></a>    change_color <span class="op">=</span> <span class="st">"#1f7a4d"</span> <span class="cf">if</span> change <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"#8b1e2d"</span></span>
+<span id="cb22-406"><a href="#cb22-406" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.08</span>, <span class="fl">0.79</span>, title, fontsize<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">"#6b6f6b"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb22-407"><a href="#cb22-407" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.08</span>, <span class="fl">0.52</span>, format_amount(value), fontsize<span class="op">=</span><span class="dv">17</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>value_color, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb22-408"><a href="#cb22-408" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.08</span>, <span class="fl">0.20</span>, <span class="ss">f"Change: </span><span class="sc">{</span>format_change(change)<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span>change_color, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb22-409"><a href="#cb22-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-410"><a href="#cb22-410" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
+<span id="cb22-411"><a href="#cb22-411" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Collateral snapshot | </span><span class="sc">{</span>latest_date<span class="sc">.</span>date()<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb22-412"><a href="#cb22-412" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb22-413"><a href="#cb22-413" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="fl">1.08</span>,</span>
+<span id="cb22-414"><a href="#cb22-414" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"left"</span>,</span>
+<span id="cb22-415"><a href="#cb22-415" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb22-416"><a href="#cb22-416" aria-hidden="true" tabindex="-1"></a>    fontweight<span class="op">=</span><span class="st">"bold"</span>,</span>
+<span id="cb22-417"><a href="#cb22-417" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#333333"</span>,</span>
+<span id="cb22-418"><a href="#cb22-418" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-419"><a href="#cb22-419" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb22-420"><a href="#cb22-420" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-421"><a href="#cb22-421" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-422"><a href="#cb22-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-423"><a href="#cb22-423" aria-hidden="true" tabindex="-1"></a>The chart below shows the excess/deficit over time.</span>
+<span id="cb22-423"><a href="#cb22-423" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: collateral position over time</span></span>
 <span id="cb22-424"><a href="#cb22-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-427"><a href="#cb22-427" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-428"><a href="#cb22-428" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: collateral-position-chart</span></span>
-<span id="cb22-429"><a href="#cb22-429" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
-<span id="cb22-430"><a href="#cb22-430" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
-<span id="cb22-431"><a href="#cb22-431" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
-<span id="cb22-432"><a href="#cb22-432" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"excess_deficit"</span>],</span>
-<span id="cb22-433"><a href="#cb22-433" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#1f5f8b"</span>,</span>
-<span id="cb22-434"><a href="#cb22-434" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb22-435"><a href="#cb22-435" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Excess / deficit"</span>,</span>
-<span id="cb22-436"><a href="#cb22-436" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-437"><a href="#cb22-437" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"#7a0c1e"</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
-<span id="cb22-438"><a href="#cb22-438" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
-<span id="cb22-439"><a href="#cb22-439" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
-<span id="cb22-440"><a href="#cb22-440" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"excess_deficit"</span>],</span>
-<span id="cb22-441"><a href="#cb22-441" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>,</span>
-<span id="cb22-442"><a href="#cb22-442" aria-hidden="true" tabindex="-1"></a>    where<span class="op">=</span>mtm_report[<span class="st">"excess_deficit"</span>] <span class="op">&lt;</span> <span class="dv">0</span>,</span>
-<span id="cb22-443"><a href="#cb22-443" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#c75c5c"</span>,</span>
-<span id="cb22-444"><a href="#cb22-444" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.25</span>,</span>
-<span id="cb22-445"><a href="#cb22-445" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-446"><a href="#cb22-446" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Excess / deficit by date"</span>)</span>
-<span id="cb22-447"><a href="#cb22-447" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"USD"</span>)</span>
-<span id="cb22-448"><a href="#cb22-448" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">""</span>)</span>
-<span id="cb22-449"><a href="#cb22-449" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
-<span id="cb22-450"><a href="#cb22-450" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb22-451"><a href="#cb22-451" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb22-452"><a href="#cb22-452" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-453"><a href="#cb22-453" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-454"><a href="#cb22-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-455"><a href="#cb22-455" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: initial margin trend</span></span>
+<span id="cb22-425"><a href="#cb22-425" aria-hidden="true" tabindex="-1"></a>The chart below shows the excess/deficit over time.</span>
+<span id="cb22-426"><a href="#cb22-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-429"><a href="#cb22-429" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-430"><a href="#cb22-430" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: collateral-position-chart</span></span>
+<span id="cb22-431"><a href="#cb22-431" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
+<span id="cb22-432"><a href="#cb22-432" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb22-433"><a href="#cb22-433" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
+<span id="cb22-434"><a href="#cb22-434" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"excess_deficit"</span>],</span>
+<span id="cb22-435"><a href="#cb22-435" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#1f5f8b"</span>,</span>
+<span id="cb22-436"><a href="#cb22-436" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb22-437"><a href="#cb22-437" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Excess / deficit"</span>,</span>
+<span id="cb22-438"><a href="#cb22-438" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-439"><a href="#cb22-439" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"#7a0c1e"</span>, linewidth<span class="op">=</span><span class="dv">1</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb22-440"><a href="#cb22-440" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb22-441"><a href="#cb22-441" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
+<span id="cb22-442"><a href="#cb22-442" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"excess_deficit"</span>],</span>
+<span id="cb22-443"><a href="#cb22-443" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>,</span>
+<span id="cb22-444"><a href="#cb22-444" aria-hidden="true" tabindex="-1"></a>    where<span class="op">=</span>mtm_report[<span class="st">"excess_deficit"</span>] <span class="op">&lt;</span> <span class="dv">0</span>,</span>
+<span id="cb22-445"><a href="#cb22-445" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#c75c5c"</span>,</span>
+<span id="cb22-446"><a href="#cb22-446" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.25</span>,</span>
+<span id="cb22-447"><a href="#cb22-447" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-448"><a href="#cb22-448" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Excess / deficit by date"</span>)</span>
+<span id="cb22-449"><a href="#cb22-449" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"USD"</span>)</span>
+<span id="cb22-450"><a href="#cb22-450" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">""</span>)</span>
+<span id="cb22-451"><a href="#cb22-451" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb22-452"><a href="#cb22-452" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-453"><a href="#cb22-453" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb22-454"><a href="#cb22-454" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-455"><a href="#cb22-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-456"><a href="#cb22-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-457"><a href="#cb22-457" aria-hidden="true" tabindex="-1"></a>The chart below shows the Initial Margin trend, which depends on the open positions and their USD exposure.</span>
+<span id="cb22-457"><a href="#cb22-457" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: initial margin trend</span></span>
 <span id="cb22-458"><a href="#cb22-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-461"><a href="#cb22-461" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-462"><a href="#cb22-462" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: initial-margin-chart</span></span>
-<span id="cb22-463"><a href="#cb22-463" aria-hidden="true" tabindex="-1"></a>initial_margin_requirement <span class="op">=</span> <span class="op">-</span>mtm_report[<span class="st">"initial_margin"</span>]</span>
-<span id="cb22-464"><a href="#cb22-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-465"><a href="#cb22-465" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
-<span id="cb22-466"><a href="#cb22-466" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
-<span id="cb22-467"><a href="#cb22-467" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
-<span id="cb22-468"><a href="#cb22-468" aria-hidden="true" tabindex="-1"></a>    initial_margin_requirement,</span>
-<span id="cb22-469"><a href="#cb22-469" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#244b5a"</span>,</span>
-<span id="cb22-470"><a href="#cb22-470" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb22-471"><a href="#cb22-471" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Initial margin requirement"</span>,</span>
-<span id="cb22-472"><a href="#cb22-472" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-473"><a href="#cb22-473" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
-<span id="cb22-474"><a href="#cb22-474" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
-<span id="cb22-475"><a href="#cb22-475" aria-hidden="true" tabindex="-1"></a>    initial_margin_requirement,</span>
-<span id="cb22-476"><a href="#cb22-476" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>,</span>
-<span id="cb22-477"><a href="#cb22-477" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#244b5a"</span>,</span>
-<span id="cb22-478"><a href="#cb22-478" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.15</span>,</span>
-<span id="cb22-479"><a href="#cb22-479" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-480"><a href="#cb22-480" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Initial margin requirement over time"</span>)</span>
-<span id="cb22-481"><a href="#cb22-481" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"USD; positive display value"</span>)</span>
-<span id="cb22-482"><a href="#cb22-482" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">""</span>)</span>
-<span id="cb22-483"><a href="#cb22-483" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
-<span id="cb22-484"><a href="#cb22-484" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb22-485"><a href="#cb22-485" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb22-486"><a href="#cb22-486" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-487"><a href="#cb22-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-488"><a href="#cb22-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-489"><a href="#cb22-489" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: variation margin trend</span></span>
+<span id="cb22-459"><a href="#cb22-459" aria-hidden="true" tabindex="-1"></a>The chart below shows the Initial Margin trend, which depends on the open positions and their USD exposure.</span>
+<span id="cb22-460"><a href="#cb22-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-463"><a href="#cb22-463" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-464"><a href="#cb22-464" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: initial-margin-chart</span></span>
+<span id="cb22-465"><a href="#cb22-465" aria-hidden="true" tabindex="-1"></a>initial_margin_requirement <span class="op">=</span> <span class="op">-</span>mtm_report[<span class="st">"initial_margin"</span>]</span>
+<span id="cb22-466"><a href="#cb22-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-467"><a href="#cb22-467" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
+<span id="cb22-468"><a href="#cb22-468" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb22-469"><a href="#cb22-469" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
+<span id="cb22-470"><a href="#cb22-470" aria-hidden="true" tabindex="-1"></a>    initial_margin_requirement,</span>
+<span id="cb22-471"><a href="#cb22-471" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#244b5a"</span>,</span>
+<span id="cb22-472"><a href="#cb22-472" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb22-473"><a href="#cb22-473" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Initial margin requirement"</span>,</span>
+<span id="cb22-474"><a href="#cb22-474" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-475"><a href="#cb22-475" aria-hidden="true" tabindex="-1"></a>ax.fill_between(</span>
+<span id="cb22-476"><a href="#cb22-476" aria-hidden="true" tabindex="-1"></a>    mtm_report[<span class="st">"report_date"</span>],</span>
+<span id="cb22-477"><a href="#cb22-477" aria-hidden="true" tabindex="-1"></a>    initial_margin_requirement,</span>
+<span id="cb22-478"><a href="#cb22-478" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>,</span>
+<span id="cb22-479"><a href="#cb22-479" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#244b5a"</span>,</span>
+<span id="cb22-480"><a href="#cb22-480" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.15</span>,</span>
+<span id="cb22-481"><a href="#cb22-481" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-482"><a href="#cb22-482" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Initial margin requirement over time"</span>)</span>
+<span id="cb22-483"><a href="#cb22-483" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"USD; positive display value"</span>)</span>
+<span id="cb22-484"><a href="#cb22-484" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">""</span>)</span>
+<span id="cb22-485"><a href="#cb22-485" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb22-486"><a href="#cb22-486" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-487"><a href="#cb22-487" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb22-488"><a href="#cb22-488" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-489"><a href="#cb22-489" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-490"><a href="#cb22-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-491"><a href="#cb22-491" aria-hidden="true" tabindex="-1"></a>In this section, the code visualises the variation margin trend together with its 30-day moving average, consistent with the Power BI report:</span>
+<span id="cb22-491"><a href="#cb22-491" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation: variation margin trend</span></span>
 <span id="cb22-492"><a href="#cb22-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-495"><a href="#cb22-495" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-496"><a href="#cb22-496" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: variation-margin-chart</span></span>
-<span id="cb22-497"><a href="#cb22-497" aria-hidden="true" tabindex="-1"></a>vm_series <span class="op">=</span> mtm_report.set_index(<span class="st">"report_date"</span>)[<span class="st">"variation_margin"</span>]</span>
-<span id="cb22-498"><a href="#cb22-498" aria-hidden="true" tabindex="-1"></a>vm_30_day_average <span class="op">=</span> vm_series.rolling(<span class="st">"30D"</span>, min_periods<span class="op">=</span><span class="dv">1</span>).mean()</span>
-<span id="cb22-499"><a href="#cb22-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-500"><a href="#cb22-500" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
-<span id="cb22-501"><a href="#cb22-501" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
-<span id="cb22-502"><a href="#cb22-502" aria-hidden="true" tabindex="-1"></a>    vm_series.index,</span>
-<span id="cb22-503"><a href="#cb22-503" aria-hidden="true" tabindex="-1"></a>    vm_series,</span>
-<span id="cb22-504"><a href="#cb22-504" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#d18f52"</span>,</span>
-<span id="cb22-505"><a href="#cb22-505" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">1.2</span>,</span>
-<span id="cb22-506"><a href="#cb22-506" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.7</span>,</span>
-<span id="cb22-507"><a href="#cb22-507" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Variation margin"</span>,</span>
-<span id="cb22-508"><a href="#cb22-508" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-509"><a href="#cb22-509" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
-<span id="cb22-510"><a href="#cb22-510" aria-hidden="true" tabindex="-1"></a>    vm_30_day_average.index,</span>
-<span id="cb22-511"><a href="#cb22-511" aria-hidden="true" tabindex="-1"></a>    vm_30_day_average,</span>
-<span id="cb22-512"><a href="#cb22-512" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#244b5a"</span>,</span>
-<span id="cb22-513"><a href="#cb22-513" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">2.5</span>,</span>
-<span id="cb22-514"><a href="#cb22-514" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"30-day moving average"</span>,</span>
-<span id="cb22-515"><a href="#cb22-515" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-516"><a href="#cb22-516" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"#333333"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb22-517"><a href="#cb22-517" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Variation margin and 30-day moving average"</span>)</span>
-<span id="cb22-518"><a href="#cb22-518" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"USD; positive is favourable"</span>)</span>
-<span id="cb22-519"><a href="#cb22-519" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">""</span>)</span>
-<span id="cb22-520"><a href="#cb22-520" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
-<span id="cb22-521"><a href="#cb22-521" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb22-522"><a href="#cb22-522" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb22-523"><a href="#cb22-523" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb22-524"><a href="#cb22-524" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-525"><a href="#cb22-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-526"><a href="#cb22-526" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. Power BI documentation</span></span>
+<span id="cb22-493"><a href="#cb22-493" aria-hidden="true" tabindex="-1"></a>In this section, the code visualises the variation margin trend together with its 30-day moving average, consistent with the Power BI report:</span>
+<span id="cb22-494"><a href="#cb22-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-497"><a href="#cb22-497" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb22-498"><a href="#cb22-498" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: variation-margin-chart</span></span>
+<span id="cb22-499"><a href="#cb22-499" aria-hidden="true" tabindex="-1"></a>vm_series <span class="op">=</span> mtm_report.set_index(<span class="st">"report_date"</span>)[<span class="st">"variation_margin"</span>]</span>
+<span id="cb22-500"><a href="#cb22-500" aria-hidden="true" tabindex="-1"></a>vm_30_day_average <span class="op">=</span> vm_series.rolling(<span class="st">"30D"</span>, min_periods<span class="op">=</span><span class="dv">1</span>).mean()</span>
+<span id="cb22-501"><a href="#cb22-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-502"><a href="#cb22-502" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.5</span>))</span>
+<span id="cb22-503"><a href="#cb22-503" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb22-504"><a href="#cb22-504" aria-hidden="true" tabindex="-1"></a>    vm_series.index,</span>
+<span id="cb22-505"><a href="#cb22-505" aria-hidden="true" tabindex="-1"></a>    vm_series,</span>
+<span id="cb22-506"><a href="#cb22-506" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#d18f52"</span>,</span>
+<span id="cb22-507"><a href="#cb22-507" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">1.2</span>,</span>
+<span id="cb22-508"><a href="#cb22-508" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb22-509"><a href="#cb22-509" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Variation margin"</span>,</span>
+<span id="cb22-510"><a href="#cb22-510" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-511"><a href="#cb22-511" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb22-512"><a href="#cb22-512" aria-hidden="true" tabindex="-1"></a>    vm_30_day_average.index,</span>
+<span id="cb22-513"><a href="#cb22-513" aria-hidden="true" tabindex="-1"></a>    vm_30_day_average,</span>
+<span id="cb22-514"><a href="#cb22-514" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"#244b5a"</span>,</span>
+<span id="cb22-515"><a href="#cb22-515" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">2.5</span>,</span>
+<span id="cb22-516"><a href="#cb22-516" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"30-day moving average"</span>,</span>
+<span id="cb22-517"><a href="#cb22-517" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-518"><a href="#cb22-518" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"#333333"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb22-519"><a href="#cb22-519" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Variation margin and 30-day moving average"</span>)</span>
+<span id="cb22-520"><a href="#cb22-520" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"USD; positive is favourable"</span>)</span>
+<span id="cb22-521"><a href="#cb22-521" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">""</span>)</span>
+<span id="cb22-522"><a href="#cb22-522" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb22-523"><a href="#cb22-523" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-524"><a href="#cb22-524" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb22-525"><a href="#cb22-525" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-526"><a href="#cb22-526" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-527"><a href="#cb22-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-528"><a href="#cb22-528" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project structure</span></span>
+<span id="cb22-528"><a href="#cb22-528" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. Power BI documentation</span></span>
 <span id="cb22-529"><a href="#cb22-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-530"><a href="#cb22-530" aria-hidden="true" tabindex="-1"></a>The checked-in PBIP project is under <span class="in">`fx-prime-brokerage-collateral/dashboard/`</span>:</span>
+<span id="cb22-530"><a href="#cb22-530" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project structure</span></span>
 <span id="cb22-531"><a href="#cb22-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-532"><a href="#cb22-532" aria-hidden="true" tabindex="-1"></a><span class="in">``` text</span></span>
-<span id="cb22-533"><a href="#cb22-533" aria-hidden="true" tabindex="-1"></a><span class="in">dashboard/</span></span>
-<span id="cb22-534"><a href="#cb22-534" aria-hidden="true" tabindex="-1"></a><span class="in">├── fx-prime-brokerage-collateral.pbip</span></span>
-<span id="cb22-535"><a href="#cb22-535" aria-hidden="true" tabindex="-1"></a><span class="in">├── fx-prime-brokerage-collateral.Report/</span></span>
-<span id="cb22-536"><a href="#cb22-536" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── definition/pages/</span></span>
-<span id="cb22-537"><a href="#cb22-537" aria-hidden="true" tabindex="-1"></a><span class="in">└── fx-prime-brokerage-collateral.SemanticModel/</span></span>
-<span id="cb22-538"><a href="#cb22-538" aria-hidden="true" tabindex="-1"></a><span class="in">    └── definition/</span></span>
-<span id="cb22-539"><a href="#cb22-539" aria-hidden="true" tabindex="-1"></a><span class="in">        ├── tables/</span></span>
-<span id="cb22-540"><a href="#cb22-540" aria-hidden="true" tabindex="-1"></a><span class="in">        ├── relationships.tmdl</span></span>
-<span id="cb22-541"><a href="#cb22-541" aria-hidden="true" tabindex="-1"></a><span class="in">        └── model.tmdl</span></span>
-<span id="cb22-542"><a href="#cb22-542" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-543"><a href="#cb22-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-544"><a href="#cb22-544" aria-hidden="true" tabindex="-1"></a>The model contains three principal facts (<span class="in">`fx_portfolio`</span>, <span class="in">`limits`</span>, <span class="in">`mtm_report`</span>), supporting dimensions (<span class="in">`dim_date`</span>, <span class="in">`dim_banks`</span>, <span class="in">`dim_currencies`</span>), an FX rates table, and <span class="in">`Measures_Table`</span> for reusable DAX.</span>
+<span id="cb22-532"><a href="#cb22-532" aria-hidden="true" tabindex="-1"></a>The checked-in PBIP project is under <span class="in">`fx-prime-brokerage-collateral/dashboard/`</span>:</span>
+<span id="cb22-533"><a href="#cb22-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-534"><a href="#cb22-534" aria-hidden="true" tabindex="-1"></a><span class="in">``` text</span></span>
+<span id="cb22-535"><a href="#cb22-535" aria-hidden="true" tabindex="-1"></a><span class="in">dashboard/</span></span>
+<span id="cb22-536"><a href="#cb22-536" aria-hidden="true" tabindex="-1"></a><span class="in">├── fx-prime-brokerage-collateral.pbip</span></span>
+<span id="cb22-537"><a href="#cb22-537" aria-hidden="true" tabindex="-1"></a><span class="in">├── fx-prime-brokerage-collateral.Report/</span></span>
+<span id="cb22-538"><a href="#cb22-538" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── definition/pages/</span></span>
+<span id="cb22-539"><a href="#cb22-539" aria-hidden="true" tabindex="-1"></a><span class="in">└── fx-prime-brokerage-collateral.SemanticModel/</span></span>
+<span id="cb22-540"><a href="#cb22-540" aria-hidden="true" tabindex="-1"></a><span class="in">    └── definition/</span></span>
+<span id="cb22-541"><a href="#cb22-541" aria-hidden="true" tabindex="-1"></a><span class="in">        ├── tables/</span></span>
+<span id="cb22-542"><a href="#cb22-542" aria-hidden="true" tabindex="-1"></a><span class="in">        ├── relationships.tmdl</span></span>
+<span id="cb22-543"><a href="#cb22-543" aria-hidden="true" tabindex="-1"></a><span class="in">        └── model.tmdl</span></span>
+<span id="cb22-544"><a href="#cb22-544" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-545"><a href="#cb22-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-546"><a href="#cb22-546" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relationship and filter design</span></span>
+<span id="cb22-546"><a href="#cb22-546" aria-hidden="true" tabindex="-1"></a>The model contains three principal facts (<span class="in">`fx_portfolio`</span>, <span class="in">`limits`</span>, <span class="in">`mtm_report`</span>), supporting dimensions (<span class="in">`dim_date`</span>, <span class="in">`dim_banks`</span>, <span class="in">`dim_currencies`</span>), an FX rates table, and <span class="in">`Measures_Table`</span> for reusable DAX.</span>
 <span id="cb22-547"><a href="#cb22-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-548"><a href="#cb22-548" aria-hidden="true" tabindex="-1"></a>The date dimension filters <span class="in">`mtm_report.report_date`</span>, <span class="in">`fx_portfolio.report_date`</span>, and <span class="in">`limits.as_of_date`</span>. Bank and currency dimensions provide reusable slicer paths. The collateral page should therefore use <span class="in">`dim_date[calendar_date]`</span> for time controls rather than placing the fact date directly in every visual.</span>
+<span id="cb22-548"><a href="#cb22-548" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relationship and filter design</span></span>
 <span id="cb22-549"><a href="#cb22-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-550"><a href="#cb22-550" aria-hidden="true" tabindex="-1"></a>The primary modelling caveat is grain: <span class="in">`mtm_report`</span> is daily, while <span class="in">`fx_portfolio`</span> is trade-leg level. Measures must be used when combining these tables so that a visual does not accidentally sum a daily collateral value once per trade.</span>
+<span id="cb22-550"><a href="#cb22-550" aria-hidden="true" tabindex="-1"></a>The date dimension filters <span class="in">`mtm_report.report_date`</span>, <span class="in">`fx_portfolio.report_date`</span>, and <span class="in">`limits.as_of_date`</span>. Bank and currency dimensions provide reusable slicer paths. The collateral page should therefore use <span class="in">`dim_date[calendar_date]`</span> for time controls rather than placing the fact date directly in every visual.</span>
 <span id="cb22-551"><a href="#cb22-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-552"><a href="#cb22-552" aria-hidden="true" tabindex="-1"></a><span class="fu">## Core DAX measures</span></span>
+<span id="cb22-552"><a href="#cb22-552" aria-hidden="true" tabindex="-1"></a>The primary modelling caveat is grain: <span class="in">`mtm_report`</span> is daily, while <span class="in">`fx_portfolio`</span> is trade-leg level. Measures must be used when combining these tables so that a visual does not accidentally sum a daily collateral value once per trade.</span>
 <span id="cb22-553"><a href="#cb22-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-554"><a href="#cb22-554" aria-hidden="true" tabindex="-1"></a>These are the central measures already present in <span class="in">`Measures_Table.tmdl`</span>:</span>
+<span id="cb22-554"><a href="#cb22-554" aria-hidden="true" tabindex="-1"></a><span class="fu">## Core DAX measures</span></span>
 <span id="cb22-555"><a href="#cb22-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-556"><a href="#cb22-556" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
-<span id="cb22-557"><a href="#cb22-557" aria-hidden="true" tabindex="-1"></a><span class="in">Initial Margin = SUM(mtm_report[initial_margin])</span></span>
-<span id="cb22-558"><a href="#cb22-558" aria-hidden="true" tabindex="-1"></a><span class="in">Variation Margin = SUM(mtm_report[variation_margin])</span></span>
-<span id="cb22-559"><a href="#cb22-559" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Required = SUM(mtm_report[collateral_required])</span></span>
-<span id="cb22-560"><a href="#cb22-560" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Posted = SUM(mtm_report[collateral_posted])</span></span>
-<span id="cb22-561"><a href="#cb22-561" aria-hidden="true" tabindex="-1"></a><span class="in">Excess / Deficit = SUM(mtm_report[excess_deficit])</span></span>
-<span id="cb22-562"><a href="#cb22-562" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-563"><a href="#cb22-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-564"><a href="#cb22-564" aria-hidden="true" tabindex="-1"></a>Because initial margin and collateral required are stored as negative amounts owed to the broker, inverse measures can be useful for visuals where positive means amount required.</span>
+<span id="cb22-556"><a href="#cb22-556" aria-hidden="true" tabindex="-1"></a>These are the central measures already present in <span class="in">`Measures_Table.tmdl`</span>:</span>
+<span id="cb22-557"><a href="#cb22-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-558"><a href="#cb22-558" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
+<span id="cb22-559"><a href="#cb22-559" aria-hidden="true" tabindex="-1"></a><span class="in">Initial Margin = SUM(mtm_report[initial_margin])</span></span>
+<span id="cb22-560"><a href="#cb22-560" aria-hidden="true" tabindex="-1"></a><span class="in">Variation Margin = SUM(mtm_report[variation_margin])</span></span>
+<span id="cb22-561"><a href="#cb22-561" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Required = SUM(mtm_report[collateral_required])</span></span>
+<span id="cb22-562"><a href="#cb22-562" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Posted = SUM(mtm_report[collateral_posted])</span></span>
+<span id="cb22-563"><a href="#cb22-563" aria-hidden="true" tabindex="-1"></a><span class="in">Excess / Deficit = SUM(mtm_report[excess_deficit])</span></span>
+<span id="cb22-564"><a href="#cb22-564" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-565"><a href="#cb22-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-566"><a href="#cb22-566" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
-<span id="cb22-567"><a href="#cb22-567" aria-hidden="true" tabindex="-1"></a><span class="in">Initial Margin (Inverse) = -1 * SUM(mtm_report[initial_margin])</span></span>
-<span id="cb22-568"><a href="#cb22-568" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-569"><a href="#cb22-569" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Required (Inverse) = -1 * SUM(mtm_report[collateral_required])</span></span>
-<span id="cb22-570"><a href="#cb22-570" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-571"><a href="#cb22-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-572"><a href="#cb22-572" aria-hidden="true" tabindex="-1"></a><span class="fu">## Previous-day and moving-average patterns</span></span>
+<span id="cb22-566"><a href="#cb22-566" aria-hidden="true" tabindex="-1"></a>Because initial margin and collateral required are stored as negative amounts owed to the broker, inverse measures can be useful for visuals where positive means amount required.</span>
+<span id="cb22-567"><a href="#cb22-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-568"><a href="#cb22-568" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
+<span id="cb22-569"><a href="#cb22-569" aria-hidden="true" tabindex="-1"></a><span class="in">Initial Margin (Inverse) = -1 * SUM(mtm_report[initial_margin])</span></span>
+<span id="cb22-570"><a href="#cb22-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-571"><a href="#cb22-571" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Required (Inverse) = -1 * SUM(mtm_report[collateral_required])</span></span>
+<span id="cb22-572"><a href="#cb22-572" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-573"><a href="#cb22-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-574"><a href="#cb22-574" aria-hidden="true" tabindex="-1"></a>The previous-day pattern finds the latest fact date before the current date selected in the date dimension, then evaluates the measure at that date:</span>
+<span id="cb22-574"><a href="#cb22-574" aria-hidden="true" tabindex="-1"></a><span class="fu">## Previous-day and moving-average patterns</span></span>
 <span id="cb22-575"><a href="#cb22-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-576"><a href="#cb22-576" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
-<span id="cb22-577"><a href="#cb22-577" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Posted (Previous Day) =</span></span>
-<span id="cb22-578"><a href="#cb22-578" aria-hidden="true" tabindex="-1"></a><span class="in">VAR CurrentDate = MAX(dim_date[calendar_date])</span></span>
-<span id="cb22-579"><a href="#cb22-579" aria-hidden="true" tabindex="-1"></a><span class="in">VAR PreviousDateWithData =</span></span>
-<span id="cb22-580"><a href="#cb22-580" aria-hidden="true" tabindex="-1"></a><span class="in">    CALCULATE(</span></span>
-<span id="cb22-581"><a href="#cb22-581" aria-hidden="true" tabindex="-1"></a><span class="in">        MAX(mtm_report[report_date]),</span></span>
-<span id="cb22-582"><a href="#cb22-582" aria-hidden="true" tabindex="-1"></a><span class="in">        REMOVEFILTERS(dim_date),</span></span>
-<span id="cb22-583"><a href="#cb22-583" aria-hidden="true" tabindex="-1"></a><span class="in">        dim_date[calendar_date] &lt; CurrentDate</span></span>
-<span id="cb22-584"><a href="#cb22-584" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
-<span id="cb22-585"><a href="#cb22-585" aria-hidden="true" tabindex="-1"></a><span class="in">RETURN</span></span>
-<span id="cb22-586"><a href="#cb22-586" aria-hidden="true" tabindex="-1"></a><span class="in">    CALCULATE(</span></span>
-<span id="cb22-587"><a href="#cb22-587" aria-hidden="true" tabindex="-1"></a><span class="in">        [Collateral Posted],</span></span>
-<span id="cb22-588"><a href="#cb22-588" aria-hidden="true" tabindex="-1"></a><span class="in">        REMOVEFILTERS(dim_date),</span></span>
-<span id="cb22-589"><a href="#cb22-589" aria-hidden="true" tabindex="-1"></a><span class="in">        dim_date[calendar_date] = PreviousDateWithData</span></span>
-<span id="cb22-590"><a href="#cb22-590" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
-<span id="cb22-591"><a href="#cb22-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-592"><a href="#cb22-592" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Posted (Daily Change) =</span></span>
-<span id="cb22-593"><a href="#cb22-593" aria-hidden="true" tabindex="-1"></a><span class="in">    [Collateral Posted] - [Collateral Posted (Previous Day)]</span></span>
-<span id="cb22-594"><a href="#cb22-594" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
-<span id="cb22-595"><a href="#cb22-595" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-596"><a href="#cb22-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-597"><a href="#cb22-597" aria-hidden="true" tabindex="-1"></a>For smoothing, the existing model uses a 30-day window:</span>
+<span id="cb22-576"><a href="#cb22-576" aria-hidden="true" tabindex="-1"></a>The previous-day pattern finds the latest fact date before the current date selected in the date dimension, then evaluates the measure at that date:</span>
+<span id="cb22-577"><a href="#cb22-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-578"><a href="#cb22-578" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
+<span id="cb22-579"><a href="#cb22-579" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Posted (Previous Day) =</span></span>
+<span id="cb22-580"><a href="#cb22-580" aria-hidden="true" tabindex="-1"></a><span class="in">VAR CurrentDate = MAX(dim_date[calendar_date])</span></span>
+<span id="cb22-581"><a href="#cb22-581" aria-hidden="true" tabindex="-1"></a><span class="in">VAR PreviousDateWithData =</span></span>
+<span id="cb22-582"><a href="#cb22-582" aria-hidden="true" tabindex="-1"></a><span class="in">    CALCULATE(</span></span>
+<span id="cb22-583"><a href="#cb22-583" aria-hidden="true" tabindex="-1"></a><span class="in">        MAX(mtm_report[report_date]),</span></span>
+<span id="cb22-584"><a href="#cb22-584" aria-hidden="true" tabindex="-1"></a><span class="in">        REMOVEFILTERS(dim_date),</span></span>
+<span id="cb22-585"><a href="#cb22-585" aria-hidden="true" tabindex="-1"></a><span class="in">        dim_date[calendar_date] &lt; CurrentDate</span></span>
+<span id="cb22-586"><a href="#cb22-586" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb22-587"><a href="#cb22-587" aria-hidden="true" tabindex="-1"></a><span class="in">RETURN</span></span>
+<span id="cb22-588"><a href="#cb22-588" aria-hidden="true" tabindex="-1"></a><span class="in">    CALCULATE(</span></span>
+<span id="cb22-589"><a href="#cb22-589" aria-hidden="true" tabindex="-1"></a><span class="in">        [Collateral Posted],</span></span>
+<span id="cb22-590"><a href="#cb22-590" aria-hidden="true" tabindex="-1"></a><span class="in">        REMOVEFILTERS(dim_date),</span></span>
+<span id="cb22-591"><a href="#cb22-591" aria-hidden="true" tabindex="-1"></a><span class="in">        dim_date[calendar_date] = PreviousDateWithData</span></span>
+<span id="cb22-592"><a href="#cb22-592" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb22-593"><a href="#cb22-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-594"><a href="#cb22-594" aria-hidden="true" tabindex="-1"></a><span class="in">Collateral Posted (Daily Change) =</span></span>
+<span id="cb22-595"><a href="#cb22-595" aria-hidden="true" tabindex="-1"></a><span class="in">    [Collateral Posted] - [Collateral Posted (Previous Day)]</span></span>
+<span id="cb22-596"><a href="#cb22-596" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb22-597"><a href="#cb22-597" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-598"><a href="#cb22-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-599"><a href="#cb22-599" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
-<span id="cb22-600"><a href="#cb22-600" aria-hidden="true" tabindex="-1"></a><span class="in">IM 30 Day Moving Average =</span></span>
-<span id="cb22-601"><a href="#cb22-601" aria-hidden="true" tabindex="-1"></a><span class="in">CALCULATE(</span></span>
-<span id="cb22-602"><a href="#cb22-602" aria-hidden="true" tabindex="-1"></a><span class="in">    AVERAGEX(</span></span>
-<span id="cb22-603"><a href="#cb22-603" aria-hidden="true" tabindex="-1"></a><span class="in">        DATESINPERIOD(</span></span>
-<span id="cb22-604"><a href="#cb22-604" aria-hidden="true" tabindex="-1"></a><span class="in">            dim_date[calendar_date],</span></span>
-<span id="cb22-605"><a href="#cb22-605" aria-hidden="true" tabindex="-1"></a><span class="in">            MAX(dim_date[calendar_date]),</span></span>
-<span id="cb22-606"><a href="#cb22-606" aria-hidden="true" tabindex="-1"></a><span class="in">            -30,</span></span>
-<span id="cb22-607"><a href="#cb22-607" aria-hidden="true" tabindex="-1"></a><span class="in">            DAY</span></span>
-<span id="cb22-608"><a href="#cb22-608" aria-hidden="true" tabindex="-1"></a><span class="in">        ),</span></span>
-<span id="cb22-609"><a href="#cb22-609" aria-hidden="true" tabindex="-1"></a><span class="in">        [Initial Margin (Inverse)]</span></span>
-<span id="cb22-610"><a href="#cb22-610" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
-<span id="cb22-611"><a href="#cb22-611" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb22-612"><a href="#cb22-612" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-613"><a href="#cb22-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-614"><a href="#cb22-614" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation map</span></span>
+<span id="cb22-599"><a href="#cb22-599" aria-hidden="true" tabindex="-1"></a>For smoothing, the existing model uses a 30-day window:</span>
+<span id="cb22-600"><a href="#cb22-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-601"><a href="#cb22-601" aria-hidden="true" tabindex="-1"></a><span class="in">``` dax</span></span>
+<span id="cb22-602"><a href="#cb22-602" aria-hidden="true" tabindex="-1"></a><span class="in">IM 30 Day Moving Average =</span></span>
+<span id="cb22-603"><a href="#cb22-603" aria-hidden="true" tabindex="-1"></a><span class="in">CALCULATE(</span></span>
+<span id="cb22-604"><a href="#cb22-604" aria-hidden="true" tabindex="-1"></a><span class="in">    AVERAGEX(</span></span>
+<span id="cb22-605"><a href="#cb22-605" aria-hidden="true" tabindex="-1"></a><span class="in">        DATESINPERIOD(</span></span>
+<span id="cb22-606"><a href="#cb22-606" aria-hidden="true" tabindex="-1"></a><span class="in">            dim_date[calendar_date],</span></span>
+<span id="cb22-607"><a href="#cb22-607" aria-hidden="true" tabindex="-1"></a><span class="in">            MAX(dim_date[calendar_date]),</span></span>
+<span id="cb22-608"><a href="#cb22-608" aria-hidden="true" tabindex="-1"></a><span class="in">            -30,</span></span>
+<span id="cb22-609"><a href="#cb22-609" aria-hidden="true" tabindex="-1"></a><span class="in">            DAY</span></span>
+<span id="cb22-610"><a href="#cb22-610" aria-hidden="true" tabindex="-1"></a><span class="in">        ),</span></span>
+<span id="cb22-611"><a href="#cb22-611" aria-hidden="true" tabindex="-1"></a><span class="in">        [Initial Margin (Inverse)]</span></span>
+<span id="cb22-612"><a href="#cb22-612" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb22-613"><a href="#cb22-613" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb22-614"><a href="#cb22-614" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-615"><a href="#cb22-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-616"><a href="#cb22-616" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Power BI visual <span class="pp">|</span> Fields/measures <span class="pp">|</span> Question answered <span class="pp">|</span></span>
-<span id="cb22-617"><a href="#cb22-617" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
-<span id="cb22-618"><a href="#cb22-618" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> KPI cards <span class="pp">|</span> <span class="in">`[Collateral Required (Inverse)]`</span>, <span class="in">`[Collateral Posted]`</span>, <span class="in">`[Excess / Deficit]`</span> <span class="pp">|</span> What is the current collateral position? <span class="pp">|</span></span>
-<span id="cb22-619"><a href="#cb22-619" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Line chart <span class="pp">|</span> <span class="in">`dim_date[calendar_date]`</span>, <span class="in">`[Collateral Posted]`</span>, <span class="in">`[Collateral Required (Inverse)]`</span> <span class="pp">|</span> How has the requirement moved over time? <span class="pp">|</span></span>
-<span id="cb22-620"><a href="#cb22-620" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Area or combo chart <span class="pp">|</span> <span class="in">`dim_date[calendar_date]`</span>, <span class="in">`[Initial Margin (Inverse)]`</span>, <span class="in">`[Variation Margin]`</span> <span class="pp">|</span> What is driving the requirement? <span class="pp">|</span></span>
-<span id="cb22-621"><a href="#cb22-621" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column chart <span class="pp">|</span> <span class="in">`dim_banks[bank_id]`</span>, <span class="in">`[Counterparty Limits]`</span>, portfolio exposure <span class="pp">|</span> Which counterparties consume capacity? <span class="pp">|</span></span>
-<span id="cb22-622"><a href="#cb22-622" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detail table <span class="pp">|</span> date, bank, currency pair, trade size, margin measures <span class="pp">|</span> Which records explain the aggregate? <span class="pp">|</span></span>
-<span id="cb22-623"><a href="#cb22-623" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Slicers <span class="pp">|</span> date, bank, currency, trade type <span class="pp">|</span> How can the analyst narrow the review? <span class="pp">|</span></span>
-<span id="cb22-624"><a href="#cb22-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-625"><a href="#cb22-625" aria-hidden="true" tabindex="-1"></a>The PBIP project contains three principal report pages: **Dashboard**, **Limits**, and **Portfolio**. The Quarto visuals above mirror those analytical roles while remaining independent of Power BI Desktop.</span>
+<span id="cb22-616"><a href="#cb22-616" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisation map</span></span>
+<span id="cb22-617"><a href="#cb22-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-618"><a href="#cb22-618" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Power BI visual <span class="pp">|</span> Fields/measures <span class="pp">|</span> Question answered <span class="pp">|</span></span>
+<span id="cb22-619"><a href="#cb22-619" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
+<span id="cb22-620"><a href="#cb22-620" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> KPI cards <span class="pp">|</span> <span class="in">`[Collateral Required (Inverse)]`</span>, <span class="in">`[Collateral Posted]`</span>, <span class="in">`[Excess / Deficit]`</span> <span class="pp">|</span> What is the current collateral position? <span class="pp">|</span></span>
+<span id="cb22-621"><a href="#cb22-621" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Line chart <span class="pp">|</span> <span class="in">`dim_date[calendar_date]`</span>, <span class="in">`[Collateral Posted]`</span>, <span class="in">`[Collateral Required (Inverse)]`</span> <span class="pp">|</span> How has the requirement moved over time? <span class="pp">|</span></span>
+<span id="cb22-622"><a href="#cb22-622" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Area or combo chart <span class="pp">|</span> <span class="in">`dim_date[calendar_date]`</span>, <span class="in">`[Initial Margin (Inverse)]`</span>, <span class="in">`[Variation Margin]`</span> <span class="pp">|</span> What is driving the requirement? <span class="pp">|</span></span>
+<span id="cb22-623"><a href="#cb22-623" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column chart <span class="pp">|</span> <span class="in">`dim_banks[bank_id]`</span>, <span class="in">`[Counterparty Limits]`</span>, portfolio exposure <span class="pp">|</span> Which counterparties consume capacity? <span class="pp">|</span></span>
+<span id="cb22-624"><a href="#cb22-624" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Detail table <span class="pp">|</span> date, bank, currency pair, trade size, margin measures <span class="pp">|</span> Which records explain the aggregate? <span class="pp">|</span></span>
+<span id="cb22-625"><a href="#cb22-625" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Slicers <span class="pp">|</span> date, bank, currency, trade type <span class="pp">|</span> How can the analyst narrow the review? <span class="pp">|</span></span>
 <span id="cb22-626"><a href="#cb22-626" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-627"><a href="#cb22-627" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical validation checklist</span></span>
+<span id="cb22-627"><a href="#cb22-627" aria-hidden="true" tabindex="-1"></a>The PBIP project contains three principal report pages: **Dashboard**, **Limits**, and **Portfolio**. The Quarto visuals above mirror those analytical roles while remaining independent of Power BI Desktop.</span>
 <span id="cb22-628"><a href="#cb22-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-629"><a href="#cb22-629" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Refresh the source data and confirm the four CSV row counts remain stable on a repeat run.</span>
-<span id="cb22-630"><a href="#cb22-630" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Check that <span class="in">`dim_date`</span> filters all date-bearing facts at the intended grain.</span>
-<span id="cb22-631"><a href="#cb22-631" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Confirm inverse measures are used only where positive values mean required or adverse exposure.</span>
-<span id="cb22-632"><a href="#cb22-632" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Compare the Power BI latest-date KPI with the last row of <span class="in">`mtm_report.csv`</span>.</span>
-<span id="cb22-633"><a href="#cb22-633" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Check that a counterparty or date slicer does not duplicate daily collateral totals.</span>
-<span id="cb22-634"><a href="#cb22-634" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-635"><a href="#cb22-635" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb22-629"><a href="#cb22-629" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical validation checklist</span></span>
+<span id="cb22-630"><a href="#cb22-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-631"><a href="#cb22-631" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Refresh the source data and confirm the four CSV row counts remain stable on a repeat run.</span>
+<span id="cb22-632"><a href="#cb22-632" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Check that <span class="in">`dim_date`</span> filters all date-bearing facts at the intended grain.</span>
+<span id="cb22-633"><a href="#cb22-633" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Confirm inverse measures are used only where positive values mean required or adverse exposure.</span>
+<span id="cb22-634"><a href="#cb22-634" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Compare the Power BI latest-date KPI with the last row of <span class="in">`mtm_report.csv`</span>.</span>
+<span id="cb22-635"><a href="#cb22-635" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Check that a counterparty or date slicer does not duplicate daily collateral totals.</span>
 <span id="cb22-636"><a href="#cb22-636" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-637"><a href="#cb22-637" aria-hidden="true" tabindex="-1"></a>The project provides an end-to-end narrative from synthetic data generation to collateral calculation and dashboard consumption. Python creates deterministic analytical datasets, the collateral report applies explicit sign and movement rules, and Power BI transforms those datasets into reusable measures and interactive monitoring views. The Quarto report provides the reproducible audit trail connecting these layers.</span>
+<span id="cb22-637"><a href="#cb22-637" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb22-638"><a href="#cb22-638" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-639"><a href="#cb22-639" aria-hidden="true" tabindex="-1"></a>The project provides an end-to-end narrative from synthetic data generation to collateral calculation and dashboard consumption. Python creates deterministic analytical datasets, the collateral report applies explicit sign and movement rules, and Power BI transforms those datasets into reusable measures and interactive monitoring views. The Quarto report provides the reproducible audit trail connecting these layers.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -2590,4 +2609,5 @@ Figure&nbsp;3: Collateral Process Flow
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

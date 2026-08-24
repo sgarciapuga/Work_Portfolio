@@ -9,7 +9,7 @@
 <meta name="author" content="Sergio">
 <meta name="dcterms.date" content="2026-08-08">
 
-<title>Treasury Cashflow Simulation — Project Report – Work Portfolio</title>
+<title>Treasury Cashflow Simulation — Project Report – Professional Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,11 +110,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
+<link rel="stylesheet" href="../styles/portfolio.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -126,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Work Portfolio</span>
+    <span class="navbar-title">Professional Portfolio</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -139,6 +141,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyriba-transformation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Kyriba Transformation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyriba-transformation">    
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/report.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/accounting/report.html">
+ <span class="dropdown-text">Accounting Deep Dive</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../fx-prime-brokerage-collateral/report.html"> 
 <span class="menu-text">FX Prime Brokerage Collateral</span></a>
@@ -252,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="code-walkthrough" class="level1">
 <h1>Code walkthrough</h1>
 <p>Explain key modules and functions used in the simulation. Use the code cells below to show examples and small excerpts.</p>
-<div id="9d59da54" class="cell" data-execution_count="1">
+<div id="6b2d9017" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: show latest 5 movements from PostgreSQL (safe if DATABASE_URL is missing)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -328,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visual-example-plot-latest-balances-reads-csv-if-present-otherwise-uses-sample" class="level1">
 <h1>Visual example: plot latest balances (reads CSV if present, otherwise uses sample)</h1>
-<div id="5236a298" class="cell" data-execution_count="2">
+<div id="04909b46" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -773,4 +790,5 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

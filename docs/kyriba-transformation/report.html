@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sergio">
+<meta name="dcterms.date" content="2026-08-24">
+<meta name="description" content="A Treasury functional case study: translating operational requirements into Kyriba design, controlled integration validation and continuous improvement.">
+
+<title>Kyriba TMS Transformation – Professional Portfolio</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles/portfolio.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Professional Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyriba-transformation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Kyriba Transformation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyriba-transformation">    
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/report.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/accounting/report.html">
+ <span class="dropdown-text">Accounting Deep Dive</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../fx-prime-brokerage-collateral/report.html"> 
+<span class="menu-text">FX Prime Brokerage Collateral</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../treasury-cashflow-simulation/report.html"> 
+<span class="menu-text">Treasury Cashflow Simulation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../daily-fx-rates/report.html"> 
+<span class="menu-text">Daily FX Rates</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../create-date-table/report.html"> 
+<span class="menu-text">Create Date Table</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#role-and-contribution" id="toc-role-and-contribution" class="nav-link active" data-scroll-target="#role-and-contribution">Role and contribution</a></li>
+  <li><a href="#transformation-at-a-glance" id="toc-transformation-at-a-glance" class="nav-link" data-scroll-target="#transformation-at-a-glance">Transformation at a glance</a></li>
+  <li><a href="#blueprinting-functional-design" id="toc-blueprinting-functional-design" class="nav-link" data-scroll-target="#blueprinting-functional-design">Blueprinting &amp; Functional Design</a>
+  <ul class="collapse">
+  <li><a href="#start-with-treasurys-operating-reality" id="toc-start-with-treasurys-operating-reality" class="nav-link" data-scroll-target="#start-with-treasurys-operating-reality">Start with Treasury’s operating reality</a></li>
+  </ul></li>
+  <li><a href="#core-data-access-setup" id="toc-core-data-access-setup" class="nav-link" data-scroll-target="#core-data-access-setup">Core Data &amp; Access Setup</a>
+  <ul class="collapse">
+  <li><a href="#establish-the-operating-foundation" id="toc-establish-the-operating-foundation" class="nav-link" data-scroll-target="#establish-the-operating-foundation">Establish the operating foundation</a></li>
+  <li><a href="#pair-data-quality-with-controlled-access" id="toc-pair-data-quality-with-controlled-access" class="nav-link" data-scroll-target="#pair-data-quality-with-controlled-access">Pair data quality with controlled access</a></li>
+  </ul></li>
+  <li><a href="#integration-connectivity" id="toc-integration-connectivity" class="nav-link" data-scroll-target="#integration-connectivity">Integration &amp; Connectivity</a>
+  <ul class="collapse">
+  <li><a href="#connect-kyriba-to-the-wider-treasury-ecosystem" id="toc-connect-kyriba-to-the-wider-treasury-ecosystem" class="nav-link" data-scroll-target="#connect-kyriba-to-the-wider-treasury-ecosystem">Connect Kyriba to the wider Treasury ecosystem</a></li>
+  <li><a href="#integration-inventory" id="toc-integration-inventory" class="nav-link" data-scroll-target="#integration-inventory">Integration inventory</a></li>
+  <li><a href="#controlled-connectivity-in-practice" id="toc-controlled-connectivity-in-practice" class="nav-link" data-scroll-target="#controlled-connectivity-in-practice">Controlled connectivity in practice</a></li>
+  </ul></li>
+  <li><a href="#optimisation-continuous-improvement" id="toc-optimisation-continuous-improvement" class="nav-link" data-scroll-target="#optimisation-continuous-improvement">Optimisation &amp; Continuous Improvement</a>
+  <ul class="collapse">
+  <li><a href="#improve-the-implemented-platform-after-go-live" id="toc-improve-the-implemented-platform-after-go-live" class="nav-link" data-scroll-target="#improve-the-implemented-platform-after-go-live">Improve the implemented platform after go-live</a></li>
+  <li><a href="#related-deep-dives" id="toc-related-deep-dives" class="nav-link" data-scroll-target="#related-deep-dives">Related deep dives</a></li>
+  </ul></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <ul class="collapse">
+  <li><a href="#source-traceability" id="toc-source-traceability" class="nav-link" data-scroll-target="#source-traceability">Source traceability</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Kyriba TMS Transformation</h1>
+<p class="subtitle lead">From Treasury requirements to an operable, connected platform</p>
+</div>
+
+<div>
+  <div class="description">
+    A Treasury functional case study: translating operational requirements into Kyriba design, controlled integration validation and continuous improvement.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sergio </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 24, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="report-kicker">
+<p>Treasury systems case study</p>
+</div>
+<div class="report-intro">
+<p>This case study shows how Treasury operational requirements were translated into Kyriba functional design, controlled validation, connected processes and continuous improvement.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Evidence boundary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This report is based on the supplied Kyriba Transformation presentation. It describes functional design, requirements validation, configuration, administration and collaboration with IT, banks, custodians, vendors and Finance. It does not claim ownership of technical infrastructure, API keys, architecture, delivery dates or quantitative performance outcomes unless separately evidenced.</p>
+</div>
+</div>
+<section id="role-and-contribution" class="level2">
+<h2 class="anchored" data-anchor-id="role-and-contribution">Role and contribution</h2>
+<p>My role sat between Treasury operations, Kyriba solution design and hands-on system administration. I translated Treasury requirements into functional specifications, reviewed consultant-designed solutions, tested workflows and mappings, and maintained post-go-live enhancements.</p>
+<div class="role-grid">
+<section id="functional-design" class="level3 role-card">
+<h3 class="anchored" data-anchor-id="functional-design">Functional design</h3>
+<p>Captured operational requirements, challenged pain points and mapped Treasury needs to Kyriba capabilities, rules and configuration behaviour.</p>
+</section>
+<section id="solution-validation" class="level3 role-card">
+<h3 class="anchored" data-anchor-id="solution-validation">Solution validation</h3>
+<p>Reviewed workflows, mappings, templates and outputs with implementation teams and business stakeholders to confirm that the solution worked from a Treasury-user perspective.</p>
+</section>
+<section id="ongoing-stewardship" class="level3 role-card">
+<h3 class="anchored" data-anchor-id="ongoing-stewardship">Ongoing stewardship</h3>
+<p>Maintained users, roles, permissions, system data and optimisation cycles, escalating technical components that required IT support.</p>
+</section>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Functional ownership</th>
+<th>Collaboration and boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Requirements, workflow design, configuration review, functional testing, Treasury-led administration and optimisation.</td>
+<td>Worked with IT, implementation teams, banks, providers, custodians and Finance on connectivity, specialist delivery and technical components.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="transformation-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="transformation-at-a-glance">Transformation at a glance</h2>
+<p>The transformation progressed from functional design, through data and governance foundations, into integration validation and post-go-live improvement.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Blueprinting &amp;&lt;br/&gt;Functional Design] --&gt; B[Core Data &amp;&lt;br/&gt;Access Setup]
+    B --&gt; C[Integration &amp;&lt;br/&gt;Connectivity]
+    C --&gt; D[Optimisation &amp;&lt;br/&gt;Continuous Improvement]
+</pre>
+</div>
+<p></p><figcaption> The four-part transformation journey described in the source presentation.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Business purpose</th>
+<th>Evidence themes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Blueprinting &amp; Functional Design</td>
+<td>Translate Treasury needs into workable Kyriba behaviour.</td>
+<td>Requirements, workflows, module scope, controls and testing.</td>
+</tr>
+<tr class="even">
+<td>Core Data &amp; Access Setup</td>
+<td>Establish a reliable data and governance foundation.</td>
+<td>Entities, banks, accounts, third parties, roles and permissions.</td>
+</tr>
+<tr class="odd">
+<td>Integration &amp; Connectivity</td>
+<td>Connect Kyriba with the financial and market ecosystem.</td>
+<td>Banking and payments, trade management, ERP/accounting, data/API.</td>
+</tr>
+<tr class="even">
+<td>Optimisation &amp; Continuous Improvement</td>
+<td>Keep the platform useful, controlled and adaptable after go-live.</td>
+<td>Dashboards, views, menus, input screens, reporting and administration.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="blueprinting-functional-design" class="level1">
+<h1>Blueprinting &amp; Functional Design</h1>
+<section id="start-with-treasurys-operating-reality" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-treasurys-operating-reality">Start with Treasury’s operating reality</h2>
+<p>Functional design began with Treasury business roles, operational processes and pain points. Stakeholder conversations turned those needs into practical requirements that could be reviewed against Kyriba’s functional capabilities.</p>
+<p>The scope included trade processing, banking and payments, FX integration, cash management, accounting, reporting, controls and approvals. The objective was not to treat Kyriba as an isolated application, but to make its behaviour workable for Treasury operations.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Treasury requirements&lt;br/&gt;and stakeholder alignment] --&gt; B[Workflow and&lt;br/&gt;process design]
+    B --&gt; C[Kyriba functional&lt;br/&gt;specifications]
+    C --&gt; D[Functional and&lt;br/&gt;end-to-end testing]
+</pre>
+</div>
+<p></p><figcaption> Requirements-to-solution sequence used for functional design and validation.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<div class="evidence-grid">
+<section id="requirements-and-alignment" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="requirements-and-alignment">Requirements and alignment</h3>
+<p>Documented detailed operational requirements, challenged existing processes and identified pain points. Treasury needs were translated into functional specifications.</p>
+</section>
+<section id="workflow-and-controls" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="workflow-and-controls">Workflow and controls</h3>
+<p>Designed end-to-end Treasury workflows, defined approval and control points, and identified opportunities to simplify manual activity.</p>
+</section>
+<section id="kyriba-design-and-validation" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="kyriba-design-and-validation">Kyriba design and validation</h3>
+<p>Mapped requirements to Kyriba functionality, reviewed functional behaviour and configuration requirements, and supported functional and end-to-end testing.</p>
+</section>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Part takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Treasury requirements were converted into practical Kyriba solutions while balancing operational needs, controls and system capabilities.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="core-data-access-setup" class="level1">
+<h1>Core Data &amp; Access Setup</h1>
+<section id="establish-the-operating-foundation" class="level2">
+<h2 class="anchored" data-anchor-id="establish-the-operating-foundation">Establish the operating foundation</h2>
+<p>The data foundation covered entities, banks, bank accounts and third parties. Kyriba-provided templates were completed and validated, relationships between core objects were established, and data structures were checked against Treasury operating requirements before system loading.</p>
+<p>Configuration also covered main and system currencies, transaction types, product structures and product subscriptions aligned to business and user requirements.</p>
+</section>
+<section id="pair-data-quality-with-controlled-access" class="level2">
+<h2 class="anchored" data-anchor-id="pair-data-quality-with-controlled-access">Pair data quality with controlled access</h2>
+<p>The access model used role-based permissions, access boundaries, approval workflows and segregation-of-duties requirements. The source presentation gives Client User, Treasury User, Admin User and View-Only User as examples of user profiles.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    A[Core data objects] --&gt; B[Validated relationships]
+    B --&gt; C[Configuration and&lt;br/&gt;transaction structures]
+    C --&gt; D[Roles and permissions]
+    D --&gt; E[Approval workflows&lt;br/&gt;and segregation of duties]
+    E --&gt; F[Treasury-led&lt;br/&gt;administration]
+</pre>
+</div>
+<p></p><figcaption> Conceptual foundation for Kyriba data, access and governance.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Foundation area</th>
+<th>What the work established</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Master data</td>
+<td>Entities, banks, bank accounts and third parties, with relationships between core data objects.</td>
+</tr>
+<tr class="even">
+<td>Configuration</td>
+<td>Currencies, transaction types, product structures and subscriptions aligned to business and user requirements.</td>
+</tr>
+<tr class="odd">
+<td>Data quality</td>
+<td>Data review before loading, configuration checking against business requirements and consistency across core objects.</td>
+</tr>
+<tr class="even">
+<td>Access and controls</td>
+<td>Role-based access, permissions, access boundaries, approval workflows and segregation of duties.</td>
+</tr>
+<tr class="odd">
+<td>Operating model</td>
+<td>Treasury-led day-to-day administration for users, roles, permissions and system data; technical components requiring IT support were escalated.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Scope note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Treasury-led administration describes functional responsibility for day-to-day Kyriba configuration and maintenance. It does not imply ownership of the underlying technical infrastructure.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="integration-connectivity" class="level1">
+<h1>Integration &amp; Connectivity</h1>
+<section id="connect-kyriba-to-the-wider-treasury-ecosystem" class="level2">
+<h2 class="anchored" data-anchor-id="connect-kyriba-to-the-wider-treasury-ecosystem">Connect Kyriba to the wider Treasury ecosystem</h2>
+<p>This work covered Banking &amp; Payments, Trade Management, ERP / Accounting and the Data / API Layer around Kyriba. The contribution focused on defining requirements, configuring or reviewing templates, coordinating with external parties, and validating outputs and exceptions.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    K[Kyriba&lt;br/&gt;Treasury platform]
+    K --- BP[Banking &amp; Payments]
+    K --- TM[Trade Management]
+    K --- EA[ERP / Accounting]
+    K --- DA[Data / API Layer]
+</pre>
+</div>
+<p></p><figcaption> Conceptual integration landscape based on the source presentation.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<p>The diagram shows the integration domains addressed in the transformation. It does not imply undocumented interface direction or technical ownership.</p>
+</section>
+<section id="integration-inventory" class="level2">
+<h2 class="anchored" data-anchor-id="integration-inventory">Integration inventory</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Domain</th>
+<th>Functional focus</th>
+<th>Validation focus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Banking &amp; Payments</td>
+<td><code>camt.053</code> statements, <code>pain.001</code> / <code>pain.002</code> payments, BTC mappings and reconciliation rules.</td>
+<td>Statement delivery, formats, transaction information, payment responses, statuses, matching behaviour and breaks.</td>
+</tr>
+<tr class="even">
+<td>Trade Management</td>
+<td>Money Market Funds platform, internal manual trade entry, custodian-bank post-trade processing and FX platform connectivity.</td>
+<td>Trade capture, transaction-specific templates, end-to-end processing, exceptions and final solution behaviour.</td>
+</tr>
+<tr class="odd">
+<td>ERP / Accounting</td>
+<td>Financial accounting, accruals, mark-to-market (MTM), general-ledger (GL) generation and approval, cash accounting and ERP connectivity.</td>
+<td>Transaction templates, mappings, procedures, GL review and approval, and Data Platform output.</td>
+</tr>
+<tr class="even">
+<td>Data / API Layer</td>
+<td>Standard Kyriba Data API, Open API financial transactions, market data including FX rates, forwards, interest-rate curves and MMF rates.</td>
+<td>Required data fields, sources, outputs, gaps and documented data requirements.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="controlled-connectivity-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="controlled-connectivity-in-practice">Controlled connectivity in practice</h2>
+<p>For banking and payments, the work included connectivity setup support, statement and payment testing, BTC mapping, reconciliation rules and investigation of breaks in the Bank Connectivity Cockpit. Trade-management activity covered manual-entry requirements, template configuration, executed-trade analysis, provider/custodian coordination and exception testing.</p>
+<p>For accounting, cash and financial transaction templates were reviewed and improved with Finance and the Kyriba team. The process from accruals and MTM through GL generation, review and approval was documented. In parallel, Open API requirements were defined with IT and outputs were validated through the Data Platform.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Part takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The integration work connected Kyriba with the wider Treasury and financial ecosystem through functional requirements, controlled testing and exception review.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="optimisation-continuous-improvement" class="level1">
+<h1>Optimisation &amp; Continuous Improvement</h1>
+<section id="improve-the-implemented-platform-after-go-live" class="level2">
+<h2 class="anchored" data-anchor-id="improve-the-implemented-platform-after-go-live">Improve the implemented platform after go-live</h2>
+<p>After implementation, the focus shifted to visibility, usability and repeatable processes. This included personalised dashboards, tailored views and templates, simplified navigation, shortcuts and transaction input screens shaped around user roles and transaction needs.</p>
+<div class="evidence-grid">
+<section id="user-experience" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="user-experience">User experience</h3>
+<p>Personalised dashboards gave clients a clearer view of positions and key Treasury information. Tailored views and templates supported the monitoring of new, historical and outstanding trades.</p>
+</section>
+<section id="easier-operation" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="easier-operation">Easier operation</h3>
+<p>Menu structures and shortcuts made frequently used functions easier to access. Transaction input screens were personalised by transaction type and user requirements.</p>
+</section>
+<section id="repeatable-delivery" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="repeatable-delivery">Repeatable delivery</h3>
+<p>Reporting requirements and delivery processes were designed for trades, positions, balances and interest. Trade-confirmation workflows used CSV output and email-only recipients to distribute confirmations to fund administrators.</p>
+</section>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Observe user needs&lt;br/&gt;and operating friction] --&gt; B[Configure views,&lt;br/&gt;screens and workflows]
+    B --&gt; C[Validate with Treasury&lt;br/&gt;users and stakeholders]
+    C --&gt; D[Maintain, fix&lt;br/&gt;and optimise]
+    D --&gt; A
+</pre>
+</div>
+<p></p><figcaption> Qualitative continuous-improvement loop described by the optimisation work.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Evidence limit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The source presentation does not provide approved quantitative measures, dates, named clients, licence counts or financial values. This report therefore uses qualitative language and does not convert optimisation examples into KPI tiles or performance charts.</p>
+</div>
+</div>
+</section>
+<section id="related-deep-dives" class="level2">
+<h2 class="anchored" data-anchor-id="related-deep-dives">Related deep dives</h2>
+<ul>
+<li><a href="../kyriba-transformation/accounting/report.html">Accounting deep dive</a> — under development.</li>
+</ul>
+</section>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<section id="source-traceability" class="level2">
+<h2 class="anchored" data-anchor-id="source-traceability">Source traceability</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Report section</th>
+<th style="text-align: right;">Source slides</th>
+<th>Evidence status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Transformation overview and role</td>
+<td style="text-align: right;">1–4</td>
+<td>Source-derived summary of scope, role and four-part roadmap.</td>
+</tr>
+<tr class="even">
+<td>Blueprinting and functional design</td>
+<td style="text-align: right;">5–7</td>
+<td>Source-derived requirements, workflow, design and testing themes.</td>
+</tr>
+<tr class="odd">
+<td>Core data and access setup</td>
+<td style="text-align: right;">8–10</td>
+<td>Source-derived master data, configuration, access and administration themes.</td>
+</tr>
+<tr class="even">
+<td>Integration and connectivity</td>
+<td style="text-align: right;">11–16</td>
+<td>Source-derived integration domains, interface examples and validation activities.</td>
+</tr>
+<tr class="odd">
+<td>Optimisation and continuous improvement</td>
+<td style="text-align: right;">17–19</td>
+<td>Source-derived user experience, reporting, trade confirmation and administration themes.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary">Glossary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Plain-English meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TMS</td>
+<td>Treasury Management System.</td>
+</tr>
+<tr class="even">
+<td>ERP</td>
+<td>Enterprise resource planning system, used here in the accounting-connectivity context.</td>
+</tr>
+<tr class="odd">
+<td>MTM</td>
+<td>Mark-to-market valuation process.</td>
+</tr>
+<tr class="even">
+<td>GL</td>
+<td>General ledger.</td>
+</tr>
+<tr class="odd">
+<td>Open API</td>
+<td>Kyriba API layer referenced in the presentation for financial transactions and Data Platform connectivity.</td>
+</tr>
+<tr class="even">
+<td><code>camt.053</code></td>
+<td>Bank statement message format referenced by the presentation.</td>
+</tr>
+<tr class="odd">
+<td><code>pain.001</code> / <code>pain.002</code></td>
+<td>Payment initiation and payment-status message formats referenced by the presentation.</td>
+</tr>
+</tbody>
+</table>
+<div class="report-footer">
+<p>Source: Kyriba TMS Transformation work documented in the supplied presentation. Quantitative claims, delivery outcomes and technical directions are included only where explicitly supported by that source.</p>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

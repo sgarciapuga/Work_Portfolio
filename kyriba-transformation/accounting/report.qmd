@@ -1,0 +1,29 @@
+---
+title: "Kyriba TMS Transformation — Accounting Deep Dive"
+subtitle: "Financial accounting, cash accounting and ERP connectivity"
+author: "Sergio"
+date: 2026-08-24
+format:
+  html:
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    number-sections: false
+    page-layout: full
+    max-width: 100%
+    code-fold: false
+    smooth-scroll: true
+---
+
+[← Back to Kyriba TMS Transformation overview](../report.qmd)
+
+::: {.report-kicker}
+Treasury systems case study
+:::
+
+::: {.callout-warning}
+## Under development
+
+This section is a placeholder for a deeper look at the Accounting and ERP connectivity work within the Kyriba transformation. Content, evidence and any supporting KPIs will be added once approved.
+:::

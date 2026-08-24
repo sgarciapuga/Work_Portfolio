@@ -1,0 +1,90 @@
+/* Shared portfolio design system — applied to every project page via _quarto.yml */
+:root {
+  --pf-navy: #343734;
+  --pf-ink: #4a4d42;
+  --pf-cream: #eff1e8;
+  --pf-gold: #c9a15a;
+  --pf-blue: #70a1bd;
+  --pf-blue-deep: #3f7690;
+  --pf-muted: #5b645f;
+  --pf-line: #d7ddd2;
+  --pf-soft-blue: #e9edf1;
+}
+
+body {
+  color: var(--pf-ink);
+  font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  font-family: "Aptos Display", "Aptos", "Segoe UI", Arial, sans-serif;
+  color: var(--pf-navy);
+}
+
+h1 { font-weight: 720; letter-spacing: -.02em; }
+h2 { font-weight: 700; margin-top: 2.6rem; }
+h3 { color: var(--pf-blue); font-size: 1.08rem; }
+
+a { color: var(--pf-blue-deep); text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--pf-gold); outline-offset: 3px; }
+
+/* Navbar */
+.navbar {
+  background-color: var(--pf-navy) !important;
+  border-bottom: 3px solid var(--pf-gold);
+}
+.navbar-title, .navbar-brand, .navbar-nav .nav-link {
+  color: #f4f8fb !important;
+}
+.navbar-nav .nav-link:hover {
+  color: var(--pf-cream) !important;
+}
+
+/* Callouts, consistent across all reports */
+.callout { border-left-width: 5px; border-radius: 0; box-shadow: none; }
+.callout-note { background: var(--pf-soft-blue); border-left-color: var(--pf-blue); }
+.callout-tip { background: #fffaf0; border-left-color: var(--pf-gold); }
+.callout-warning { background: #fff5df; border-left-color: #a96b08; }
+
+/* Tables */
+table { width: 100%; margin: 1.4rem 0 2rem; border-color: var(--pf-line); font-size: .95rem; }
+thead th { color: var(--pf-navy); background: var(--pf-soft-blue); border-color: var(--pf-line); }
+tbody tr:nth-child(even) { background: #fbfcfd; }
+
+/* Portfolio landing page hero + project cards */
+.portfolio-hero {
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0 clamp(1.25rem, 3vw, 2rem);
+  margin: 0 0 2rem;
+  border-bottom: 1px solid var(--pf-line);
+}
+.portfolio-hero h1 { color: var(--pf-navy); margin-top: 0; }
+.portfolio-hero p { max-width: 46rem; color: var(--pf-muted); font-size: 1.1rem; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.project-card {
+  padding: 1.4rem 1.5rem;
+  background: #fff;
+  border: 1px solid var(--pf-line);
+  border-top: 4px solid var(--pf-blue);
+  border-radius: .65rem;
+}
+.project-card h3 { margin-top: 0; }
+.project-card p:last-child { margin-bottom: 0; }
+.project-card .project-links { margin-top: .75rem; font-size: .92rem; }
+.project-card .project-links a { margin-right: 1rem; }
+
+@media (max-width: 768px) {
+  .project-grid { grid-template-columns: 1fr; }
+  table { display: block; overflow-x: auto; white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

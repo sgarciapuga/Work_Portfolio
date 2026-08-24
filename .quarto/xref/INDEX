@@ -22,5 +22,11 @@
   },
   "index.qmd": {
     "index.html": "11f631c4"
+  },
+  "kyriba-transformation/report.qmd": {
+    "report.html": "675228db"
+  },
+  "kyriba-transformation/accounting/report.qmd": {
+    "report.html": "3b0c8d52"
   }
 }

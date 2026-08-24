@@ -1,34 +1,278 @@
+---
+title: "Kyriba TMS Transformation"
+subtitle: "From Treasury requirements to an operable, connected platform"
+author: "Sergio"
+date: 2026-08-24
+description: "A Treasury functional case study: translating operational requirements into Kyriba design, controlled integration validation and continuous improvement."
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: right
+    number-sections: false
+    page-layout: full
+    max-width: 100%
+    code-fold: false
+    smooth-scroll: true
+execute:
+  echo: false
+  warning: false
+  error: false
+---
+
+::: {.report-kicker}
+Treasury systems case study
+:::
+
+::: {.report-intro}
+This case study shows how Treasury operational requirements were translated into Kyriba functional design, controlled validation, connected processes and continuous improvement.
+:::
+
+::: {.callout-note}
+## Evidence boundary
+
+This report is based on the supplied Kyriba Transformation presentation. It describes functional design, requirements validation, configuration, administration and collaboration with IT, banks, custodians, vendors and Finance. It does not claim ownership of technical infrastructure, API keys, architecture, delivery dates or quantitative performance outcomes unless separately evidenced.
+:::
+
+## Role and contribution
+
+My role sat between Treasury operations, Kyriba solution design and hands-on system administration. I translated Treasury requirements into functional specifications, reviewed consultant-designed solutions, tested workflows and mappings, and maintained post-go-live enhancements.
+
+::: {.role-grid}
+::: {.role-card}
+### Functional design
+
+Captured operational requirements, challenged pain points and mapped Treasury needs to Kyriba capabilities, rules and configuration behaviour.
+:::
+
+::: {.role-card}
+### Solution validation
+
+Reviewed workflows, mappings, templates and outputs with implementation teams and business stakeholders to confirm that the solution worked from a Treasury-user perspective.
+:::
+
+::: {.role-card}
+### Ongoing stewardship
+
+Maintained users, roles, permissions, system data and optimisation cycles, escalating technical components that required IT support.
+:::
+:::
+
+| Functional ownership | Collaboration and boundary |
+|---|---|
+| Requirements, workflow design, configuration review, functional testing, Treasury-led administration and optimisation. | Worked with IT, implementation teams, banks, providers, custodians and Finance on connectivity, specialist delivery and technical components. |
+
+## Transformation at a glance
+
+The transformation progressed from functional design, through data and governance foundations, into integration validation and post-go-live improvement.
+
 ```{mermaid}
-%%| fig-width: 6.5
-graph TD
-    subgraph Kyriba TMS
-        A[Scheduler Trigger] --> B[Generate CSV Export Template]
-        B --> C[Email User Account - License Free]
-    end
-    
-    subgraph Automation & Delivery
-        C --> D[Group Email / FTP Location]
-        D --> E[End Users / Stakeholders]
-    end
-    
-    subgraph Data Platform Integration
-        A --> F[Kyriba Open API - REST]
-        F --> G[Data Platform / Data Lake]
-    end
+%%| fig-cap: "The four-part transformation journey described in the source presentation."
+%%| fig-alt: "A left-to-right sequence from blueprinting and functional design, through core data and access setup, integration and connectivity, and optimisation and continuous improvement."
+flowchart LR
+    A[Blueprinting &<br/>Functional Design] --> B[Core Data &<br/>Access Setup]
+    B --> C[Integration &<br/>Connectivity]
+    C --> D[Optimisation &<br/>Continuous Improvement]
 ```
 
-fake metrix
+| Part | Business purpose | Evidence themes |
+|---|---|---|
+| Blueprinting & Functional Design | Translate Treasury needs into workable Kyriba behaviour. | Requirements, workflows, module scope, controls and testing. |
+| Core Data & Access Setup | Establish a reliable data and governance foundation. | Entities, banks, accounts, third parties, roles and permissions. |
+| Integration & Connectivity | Connect Kyriba with the financial and market ecosystem. | Banking and payments, trade management, ERP/accounting, data/API. |
+| Optimisation & Continuous Improvement | Keep the platform useful, controlled and adaptable after go-live. | Dashboards, views, menus, input screens, reporting and administration. |
 
-```{python}
-import plotly.graph_objects as go
+# Blueprinting & Functional Design
 
-# Fake benchmark data
-categories = ['Manual Process (PDF)', 'Automated Process (CSV/API)']
-time_per_trade_sec = [180, 5]
+## Start with Treasury's operating reality
 
-fig = go.Figure(data=[
-    go.Bar(name='Processing Time (Sec)', x=categories, y=time_per_trade_sec, marker_color=['#ef553b', '#636efa'])
-])
-fig.update_layout(title_text="Trade Confirmation Execution Speed", height=350)
-fig.show()
+Functional design began with Treasury business roles, operational processes and pain points. Stakeholder conversations turned those needs into practical requirements that could be reviewed against Kyriba's functional capabilities.
+
+The scope included trade processing, banking and payments, FX integration, cash management, accounting, reporting, controls and approvals. The objective was not to treat Kyriba as an isolated application, but to make its behaviour workable for Treasury operations.
+
+```{mermaid}
+%%| fig-cap: "Requirements-to-solution sequence used for functional design and validation."
+%%| fig-alt: "A sequence from Treasury requirements and stakeholder alignment, to workflow and process design, Kyriba functional specifications, and functional and end-to-end testing."
+flowchart LR
+    A[Treasury requirements<br/>and stakeholder alignment] --> B[Workflow and<br/>process design]
+    B --> C[Kyriba functional<br/>specifications]
+    C --> D[Functional and<br/>end-to-end testing]
 ```
+
+::: {.evidence-grid}
+::: {.evidence-card}
+### Requirements and alignment
+
+Documented detailed operational requirements, challenged existing processes and identified pain points. Treasury needs were translated into functional specifications.
+:::
+
+::: {.evidence-card}
+### Workflow and controls
+
+Designed end-to-end Treasury workflows, defined approval and control points, and identified opportunities to simplify manual activity.
+:::
+
+::: {.evidence-card}
+### Kyriba design and validation
+
+Mapped requirements to Kyriba functionality, reviewed functional behaviour and configuration requirements, and supported functional and end-to-end testing.
+:::
+:::
+
+::: {.callout-tip}
+## Part takeaway
+
+Treasury requirements were converted into practical Kyriba solutions while balancing operational needs, controls and system capabilities.
+:::
+
+# Core Data & Access Setup
+
+## Establish the operating foundation
+
+The data foundation covered entities, banks, bank accounts and third parties. Kyriba-provided templates were completed and validated, relationships between core objects were established, and data structures were checked against Treasury operating requirements before system loading.
+
+Configuration also covered main and system currencies, transaction types, product structures and product subscriptions aligned to business and user requirements.
+
+## Pair data quality with controlled access
+
+The access model used role-based permissions, access boundaries, approval workflows and segregation-of-duties requirements. The source presentation gives Client User, Treasury User, Admin User and View-Only User as examples of user profiles.
+
+```{mermaid}
+%%| fig-cap: "Conceptual foundation for Kyriba data, access and governance."
+%%| fig-alt: "A conceptual view linking core data objects to configuration, access, approval workflows and Treasury-led administration."
+flowchart TB
+    A[Core data objects] --> B[Validated relationships]
+    B --> C[Configuration and<br/>transaction structures]
+    C --> D[Roles and permissions]
+    D --> E[Approval workflows<br/>and segregation of duties]
+    E --> F[Treasury-led<br/>administration]
+```
+
+| Foundation area | What the work established |
+|---|---|
+| Master data | Entities, banks, bank accounts and third parties, with relationships between core data objects. |
+| Configuration | Currencies, transaction types, product structures and subscriptions aligned to business and user requirements. |
+| Data quality | Data review before loading, configuration checking against business requirements and consistency across core objects. |
+| Access and controls | Role-based access, permissions, access boundaries, approval workflows and segregation of duties. |
+| Operating model | Treasury-led day-to-day administration for users, roles, permissions and system data; technical components requiring IT support were escalated. |
+
+::: {.callout-note}
+## Scope note
+
+Treasury-led administration describes functional responsibility for day-to-day Kyriba configuration and maintenance. It does not imply ownership of the underlying technical infrastructure.
+:::
+
+# Integration & Connectivity
+
+## Connect Kyriba to the wider Treasury ecosystem
+
+This work covered Banking & Payments, Trade Management, ERP / Accounting and the Data / API Layer around Kyriba. The contribution focused on defining requirements, configuring or reviewing templates, coordinating with external parties, and validating outputs and exceptions.
+
+```{mermaid}
+%%| fig-cap: "Conceptual integration landscape based on the source presentation."
+%%| fig-alt: "Kyriba is shown at the centre of four connected domains: Banking and Payments, Trade Management, ERP and Accounting, and the Data and API Layer."
+flowchart TB
+    K[Kyriba<br/>Treasury platform]
+    K --- BP[Banking & Payments]
+    K --- TM[Trade Management]
+    K --- EA[ERP / Accounting]
+    K --- DA[Data / API Layer]
+```
+
+The diagram shows the integration domains addressed in the transformation. It does not imply undocumented interface direction or technical ownership.
+
+## Integration inventory
+
+| Domain | Functional focus | Validation focus |
+|---|---|---|
+| Banking & Payments | `camt.053` statements, `pain.001` / `pain.002` payments, BTC mappings and reconciliation rules. | Statement delivery, formats, transaction information, payment responses, statuses, matching behaviour and breaks. |
+| Trade Management | Money Market Funds platform, internal manual trade entry, custodian-bank post-trade processing and FX platform connectivity. | Trade capture, transaction-specific templates, end-to-end processing, exceptions and final solution behaviour. |
+| ERP / Accounting | Financial accounting, accruals, mark-to-market (MTM), general-ledger (GL) generation and approval, cash accounting and ERP connectivity. | Transaction templates, mappings, procedures, GL review and approval, and Data Platform output. |
+| Data / API Layer | Standard Kyriba Data API, Open API financial transactions, market data including FX rates, forwards, interest-rate curves and MMF rates. | Required data fields, sources, outputs, gaps and documented data requirements. |
+
+## Controlled connectivity in practice
+
+For banking and payments, the work included connectivity setup support, statement and payment testing, BTC mapping, reconciliation rules and investigation of breaks in the Bank Connectivity Cockpit. Trade-management activity covered manual-entry requirements, template configuration, executed-trade analysis, provider/custodian coordination and exception testing.
+
+For accounting, cash and financial transaction templates were reviewed and improved with Finance and the Kyriba team. The process from accruals and MTM through GL generation, review and approval was documented. In parallel, Open API requirements were defined with IT and outputs were validated through the Data Platform.
+
+::: {.callout-tip}
+## Part takeaway
+
+The integration work connected Kyriba with the wider Treasury and financial ecosystem through functional requirements, controlled testing and exception review.
+:::
+
+# Optimisation & Continuous Improvement
+
+## Improve the implemented platform after go-live
+
+After implementation, the focus shifted to visibility, usability and repeatable processes. This included personalised dashboards, tailored views and templates, simplified navigation, shortcuts and transaction input screens shaped around user roles and transaction needs.
+
+::: {.evidence-grid}
+::: {.evidence-card}
+### User experience
+
+Personalised dashboards gave clients a clearer view of positions and key Treasury information. Tailored views and templates supported the monitoring of new, historical and outstanding trades.
+:::
+
+::: {.evidence-card}
+### Easier operation
+
+Menu structures and shortcuts made frequently used functions easier to access. Transaction input screens were personalised by transaction type and user requirements.
+:::
+
+::: {.evidence-card}
+### Repeatable delivery
+
+Reporting requirements and delivery processes were designed for trades, positions, balances and interest. Trade-confirmation workflows used CSV output and email-only recipients to distribute confirmations to fund administrators.
+:::
+:::
+
+```{mermaid}
+%%| fig-cap: "Qualitative continuous-improvement loop described by the optimisation work."
+%%| fig-alt: "A loop from observing user needs, to configuring views and workflows, validating with Treasury users and stakeholders, and maintaining and improving the Kyriba environment."
+flowchart LR
+    A[Observe user needs<br/>and operating friction] --> B[Configure views,<br/>screens and workflows]
+    B --> C[Validate with Treasury<br/>users and stakeholders]
+    C --> D[Maintain, fix<br/>and optimise]
+    D --> A
+```
+
+::: {.callout-warning}
+## Evidence limit
+
+The source presentation does not provide approved quantitative measures, dates, named clients, licence counts or financial values. This report therefore uses qualitative language and does not convert optimisation examples into KPI tiles or performance charts.
+:::
+
+## Related deep dives
+
+- [Accounting deep dive](accounting/report.qmd) — under development.
+
+# Appendix
+
+## Source traceability
+
+| Report section | Source slides | Evidence status |
+|---|---:|---|
+| Transformation overview and role | 1–4 | Source-derived summary of scope, role and four-part roadmap. |
+| Blueprinting and functional design | 5–7 | Source-derived requirements, workflow, design and testing themes. |
+| Core data and access setup | 8–10 | Source-derived master data, configuration, access and administration themes. |
+| Integration and connectivity | 11–16 | Source-derived integration domains, interface examples and validation activities. |
+| Optimisation and continuous improvement | 17–19 | Source-derived user experience, reporting, trade confirmation and administration themes. |
+
+## Glossary
+
+| Term | Plain-English meaning |
+|---|---|
+| TMS | Treasury Management System. |
+| ERP | Enterprise resource planning system, used here in the accounting-connectivity context. |
+| MTM | Mark-to-market valuation process. |
+| GL | General ledger. |
+| Open API | Kyriba API layer referenced in the presentation for financial transactions and Data Platform connectivity. |
+| `camt.053` | Bank statement message format referenced by the presentation. |
+| `pain.001` / `pain.002` | Payment initiation and payment-status message formats referenced by the presentation. |
+
+::: {.report-footer}
+Source: Kyriba TMS Transformation work documented in the supplied presentation. Quantitative claims, delivery outcomes and technical directions are included only where explicitly supported by that source.
+:::

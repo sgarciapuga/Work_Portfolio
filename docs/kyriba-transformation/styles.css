@@ -1,0 +1,128 @@
+/* Palette sampled from the Kyriba TMS Transformation PowerPoint theme. */
+:root {
+  --kyriba-navy: #343734;
+  --kyriba-ink: #4a4d42;
+  --kyriba-cream: #eff1e8;
+  --kyriba-gold: #c9a15a;
+  --kyriba-blue: #70a1bd;
+  --kyriba-blue-deep: #3f7690;
+  --kyriba-surface: #ffffff;
+  --kyriba-muted: #5b645f;
+  --kyriba-line: #d7ddd2;
+  --kyriba-soft-blue: #e9edf1;
+}
+
+body {
+  color: var(--kyriba-ink);
+  background: #fff;
+  font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+  line-height: 1.65;
+}
+
+h1, h2, h3, .report-kicker {
+  font-family: "Aptos Display", "Aptos", "Segoe UI", Arial, sans-serif;
+}
+
+h1 {
+  color: var(--kyriba-navy);
+  font-weight: 720;
+  letter-spacing: -.025em;
+}
+
+h2 {
+  color: var(--kyriba-navy);
+  margin-top: 3rem;
+  font-weight: 700;
+}
+
+h3 { color: var(--kyriba-blue); font-size: 1.08rem; }
+
+.report-kicker {
+  margin-top: 1.2rem;
+  color: var(--kyriba-blue);
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.report-intro {
+  max-width: 45rem;
+  margin: 1rem 0 2.3rem;
+  color: var(--kyriba-muted);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.45;
+}
+
+.callout {
+  border-left-width: 5px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.callout-note { background: var(--kyriba-soft-blue); border-left-color: var(--kyriba-blue); }
+.callout-tip { background: #fffaf0; border-left-color: var(--kyriba-gold); }
+.callout-warning { background: #fff5df; border-left-color: #a96b08; }
+
+.role-grid, .evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.role-card, .evidence-card {
+  height: 100%;
+  padding: 1.25rem;
+  background: var(--kyriba-surface);
+  border: 1px solid var(--kyriba-line);
+  border-top: 4px solid var(--kyriba-blue);
+  border-radius: .65rem;
+}
+
+.role-card h3, .evidence-card h3 { margin-top: 0; }
+
+table {
+  display: table;
+  width: 100%;
+  margin: 1.4rem 0 2rem;
+  background: #fff;
+  border-color: var(--kyriba-line);
+  font-size: .95rem;
+}
+
+thead th {
+  color: var(--kyriba-navy);
+  background: var(--kyriba-soft-blue);
+  border-color: var(--kyriba-line);
+}
+
+tbody tr:nth-child(even) { background: #fbfcfd; }
+
+.mermaid {
+  max-width: 100%;
+  margin: 1.75rem 0;
+  overflow-x: auto;
+}
+
+figure figcaption { color: var(--kyriba-muted); font-size: .9rem; }
+
+a { color: var(--kyriba-blue-deep); text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--kyriba-gold); outline-offset: 3px; }
+
+.report-footer {
+  margin-top: 3rem;
+  padding: 1.25rem 0;
+  color: var(--kyriba-muted);
+  border-top: 1px solid var(--kyriba-line);
+  font-size: .9rem;
+}
+
+@media (max-width: 768px) {
+  .role-grid, .evidence-grid { grid-template-columns: 1fr; }
+  table { display: block; overflow-x: auto; white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

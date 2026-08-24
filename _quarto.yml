@@ -9,13 +9,21 @@ project:
     - daily-fx-rates/report.qmd
     - create-date-table/report.qmd
     - fx-prime-brokerage-collateral/report.qmd
+    - kyriba-transformation/report.qmd
+    - kyriba-transformation/accounting/report.qmd
 
 website:
-  title: "Work Portfolio"
+  title: "Professional Portfolio"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - text: Kyriba Transformation
+        menu:
+          - href: kyriba-transformation/report.qmd
+            text: Overview
+          - href: kyriba-transformation/accounting/report.qmd
+            text: Accounting Deep Dive
       - href: fx-prime-brokerage-collateral/report.qmd
         text: FX Prime Brokerage Collateral
       - href: treasury-cashflow-simulation/report.qmd
@@ -28,6 +36,7 @@ website:
 format:
   html:
     theme: cosmo
+    css: styles/portfolio.css
     toc: true
     page-layout: full
 

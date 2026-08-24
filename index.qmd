@@ -6,50 +6,65 @@ format:
     page-layout: full
 ---
 
+::: {.portfolio-hero}
 This portfolio collects a series of real projects I have developed at work, with a focus on financial data, treasury workflows, and analytics. The projects are designed to be reproducible and demonstrate my skills in data engineering, analysis, and visualization.
 
-This portfolio is a work in progress, and I will continue to add new projects as they are completed. The projects are organized into sections based on their focus area, and each project includes a brief description and a link to the full report.
+This portfolio is a work in progress, and I will continue to add new projects as they are completed.
+:::
 
 ## Projects
 
+::: {.project-grid}
+
+::: {.project-card}
+### Kyriba TMS Transformation
+
+My end-to-end Kyriba Treasury Management System work, covering functional design, core data and access setup, banking and trade integrations, ERP and Data Platform connectivity, and post-go-live optimisation.
+
+::: {.project-links}
+[Presentation (PDF)](kyriba-transformation/presentation/kyriba-transformation.pdf){target="_blank"} · [PowerPoint](kyriba-transformation/presentation/kyriba-transformation.pptx) · [Open the report](kyriba-transformation/report.qmd)
+:::
+:::
+
+::: {.project-card}
 ### FX Prime Brokerage Collateral
 
-This project demonstrates a workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem.
+A workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem, including new Power BI dashboards for collateral reporting and monitoring.
 
-The project involved:
+::: {.project-links}
+[Presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pdf){target="_blank"} · [PowerPoint](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pptx) · [Open the report](fx-prime-brokerage-collateral/report.qmd)
+:::
+:::
 
-\- Analyzing the existing collateral management process for FX prime brokerage.
-
-\- Identifying inefficiencies and areas for improvement.
-
-\- Implementing a new workflow that streamlined the process and reduced manual effort.
-
-\- New Power BI dashboards for collateral reporting and monitoring.
-
-In the below presentation, I provide an overview of the project, including the problem statement, methodology, and results:
-
-[View presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pdf){target="_blank"}
-
-[Download PowerPoint](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pptx)
-
-The full report includes detailed analysis, code snippets, and visualizations that demonstrate the improvements made.
-
-[Open the report](fx-prime-brokerage-collateral/report.qmd)
-
+::: {.project-card}
 ### Treasury Cashflow Simulation
 
 Synthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.
 
+::: {.project-links}
 [Open the report](treasury-cashflow-simulation/report.qmd)
+:::
+:::
 
+::: {.project-card}
 ### Daily FX Rates
 
 Daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.
 
+::: {.project-links}
 [Open the report](daily-fx-rates/report.qmd)
+:::
+:::
 
+::: {.project-card}
 ### Create Date Table
 
 Reusable PostgreSQL calendar dimension for reporting and time intelligence.
 
+::: {.project-links}
 [Open the report](create-date-table/report.qmd)
+:::
+:::
+
+
+:::

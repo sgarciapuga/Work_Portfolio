@@ -5,14 +5,16 @@ author: "Sergio"
 date: 2026-08-12
 format:
   html:
+    theme: cosmo
+    css: styles.css
     toc: true
+    toc-location: right
     toc-depth: 3
+    page-layout: full
+    max-width: 100%
     code-fold: false
     code-tools: true
-    theme: cosmo
-    page-layout: full
-    css: styles.css
-    max-width: 100%
+    smooth-scroll: true
     syntax-definitions:
       - dax.xml
 execute:
