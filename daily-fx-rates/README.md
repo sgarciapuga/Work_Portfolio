@@ -2,6 +2,11 @@
 
 This mini-project loads and stores daily FX rate history for a small treasury analytics workflow.
 
+## Report
+
+- [View the rendered report](../docs/daily-fx-rates/report.html)
+- [Report source](report.qmd)
+
 The maintained implementation lives in [src/daily_fx_rates.py](src/daily_fx_rates.py).
 
 ## Purpose

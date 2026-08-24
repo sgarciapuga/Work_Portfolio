@@ -2,6 +2,13 @@
 
 This project generates synthetic FX prime brokerage collateral datasets for analysis, reporting, and dashboarding.
 
+## Report
+
+- [View the rendered report](../docs/fx-prime-brokerage-collateral/report.html)
+- [Report source](report.qmd)
+- [Presentation (PDF)](presentation/fx-primer-broker-collateral.pdf) / [PowerPoint](presentation/fx-primer-broker-collateral.pptx)
+- [Power BI dashboard](dashboard/fx-prime-brokerage-collateral.pbip)
+
 ## What it does
 
 The workflow builds a simple FX portfolio and derives collateral metrics from it. The main outputs are:

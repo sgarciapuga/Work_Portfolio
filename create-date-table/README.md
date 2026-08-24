@@ -2,6 +2,11 @@
 
 This mini-project builds and maintains a reusable calendar dimension table for analytics and reporting pipelines.
 
+## Report
+
+- [View the rendered report](../docs/create-date-table/report.html)
+- [Report source](report.qmd)
+
 ## What it does
 
 The script creates a PostgreSQL table called date_table with one row per calendar day. It includes common business-calendar attributes such as month, quarter, weekday, ISO week, and month start/end flags.
