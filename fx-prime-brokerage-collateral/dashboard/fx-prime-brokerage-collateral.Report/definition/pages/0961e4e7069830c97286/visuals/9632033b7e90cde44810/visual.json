@@ -4,10 +4,10 @@
   "position": {
     "x": 14.311926605504587,
     "y": 72.660550458715591,
-    "z": 7000,
+    "z": 5000,
     "height": 388.62385321100919,
     "width": 1666.7889908256882,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "treemap",
@@ -559,34 +559,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "cb48cb7b39d48493cc18",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_banks"
-              }
-            },
-            "Property": "bank_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2cf7a2078c52fa588287",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Credit Limit Utilization"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

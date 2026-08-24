@@ -4,10 +4,10 @@
   "position": {
     "x": 824.58715596330273,
     "y": 473.39449541284404,
-    "z": 4000,
+    "z": 2000,
     "height": 595.59633027522932,
     "width": 856.51376146788994,
-    "tabOrder": 4000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "stackedAreaChart",
@@ -595,48 +595,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "13cdd9abf06e87936e89",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "calendar_date"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "b6db026d6ccf390b48c8",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_banks"
-              }
-            },
-            "Property": "bank_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9311cadb697806910ca6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "FX Portfolio Size"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

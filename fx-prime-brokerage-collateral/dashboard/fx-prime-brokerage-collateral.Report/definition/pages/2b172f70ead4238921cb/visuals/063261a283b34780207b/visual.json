@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "063261a283b34780207b",
   "position": {
-    "x": 1705.2925127473977,
-    "y": 590.47282160239524,
+    "x": 1703.2973512737578,
+    "y": 639.0217710901286,
     "z": 11000,
     "height": 327.37864077669906,
     "width": 203.88349514563109,
@@ -114,5 +114,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6f1505d13433ce497707",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fx_portfolio"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

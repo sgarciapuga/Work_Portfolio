@@ -4,10 +4,10 @@
   "position": {
     "x": 13.980582524271846,
     "y": 473.00970873786412,
-    "z": 3000,
+    "z": 1000,
     "height": 595.33980582524271,
     "width": 787.57281553398059,
-    "tabOrder": 3000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -611,37 +611,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "447b6287b9ed4f3a6646",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_banks"
-              }
-            },
-            "Property": "bank_name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "cc92c8a2177b8524904a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "FX Portfolio Size"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
