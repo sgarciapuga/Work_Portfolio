@@ -101,45 +101,77 @@
                 "Where": [
                   {
                     "Condition": {
-                      "And": {
-                        "Left": {
-                          "Comparison": {
-                            "ComparisonKind": 2,
-                            "Left": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "d"
-                                  }
-                                },
-                                "Property": "calendar_date"
+                      "Between": {
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
                               }
                             },
-                            "Right": {
-                              "Literal": {
-                                "Value": "datetime'2026-08-21T00:00:00'"
-                              }
-                            }
+                            "Property": "calendar_date"
                           }
                         },
-                        "Right": {
-                          "Comparison": {
-                            "ComparisonKind": 3,
-                            "Left": {
-                              "Column": {
+                        "LowerBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "DateAdd": {
                                 "Expression": {
-                                  "SourceRef": {
-                                    "Source": "d"
+                                  "DateAdd": {
+                                    "Expression": {
+                                      "ScopedEval": {
+                                        "Expression": {
+                                          "Aggregation": {
+                                            "Expression": {
+                                              "Column": {
+                                                "Expression": {
+                                                  "SourceRef": {
+                                                    "Source": "d"
+                                                  }
+                                                },
+                                                "Property": "calendar_date"
+                                              }
+                                            },
+                                            "Function": 4
+                                          }
+                                        },
+                                        "Scope": []
+                                      }
+                                    },
+                                    "Amount": 1,
+                                    "TimeUnit": 0
                                   }
                                 },
-                                "Property": "calendar_date"
+                                "Amount": -1,
+                                "TimeUnit": 0
                               }
                             },
-                            "Right": {
-                              "Literal": {
-                                "Value": "datetime'2026-08-22T00:00:00'"
+                            "TimeUnit": 0
+                          }
+                        },
+                        "UpperBound": {
+                          "DateSpan": {
+                            "Expression": {
+                              "ScopedEval": {
+                                "Expression": {
+                                  "Aggregation": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "d"
+                                          }
+                                        },
+                                        "Property": "calendar_date"
+                                      }
+                                    },
+                                    "Function": 4
+                                  }
+                                },
+                                "Scope": []
                               }
-                            }
+                            },
+                            "TimeUnit": 0
                           }
                         }
                       }
