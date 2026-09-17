@@ -28,5 +28,8 @@
   },
   "kyriba-transformation/accounting/report.qmd": {
     "report.html": "3b0c8d52"
+  },
+  "kyriba-transformation/Case_01_FX_Integration/report.qmd": {
+    "report.html": "e38ba2ca"
   }
 }

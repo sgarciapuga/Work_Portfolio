@@ -11,6 +11,7 @@ project:
     - fx-prime-brokerage-collateral/report.qmd
     - kyriba-transformation/report.qmd
     - kyriba-transformation/accounting/report.qmd
+    - kyriba-transformation/Case_01_FX_Integration/report.qmd
 
 website:
   title: "Professional Portfolio"
@@ -24,6 +25,8 @@ website:
             text: Overview
           - href: kyriba-transformation/accounting/report.qmd
             text: Accounting Deep Dive
+          - href: kyriba-transformation/Case_01_FX_Integration/report.qmd
+            text: "Case 01: FX Platform Integration"
       - href: fx-prime-brokerage-collateral/report.qmd
         text: FX Prime Brokerage Collateral
       - href: treasury-cashflow-simulation/report.qmd

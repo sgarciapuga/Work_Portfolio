@@ -154,6 +154,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../kyriba-transformation/accounting/report.html">
  <span class="dropdown-text">Accounting Deep Dive</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/Case_01_FX_Integration/report.html">
+ <span class="dropdown-text">Case 01: FX Platform Integration</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -269,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="code-walkthrough" class="level1">
 <h1>Code walkthrough</h1>
 <p>Explain key modules and functions used in the simulation. Use the code cells below to show examples and small excerpts.</p>
-<div id="6b2d9017" class="cell" data-execution_count="1">
+<div id="9c3738c9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: show latest 5 movements from PostgreSQL (safe if DATABASE_URL is missing)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -345,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visual-example-plot-latest-balances-reads-csv-if-present-otherwise-uses-sample" class="level1">
 <h1>Visual example: plot latest balances (reads CSV if present, otherwise uses sample)</h1>
-<div id="04909b46" class="cell" data-execution_count="2">
+<div id="ad26f587" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>

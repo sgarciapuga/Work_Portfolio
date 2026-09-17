@@ -1,0 +1,135 @@
+---
+title: "Case 01 — FX Platform Integration"
+subtitle: "Reducing manual effort across a global Treasury operating model"
+author: "Sergio"
+date: 2026-09-17
+description: "A source-traceable Kyriba case study covering FX workflow redesign, trading-platform integration and reported time savings."
+format:
+  html:
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    number-sections: false
+    page-layout: full
+    max-width: 100%
+    code-fold: false
+    smooth-scroll: true
+execute:
+  echo: false
+  warning: false
+  error: false
+---
+
+[← Back to Kyriba TMS Transformation overview](../report.qmd)
+
+::: {.report-kicker}
+Kyriba transformation · case study 01
+:::
+
+::: {.report-intro}
+How an FX request moved from manual re-entry and fragmented handoffs to connected execution between Kyriba and a trading platform.
+:::
+
+::: {.callout-note}
+## Evidence boundary
+
+This case study is based on the supplied `Case 01 - FX Integration` presentation. The workflow and impact figures below are reported as described in that source. The case does not add client names, implementation dates, technical architecture, or independently audited benefits.
+:::
+
+## The operating problem
+
+The original workflow required a client to submit an FX deal in a legacy Treasury Management System. A trader then manually re-entered the deal in the trading platform, executed it, updated the client deal with the FX rate and spread, and completed the confirmation process.
+
+That sequence created avoidable manual effort and operational exposure:
+
+- the same FX details were entered in more than one system;
+- execution took longer while information was re-keyed and checked;
+- manual input created opportunities for trade-detail errors; and
+- clients and administrators relied on downloads and follow-up activity for confirmation.
+
+## The integrated workflow
+
+The redesigned process used Kyriba as the entry point and connected it to the trading platform.
+
+| Step | Connected execution flow |
+|---|---|
+| 1 | The client submits an FX request in Kyriba and a pre-trade is created. |
+| 2 | Kyriba sends the FX trade details to the trading platform, with details pre-populated. |
+| 3 | The trader selects the best available deal and executes the FX trade. |
+| 4 | Execution details automatically return to Kyriba, where the pre-trade becomes an actual trade. |
+| 5 | Kyriba automatically creates or updates the client deal and applies the spread. |
+| 6 | The client receives an end-of-day trading activity email or downloads the confirmation. |
+
+The important change was the removal of repeated manual transcription between request, execution, trade update and confirmation. The trader still made the execution decision, while the connected workflow carried the agreed details between systems.
+
+## Before and after
+
+| Manual process | Integrated execution |
+|---|---|
+| Client submits an FX deal in the legacy TMS. | Client submits the FX request in Kyriba. |
+| Trader manually re-enters the deal in the trading platform. | FX details are sent to the trading platform and pre-populated. |
+| Trader updates the client deal with the rate and spread. | Execution feeds back to Kyriba and the spread is applied automatically. |
+| Client manually downloads the trade confirmation. | Client receives an end-of-day activity email or downloads confirmation. |
+
+## Reported business impact
+
+The presentation reports the following outcomes for the redesigned workflow:
+
+::: {.evidence-grid}
+::: {.evidence-card}
+### Faster execution
+
+Execution time reduced from approximately 15 minutes to 5 minutes, or about 67% less execution time.
+:::
+
+::: {.evidence-card}
+### Fewer input errors
+
+The presentation reports approximately 99% fewer manual input errors after removing repeated trade-detail entry.
+:::
+
+::: {.evidence-card}
+### Avoided rework
+
+Manual re-entry represented approximately $4,000 per year in avoided rework and market-exposure risk. The source describes this as a conservative estimate that scales with trade size.
+:::
+::: 
+
+The presentation also reports approximately 5 minutes saved per deal and approximately 15 minutes saved on the end-of-day report. These figures are source-reported estimates, not independently recalculated measures.
+
+## Client and operating-model effects
+
+The integrated flow simplified the client experience by reducing the work required to submit an FX deal. Faster execution reduced the time between request and completed trade, limiting exposure to market movements during the process. The end-of-day activity email or downloadable confirmation also created a clearer handoff to the client.
+
+A further opportunity identified in the source is integration between the end-of-day activity email and the external administrator platform. That extension could reduce manual follow-up beyond the workflow described here, but it is presented as an opportunity rather than a delivered outcome.
+
+## Delivery contribution
+
+The case demonstrates the Treasury-functional contribution to integration work:
+
+- redesigning the process around the operating problem rather than around individual application steps;
+- defining the information required at request, execution and confirmation stages;
+- validating how a pre-trade becomes an actual trade after execution; and
+- making the operational and control benefits visible through reported time and error measures.
+
+Technical ownership, interface implementation details and infrastructure responsibilities are outside the evidence provided by the source presentation.
+
+## Source traceability
+
+| Report section | Source evidence | Status |
+|---|---|---|
+| Operating problem | Slide 2, manual process | Source-derived summary |
+| Integrated workflow | Slides 2–3, connected execution flow | Source-derived summary |
+| Business impact | Slide 4, time, error and avoided-rework figures | Source-reported estimates |
+| Further opportunity | Slide 4, administrator-platform integration | Source-described opportunity |
+
+## Source files
+
+- [Case presentation (PDF)](presentation/Case_01_-_FX_Integration.pdf){target="_blank"}
+- [Case presentation (PowerPoint)](presentation/Case_01_-_FX_Integration.pptx)
+- [Kyriba transformation overview](../report.qmd)
+
+::: {.report-footer}
+Source: `Case 01 - FX Integration` presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source's approximate or conservative qualifiers.
+:::

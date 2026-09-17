@@ -41,6 +41,7 @@ $AllReports = @(
     "index.qmd",
     "kyriba-transformation/report.qmd",
     "kyriba-transformation/accounting/report.qmd",
+    "kyriba-transformation/Case_01_FX_Integration/report.qmd",
     "fx-prime-brokerage-collateral/report.qmd",
     "treasury-cashflow-simulation/report.qmd",
     "daily-fx-rates/report.qmd",

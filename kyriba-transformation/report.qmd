@@ -248,6 +248,7 @@ The source presentation does not provide approved quantitative measures, dates, 
 ## Related deep dives
 
 - [Accounting deep dive](accounting/report.qmd) — under development.
+- [Case 01: FX Platform Integration](Case_01_FX_Integration/report.qmd) — redesigning FX execution from manual re-entry to connected execution.
 
 # Appendix
 

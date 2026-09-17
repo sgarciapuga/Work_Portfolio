@@ -7,9 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sergio">
-<meta name="dcterms.date" content="2026-08-08">
+<meta name="dcterms.date" content="2026-09-17">
+<meta name="description" content="A source-traceable Kyriba case study covering FX workflow redesign, trading-platform integration and reported time savings.">
 
-<title>Create Date Table — Project Report – Professional Portfolio</title>
+<title>Case 01 — FX Platform Integration – Professional Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,61 +29,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,13 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="../styles/portfolio.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles/portfolio.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -127,7 +90,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Professional Portfolio</span>
     </a>
   </div>
@@ -138,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -147,33 +110,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-kyriba-transformation">    
         <li>
-    <a class="dropdown-item" href="../kyriba-transformation/report.html">
+    <a class="dropdown-item" href="../../kyriba-transformation/report.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../kyriba-transformation/accounting/report.html">
+    <a class="dropdown-item" href="../../kyriba-transformation/accounting/report.html">
  <span class="dropdown-text">Accounting Deep Dive</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../kyriba-transformation/Case_01_FX_Integration/report.html">
+    <a class="dropdown-item" href="../../kyriba-transformation/Case_01_FX_Integration/report.html">
  <span class="dropdown-text">Case 01: FX Platform Integration</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../fx-prime-brokerage-collateral/report.html"> 
+    <a class="nav-link" href="../../fx-prime-brokerage-collateral/report.html"> 
 <span class="menu-text">FX Prime Brokerage Collateral</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../treasury-cashflow-simulation/report.html"> 
+    <a class="nav-link" href="../../treasury-cashflow-simulation/report.html"> 
 <span class="menu-text">Treasury Cashflow Simulation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../daily-fx-rates/report.html"> 
+    <a class="nav-link" href="../../daily-fx-rates/report.html"> 
 <span class="menu-text">Daily FX Rates</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../create-date-table/report.html" aria-current="page"> 
+    <a class="nav-link" href="../../create-date-table/report.html"> 
 <span class="menu-text">Create Date Table</span></a>
   </li>  
 </ul>
@@ -192,12 +155,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#run" id="toc-run" class="nav-link" data-scroll-target="#run">Run</a></li>
-  <li><a href="#table-schema" id="toc-table-schema" class="nav-link" data-scroll-target="#table-schema">Table schema</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#example-preview-calendar-rows-safe-local-sample-if-db-not-available" id="toc-example-preview-calendar-rows-safe-local-sample-if-db-not-available" class="nav-link" data-scroll-target="#example-preview-calendar-rows-safe-local-sample-if-db-not-available">Example: preview calendar rows (safe local sample if DB not available)</a></li>
+  <li><a href="#the-operating-problem" id="toc-the-operating-problem" class="nav-link active" data-scroll-target="#the-operating-problem">The operating problem</a></li>
+  <li><a href="#the-integrated-workflow" id="toc-the-integrated-workflow" class="nav-link" data-scroll-target="#the-integrated-workflow">The integrated workflow</a></li>
+  <li><a href="#before-and-after" id="toc-before-and-after" class="nav-link" data-scroll-target="#before-and-after">Before and after</a></li>
+  <li><a href="#reported-business-impact" id="toc-reported-business-impact" class="nav-link" data-scroll-target="#reported-business-impact">Reported business impact</a></li>
+  <li><a href="#client-and-operating-model-effects" id="toc-client-and-operating-model-effects" class="nav-link" data-scroll-target="#client-and-operating-model-effects">Client and operating-model effects</a></li>
+  <li><a href="#delivery-contribution" id="toc-delivery-contribution" class="nav-link" data-scroll-target="#delivery-contribution">Delivery contribution</a></li>
+  <li><a href="#source-traceability" id="toc-source-traceability" class="nav-link" data-scroll-target="#source-traceability">Source traceability</a></li>
+  <li><a href="#source-files" id="toc-source-files" class="nav-link" data-scroll-target="#source-files">Source files</a></li>
   </ul>
 </nav>
     </div>
@@ -206,9 +171,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Create Date Table — Project Report</h1>
+<h1 class="title">Case 01 — FX Platform Integration</h1>
+<p class="subtitle lead">Reducing manual effort across a global Treasury operating model</p>
 </div>
 
+<div>
+  <div class="description">
+    A source-traceable Kyriba case study covering FX workflow redesign, trading-platform integration and reported time savings.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-page-left">
@@ -223,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 8, 2026</p>
+      <p class="date">September 17, 2026</p>
     </div>
   </div>
   
@@ -235,118 +206,196 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>This mini-project creates and maintains a <code>date_table</code> in PostgreSQL, providing a canonical calendar dimension for reporting.</p>
+<p><a href="../../kyriba-transformation/report.html">← Back to Kyriba TMS Transformation overview</a></p>
+<div class="report-kicker">
+<p>Kyriba transformation · case study 01</p>
+</div>
+<div class="report-intro">
+<p>How an FX request moved from manual re-entry and fragmented handoffs to connected execution between Kyriba and a trading platform.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Evidence boundary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This case study is based on the supplied <code>Case 01 - FX Integration</code> presentation. The workflow and impact figures below are reported as described in that source. The case does not add client names, implementation dates, technical architecture, or independently audited benefits.</p>
+</div>
+</div>
+<section id="the-operating-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-operating-problem">The operating problem</h2>
+<p>The original workflow required a client to submit an FX deal in a legacy Treasury Management System. A trader then manually re-entered the deal in the trading platform, executed it, updated the client deal with the FX rate and spread, and completed the confirmation process.</p>
+<p>That sequence created avoidable manual effort and operational exposure:</p>
+<ul>
+<li>the same FX details were entered in more than one system;</li>
+<li>execution took longer while information was re-keyed and checked;</li>
+<li>manual input created opportunities for trade-detail errors; and</li>
+<li>clients and administrators relied on downloads and follow-up activity for confirmation.</li>
+</ul>
 </section>
-<section id="setup" class="level1">
-<h1>Setup</h1>
-<p>Ensure <code>DATABASE_URL</code> is available in the repository <code>.env</code> file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> create-date-table/requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="run" class="level1">
-<h1>Run</h1>
-<p>From the repository root:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> create-date-table/create_date_table.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="table-schema" class="level1">
-<h1>Table schema</h1>
-<p>The script generates a table with <code>calendar_date</code>, <code>year</code>, <code>month</code>, <code>quarter</code>, <code>weekday</code>, <code>is_weekend</code>, <code>is_month_start</code>, <code>is_month_end</code>, and ISO week/year.</p>
-</section>
-<section id="notes" class="level1">
-<h1>Notes</h1>
-<p>The script is idempotent and inserts only missing dates, making it safe for scheduled incremental runs in CI.</p>
-</section>
-<section id="example-preview-calendar-rows-safe-local-sample-if-db-not-available" class="level1">
-<h1>Example: preview calendar rows (safe local sample if DB not available)</h1>
-<div id="b7b12e85" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>csv_path <span class="op">=</span> Path(<span class="st">'create-date-table/sample_dates_preview.csv'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> csv_path.exists():</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    display(pd.read_csv(csv_path).head())</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a small in-memory sample</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> datetime</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    dates <span class="op">=</span> pd.date_range(start<span class="op">=</span><span class="st">'2026-07-25'</span>, periods<span class="op">=</span><span class="dv">7</span>, freq<span class="op">=</span><span class="st">'D'</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame({<span class="st">'calendar_date'</span>: dates.date})</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'calendar_date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> d: d.year)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'month'</span>] <span class="op">=</span> df[<span class="st">'calendar_date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> d: d.month)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'is_weekend'</span>] <span class="op">=</span> df[<span class="st">'calendar_date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> d: d.weekday()<span class="op">&gt;=</span><span class="dv">5</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    display(df.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<section id="the-integrated-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-integrated-workflow">The integrated workflow</h2>
+<p>The redesigned process used Kyriba as the entry point and connected it to the trading platform.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">calendar_date</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">is_weekend</th>
+<th>Step</th>
+<th>Connected execution flow</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>2026-07-25</td>
-<td>2026</td>
-<td>7</td>
-<td>True</td>
+<td>1</td>
+<td>The client submits an FX request in Kyriba and a pre-trade is created.</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>2026-07-26</td>
-<td>2026</td>
-<td>7</td>
-<td>True</td>
+<td>2</td>
+<td>Kyriba sends the FX trade details to the trading platform, with details pre-populated.</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>2026-07-27</td>
-<td>2026</td>
-<td>7</td>
-<td>False</td>
+<td>3</td>
+<td>The trader selects the best available deal and executes the FX trade.</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>2026-07-28</td>
-<td>2026</td>
-<td>7</td>
-<td>False</td>
+<td>4</td>
+<td>Execution details automatically return to Kyriba, where the pre-trade becomes an actual trade.</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>2026-07-29</td>
-<td>2026</td>
-<td>7</td>
-<td>False</td>
+<td>5</td>
+<td>Kyriba automatically creates or updates the client deal and applies the spread.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>The client receives an end-of-day trading activity email or downloads the confirmation.</td>
 </tr>
 </tbody>
 </table>
-
+<p>The important change was the removal of repeated manual transcription between request, execution, trade update and confirmation. The trader still made the execution decision, while the connected workflow carried the agreed details between systems.</p>
+</section>
+<section id="before-and-after" class="level2">
+<h2 class="anchored" data-anchor-id="before-and-after">Before and after</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Manual process</th>
+<th>Integrated execution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Client submits an FX deal in the legacy TMS.</td>
+<td>Client submits the FX request in Kyriba.</td>
+</tr>
+<tr class="even">
+<td>Trader manually re-enters the deal in the trading platform.</td>
+<td>FX details are sent to the trading platform and pre-populated.</td>
+</tr>
+<tr class="odd">
+<td>Trader updates the client deal with the rate and spread.</td>
+<td>Execution feeds back to Kyriba and the spread is applied automatically.</td>
+</tr>
+<tr class="even">
+<td>Client manually downloads the trade confirmation.</td>
+<td>Client receives an end-of-day activity email or downloads confirmation.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reported-business-impact" class="level2">
+<h2 class="anchored" data-anchor-id="reported-business-impact">Reported business impact</h2>
+<p>The presentation reports the following outcomes for the redesigned workflow:</p>
+<div class="evidence-grid">
+<section id="faster-execution" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="faster-execution">Faster execution</h3>
+<p>Execution time reduced from approximately 15 minutes to 5 minutes, or about 67% less execution time.</p>
+</section>
+<section id="fewer-input-errors" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="fewer-input-errors">Fewer input errors</h3>
+<p>The presentation reports approximately 99% fewer manual input errors after removing repeated trade-detail entry.</p>
+</section>
+<section id="avoided-rework" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="avoided-rework">Avoided rework</h3>
+<p>Manual re-entry represented approximately $4,000 per year in avoided rework and market-exposure risk. The source describes this as a conservative estimate that scales with trade size.</p>
+</section>
 </div>
-</div>
-</div>
-<div id="c3c04058" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: count of weekend vs weekday in the sample</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">'is_weekend'</span>].value_counts().sort_index()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>counts.index <span class="op">=</span> [<span class="st">'weekday'</span>,<span class="st">'weekend'</span>]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>counts.plot(kind<span class="op">=</span><span class="st">'bar'</span>, figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">3</span>))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Weekday vs Weekend (sample)'</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="report_files/figure-html/cell-3-output-1.png" width="375" height="280" class="figure-img"></p>
-</figure>
-</div>
-</div>
+<p>The presentation also reports approximately 5 minutes saved per deal and approximately 15 minutes saved on the end-of-day report. These figures are source-reported estimates, not independently recalculated measures.</p>
+</section>
+<section id="client-and-operating-model-effects" class="level2">
+<h2 class="anchored" data-anchor-id="client-and-operating-model-effects">Client and operating-model effects</h2>
+<p>The integrated flow simplified the client experience by reducing the work required to submit an FX deal. Faster execution reduced the time between request and completed trade, limiting exposure to market movements during the process. The end-of-day activity email or downloadable confirmation also created a clearer handoff to the client.</p>
+<p>A further opportunity identified in the source is integration between the end-of-day activity email and the external administrator platform. That extension could reduce manual follow-up beyond the workflow described here, but it is presented as an opportunity rather than a delivered outcome.</p>
+</section>
+<section id="delivery-contribution" class="level2">
+<h2 class="anchored" data-anchor-id="delivery-contribution">Delivery contribution</h2>
+<p>The case demonstrates the Treasury-functional contribution to integration work:</p>
+<ul>
+<li>redesigning the process around the operating problem rather than around individual application steps;</li>
+<li>defining the information required at request, execution and confirmation stages;</li>
+<li>validating how a pre-trade becomes an actual trade after execution; and</li>
+<li>making the operational and control benefits visible through reported time and error measures.</li>
+</ul>
+<p>Technical ownership, interface implementation details and infrastructure responsibilities are outside the evidence provided by the source presentation.</p>
+</section>
+<section id="source-traceability" class="level2">
+<h2 class="anchored" data-anchor-id="source-traceability">Source traceability</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Report section</th>
+<th>Source evidence</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operating problem</td>
+<td>Slide 2, manual process</td>
+<td>Source-derived summary</td>
+</tr>
+<tr class="even">
+<td>Integrated workflow</td>
+<td>Slides 2–3, connected execution flow</td>
+<td>Source-derived summary</td>
+</tr>
+<tr class="odd">
+<td>Business impact</td>
+<td>Slide 4, time, error and avoided-rework figures</td>
+<td>Source-reported estimates</td>
+</tr>
+<tr class="even">
+<td>Further opportunity</td>
+<td>Slide 4, administrator-platform integration</td>
+<td>Source-described opportunity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="source-files" class="level2">
+<h2 class="anchored" data-anchor-id="source-files">Source files</h2>
+<ul>
+<li><a href="presentation/Case_01_-_FX_Integration.pdf" target="_blank">Case presentation (PDF)</a></li>
+<li><a href="presentation/Case_01_-_FX_Integration.pptx">Case presentation (PowerPoint)</a></li>
+<li><a href="../../kyriba-transformation/report.html">Kyriba transformation overview</a></li>
+</ul>
+<div class="report-footer">
+<p>Source: <code>Case 01 - FX Integration</code> presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source’s approximate or conservative qualifiers.</p>
 </div>
 
 
@@ -758,5 +807,5 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

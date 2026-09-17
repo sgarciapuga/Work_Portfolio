@@ -23,6 +23,8 @@ My end-to-end Kyriba Treasury Management System work, covering functional design
 
 ::: {.project-links}
 [Presentation (PDF)](kyriba-transformation/presentation/kyriba-transformation.pdf){target="_blank"} · [PowerPoint](kyriba-transformation/presentation/kyriba-transformation.pptx) · [Open the report](kyriba-transformation/report.qmd)
+
+[Case 01: FX Platform Integration](kyriba-transformation/Case_01_FX_Integration/report.qmd)
 :::
 :::
 

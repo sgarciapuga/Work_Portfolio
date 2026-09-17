@@ -11,7 +11,7 @@
     "href": "index.html#projects",
     "title": "Professional Portfolio",
     "section": "Projects",
-    "text": "Projects\n\n\nKyriba TMS Transformation\nMy end-to-end Kyriba Treasury Management System work, covering functional design, core data and access setup, banking and trade integrations, ERP and Data Platform connectivity, and post-go-live optimisation.\n\nPresentation (PDF) · PowerPoint · Open the report\n\n\n\nFX Prime Brokerage Collateral\nA workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem, including new Power BI dashboards for collateral reporting and monitoring.\n\nPresentation (PDF) · PowerPoint · Open the report\n\n\n\nTreasury Cashflow Simulation\nSynthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.\n\nOpen the report\n\n\n\nDaily FX Rates\nDaily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.\n\nOpen the report\n\n\n\nCreate Date Table\nReusable PostgreSQL calendar dimension for reporting and time intelligence.\n\nOpen the report"
+    "text": "Projects\n\n\nKyriba TMS Transformation\nMy end-to-end Kyriba Treasury Management System work, covering functional design, core data and access setup, banking and trade integrations, ERP and Data Platform connectivity, and post-go-live optimisation.\n\nPresentation (PDF) · PowerPoint · Open the report\nCase 01: FX Platform Integration\n\n\n\nFX Prime Brokerage Collateral\nA workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem, including new Power BI dashboards for collateral reporting and monitoring.\n\nPresentation (PDF) · PowerPoint · Open the report\n\n\n\nTreasury Cashflow Simulation\nSynthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.\n\nOpen the report\n\n\n\nDaily FX Rates\nDaily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.\n\nOpen the report\n\n\n\nCreate Date Table\nReusable PostgreSQL calendar dimension for reporting and time intelligence.\n\nOpen the report"
   },
   {
     "objectID": "daily-fx-rates/report.html",
@@ -88,7 +88,7 @@
     "href": "fx-prime-brokerage-collateral/report.html#inspect-the-generated-files",
     "title": "FX Prime Brokerage Collateral",
     "section": "Inspect the generated files",
-    "text": "Inspect the generated files\n\noutput_inventory = pd.DataFrame({\n    \"dataset\": list(paths),\n    \"path\": [str(path.relative_to(PROJECT_ROOT)) for path in paths.values()],\n    \"rows\": [len(frame) for frame in data.values()],\n    \"columns\": [len(frame.columns) for frame in data.values()],\n})\ndisplay(output_inventory)\n\n\n\n\n\n\n\n\ndataset\npath\nrows\ncolumns\n\n\n\n\n0\nportfolio\ndata\\FX-portfolio\\portfolio.csv\n3324\n9\n\n\n1\nlimits\ndata\\Limits\\limits.csv\n805\n5\n\n\n2\nmark_to_market\ndata\\Mark-to-market\\mark_to_market_portfolio.csv\n3338\n6\n\n\n3\nmtm_report\ndata\\Mark-to-market\\mtm_report.csv\n161\n6\n\n\n\n\n\n\n\nThe table above is executed against the files in data/, so it is a quick check that the report and the pipeline are pointing at the same artifacts.\nThe portfolio aggregation answers a business question rather than only displaying raw rows: what is the volume of trades by currency pair? The following code cell groups the portfolio by currency_pair and sums the trade_size_usd for each pair.\n\nportfolio_by_pair = (\n    portfolio.groupby(\"currency_pair\", as_index=False)[\"trade_size_usd\"]\n    .sum()\n    .sort_values(\"trade_size_usd\", ascending=False)\n)\ndisplay(portfolio_by_pair)\n\n\n\n\n\n\n\n\ncurrency_pair\ntrade_size_usd\n\n\n\n\n0\nEUR/GBP\n3.768687e+09\n\n\n1\nEUR/USD\n3.425249e+09\n\n\n2\nGBP/USD\n2.124165e+09"
+    "text": "Inspect the generated files\n\noutput_inventory = pd.DataFrame({\n    \"dataset\": list(paths),\n    \"path\": [str(path.relative_to(PROJECT_ROOT)) for path in paths.values()],\n    \"rows\": [len(frame) for frame in data.values()],\n    \"columns\": [len(frame.columns) for frame in data.values()],\n})\ndisplay(output_inventory)\n\n\n\n\n\n\n\n\ndataset\npath\nrows\ncolumns\n\n\n\n\n0\nportfolio\ndata\\FX-portfolio\\portfolio.csv\n3796\n9\n\n\n1\nlimits\ndata\\Limits\\limits.csv\n880\n5\n\n\n2\nmark_to_market\ndata\\Mark-to-market\\mark_to_market_portfolio.csv\n3809\n6\n\n\n3\nmtm_report\ndata\\Mark-to-market\\mtm_report.csv\n176\n6\n\n\n\n\n\n\n\nThe table above is executed against the files in data/, so it is a quick check that the report and the pipeline are pointing at the same artifacts.\nThe portfolio aggregation answers a business question rather than only displaying raw rows: what is the volume of trades by currency pair? The following code cell groups the portfolio by currency_pair and sums the trade_size_usd for each pair.\n\nportfolio_by_pair = (\n    portfolio.groupby(\"currency_pair\", as_index=False)[\"trade_size_usd\"]\n    .sum()\n    .sort_values(\"trade_size_usd\", ascending=False)\n)\ndisplay(portfolio_by_pair)\n\n\n\n\n\n\n\n\ncurrency_pair\ntrade_size_usd\n\n\n\n\n0\nEUR/GBP\n4.097660e+09\n\n\n1\nEUR/USD\n3.641655e+09\n\n\n2\nGBP/USD\n2.618288e+09"
   },
   {
     "objectID": "fx-prime-brokerage-collateral/report.html#the-calculation",
@@ -102,7 +102,7 @@
     "href": "fx-prime-brokerage-collateral/report.html#the-collateral-report",
     "title": "FX Prime Brokerage Collateral",
     "section": "The collateral report",
-    "text": "The collateral report\n\nmtm_report = data[\"mtm_report\"].copy()\ndisplay(mtm_report.head(10))\n\n\n\n\n\n\n\n\nreport_date\ninitial_margin\nvariation_margin\ncollateral_required\ncollateral_posted\nexcess_deficit\n\n\n\n\n0\n2026-01-02\n-1136323.41\n-8655.33\n-1144978.74\n0.0\n-1144978.74\n\n\n1\n2026-01-05\n-697506.46\n-13545.62\n-711052.08\n1650000.0\n938947.92\n\n\n2\n2026-01-06\n-1261125.96\n-10511.61\n-1271637.57\n1650000.0\n378362.43\n\n\n3\n2026-01-07\n-1377611.05\n-15329.81\n-1392940.86\n1650000.0\n257059.14\n\n\n4\n2026-01-08\n-1114987.47\n-15335.62\n-1130323.09\n1650000.0\n519676.91\n\n\n5\n2026-01-09\n-1220345.41\n-9461.17\n-1229806.58\n1650000.0\n420193.42\n\n\n6\n2026-01-12\n-1164863.53\n-4945.42\n-1169808.95\n1650000.0\n480191.05\n\n\n7\n2026-01-13\n-1300203.83\n-15904.58\n-1316108.41\n1650000.0\n333891.58\n\n\n8\n2026-01-14\n-1164863.53\n-17924.89\n-1182788.42\n1650000.0\n467211.58\n\n\n9\n2026-01-15\n-1164863.53\n-10273.91\n-1175137.44\n1650000.0\n474862.56\n\n\n\n\n\n\n\nThe latest generated output can be summarised with a compact control table:\n\ncontrol_summary = pd.DataFrame({\n    \"metric\": [\n        \"Report dates\",\n        \"Latest report date\",\n        \"Minimum excess / deficit\",\n        \"Maximum collateral posted\",\n        \"Deficit days\",\n    ],\n    \"value\": [\n        len(mtm_report),\n        mtm_report[\"report_date\"].max().date(),\n        f\"${mtm_report['excess_deficit'].min():,.0f}\",\n        f\"${mtm_report['collateral_posted'].max():,.0f}\",\n        int((mtm_report[\"excess_deficit\"] &lt; 0).sum()),\n    ],\n})\ndisplay(control_summary)\n\n\n\n\n\n\n\n\nmetric\nvalue\n\n\n\n\n0\nReport dates\n161\n\n\n1\nLatest report date\n2026-08-21\n\n\n2\nMinimum excess / deficit\n$-1,144,979\n\n\n3\nMaximum collateral posted\n$5,320,000\n\n\n4\nDeficit days\n12"
+    "text": "The collateral report\n\nmtm_report = data[\"mtm_report\"].copy()\ndisplay(mtm_report.head(10))\n\n\n\n\n\n\n\n\nreport_date\ninitial_margin\nvariation_margin\ncollateral_required\ncollateral_posted\nexcess_deficit\n\n\n\n\n0\n2026-01-02\n-1136323.41\n-8655.33\n-1144978.74\n0.0\n-1144978.74\n\n\n1\n2026-01-05\n-697506.46\n-13545.62\n-711052.08\n1650000.0\n938947.92\n\n\n2\n2026-01-06\n-1261125.96\n-10511.61\n-1271637.57\n1650000.0\n378362.43\n\n\n3\n2026-01-07\n-1377611.05\n-15329.81\n-1392940.86\n1650000.0\n257059.14\n\n\n4\n2026-01-08\n-1114987.47\n-15335.62\n-1130323.09\n1650000.0\n519676.91\n\n\n5\n2026-01-09\n-1220345.41\n-9461.17\n-1229806.58\n1650000.0\n420193.42\n\n\n6\n2026-01-12\n-1164863.53\n-4945.42\n-1169808.95\n1650000.0\n480191.05\n\n\n7\n2026-01-13\n-1300203.83\n-15904.58\n-1316108.41\n1650000.0\n333891.58\n\n\n8\n2026-01-14\n-1164863.53\n-17924.89\n-1182788.42\n1650000.0\n467211.58\n\n\n9\n2026-01-15\n-1164863.53\n-10273.91\n-1175137.44\n1650000.0\n474862.56\n\n\n\n\n\n\n\nThe latest generated output can be summarised with a compact control table:\n\ncontrol_summary = pd.DataFrame({\n    \"metric\": [\n        \"Report dates\",\n        \"Latest report date\",\n        \"Minimum excess / deficit\",\n        \"Maximum collateral posted\",\n        \"Deficit days\",\n    ],\n    \"value\": [\n        len(mtm_report),\n        mtm_report[\"report_date\"].max().date(),\n        f\"${mtm_report['excess_deficit'].min():,.0f}\",\n        f\"${mtm_report['collateral_posted'].max():,.0f}\",\n        int((mtm_report[\"excess_deficit\"] &lt; 0).sum()),\n    ],\n})\ndisplay(control_summary)\n\n\n\n\n\n\n\n\nmetric\nvalue\n\n\n\n\n0\nReport dates\n176\n\n\n1\nLatest report date\n2026-09-14\n\n\n2\nMinimum excess / deficit\n$-1,144,979\n\n\n3\nMaximum collateral posted\n$5,320,000\n\n\n4\nDeficit days\n13"
   },
   {
     "objectID": "fx-prime-brokerage-collateral/report.html#visualisation-collateral-kpi-cards",
@@ -319,7 +319,7 @@
     "href": "kyriba-transformation/report.html#related-deep-dives",
     "title": "Kyriba TMS Transformation",
     "section": "Related deep dives",
-    "text": "Related deep dives\n\nAccounting deep dive — under development."
+    "text": "Related deep dives\n\nAccounting deep dive — under development.\nCase 01: FX Platform Integration — redesigning FX execution from manual re-entry to connected execution."
   },
   {
     "objectID": "kyriba-transformation/accounting/report.html",
@@ -327,5 +327,68 @@
     "title": "Kyriba TMS Transformation — Accounting Deep Dive",
     "section": "",
     "text": "← Back to Kyriba TMS Transformation overview\n\nTreasury systems case study\n\n\n\n\n\n\n\nWarningUnder development\n\n\n\nThis section is a placeholder for a deeper look at the Accounting and ERP connectivity work within the Kyriba transformation. Content, evidence and any supporting KPIs will be added once approved."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "",
+    "text": "← Back to Kyriba TMS Transformation overview"
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#the-operating-problem",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#the-operating-problem",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "The operating problem",
+    "text": "The operating problem\nThe original workflow required a client to submit an FX deal in a legacy Treasury Management System. A trader then manually re-entered the deal in the trading platform, executed it, updated the client deal with the FX rate and spread, and completed the confirmation process.\nThat sequence created avoidable manual effort and operational exposure:\n\nthe same FX details were entered in more than one system;\nexecution took longer while information was re-keyed and checked;\nmanual input created opportunities for trade-detail errors; and\nclients and administrators relied on downloads and follow-up activity for confirmation."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#the-integrated-workflow",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#the-integrated-workflow",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "The integrated workflow",
+    "text": "The integrated workflow\nThe redesigned process used Kyriba as the entry point and connected it to the trading platform.\n\n\n\n\n\n\n\nStep\nConnected execution flow\n\n\n\n\n1\nThe client submits an FX request in Kyriba and a pre-trade is created.\n\n\n2\nKyriba sends the FX trade details to the trading platform, with details pre-populated.\n\n\n3\nThe trader selects the best available deal and executes the FX trade.\n\n\n4\nExecution details automatically return to Kyriba, where the pre-trade becomes an actual trade.\n\n\n5\nKyriba automatically creates or updates the client deal and applies the spread.\n\n\n6\nThe client receives an end-of-day trading activity email or downloads the confirmation.\n\n\n\nThe important change was the removal of repeated manual transcription between request, execution, trade update and confirmation. The trader still made the execution decision, while the connected workflow carried the agreed details between systems."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#before-and-after",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#before-and-after",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "Before and after",
+    "text": "Before and after\n\n\n\n\n\n\n\nManual process\nIntegrated execution\n\n\n\n\nClient submits an FX deal in the legacy TMS.\nClient submits the FX request in Kyriba.\n\n\nTrader manually re-enters the deal in the trading platform.\nFX details are sent to the trading platform and pre-populated.\n\n\nTrader updates the client deal with the rate and spread.\nExecution feeds back to Kyriba and the spread is applied automatically.\n\n\nClient manually downloads the trade confirmation.\nClient receives an end-of-day activity email or downloads confirmation."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#reported-business-impact",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#reported-business-impact",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "Reported business impact",
+    "text": "Reported business impact\nThe presentation reports the following outcomes for the redesigned workflow:\n\n\nFaster execution\nExecution time reduced from approximately 15 minutes to 5 minutes, or about 67% less execution time.\n\n\nFewer input errors\nThe presentation reports approximately 99% fewer manual input errors after removing repeated trade-detail entry.\n\n\nAvoided rework\nManual re-entry represented approximately $4,000 per year in avoided rework and market-exposure risk. The source describes this as a conservative estimate that scales with trade size.\n\n\nThe presentation also reports approximately 5 minutes saved per deal and approximately 15 minutes saved on the end-of-day report. These figures are source-reported estimates, not independently recalculated measures."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#client-and-operating-model-effects",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#client-and-operating-model-effects",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "Client and operating-model effects",
+    "text": "Client and operating-model effects\nThe integrated flow simplified the client experience by reducing the work required to submit an FX deal. Faster execution reduced the time between request and completed trade, limiting exposure to market movements during the process. The end-of-day activity email or downloadable confirmation also created a clearer handoff to the client.\nA further opportunity identified in the source is integration between the end-of-day activity email and the external administrator platform. That extension could reduce manual follow-up beyond the workflow described here, but it is presented as an opportunity rather than a delivered outcome."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#delivery-contribution",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#delivery-contribution",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "Delivery contribution",
+    "text": "Delivery contribution\nThe case demonstrates the Treasury-functional contribution to integration work:\n\nredesigning the process around the operating problem rather than around individual application steps;\ndefining the information required at request, execution and confirmation stages;\nvalidating how a pre-trade becomes an actual trade after execution; and\nmaking the operational and control benefits visible through reported time and error measures.\n\nTechnical ownership, interface implementation details and infrastructure responsibilities are outside the evidence provided by the source presentation."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#source-traceability",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#source-traceability",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "Source traceability",
+    "text": "Source traceability\n\n\n\n\n\n\n\n\nReport section\nSource evidence\nStatus\n\n\n\n\nOperating problem\nSlide 2, manual process\nSource-derived summary\n\n\nIntegrated workflow\nSlides 2–3, connected execution flow\nSource-derived summary\n\n\nBusiness impact\nSlide 4, time, error and avoided-rework figures\nSource-reported estimates\n\n\nFurther opportunity\nSlide 4, administrator-platform integration\nSource-described opportunity"
+  },
+  {
+    "objectID": "kyriba-transformation/Case_01_FX_Integration/report.html#source-files",
+    "href": "kyriba-transformation/Case_01_FX_Integration/report.html#source-files",
+    "title": "Case 01 — FX Platform Integration",
+    "section": "Source files",
+    "text": "Source files\n\nCase presentation (PDF)\nCase presentation (PowerPoint)\nKyriba transformation overview\n\n\nSource: Case 01 - FX Integration presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source’s approximate or conservative qualifiers."
   }
 ]
