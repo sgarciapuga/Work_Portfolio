@@ -263,3 +263,4 @@ calendar_date,year,quarter,month,month_name,day,day_of_week,day_name,weekday,is_
 2026-09-19,2026,3,9,September,19,6,Saturday,5,True,False,False,38,2026-09,2026-Q3,38,2026
 2026-09-20,2026,3,9,September,20,7,Sunday,6,True,False,False,38,2026-09,2026-Q3,38,2026
 2026-09-21,2026,3,9,September,21,1,Monday,0,False,False,False,39,2026-09,2026-Q3,39,2026
+2026-09-22,2026,3,9,September,22,2,Tuesday,1,False,False,False,39,2026-09,2026-Q3,39,2026
