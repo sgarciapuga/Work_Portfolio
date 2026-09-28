@@ -83,18 +83,23 @@ def simulate_pipeline():
             "starting_balance",
             "total_movements",
             "closing_balance"
-        ]]
+        ]].copy()
+        movements_db = movements.copy()
+        # psycopg 3 sends str params as VARCHAR, which Postgres won't cast to DATE.
+        daily_db["date"] = pd.to_datetime(daily_db["date"]).dt.date
+        movements_db["date"] = pd.to_datetime(movements_db["date"]).dt.date
+        run_date = current.date()
         with engine.begin() as connection:
             connection.execute(
                 text("DELETE FROM treasury_balances WHERE date = :date"),
-                {"date": date_str},
+                {"date": run_date},
             )
             connection.execute(
                 text("DELETE FROM treasury_movements WHERE date = :date"),
-                {"date": date_str},
+                {"date": run_date},
             )
             daily_db.to_sql("treasury_balances", connection, if_exists="append", index=False)
-            movements.to_sql("treasury_movements", connection, if_exists="append", index=False)
+            movements_db.to_sql("treasury_movements", connection, if_exists="append", index=False)
 
         # Prepare next day
         accounts_df = daily[["account_number", "currency", "closing_balance"]]
