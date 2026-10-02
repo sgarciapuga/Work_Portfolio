@@ -78,7 +78,26 @@ tbody tr:nth-child(even) { background: #fbfcfd; }
 .project-card h3 { margin-top: 0; }
 .project-card p:last-child { margin-bottom: 0; }
 .project-card .project-links { margin-top: .75rem; font-size: .92rem; }
-.project-card .project-links a { margin-right: 1rem; }
+.project-card .project-links a { white-space: nowrap; }
+
+.project-cases {
+  margin-top: 1rem;
+  padding-top: .85rem;
+  border-top: 1px solid var(--pf-line);
+  font-size: .92rem;
+}
+.project-cases-label {
+  display: block;
+  margin-bottom: .35rem;
+  color: var(--pf-muted);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.project-cases ul { list-style: none; margin: 0; padding-left: 0; }
+.project-cases li { margin: .25rem 0; }
+.project-cases li::before { content: "→"; margin-right: .45rem; color: var(--pf-blue); }
 
 @media (max-width: 768px) {
   .project-grid { grid-template-columns: 1fr; }
