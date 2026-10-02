@@ -78,7 +78,25 @@ tbody tr:nth-child(even) { background: #fbfcfd; }
 .project-card h3 { margin-top: 0; }
 .project-card p:last-child { margin-bottom: 0; }
 .project-card .project-links { margin-top: .75rem; font-size: .92rem; }
-.project-card .project-links a { white-space: nowrap; }
+/* Separator dots sit in the gap before each link; the clipped left edge hides
+   the dot on the first link of every line, so no line starts or ends with one. */
+.project-card .project-links p {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.4rem;
+  row-gap: .2rem;
+  overflow: hidden;
+  margin: -.35rem;
+  padding: .35rem;
+}
+.project-card .project-links a { white-space: nowrap; margin-left: -1.4rem; }
+.project-card .project-links a::before {
+  content: "·";
+  display: inline-block;
+  width: 1.4rem;
+  text-align: center;
+  color: var(--pf-muted);
+}
 
 .project-cases {
   margin-top: 1rem;

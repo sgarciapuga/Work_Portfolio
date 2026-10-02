@@ -23,7 +23,7 @@ This portfolio is a work in progress, and I will continue to add new projects as
 My end-to-end Kyriba Treasury Management System work, covering functional design, core data and access setup, banking and trade integrations, ERP and Data Platform connectivity, and post-go-live optimisation.
 
 ::: {.project-links}
-[Open the report](kyriba-transformation/report.qmd) · [Presentation (PDF)](kyriba-transformation/presentation/kyriba-transformation.pdf){target="_blank"} · [PowerPoint](kyriba-transformation/presentation/kyriba-transformation.pptx)
+[Open the report](kyriba-transformation/report.qmd) [Presentation (PDF)](kyriba-transformation/presentation/kyriba-transformation.pdf){target="_blank"} [PowerPoint](kyriba-transformation/presentation/kyriba-transformation.pptx)
 :::
 
 ::: {.project-cases}
@@ -40,7 +40,7 @@ My end-to-end Kyriba Treasury Management System work, covering functional design
 A workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem, including new Power BI dashboards for collateral reporting and monitoring.
 
 ::: {.project-links}
-[Open the report](fx-prime-brokerage-collateral/report.qmd) · [Presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pdf){target="_blank"} · [PowerPoint](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pptx)
+[Open the report](fx-prime-brokerage-collateral/report.qmd) [Presentation (PDF)](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pdf){target="_blank"} [PowerPoint](fx-prime-brokerage-collateral/presentation/fx-primer-broker-collateral.pptx)
 :::
 :::
 
