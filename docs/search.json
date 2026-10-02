@@ -11,7 +11,7 @@
     "href": "index.html#projects",
     "title": "Professional Portfolio",
     "section": "Projects",
-    "text": "Projects\n\n\nKyriba TMS Transformation\nMy end-to-end Kyriba Treasury Management System work, covering functional design, core data and access setup, banking and trade integrations, ERP and Data Platform connectivity, and post-go-live optimisation.\n\nPresentation (PDF) · PowerPoint · Open the report\nCase 01: FX Platform Integration\n\n\n\nFX Prime Brokerage Collateral\nA workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem, including new Power BI dashboards for collateral reporting and monitoring.\n\nPresentation (PDF) · PowerPoint · Open the report\n\n\n\nTreasury Cashflow Simulation\nSynthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.\n\nOpen the report\n\n\n\nDaily FX Rates\nDaily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.\n\nOpen the report\n\n\n\nCreate Date Table\nReusable PostgreSQL calendar dimension for reporting and time intelligence.\n\nOpen the report"
+    "text": "Projects\n\n\nKyriba TMS Transformation\nMy end-to-end Kyriba Treasury Management System work, covering functional design, core data and access setup, banking and trade integrations, ERP and Data Platform connectivity, and post-go-live optimisation.\n\nPresentation (PDF) · PowerPoint · Open the report\nCase 01: FX Platform Integration · Case 02: Payments Connectivity\n\n\n\nFX Prime Brokerage Collateral\nA workflow improvement approach for FX prime brokerage collateral management, based on a financial-services use case. The portfolio version uses synthetic data to reproduce the analytical workflow while preserving the structure of the underlying business problem, including new Power BI dashboards for collateral reporting and monitoring.\n\nPresentation (PDF) · PowerPoint · Open the report\n\n\n\nTreasury Cashflow Simulation\nSynthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.\n\nOpen the report\n\n\n\nDaily FX Rates\nDaily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.\n\nOpen the report\n\n\n\nCreate Date Table\nReusable PostgreSQL calendar dimension for reporting and time intelligence.\n\nOpen the report"
   },
   {
     "objectID": "daily-fx-rates/report.html",
@@ -319,7 +319,7 @@
     "href": "kyriba-transformation/report.html#related-deep-dives",
     "title": "Kyriba TMS Transformation",
     "section": "Related deep dives",
-    "text": "Related deep dives\n\nAccounting deep dive — under development.\nCase 01: FX Platform Integration — redesigning FX execution from manual re-entry to connected execution."
+    "text": "Related deep dives\n\nAccounting deep dive — under development.\nCase 01: FX Platform Integration — redesigning FX execution from manual re-entry to connected execution.\nCase 02: Payments Connectivity — replacing manual netting files, bank portals and faxes with direct bank connectivity and one approval point."
   },
   {
     "objectID": "kyriba-transformation/accounting/report.html",
@@ -390,5 +390,68 @@
     "title": "Case 01 — FX Platform Integration",
     "section": "Source files",
     "text": "Source files\n\nCase presentation (PDF)\nCase presentation (PowerPoint)\nKyriba transformation overview\n\n\nSource: Case 01 - FX Integration presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source’s approximate or conservative qualifiers."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "",
+    "text": "← Back to Kyriba TMS Transformation overview"
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#how-treasury-payments-work",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#how-treasury-payments-work",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "How Treasury payments work",
+    "text": "How Treasury payments work\nTreasury acts as the cash hub for the group. Before looking at what changed, it helps to see which payments Treasury generates and why most intercompany activity never reaches a bank.\n\nTreasury as cash hub. Group entities deposit surplus cash with Treasury, or draw it down as loans or deposit withdrawals.\nIntercompany activity. Group entities can also pay each other for intercompany fees, drawdowns or distributions. These transactions stay inside the treasury system; only the netted amounts go out as payments.\nOne daily netting position. Treasury tracks what is coming in and going out across every entity. The netting process runs one day before the value date, and net movements generate netted payments to the right entities.\nThird parties and bank transfers. Treasury also makes third party payments and moves cash between the two banks where it holds accounts, Bank A and Bank B.\nOne payment run. Netted payments, third party payments and treasury transfers are generated and sent for approval in one payment run, ready for cash to settle on the value date.\n\nBefore this project, these payments were sent using manual file uploads, bank portals and faxes."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#how-netting-works",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#how-netting-works",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "How netting works",
+    "text": "How netting works\nTransactions between group entities are settled inside Kyriba. Cash moves through a bank only when it enters or leaves Treasury. The source illustrates this with a chain in which Entity A pays Entity B and Entity B pays Entity C, under four funding scenarios:\n\n\n\n\n\n\n\n\n\n\nScenario\nEntity A’s funding\nEntity C’s surplus\nReal cash in\nReal cash out\n\n\n\n\n1\nWithdraws from its deposit with Treasury\nDeposited with Treasury\nNone\nNone\n\n\n2\nWithdraws from its deposit with Treasury\nPaid out to Entity C\nNone\nPayment to Entity C’s bank\n\n\n3\nEntity A’s bank sends cash to Treasury\nDeposited with Treasury\nFrom Entity A’s bank\nNone\n\n\n4\nEntity A’s bank sends cash to Treasury\nPaid out to Entity C\nFrom Entity A’s bank\nPayment to Entity C’s bank\n\n\n\nIn every scenario the intermediate payments (A to B, B to C) stay inside Kyriba. That is why the payment run only has to carry the netted amounts, plus third party payments and treasury transfers."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#from-manual-files-to-direct-bank-connectivity",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#from-manual-files-to-direct-bank-connectivity",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "From manual files to direct bank connectivity",
+    "text": "From manual files to direct bank connectivity\n\n\n\n\n\n\n\nBefore: manual process\nAfter: bank connectivity\n\n\n\n\nNetting ran automatically, but the netting report was downloaded manually.\nThe netting process is scheduled in Kyriba, and can also be triggered manually by the user.\n\n\nThe file was downloaded and re-uploaded to the legacy TMS, which sent payments to the bank.\nNetted payments are released from the Cash & Liquidity module straight to the Payments module.\n\n\nThird party and other non-netted payments were instructed manually in the bank portal.\nThird party payments are instructed in Kyriba using templates in the Payments module.\n\n\nTreasury transfers between Bank A and Bank B were instructed manually, through the portal or by fax and email to the Bank B team.\nTreasury transfers between Bank A and Bank B are instructed in the Cash & Liquidity module.\n\n\nPayments were checked manually in the bank portal, then sent for approval.\nPayments are reviewed and sent for approval in Kyriba.\n\n\n—\nOnce approved, a pain.001 payment instruction goes to Bank A, or to Bank B for treasury transfers from Bank B to Bank A.\n\n\n—\nKyriba receives pain.002 status feedback from the bank, and the bank also emails feedback on the XML file.\n\n\n\npain.001 and pain.002 are the ISO 20022 XML messages for customer payment initiation and payment status reporting."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#the-integrated-payments-flow",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#the-integrated-payments-flow",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "The integrated payments flow",
+    "text": "The integrated payments flow\nThe redesigned flow follows six steps: instruct → netting → release to Payments → approve → send to bank → bank pays.\n\n\n\n\n\nflowchart LR\n    GE1[\"Group entities&lt;br/&gt;deposits, withdrawals, FX deals\"]\n    GE2[\"Group entities&lt;br/&gt;fees, distributions, drawdowns\"]\n    TR1[\"Treasury&lt;br/&gt;treasury transfers\"]\n    TR2[\"Treasury&lt;br/&gt;third party payments\"]\n\n    subgraph K[\"Kyriba\"]\n        FT[\"Financial Transactions&lt;br/&gt;module\"]\n        subgraph CL[\"Cash & Liquidity module\"]\n            NR([\"Netting run\"])\n            NP[\"Netted payments\"]\n            TT[\"Treasury transfers\"]\n        end\n        PM[\"Payments module&lt;br/&gt;review and approval\"]\n    end\n\n    BA([\"Bank A&lt;br/&gt;initiates all payments\"])\n    BB([\"Bank B&lt;br/&gt;initiates B to A transfers only\"])\n    RCV[\"Group entities&lt;br/&gt;and third parties\"]\n\n    GE1 --&gt; FT\n    FT --&gt; NR\n    GE2 --&gt; NR\n    NR --&gt; NP\n    TR1 --&gt; TT\n    NP --&gt;|release| PM\n    TT --&gt;|release| PM\n    TR2 --&gt;|templates| PM\n    PM --&gt;|pain.001| BA\n    BA --&gt;|pain.002| PM\n    PM --&gt;|pain.001| BB\n    BB --&gt;|pain.002| PM\n    BA -.-&gt;|payments| RCV\n    BA -.-&gt;|transfer A to B| BB\n    BB -.-&gt;|transfer B to A| BA\n\n\n Integrated payments flow as described in the source presentation. Solid arrows are messages or system steps; dashed arrows are real payments where money moves. \n\n\n\n\n\n\n\n\n\n\nStep\nWhat happens\n\n\n\n\n1. Instruct\nGroup entities record deposits, withdrawals and FX deals (Financial Transactions module) and intercompany fees, distributions and drawdowns. Treasury instructs treasury transfers and third party payments.\n\n\n2. Netting\nThe netting run in the Cash & Liquidity module produces the netted payments.\n\n\n3. Release to Payments\nNetted payments and treasury transfers are released to the Payments module. Third party payments are instructed there directly, using templates.\n\n\n4. Approve\nAll payments are reviewed and approved in the Payments module.\n\n\n5. Send to bank\nKyriba sends a pain.001 payment instruction to the bank and receives pain.002 status feedback. All payments are initiated using Bank A; only transfers from Bank B to Bank A are initiated in Bank B.\n\n\n6. Bank pays\nThe bank pays group entities and third parties, and moves treasury transfers between Bank A and Bank B."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#reported-business-impact",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#reported-business-impact",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "Reported business impact",
+    "text": "Reported business impact\nThe presentation reports the following outcomes:\n\n\nOperational risk: 2 banks connected\nBoth core banks are connected straight-through. Previously, the netting file was downloaded, reloaded into the legacy TMS and sent through the bank portal.\n\n\nEfficiency: ~6 hours saved per month\nApproximately 15 minutes saved per payment run, and at least 5 minutes saved on each treasury transfer and third party payment. Transfers previously sent by fax save more.\n\n\nControl: 1 place to approve\nAll payments are approved in one place. Previously, approvals were spread across the Bank A portal, fax to Bank B and email to the Bank B team.\n\n\nThe source bases the efficiency estimate on one payment run per working day (about 21 a month), 6 treasury transfers and 5 third party payments a month. Those assumptions are consistent with the headline figure: 21 runs × 15 minutes is about 5¼ hours, and 11 transfers and payments × at least 5 minutes is about 1 hour more. These are source-reported estimates, not measured or audited savings."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#delivery-contribution",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#delivery-contribution",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "Delivery contribution",
+    "text": "Delivery contribution\nThe case demonstrates the Treasury-functional contribution to bank connectivity work:\n\nmapping the full payment population (netted payments, third party payments and treasury transfers) into a single payment run;\nexplaining how netting keeps intercompany settlement inside Kyriba so only net cash movements reach the banks;\ndefining which Kyriba module each payment type is instructed in, and where it is released, reviewed and approved;\nclarifying which bank initiates which payments, including the Bank B to Bank A exception; and\nmaking the operational, efficiency and control benefits visible with stated estimation assumptions.\n\nTechnical ownership of the bank connection, message mapping and infrastructure is outside the evidence provided by the source presentation."
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#source-traceability",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#source-traceability",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "Source traceability",
+    "text": "Source traceability\n\n\n\n\n\n\n\n\nReport section\nSource evidence\nStatus\n\n\n\n\nHow Treasury payments work\nSlide 2, netting cycle and payment types\nSource-derived summary\n\n\nHow netting works\nSlide 3, four netting scenarios\nSource-derived summary\n\n\nBefore and after\nSlide 4, manual process vs bank connectivity\nSource-derived summary\n\n\nIntegrated payments flow\nSlide 5, module and bank message flow\nSource-derived summary and redrawn diagram\n\n\nISO 20022 note\nGeneral message-standard context\nAdded context, not from the source\n\n\nBusiness impact\nSlide 6, risk, efficiency and control figures\nSource-reported estimates"
+  },
+  {
+    "objectID": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#source-files",
+    "href": "kyriba-transformation/Case_02_Payments_Connectivity/report.html#source-files",
+    "title": "Case 02 — Payments Connectivity",
+    "section": "Source files",
+    "text": "Source files\n\nCase presentation (PDF)\nCase presentation (PowerPoint)\nKyriba transformation overview\nCase 01: FX Platform Integration\n\n\nSource: Case 02 - Payments Connectivity presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source’s approximate or minimum qualifiers."
   }
 ]

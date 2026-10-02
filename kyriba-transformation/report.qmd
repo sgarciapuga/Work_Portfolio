@@ -249,6 +249,7 @@ The source presentation does not provide approved quantitative measures, dates, 
 
 - [Accounting deep dive](accounting/report.qmd) — under development.
 - [Case 01: FX Platform Integration](Case_01_FX_Integration/report.qmd) — redesigning FX execution from manual re-entry to connected execution.
+- [Case 02: Payments Connectivity](Case_02_Payments_Connectivity/report.qmd) — replacing manual netting files, bank portals and faxes with direct bank connectivity and one approval point.
 
 # Appendix
 

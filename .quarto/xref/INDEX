@@ -31,5 +31,8 @@
   },
   "kyriba-transformation/Case_01_FX_Integration/report.qmd": {
     "report.html": "e38ba2ca"
+  },
+  "kyriba-transformation/Case_02_Payments_Connectivity/report.qmd": {
+    "report.html": "b0f787aa"
   }
 }

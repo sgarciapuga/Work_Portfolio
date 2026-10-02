@@ -14,6 +14,7 @@ Unlike the other projects in this portfolio, this is a narrative case study buil
 
 - [Accounting](accounting/report.qmd) — under development.
 - [Case 01: FX Platform Integration](Case_01_FX_Integration/report.qmd) — an FX workflow redesign connecting Kyriba and a trading platform.
+- [Case 02: Payments Connectivity](Case_02_Payments_Connectivity/report.qmd) — netting and payment-flow redesign with direct connectivity to two core banks.
 
 ## Evidence discipline
 
@@ -32,6 +33,10 @@ kyriba-transformation/
 │   ├── README.md
 │   ├── report.qmd
 │   └── presentation/         # case source files
+├── Case_02_Payments_Connectivity/
+│   ├── README.md
+│   ├── report.qmd
+│   └── presentation/         # case source files
 ├── presentation/
 │   ├── kyriba-transformation.pdf
 │   └── kyriba-transformation.pptx
@@ -41,11 +46,11 @@ kyriba-transformation/
 
 ## Adding another deep dive
 
-Follow the pattern used for `accounting/`:
+Follow the pattern used for `accounting/` or the `Case_0x_*` folders:
 
 1. Create a new subfolder with its own `report.qmd` (reuse `../styles.css`) and a short README.
-2. Register it in the root `_quarto.yml` under `project.render`, and add it to the `Kyriba Transformation` navbar dropdown menu.
-3. Link to it from the "Related deep dives" section in the overview [report.qmd](report.qmd).
+2. Register it in the root `_quarto.yml` under `project.render`, add it to the `Kyriba Transformation` navbar dropdown menu, and add it to `$AllReports` in `scripts/render_all_reports.ps1`.
+3. Link to it from the "Related deep dives" section in the overview [report.qmd](report.qmd) and from the Kyriba card in the root `index.qmd`.
 
 ## Notes
 

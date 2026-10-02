@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sergio">
-<meta name="dcterms.date" content="2026-09-17">
-<meta name="description" content="A source-traceable Kyriba case study covering FX workflow redesign, trading-platform integration and reported time savings.">
+<meta name="dcterms.date" content="2026-10-02">
+<meta name="description" content="A source-traceable Kyriba case study covering netting, payment-flow redesign, direct bank connectivity and reported time savings.">
 
-<title>Case 01 — FX Platform Integration – Professional Portfolio</title>
+<title>Case 02 — Payments Connectivity – Professional Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,6 +77,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles/portfolio.css">
@@ -159,11 +162,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-operating-problem" id="toc-the-operating-problem" class="nav-link active" data-scroll-target="#the-operating-problem">The operating problem</a></li>
-  <li><a href="#the-integrated-workflow" id="toc-the-integrated-workflow" class="nav-link" data-scroll-target="#the-integrated-workflow">The integrated workflow</a></li>
-  <li><a href="#before-and-after" id="toc-before-and-after" class="nav-link" data-scroll-target="#before-and-after">Before and after</a></li>
+  <li><a href="#how-treasury-payments-work" id="toc-how-treasury-payments-work" class="nav-link active" data-scroll-target="#how-treasury-payments-work">How Treasury payments work</a></li>
+  <li><a href="#how-netting-works" id="toc-how-netting-works" class="nav-link" data-scroll-target="#how-netting-works">How netting works</a></li>
+  <li><a href="#from-manual-files-to-direct-bank-connectivity" id="toc-from-manual-files-to-direct-bank-connectivity" class="nav-link" data-scroll-target="#from-manual-files-to-direct-bank-connectivity">From manual files to direct bank connectivity</a></li>
+  <li><a href="#the-integrated-payments-flow" id="toc-the-integrated-payments-flow" class="nav-link" data-scroll-target="#the-integrated-payments-flow">The integrated payments flow</a></li>
   <li><a href="#reported-business-impact" id="toc-reported-business-impact" class="nav-link" data-scroll-target="#reported-business-impact">Reported business impact</a></li>
-  <li><a href="#client-and-operating-model-effects" id="toc-client-and-operating-model-effects" class="nav-link" data-scroll-target="#client-and-operating-model-effects">Client and operating-model effects</a></li>
   <li><a href="#delivery-contribution" id="toc-delivery-contribution" class="nav-link" data-scroll-target="#delivery-contribution">Delivery contribution</a></li>
   <li><a href="#source-traceability" id="toc-source-traceability" class="nav-link" data-scroll-target="#source-traceability">Source traceability</a></li>
   <li><a href="#source-files" id="toc-source-files" class="nav-link" data-scroll-target="#source-files">Source files</a></li>
@@ -175,13 +178,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Case 01 — FX Platform Integration</h1>
-<p class="subtitle lead">Reducing manual effort across a global Treasury operating model</p>
+<h1 class="title">Case 02 — Payments Connectivity</h1>
+<p class="subtitle lead">Removing manual file handling from global treasury payments</p>
 </div>
 
 <div>
   <div class="description">
-    A source-traceable Kyriba case study covering FX workflow redesign, trading-platform integration and reported time savings.
+    A source-traceable Kyriba case study covering netting, payment-flow redesign, direct bank connectivity and reported time savings.
   </div>
 </div>
 
@@ -198,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 17, 2026</p>
+      <p class="date">October 2, 2026</p>
     </div>
   </div>
   
@@ -212,10 +215,10 @@ ul.task-list li input[type="checkbox"] {
 
 <p><a href="../../kyriba-transformation/report.html">← Back to Kyriba TMS Transformation overview</a></p>
 <div class="report-kicker">
-<p>Kyriba transformation · case study 01</p>
+<p>Kyriba transformation · case study 02</p>
 </div>
 <div class="report-intro">
-<p>How an FX request moved from manual re-entry and fragmented handoffs to connected execution between Kyriba and a trading platform.</p>
+<p>How Treasury payments moved from netting-file downloads, bank portals and faxes to a single approval point in Kyriba with direct connections to the group’s two core banks.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -227,23 +230,169 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This case study is based on the supplied <code>Case 01 - FX Integration</code> presentation. The workflow and impact figures below are reported as described in that source. The case does not add client names, implementation dates, technical architecture, or independently audited benefits.</p>
+<p>This case study is based on the supplied <code>Case 02 - Payments Connectivity</code> presentation. The payment flows and impact figures below are reported as described in that source. Banks are anonymised as Bank A and Bank B, as in the source. The case does not add client or bank names, implementation dates, connectivity channel details, or independently audited benefits.</p>
 </div>
 </div>
-<section id="the-operating-problem" class="level2">
-<h2 class="anchored" data-anchor-id="the-operating-problem">The operating problem</h2>
-<p>The original workflow required a client to submit an FX deal in a legacy Treasury Management System. A trader then manually re-entered the deal in the trading platform, executed it, updated the client deal with the FX rate and spread, and completed the confirmation process.</p>
-<p>That sequence created avoidable manual effort and operational exposure:</p>
-<ul>
-<li>the same FX details were entered in more than one system;</li>
-<li>execution took longer while information was re-keyed and checked;</li>
-<li>manual input created opportunities for trade-detail errors; and</li>
-<li>clients and administrators relied on downloads and follow-up activity for confirmation.</li>
-</ul>
+<section id="how-treasury-payments-work" class="level2">
+<h2 class="anchored" data-anchor-id="how-treasury-payments-work">How Treasury payments work</h2>
+<p>Treasury acts as the cash hub for the group. Before looking at what changed, it helps to see which payments Treasury generates and why most intercompany activity never reaches a bank.</p>
+<ol type="1">
+<li><strong>Treasury as cash hub.</strong> Group entities deposit surplus cash with Treasury, or draw it down as loans or deposit withdrawals.</li>
+<li><strong>Intercompany activity.</strong> Group entities can also pay each other for intercompany fees, drawdowns or distributions. These transactions stay inside the treasury system; only the netted amounts go out as payments.</li>
+<li><strong>One daily netting position.</strong> Treasury tracks what is coming in and going out across every entity. The netting process runs one day before the value date, and net movements generate netted payments to the right entities.</li>
+<li><strong>Third parties and bank transfers.</strong> Treasury also makes third party payments and moves cash between the two banks where it holds accounts, Bank A and Bank B.</li>
+<li><strong>One payment run.</strong> Netted payments, third party payments and treasury transfers are generated and sent for approval in one payment run, ready for cash to settle on the value date.</li>
+</ol>
+<p>Before this project, these payments were sent using manual file uploads, bank portals and faxes.</p>
 </section>
-<section id="the-integrated-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="the-integrated-workflow">The integrated workflow</h2>
-<p>The redesigned process used Kyriba as the entry point and connected it to the trading platform.</p>
+<section id="how-netting-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-netting-works">How netting works</h2>
+<p>Transactions between group entities are settled inside Kyriba. Cash moves through a bank only when it enters or leaves Treasury. The source illustrates this with a chain in which Entity A pays Entity B and Entity B pays Entity C, under four funding scenarios:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Entity A’s funding</th>
+<th>Entity C’s surplus</th>
+<th>Real cash in</th>
+<th>Real cash out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Withdraws from its deposit with Treasury</td>
+<td>Deposited with Treasury</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Withdraws from its deposit with Treasury</td>
+<td>Paid out to Entity C</td>
+<td>None</td>
+<td>Payment to Entity C’s bank</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Entity A’s bank sends cash to Treasury</td>
+<td>Deposited with Treasury</td>
+<td>From Entity A’s bank</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Entity A’s bank sends cash to Treasury</td>
+<td>Paid out to Entity C</td>
+<td>From Entity A’s bank</td>
+<td>Payment to Entity C’s bank</td>
+</tr>
+</tbody>
+</table>
+<p>In every scenario the intermediate payments (A to B, B to C) stay inside Kyriba. That is why the payment run only has to carry the netted amounts, plus third party payments and treasury transfers.</p>
+</section>
+<section id="from-manual-files-to-direct-bank-connectivity" class="level2">
+<h2 class="anchored" data-anchor-id="from-manual-files-to-direct-bank-connectivity">From manual files to direct bank connectivity</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Before: manual process</th>
+<th>After: bank connectivity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Netting ran automatically, but the netting report was downloaded manually.</td>
+<td>The netting process is scheduled in Kyriba, and can also be triggered manually by the user.</td>
+</tr>
+<tr class="even">
+<td>The file was downloaded and re-uploaded to the legacy TMS, which sent payments to the bank.</td>
+<td>Netted payments are released from the Cash &amp; Liquidity module straight to the Payments module.</td>
+</tr>
+<tr class="odd">
+<td>Third party and other non-netted payments were instructed manually in the bank portal.</td>
+<td>Third party payments are instructed in Kyriba using templates in the Payments module.</td>
+</tr>
+<tr class="even">
+<td>Treasury transfers between Bank A and Bank B were instructed manually, through the portal or by fax and email to the Bank B team.</td>
+<td>Treasury transfers between Bank A and Bank B are instructed in the Cash &amp; Liquidity module.</td>
+</tr>
+<tr class="odd">
+<td>Payments were checked manually in the bank portal, then sent for approval.</td>
+<td>Payments are reviewed and sent for approval in Kyriba.</td>
+</tr>
+<tr class="even">
+<td>—</td>
+<td>Once approved, a pain.001 payment instruction goes to Bank A, or to Bank B for treasury transfers from Bank B to Bank A.</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>Kyriba receives pain.002 status feedback from the bank, and the bank also emails feedback on the XML file.</td>
+</tr>
+</tbody>
+</table>
+<p>pain.001 and pain.002 are the ISO 20022 XML messages for customer payment initiation and payment status reporting.</p>
+</section>
+<section id="the-integrated-payments-flow" class="level2">
+<h2 class="anchored" data-anchor-id="the-integrated-payments-flow">The integrated payments flow</h2>
+<p>The redesigned flow follows six steps: <strong>instruct → netting → release to Payments → approve → send to bank → bank pays</strong>.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    GE1["Group entities&lt;br/&gt;deposits, withdrawals, FX deals"]
+    GE2["Group entities&lt;br/&gt;fees, distributions, drawdowns"]
+    TR1["Treasury&lt;br/&gt;treasury transfers"]
+    TR2["Treasury&lt;br/&gt;third party payments"]
+
+    subgraph K["Kyriba"]
+        FT["Financial Transactions&lt;br/&gt;module"]
+        subgraph CL["Cash &amp; Liquidity module"]
+            NR(["Netting run"])
+            NP["Netted payments"]
+            TT["Treasury transfers"]
+        end
+        PM["Payments module&lt;br/&gt;review and approval"]
+    end
+
+    BA(["Bank A&lt;br/&gt;initiates all payments"])
+    BB(["Bank B&lt;br/&gt;initiates B to A transfers only"])
+    RCV["Group entities&lt;br/&gt;and third parties"]
+
+    GE1 --&gt; FT
+    FT --&gt; NR
+    GE2 --&gt; NR
+    NR --&gt; NP
+    TR1 --&gt; TT
+    NP --&gt;|release| PM
+    TT --&gt;|release| PM
+    TR2 --&gt;|templates| PM
+    PM --&gt;|pain.001| BA
+    BA --&gt;|pain.002| PM
+    PM --&gt;|pain.001| BB
+    BB --&gt;|pain.002| PM
+    BA -.-&gt;|payments| RCV
+    BA -.-&gt;|transfer A to B| BB
+    BB -.-&gt;|transfer B to A| BA
+</pre>
+</div>
+<p></p><figcaption> Integrated payments flow as described in the source presentation. Solid arrows are messages or system steps; dashed arrows are real payments where money moves.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -252,105 +401,67 @@ ul.task-list li input[type="checkbox"] {
 <thead>
 <tr class="header">
 <th>Step</th>
-<th>Connected execution flow</th>
+<th>What happens</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>The client submits an FX request in Kyriba and a pre-trade is created.</td>
+<td>1. Instruct</td>
+<td>Group entities record deposits, withdrawals and FX deals (Financial Transactions module) and intercompany fees, distributions and drawdowns. Treasury instructs treasury transfers and third party payments.</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>Kyriba sends the FX trade details to the trading platform, with details pre-populated.</td>
+<td>2. Netting</td>
+<td>The netting run in the Cash &amp; Liquidity module produces the netted payments.</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>The trader selects the best available deal and executes the FX trade.</td>
+<td>3. Release to Payments</td>
+<td>Netted payments and treasury transfers are released to the Payments module. Third party payments are instructed there directly, using templates.</td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>Execution details automatically return to Kyriba, where the pre-trade becomes an actual trade.</td>
+<td>4. Approve</td>
+<td>All payments are reviewed and approved in the Payments module.</td>
 </tr>
 <tr class="odd">
-<td>5</td>
-<td>Kyriba automatically creates or updates the client deal and applies the spread.</td>
+<td>5. Send to bank</td>
+<td>Kyriba sends a pain.001 payment instruction to the bank and receives pain.002 status feedback. All payments are initiated using Bank A; only transfers from Bank B to Bank A are initiated in Bank B.</td>
 </tr>
 <tr class="even">
-<td>6</td>
-<td>The client receives an end-of-day trading activity email or downloads the confirmation.</td>
-</tr>
-</tbody>
-</table>
-<p>The important change was the removal of repeated manual transcription between request, execution, trade update and confirmation. The trader still made the execution decision, while the connected workflow carried the agreed details between systems.</p>
-</section>
-<section id="before-and-after" class="level2">
-<h2 class="anchored" data-anchor-id="before-and-after">Before and after</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Manual process</th>
-<th>Integrated execution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Client submits an FX deal in the legacy TMS.</td>
-<td>Client submits the FX request in Kyriba.</td>
-</tr>
-<tr class="even">
-<td>Trader manually re-enters the deal in the trading platform.</td>
-<td>FX details are sent to the trading platform and pre-populated.</td>
-</tr>
-<tr class="odd">
-<td>Trader updates the client deal with the rate and spread.</td>
-<td>Execution feeds back to Kyriba and the spread is applied automatically.</td>
-</tr>
-<tr class="even">
-<td>Client manually downloads the trade confirmation.</td>
-<td>Client receives an end-of-day activity email or downloads confirmation.</td>
+<td>6. Bank pays</td>
+<td>The bank pays group entities and third parties, and moves treasury transfers between Bank A and Bank B.</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="reported-business-impact" class="level2">
 <h2 class="anchored" data-anchor-id="reported-business-impact">Reported business impact</h2>
-<p>The presentation reports the following outcomes for the redesigned workflow:</p>
+<p>The presentation reports the following outcomes:</p>
 <div class="evidence-grid">
-<section id="faster-execution" class="level3 evidence-card">
-<h3 class="anchored" data-anchor-id="faster-execution">Faster execution</h3>
-<p>Execution time reduced from approximately 15 minutes to 5 minutes, or about 67% less execution time.</p>
+<section id="operational-risk-2-banks-connected" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="operational-risk-2-banks-connected">Operational risk: 2 banks connected</h3>
+<p>Both core banks are connected straight-through. Previously, the netting file was downloaded, reloaded into the legacy TMS and sent through the bank portal.</p>
 </section>
-<section id="fewer-input-errors" class="level3 evidence-card">
-<h3 class="anchored" data-anchor-id="fewer-input-errors">Fewer input errors</h3>
-<p>The presentation reports approximately 99% fewer manual input errors after removing repeated trade-detail entry.</p>
+<section id="efficiency-6-hours-saved-per-month" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="efficiency-6-hours-saved-per-month">Efficiency: ~6 hours saved per month</h3>
+<p>Approximately 15 minutes saved per payment run, and at least 5 minutes saved on each treasury transfer and third party payment. Transfers previously sent by fax save more.</p>
 </section>
-<section id="avoided-rework" class="level3 evidence-card">
-<h3 class="anchored" data-anchor-id="avoided-rework">Avoided rework</h3>
-<p>Manual re-entry represented approximately $4,000 per year in avoided rework and market-exposure risk. The source describes this as a conservative estimate that scales with trade size.</p>
+<section id="control-1-place-to-approve" class="level3 evidence-card">
+<h3 class="anchored" data-anchor-id="control-1-place-to-approve">Control: 1 place to approve</h3>
+<p>All payments are approved in one place. Previously, approvals were spread across the Bank A portal, fax to Bank B and email to the Bank B team.</p>
 </section>
 </div>
-<p>The presentation also reports approximately 5 minutes saved per deal and approximately 15 minutes saved on the end-of-day report. These figures are source-reported estimates, not independently recalculated measures.</p>
-</section>
-<section id="client-and-operating-model-effects" class="level2">
-<h2 class="anchored" data-anchor-id="client-and-operating-model-effects">Client and operating-model effects</h2>
-<p>The integrated flow simplified the client experience by reducing the work required to submit an FX deal. Faster execution reduced the time between request and completed trade, limiting exposure to market movements during the process. The end-of-day activity email or downloadable confirmation also created a clearer handoff to the client.</p>
-<p>A further opportunity identified in the source is integration between the end-of-day activity email and the external administrator platform. That extension could reduce manual follow-up beyond the workflow described here, but it is presented as an opportunity rather than a delivered outcome.</p>
+<p>The source bases the efficiency estimate on one payment run per working day (about 21 a month), 6 treasury transfers and 5 third party payments a month. Those assumptions are consistent with the headline figure: 21 runs × 15 minutes is about 5¼ hours, and 11 transfers and payments × at least 5 minutes is about 1 hour more. These are source-reported estimates, not measured or audited savings.</p>
 </section>
 <section id="delivery-contribution" class="level2">
 <h2 class="anchored" data-anchor-id="delivery-contribution">Delivery contribution</h2>
-<p>The case demonstrates the Treasury-functional contribution to integration work:</p>
+<p>The case demonstrates the Treasury-functional contribution to bank connectivity work:</p>
 <ul>
-<li>redesigning the process around the operating problem rather than around individual application steps;</li>
-<li>defining the information required at request, execution and confirmation stages;</li>
-<li>validating how a pre-trade becomes an actual trade after execution; and</li>
-<li>making the operational and control benefits visible through reported time and error measures.</li>
+<li>mapping the full payment population (netted payments, third party payments and treasury transfers) into a single payment run;</li>
+<li>explaining how netting keeps intercompany settlement inside Kyriba so only net cash movements reach the banks;</li>
+<li>defining which Kyriba module each payment type is instructed in, and where it is released, reviewed and approved;</li>
+<li>clarifying which bank initiates which payments, including the Bank B to Bank A exception; and</li>
+<li>making the operational, efficiency and control benefits visible with stated estimation assumptions.</li>
 </ul>
-<p>Technical ownership, interface implementation details and infrastructure responsibilities are outside the evidence provided by the source presentation.</p>
+<p>Technical ownership of the bank connection, message mapping and infrastructure is outside the evidence provided by the source presentation.</p>
 </section>
 <section id="source-traceability" class="level2">
 <h2 class="anchored" data-anchor-id="source-traceability">Source traceability</h2>
@@ -369,24 +480,34 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Operating problem</td>
-<td>Slide 2, manual process</td>
+<td>How Treasury payments work</td>
+<td>Slide 2, netting cycle and payment types</td>
 <td>Source-derived summary</td>
 </tr>
 <tr class="even">
-<td>Integrated workflow</td>
-<td>Slides 2–3, connected execution flow</td>
+<td>How netting works</td>
+<td>Slide 3, four netting scenarios</td>
 <td>Source-derived summary</td>
 </tr>
 <tr class="odd">
-<td>Business impact</td>
-<td>Slide 4, time, error and avoided-rework figures</td>
-<td>Source-reported estimates</td>
+<td>Before and after</td>
+<td>Slide 4, manual process vs bank connectivity</td>
+<td>Source-derived summary</td>
 </tr>
 <tr class="even">
-<td>Further opportunity</td>
-<td>Slide 4, administrator-platform integration</td>
-<td>Source-described opportunity</td>
+<td>Integrated payments flow</td>
+<td>Slide 5, module and bank message flow</td>
+<td>Source-derived summary and redrawn diagram</td>
+</tr>
+<tr class="odd">
+<td>ISO 20022 note</td>
+<td>General message-standard context</td>
+<td>Added context, not from the source</td>
+</tr>
+<tr class="even">
+<td>Business impact</td>
+<td>Slide 6, risk, efficiency and control figures</td>
+<td>Source-reported estimates</td>
 </tr>
 </tbody>
 </table>
@@ -394,12 +515,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="source-files" class="level2">
 <h2 class="anchored" data-anchor-id="source-files">Source files</h2>
 <ul>
-<li><a href="presentation/Case_01_-_FX_Integration.pdf" target="_blank">Case presentation (PDF)</a></li>
-<li><a href="presentation/Case_01_-_FX_Integration.pptx">Case presentation (PowerPoint)</a></li>
+<li><a href="presentation/Case_02_-_Payments_Connectivity.pdf" target="_blank">Case presentation (PDF)</a></li>
+<li><a href="presentation/Case_02_-_Payments_Connectivity.pptx">Case presentation (PowerPoint)</a></li>
 <li><a href="../../kyriba-transformation/report.html">Kyriba transformation overview</a></li>
+<li><a href="../../kyriba-transformation/Case_01_FX_Integration/report.html">Case 01: FX Platform Integration</a></li>
 </ul>
 <div class="report-footer">
-<p>Source: <code>Case 01 - FX Integration</code> presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source’s approximate or conservative qualifiers.</p>
+<p>Source: <code>Case 02 - Payments Connectivity</code> presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source’s approximate or minimum qualifiers.</p>
 </div>
 
 
