@@ -129,6 +129,7 @@ Technical ownership, interface implementation details and infrastructure respons
 - [Case presentation (PDF)](presentation/Case_01_-_FX_Integration.pdf){target="_blank"}
 - [Case presentation (PowerPoint)](presentation/Case_01_-_FX_Integration.pptx)
 - [Kyriba transformation overview](../report.qmd)
+- [Case 02: Payments Connectivity](../Case_02_Payments_Connectivity/report.qmd)
 
 ::: {.report-footer}
 Source: `Case 01 - FX Integration` presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source's approximate or conservative qualifiers.

@@ -10,12 +10,13 @@ The portfolio is published as a Quarto website. The landing page is [index.qmd](
 |---|---|---|
 | Kyriba TMS Transformation | [kyriba-transformation/report.qmd](kyriba-transformation/report.qmd) | [docs/kyriba-transformation/report.html](docs/kyriba-transformation/report.html) |
 | Kyriba Case 01: FX Platform Integration | [kyriba-transformation/Case_01_FX_Integration/report.qmd](kyriba-transformation/Case_01_FX_Integration/report.qmd) | [docs/kyriba-transformation/Case_01_FX_Integration/report.html](docs/kyriba-transformation/Case_01_FX_Integration/report.html) |
+| Kyriba Case 02: Payments Connectivity | [kyriba-transformation/Case_02_Payments_Connectivity/report.qmd](kyriba-transformation/Case_02_Payments_Connectivity/report.qmd) | [docs/kyriba-transformation/Case_02_Payments_Connectivity/report.html](docs/kyriba-transformation/Case_02_Payments_Connectivity/report.html) |
 | FX Prime Brokerage Collateral | [fx-prime-brokerage-collateral/report.qmd](fx-prime-brokerage-collateral/report.qmd) | [docs/fx-prime-brokerage-collateral/report.html](docs/fx-prime-brokerage-collateral/report.html) |
 | Treasury Cashflow Simulation | [treasury-cashflow-simulation/report.qmd](treasury-cashflow-simulation/report.qmd) | [docs/treasury-cashflow-simulation/report.html](docs/treasury-cashflow-simulation/report.html) |
 | Daily FX Rates | [daily-fx-rates/report.qmd](daily-fx-rates/report.qmd) | [docs/daily-fx-rates/report.html](docs/daily-fx-rates/report.html) |
 | Create Date Table | [create-date-table/report.qmd](create-date-table/report.qmd) | [docs/create-date-table/report.html](docs/create-date-table/report.html) |
 
-- **Kyriba TMS Transformation** — a source-traceable case study of Kyriba Treasury Management System functional design, data governance, integrations and continuous improvement, built from a supplied presentation. Includes an Accounting deep dive and Case 01 on FX platform integration.
+- **Kyriba TMS Transformation** — a source-traceable case study of Kyriba Treasury Management System functional design, data governance, integrations and continuous improvement, built from a supplied presentation. Includes an Accounting deep dive, Case 01 on FX platform integration and Case 02 on payments connectivity.
 - **FX Prime Brokerage Collateral** — a reproducible Python pipeline generating synthetic FX portfolio, limits, mark-to-market and collateral datasets, connected to a Power BI dashboard.
 - **Treasury Cashflow Simulation** — synthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.
 - **Daily FX Rates** — daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.
@@ -34,7 +35,8 @@ Work_Portfolio/
 ├── docs/                        # rendered Quarto website (output)
 ├── kyriba-transformation/
 │   ├── accounting/              # example sub-project page
-│   └── Case_01_FX_Integration/  # focused FX integration case
+│   ├── Case_01_FX_Integration/  # focused FX integration case
+│   └── Case_02_Payments_Connectivity/  # focused payments connectivity case
 ├── fx-prime-brokerage-collateral/
 ├── treasury-cashflow-simulation/
 ├── daily-fx-rates/

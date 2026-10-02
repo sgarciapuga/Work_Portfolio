@@ -158,6 +158,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../kyriba-transformation/Case_01_FX_Integration/report.html">
  <span class="dropdown-text">Case 01: FX Platform Integration</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/Case_02_Payments_Connectivity/report.html">
+ <span class="dropdown-text">Case 02: Payments Connectivity</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -259,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example-preview-calendar-rows-safe-local-sample-if-db-not-available" class="level1">
 <h1>Example: preview calendar rows (safe local sample if DB not available)</h1>
-<div id="b7b12e85" class="cell" data-execution_count="1">
+<div id="84407c81" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
@@ -331,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="c3c04058" class="cell" data-execution_count="2">
+<div id="51fad3ad" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: count of weekend vs weekday in the sample</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df[<span class="st">'is_weekend'</span>].value_counts().sort_index()</span>
