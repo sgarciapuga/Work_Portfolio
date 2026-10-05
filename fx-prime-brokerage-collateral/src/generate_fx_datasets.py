@@ -332,12 +332,14 @@ def run_all(out_dir=None):
     new_mtm_portfolio = _incremental_slice(df_mtm_portfolio, "report_date", last_mtm_portfolio_date)
     new_mtm_report = _incremental_slice(df_mtm_report, "report_date", last_mtm_report_date)
 
+    # Save to the DB first: the CSVs decide what counts as "new" next run, so if
+    # the DB write fails they must not move ahead of it.
+    _save_to_database(new_limits, new_mtm_portfolio, new_mtm_report, new_fx_portfolio)
+
     _write_csv(new_limits, limits_file, last_limits_date)
     _write_csv(new_mtm_portfolio, mtm_portfolio_file, last_mtm_portfolio_date)
     _write_csv(new_mtm_report, mtm_report_file, last_mtm_report_date)
     _write_csv(new_fx_portfolio, fx_portfolio_file, last_fx_portfolio_date)
-
-    _save_to_database(new_limits, new_mtm_portfolio, new_mtm_report, new_fx_portfolio)
 
     mode = "from scratch" if last_fx_portfolio_date is None else "incrementally"
     row_count = lambda df: 0 if df is None else len(df)

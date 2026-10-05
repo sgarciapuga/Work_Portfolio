@@ -31,7 +31,6 @@ fx-prime-brokerage-collateral/
     ├── generate_fx_datasets.py
     ├── generate_fx_portfolio.py
     ├── generate_limits.py
-    ├── generate_mark_to_market.py
     ├── generate_mtm_for_portfolio.py
     └── generate_mtm_report.py
 ```

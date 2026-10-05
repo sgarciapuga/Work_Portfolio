@@ -58,8 +58,13 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
 
     report_dates = pd.date_range(start=business_days[0], end=last_day, freq=CustomBusinessDay(calendar=USFederalHolidayCalendar()))
 
-    # aggregate exposure per report_date (sum of trade_size_usd across active legs)
-    exposure = portfolio_df.groupby("report_date", as_index=False)["trade_size_usd"].sum()
+    # aggregate exposure per report_date (sum of trade_size_usd across active legs).
+    # Swaps are margined on the far leg only: the near leg offsets the far leg's
+    # spot risk, so it still uses credit limit until it settles but carries no IM.
+    margined = portfolio_df
+    if {"type", "leg_id"}.issubset(portfolio_df.columns):
+        margined = portfolio_df.loc[~((portfolio_df["type"] == "swap") & (portfolio_df["leg_id"] == 1))]
+    exposure = margined.groupby("report_date", as_index=False)["trade_size_usd"].sum()
     exposure_map = {row["report_date"].date().isoformat(): float(row["trade_size_usd"]) for _, row in exposure.iterrows()}
 
     # aggregate VM per report_date using mtm_df pnl
@@ -70,8 +75,8 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
         vm_map = {row["report_date"].date().isoformat(): float(row["pnl"]) for _, row in vm.iterrows()}
 
     rows = []
-    collateral_current = 0.0
-    collateral_next = 0.0
+    # collateral already posted with the broker before the first report date
+    collateral_current = INITIAL_COLLATERAL
 
     for rd in report_dates:
         rd_str = rd.date().isoformat()

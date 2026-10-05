@@ -38,13 +38,12 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
     portfolio_df["trade_date"] = pd.to_datetime(portfolio_df["trade_date"])
     portfolio_df["value_date"] = pd.to_datetime(portfolio_df["value_date"])
 
-    trades = portfolio_df.drop_duplicates(subset=["trade_id"]).set_index("trade_id")
-
-    for trade_id, t in trades.iterrows():
-        trade_date = t["trade_date"].to_pydatetime().date()
-        # active range: from trade_date to min(value_date - 1, last_day)
-        legs = portfolio_df[portfolio_df["trade_id"] == trade_id]
-        # use earliest value_date among legs as final settle for MTM of trade (per leg MTM could differ, but simplified)
+    # One MTM series per trade and bank, so each bank's slice of a split trade
+    # gets its own P&L (they share the trade's price path).
+    for (trade_id, bank_id), legs in portfolio_df.groupby(["trade_id", "bank_id"], sort=False):
+        trade_date = legs["trade_date"].iloc[0]
+        # the trade is live until its last value date; it settles on that date,
+        # so (like the portfolio) it carries no MTM on the value date itself
         max_value_date = pd.to_datetime(legs["value_date"].max())
         start = pd.to_datetime(trade_date)
         if start > last_day:
@@ -52,6 +51,7 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
         # Simulate the trade's full life, then truncate to last_day, so a trade's
         # path doesn't change as the report horizon moves forward.
         life_dates = pd.date_range(start=start, end=max_value_date, freq=CustomBusinessDay(calendar=USFederalHolidayCalendar()))
+        life_dates = life_dates[life_dates < max_value_date]
         if len(life_dates) == 0:
             continue
 
@@ -66,9 +66,8 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
         dates = life_dates[visible]
         mtm_series = mtm_series[visible]
 
-        # find trade_size_usd per trade (use first row's trade_size_usd)
+        # this bank's trade size (first leg row)
         trade_size = float(legs.iloc[0]["trade_size_usd"])
-        bank_id = legs.iloc[0]["bank_id"]
 
         for d, mtm in zip(dates, mtm_series):
             pnl = float(round(mtm * trade_size, 2))

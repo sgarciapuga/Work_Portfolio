@@ -255,7 +255,7 @@ display(portfolio_by_pair)
 %%| fig-cap: "Collateral Process Flow"
 %%| echo: false
 flowchart TD
-    A[Active portfolio exposure] --> B[Initial Margin<br/>5% of exposure]
+    A[Active portfolio exposure] --> B[Initial Margin<br/>5% of exposure<br/>swaps: far leg only]
     C[Daily MTM / P&L] --> D[Variation Margin]
 
     B --> E[Collateral Required]
@@ -283,8 +283,8 @@ flowchart TD
 
 The core logic lives in `src/generate_mtm_report.py`. For each business date:
 
-1.  Initial margin is the minimum amount of cash or collateral deposited with a broker to support a leveraged position. For this synthetic model, initial margin is calculated as 5% of active trade exposure and is stored as a negative amount because it represents an obligation to the broker.
-2.  Variation margin is the aggregated mark-to-market P&L. It keeps its market sign: positive means favourable revaluation and negative means adverse revaluation.
+1.  Initial margin is the minimum amount of cash or collateral deposited with a broker to support a leveraged position. For this synthetic model, initial margin is calculated as 5% of active trade exposure and is stored as a negative amount because it represents an obligation to the broker. FX swaps are margined on the far leg only: the near leg offsets the far leg's spot risk, so it uses credit limit until it settles but carries no initial margin.
+2.  Variation margin is the aggregated mark-to-market P&L of open trades (a trade stops contributing on its value date, when it settles). It keeps its market sign: positive means favourable revaluation and negative means adverse revaluation.
 3.  Collateral required is the sum of initial margin and variation margin.
 4.  Posted collateral is the amount already posted by the client to the broker.
 5.  Excess/deficit compares posted collateral with the positive internal obligation. Negative means more collateral is needed; positive means excess collateral is held.
@@ -298,10 +298,10 @@ vm_raw = daily_pnl
 initial_margin = -im_raw
 variation_margin = vm_raw
 collateral_required = initial_margin + variation_margin
-excess_deficit = collateral_required - collateral_posted   
+excess_deficit = collateral_posted + collateral_required
 ```
 
-The current constants are `INITIAL_COLLATERAL = 1_000_000`, `BUFFER = 500_000`, `MOVE_INCREMENT = 10_000`, and `MIN_MOVE = 50_000`.
+Posted collateral starts at `INITIAL_COLLATERAL` on the first report date. Movements decided at COB settle on the next report date, and recalls are sized from that day's numbers only. The current constants are `INITIAL_COLLATERAL = 1_000_000`, `BUFFER = 500_000`, `MOVE_INCREMENT = 10_000`, and `MIN_MOVE = 50_000`.
 
 ## The collateral report
 

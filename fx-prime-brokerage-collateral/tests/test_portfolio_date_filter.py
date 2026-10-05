@@ -133,7 +133,7 @@ class PortfolioDateFilterTests(unittest.TestCase):
         portfolio = pd.DataFrame({
             "trade_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
             "report_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
-            "trade_size_usd": [20_000_000, 19_980_000, 0],
+            "trade_size_usd": [10_000_000, 9_980_000, 0],
         })
         mtm = pd.DataFrame({
             "report_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
@@ -152,6 +152,85 @@ class PortfolioDateFilterTests(unittest.TestCase):
         self.assertEqual(
             result.loc[1, "collateral_posted"],
             result.loc[2, "collateral_posted"],
+        )
+
+    def test_collateral_starts_at_initial_collateral(self):
+        portfolio = pd.DataFrame({
+            "trade_date": ["2026-01-02"],
+            "report_date": ["2026-01-02"],
+            "trade_size_usd": [1_000_000],
+        })
+        mtm = pd.DataFrame({"report_date": ["2026-01-02"], "pnl": [0]})
+
+        with tempfile.TemporaryDirectory() as output_dir:
+            result = generate_mtm_report(
+                portfolio_df=portfolio, mtm_df=mtm, end_date="2026-01-02", out_path=output_dir
+            )
+
+        self.assertEqual(1_000_000, result.loc[0, "collateral_posted"])
+        self.assertEqual(950_000, result.loc[0, "excess_deficit"])
+
+    def test_swap_initial_margin_uses_far_leg_only(self):
+        portfolio = pd.DataFrame({
+            "trade_date": ["2026-01-02"] * 3,
+            "report_date": ["2026-01-02"] * 3,
+            "type": ["swap", "swap", "spot"],
+            "leg_id": [1, 2, 1],
+            "trade_size_usd": [1_000_000, 1_005_000, 500_000],
+        })
+        mtm = pd.DataFrame({"report_date": ["2026-01-02"], "pnl": [0]})
+
+        with tempfile.TemporaryDirectory() as output_dir:
+            result = generate_mtm_report(
+                portfolio_df=portfolio, mtm_df=mtm, end_date="2026-01-02", out_path=output_dir
+            )
+
+        self.assertEqual(-75_250, result.loc[0, "initial_margin"])
+
+    def test_swap_legs_differ_only_by_forward_points(self):
+        df = generate_fx_portfolio(end_date="2026-08-05", seed=42)
+        legs = (
+            df[df["type"] == "swap"]
+            .drop_duplicates(["trade_id", "bank_id", "leg_id"])
+            .pivot(index=["trade_id", "bank_id"], columns="leg_id", values="trade_size_usd")
+            .dropna()
+        )
+        self.assertGreater(len(legs), 0)
+        ratio = legs[2] / legs[1]
+        self.assertTrue(ratio.between(0.99, 1.01).all())
+
+    def test_mtm_stops_before_value_date(self):
+        portfolio = pd.DataFrame({
+            "trade_id": ["SP202601050001"] * 2,
+            "bank_id": ["bank_1"] * 2,
+            "report_date": ["2026-01-05", "2026-01-06"],
+            "trade_date": ["2026-01-05"] * 2,
+            "value_date": ["2026-01-07"] * 2,
+            "trade_size_usd": [1_000_000] * 2,
+        })
+
+        mtm = generate_mtm_for_portfolio(portfolio, end_date="2026-01-09")
+
+        self.assertEqual(["2026-01-05", "2026-01-06"], mtm["report_date"].tolist())
+
+    def test_split_trade_gets_mtm_for_each_bank(self):
+        portfolio = pd.DataFrame({
+            "trade_id": ["FW202601050001"] * 2,
+            "bank_id": ["bank_1", "bank_2"],
+            "report_date": ["2026-01-05"] * 2,
+            "trade_date": ["2026-01-05"] * 2,
+            "value_date": ["2026-02-05"] * 2,
+            "trade_size_usd": [3_000_000, 1_000_000],
+        })
+
+        mtm = generate_mtm_for_portfolio(portfolio, end_date="2026-01-09")
+        by_bank = {bank: rows.reset_index(drop=True) for bank, rows in mtm.groupby("bank_id")}
+
+        self.assertEqual({"bank_1", "bank_2"}, set(by_bank))
+        # same price path, P&L scaled by each bank's share
+        pd.testing.assert_series_equal(by_bank["bank_1"]["mtm"], by_bank["bank_2"]["mtm"])
+        self.assertAlmostEqual(
+            by_bank["bank_1"]["pnl"].iloc[-1], 3 * by_bank["bank_2"]["pnl"].iloc[-1], delta=0.05
         )
 
 

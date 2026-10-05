@@ -93,52 +93,18 @@ def generate_limits(end_date=None, portfolio_df=None, seed=42):
         previous = pd.date_range(end=date.today(), periods=2, freq=business_day)
         end_date = previous[-2].date().isoformat()
 
-    business_days = get_business_days(START_DATE, end_date)
-    review_dates = pd.date_range(start=START_DATE, end=end_date, freq="6MS")
-    review_dates = [d if d in business_days else business_days[business_days.get_indexer([d], method="bfill")[0]] for d in review_dates]
-
-    rng = np.random.default_rng(seed)
-    current_limits = BANK_LIMITS.copy()
+    # Same schedule the portfolio generator books trades against.
+    schedule = build_limit_schedule(end_date=end_date, seed=seed)
     exposures = exposures_from_portfolio(portfolio_df)
     rows = []
 
-    def round_limit(value):
-        return float(round(value / 250_000) * 250_000)
-
-    def adjust_limits(limits):
-        banks = list(limits.keys())
-        values = []
-        for bank_id in banks:
-            change = rng.uniform(1_000_000, 3_000_000)
-            sign = rng.choice([-1, 1])
-            updated = limits[bank_id] + sign * change
-            updated = max(updated, 5_000_000)
-            values.append(round_limit(updated))
-
-        total = sum(values)
-        remainder = 160_000_000 - total
-        step = 250_000
-        while remainder != 0:
-            idx = rng.integers(len(values))
-            adjustment = step if remainder > 0 else -step
-            candidate = values[idx] + adjustment
-            if candidate >= 5_000_000:
-                values[idx] = candidate
-                remainder -= adjustment
-
-        return dict(zip(banks, values))
-
-    for current_date in business_days:
-        if current_date in review_dates and current_date != pd.Timestamp(START_DATE):
-            current_limits = adjust_limits(current_limits)
-
-        report_date = current_date.date().isoformat()
+    for report_date, current_limits in schedule.items():
         for bank_id, limit_amount in current_limits.items():
             exposure = exposures.get((report_date, bank_id), 0.0)
             available = float(round(limit_amount - exposure, 2))
 
             rows.append({
-                "as_of_date": current_date.date().isoformat(),
+                "as_of_date": report_date,
                 "bank_id": bank_id,
                 "credit_limit_usd": limit_amount,
                 "counterparty_exposure_usd": exposure,

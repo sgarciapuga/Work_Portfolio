@@ -144,8 +144,10 @@ def generate_fx_portfolio(end_date=None, seed=42):
                 near_date = ensure_business_day(trade_date + DateOffset(days=2), value_business_days)
                 far_months = int(rng.integers(1, 7))
                 far_date = ensure_business_day(trade_date + DateOffset(months=far_months), value_business_days)
-                near_leg = float(round(trade_size_usd * rng.uniform(0.85, 1.0), 2))
-                far_leg = float(round(trade_size_usd * rng.uniform(1.0, 1.15), 2))
+                # Both legs share the base-currency notional; in USD they differ
+                # only by the forward points (kept within +/-1%).
+                near_leg = float(round(trade_size_usd, 2))
+                far_leg = float(round(trade_size_usd * (1 + rng.uniform(-0.01, 0.01)), 2))
                 legs = [
                     {"value_date": near_date, "leg_id": 1, "leg_amount_usd": near_leg},
                     {"value_date": far_date, "leg_id": 2, "leg_amount_usd": far_leg},
