@@ -20,7 +20,20 @@ The workflow is designed to support historical backfill, daily incremental updat
 
 ## What it does
 
-The script reads existing FX history from the database and CSV file, normalizes the keys, identifies missing business-day rows, retrieves the latest rates, and writes a consolidated dataset back out.
+The script reads existing FX history, normalizes the keys, identifies missing business-day rows, retrieves the latest rates, and writes the result back out.
+
+It has two run modes:
+
+- **Daily run** (default): works only on the last 14 days. It loads that window from the database, gets the new rates, rechecks recently filled days, and upserts only those rows. The older part of the CSV is left as it is.
+- **Full check**: reads the whole history from the database and the CSV, looks for missing business days since the start, rebuilds everything and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window (for example after the job was off for a while).
+
+To force a full check at any time:
+
+```bash
+python daily-fx-rates/src/daily_fx_rates.py --full
+```
+
+or set the environment variable `FX_FULL_CHECK=1`.
 
 It currently covers:
 
@@ -52,3 +65,8 @@ The project relies on:
 ## Notes
 
 The loader now performs an idempotent upsert, keeps `fx_quality_flag` values in both CSV and Neon, and rechecks recently filled rows so provisional data can be promoted to raw once the source publishes it.
+
+Failures stop the run instead of being hidden:
+
+- If the Frankfurter API does not answer with status 200, the script raises an error and writes nothing. The GitHub Actions run fails and the Slack alert is sent.
+- If the database cannot be reached or read, the script raises an error. Only a missing `fx_rates` table (first run) is treated as "no data yet".
