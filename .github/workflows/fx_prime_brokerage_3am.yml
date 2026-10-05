@@ -31,6 +31,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r fx-prime-brokerage-collateral/requirements.txt
 
+      - name: Run tests
+        run: |
+          python -m unittest discover -s fx-prime-brokerage-collateral/tests -v
+
       - name: Execute FX Prime dataset script
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -60,6 +64,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "auto: update fx-prime brokerage CSVs [skip ci]"
+            git pull --rebase
             git push
           fi
 

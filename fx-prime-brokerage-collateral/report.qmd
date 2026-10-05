@@ -175,7 +175,7 @@ def generate_fx_portfolio(end_date=None, seed=42):`
 `return portfolio_dataframe
 ```
 
-The same seed produces the same synthetic portfolio. FX Spot and Forward trades have a single leg, while Swaps have two legs. Each trade remains visible on each reporting date until it is settled.
+The same seed produces the same synthetic portfolio. FX Spot and Forward trades have a single leg, while Swaps have two legs. Spot trades and the swap near leg settle T+2 (two business days after the trade date), and forward and far-leg tenors run from that spot date. Each trade remains visible on each reporting date until it is settled.
 
 ```{python}
 #| label: portfolio-output

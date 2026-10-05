@@ -81,6 +81,13 @@ For each table the flow is:
 - stage rows into a temporary table
 - upsert into the target table
 
+## Safeguards
+
+- Each run regenerates the full history but appends only new days, so the generators are built to be path-stable: adding a day never changes earlier days (covered by `HistoryStabilityTests`).
+- Before appending, the pipeline compares the regenerated last day with each CSV and stops with an error if they differ, so nothing inconsistent is written. After a deliberate change to the generator, delete the CSVs and truncate the `fx_prime_*` tables, then re-run to rebuild from scratch.
+- `numpy` and `pandas` are pinned in `requirements.txt` because a new release could change the seeded random draws.
+- The scheduled workflow runs the unit tests before generating data.
+
 ## Dependencies
 
 The project uses:

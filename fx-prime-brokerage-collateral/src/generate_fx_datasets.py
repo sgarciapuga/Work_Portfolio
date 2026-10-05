@@ -1,4 +1,5 @@
 import argparse
+import io
 import os
 import tempfile
 from pathlib import Path
@@ -34,24 +35,31 @@ def _incremental_slice(df, date_col, last_date):
     return df.loc[dates > last_date].reset_index(drop=True)
 
 
-def _warn_if_history_drifted(df, csv_path, date_col, last_date):
-    """Warn if the regenerated row for ``last_date`` no longer matches the CSV.
+def _check_history_unchanged(df, csv_path, date_col, last_date):
+    """Fail if the regenerated rows for ``last_date`` no longer match the CSV.
 
     Only new rows are appended, so a regenerated history that differs from what
-    was already written would show up as a jump at the seam.
+    was already written would show up as a jump at the seam. Stopping here means
+    nothing is appended and the workflow's failure alert fires.
     """
     if df is None or df.empty or last_date is None:
         return
     existing = pd.read_csv(csv_path)
-    old = existing.loc[pd.to_datetime(existing[date_col]) == last_date].reset_index(drop=True)
-    new = df.loc[pd.to_datetime(df[date_col]) == last_date].reset_index(drop=True)
-    old[date_col] = old[date_col].astype(str)
-    new[date_col] = new[date_col].astype(str)
-    if old.shape != new.shape or not old.round(2).equals(new[old.columns].round(2)):
-        print(
-            f"WARNING: regenerated {Path(csv_path).name} differs from the CSV on "
-            f"{last_date.date()}; appended rows won't continue the existing history."
-        )
+    # round-trip through CSV so types and number formatting match the file
+    regenerated = pd.read_csv(io.StringIO(df.to_csv(index=False)))
+    old = existing.loc[pd.to_datetime(existing[date_col]) == last_date]
+    new = regenerated.loc[pd.to_datetime(regenerated[date_col]) == last_date]
+    cols = list(old.columns)
+    if set(cols) == set(new.columns):
+        old = old.sort_values(cols).reset_index(drop=True)
+        new = new[cols].sort_values(cols).reset_index(drop=True)
+        if old.equals(new):
+            return
+    raise RuntimeError(
+        f"Regenerated {Path(csv_path).name} differs from the CSV on {last_date.date()}; "
+        "appending would break the existing history. If the generator changed on purpose, "
+        "rebuild the CSVs and DB tables from scratch."
+    )
 
 
 def _write_csv(df, csv_path, last_date):
@@ -325,7 +333,10 @@ def run_all(out_dir=None):
             portfolio_df=df_fx_portfolio, mtm_df=df_mtm_portfolio, out_path=scratch_dir
         )
 
-    _warn_if_history_drifted(df_mtm_report, mtm_report_file, "report_date", last_mtm_report_date)
+    _check_history_unchanged(df_fx_portfolio, fx_portfolio_file, "report_date", last_fx_portfolio_date)
+    _check_history_unchanged(df_limits, limits_file, "as_of_date", last_limits_date)
+    _check_history_unchanged(df_mtm_portfolio, mtm_portfolio_file, "report_date", last_mtm_portfolio_date)
+    _check_history_unchanged(df_mtm_report, mtm_report_file, "report_date", last_mtm_report_date)
 
     new_fx_portfolio = _incremental_slice(df_fx_portfolio, "report_date", last_fx_portfolio_date)
     new_limits = _incremental_slice(df_limits, "as_of_date", last_limits_date)

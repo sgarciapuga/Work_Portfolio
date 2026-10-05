@@ -8,7 +8,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from generate_fx_portfolio import generate_fx_portfolio
+from generate_fx_portfolio import generate_fx_portfolio, get_business_days
 from generate_limits import build_limit_schedule
 from generate_mtm_for_portfolio import generate_mtm_for_portfolio
 from generate_mtm_report import generate_mtm_report
@@ -18,6 +18,19 @@ class PortfolioDateFilterTests(unittest.TestCase):
     def test_report_date_excludes_positions_maturing_today(self):
         df = generate_fx_portfolio(end_date="2026-08-05", seed=42)
         self.assertFalse(((df["report_date"] == df["value_date"]).any()))
+
+    def test_spot_and_swap_near_leg_settle_t_plus_2(self):
+        df = generate_fx_portfolio(end_date="2026-08-05", seed=42)
+        business_days = get_business_days("2026-01-01", "2027-03-31")
+        position = {day: idx for idx, day in enumerate(business_days)}
+        near = df[(df["type"] == "spot") | ((df["type"] == "swap") & (df["leg_id"] == 1))]
+        near = near.drop_duplicates(["trade_id", "leg_id"])
+        self.assertGreater(len(near), 0)
+        gaps = [
+            position[pd.Timestamp(row.value_date)] - position[pd.Timestamp(row.trade_date)]
+            for row in near.itertuples()
+        ]
+        self.assertEqual({2}, set(gaps))
 
     def test_value_dates_can_extend_beyond_report_horizon(self):
         df = generate_fx_portfolio(end_date="2026-08-05", seed=42)

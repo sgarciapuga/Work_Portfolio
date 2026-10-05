@@ -30,6 +30,11 @@ def ensure_business_day(timestamp, business_days):
     return business_days[idx]
 
 
+def spot_date(trade_date, business_days):
+    """Return the spot value date: two business days after the trade date (T+2)."""
+    return business_days[business_days.get_loc(trade_date) + 2]
+
+
 def allocate_trade_across_banks(total_trade_exposure, remaining_capacity):
     """Allocate one trade across banks when no single bank has enough capacity."""
     usable = {
@@ -133,17 +138,18 @@ def generate_fx_portfolio(end_date=None, seed=42):
                 # Cap the largest trades at 10m to keep portfolio realism aligned with average trade size ~2m
                 trade_size_usd = float(round(rng.uniform(3_000_000, 10_000_000), 2))
 
+            # EUR/USD, GBP/USD and EUR/GBP spot settles T+2; forward tenors run from spot.
+            spot = spot_date(trade_date, value_business_days)
             if trade_type == "spot":
-                value_date = ensure_business_day(trade_date + DateOffset(days=1), value_business_days)
-                legs = [{"value_date": value_date, "leg_id": 1, "leg_amount_usd": trade_size_usd}]
+                legs = [{"value_date": spot, "leg_id": 1, "leg_amount_usd": trade_size_usd}]
             elif trade_type == "forward":
                 months = int(rng.integers(1, 7))
-                value_date = ensure_business_day(trade_date + DateOffset(months=months), value_business_days)
+                value_date = ensure_business_day(spot + DateOffset(months=months), value_business_days)
                 legs = [{"value_date": value_date, "leg_id": 1, "leg_amount_usd": trade_size_usd}]
             else:  # swap
-                near_date = ensure_business_day(trade_date + DateOffset(days=2), value_business_days)
+                near_date = spot
                 far_months = int(rng.integers(1, 7))
-                far_date = ensure_business_day(trade_date + DateOffset(months=far_months), value_business_days)
+                far_date = ensure_business_day(spot + DateOffset(months=far_months), value_business_days)
                 # Both legs share the base-currency notional; in USD they differ
                 # only by the forward points (kept within +/-1%).
                 near_leg = float(round(trade_size_usd, 2))

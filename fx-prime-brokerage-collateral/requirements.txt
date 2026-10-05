@@ -1,5 +1,8 @@
-pandas
-numpy
+# numpy/pandas are pinned: every run regenerates the full history from seeded
+# random draws, and a new release could change those draws (and so rewrite
+# past days). Upgrade deliberately, then rebuild the CSVs and DB tables.
+pandas==3.0.5
+numpy==2.4.6
 sqlalchemy
 psycopg2-binary
 python-dotenv
