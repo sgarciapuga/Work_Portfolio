@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sergio">
-<meta name="dcterms.date" content="2026-08-08">
+<meta name="dcterms.date" content="2026-10-05">
 
 <title>Daily FX Rates — Project Report – Professional Portfolio</title>
 <style>
@@ -111,6 +111,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -197,8 +200,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#run" id="toc-run" class="nav-link" data-scroll-target="#run">Run</a></li>
+  <li><a href="#why-i-built-it" id="toc-why-i-built-it" class="nav-link" data-scroll-target="#why-i-built-it">Why I built it</a></li>
+  <li><a href="#how-the-workflow-runs" id="toc-how-the-workflow-runs" class="nav-link" data-scroll-target="#how-the-workflow-runs">How the workflow runs</a>
+  <ul class="collapse">
+  <li><a href="#run-modes" id="toc-run-modes" class="nav-link" data-scroll-target="#run-modes">Run modes</a></li>
+  </ul></li>
+  <li><a href="#decisions-i-made" id="toc-decisions-i-made" class="nav-link" data-scroll-target="#decisions-i-made">Decisions I made</a></li>
+  <li><a href="#testing-and-debugging" id="toc-testing-and-debugging" class="nav-link" data-scroll-target="#testing-and-debugging">Testing and debugging</a></li>
+  <li><a href="#how-i-worked-with-ai" id="toc-how-i-worked-with-ai" class="nav-link" data-scroll-target="#how-i-worked-with-ai">How I worked with AI</a></li>
+  <li><a href="#the-final-result" id="toc-the-final-result" class="nav-link" data-scroll-target="#the-final-result">The final result</a></li>
+  <li><a href="#run-it-locally" id="toc-run-it-locally" class="nav-link" data-scroll-target="#run-it-locally">Run it locally</a></li>
   <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
@@ -211,6 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Daily FX Rates — Project Report</h1>
+<p class="subtitle lead">From a public FX rates source to a live report, with no manual steps</p>
 </div>
 
 
@@ -227,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 8, 2026</p>
+      <p class="date">October 5, 2026</p>
     </div>
   </div>
   
@@ -241,48 +253,266 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>This report documents the maintained FX rates loader in <a href="src/daily_fx_rates.py">src/daily_fx_rates.py</a>, which fetches daily FX rates from the Frankfurter API and stores them in a CSV file and Neon PostgreSQL table.</p>
-<p>The loader normalizes keys before deduplication, backfills missing business-day rows, and tracks provisional rows with <code>fx_quality_flag</code> so they can be revalidated on later runs.</p>
+<p>A daily feed of EUR and GBP rates against USD, stored and reported automatically. The loader in <a href="src/daily_fx_rates.py">src/daily_fx_rates.py</a> fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table, and a Google Data Studio report reads the database to show GBP/USD, EUR/USD and GBP/EUR.</p>
+<ul>
+<li><a href="https://datastudio.google.com/s/sC5tlwXPGVI" target="_blank">Live report (Google Data Studio)</a></li>
+<li><a href="presentation/Daily-FX-Rates.pdf" target="_blank">Presentation (PDF)</a></li>
+<li><a href="presentation/Daily-FX-Rates.pptx">Presentation (PowerPoint)</a></li>
+</ul>
+<p><strong>The result:</strong> one clean source of FX rates that my other reports and projects can use.</p>
 </section>
-<section id="setup" class="level1">
-<h1>Setup</h1>
+<section id="why-i-built-it" class="level1">
+<h1>Why I built it</h1>
+<p>It started as a proof of concept: using Visual Studio Code with AI to build something real. It was also a project that could grow, giving my other reports the FX rates they need to convert data into a base currency such as USD.</p>
+<p>Four questions shaped the work:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Where can I get FX rate data for free?</td>
+<td>The Frankfurter API, a public source of daily rates at no cost.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>How do I use an API to bring the data in?</td>
+<td>One request from a Python script brings the rates in, ready to clean and store.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>My Python and SQL are intermediate. How far can AI help me go?</td>
+<td>AI wrote the code from my instructions and helped me solve each issue. I tested, debugged and decided.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>How do I make the whole flow run by itself?</td>
+<td>GitHub Actions runs the script every day and alerts me if it fails. Data Studio refreshes the report once a day.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-the-workflow-runs" class="level1">
+<h1>How the workflow runs</h1>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  API["Frankfurter API&lt;br/&gt;daily EUR and GBP rates against USD"] --&gt; PY
+
+  subgraph GHA["GitHub Actions: every day at 18:00 UTC, or started by hand"]
+    PY["Python script&lt;br/&gt;reads what is stored, gets the missing dates,&lt;br/&gt;cleans the data and fills the gaps"]
+    PY --&gt;|every run| CSV["CSV backup&lt;br/&gt;committed back to GitHub"]
+    PY -.-&gt;|on failure| SLACK["Slack alert"]
+  end
+
+  PY --&gt; DB[("Neon PostgreSQL&lt;br/&gt;table fx_rates")]
+  DB --&gt;|SQL views| DS["Google Data Studio&lt;br/&gt;live report"]
+  DB -.-&gt; OTHER["Other reports and&lt;br/&gt;Python projects"]
+</pre>
+</div>
+<p></p><figcaption> End-to-end flow: get rates, clean and fill gaps, save the CSV backup, update the database, refresh the report.</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li><strong>Source:</strong> the Frankfurter API provides daily EUR and GBP rates against USD.</li>
+<li><strong>Python script:</strong> runs inside GitHub Actions (<code>.github/workflows/daily_pipeline.yml</code>). It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.</li>
+<li><strong>CSV backup:</strong> saved on every run and committed back to the repository.</li>
+<li><strong>Database:</strong> rows are upserted into the <code>fx_rates</code> table in Neon PostgreSQL.</li>
+<li><strong>Report:</strong> Google Data Studio reads the table through SQL views and refreshes once a day. The Data Studio report is only the first consumer; other reports and Python projects can read the same table.</li>
+</ol>
+<p>If any step fails, the run stops without writing partial results and a Slack message is sent.</p>
+<section id="run-modes" class="level2">
+<h2 class="anchored" data-anchor-id="run-modes">Run modes</h2>
+<ul>
+<li><strong>Daily run</strong> (default): works only on the last 14 days. It loads that window from the database, gets the new rates, rechecks recently filled days, and upserts only those rows.</li>
+<li><strong>Full check</strong>: reads the whole history from the database and the CSV, looks for missing business days since the start, and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window.</li>
+</ul>
+</section>
+</section>
+<section id="decisions-i-made" class="level1">
+<h1>Decisions I made</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What I decided</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USD as the base currency</td>
+<td>My other reports need to convert data into one base currency. With every rate stored against USD, the conversion is always the same.</td>
+</tr>
+<tr class="even">
+<td>A rate for every day, also weekends and holidays</td>
+<td>I learned this in Power BI: a day with no rate cannot be converted. Empty days use the last known rate and are flagged <code>filled</code>; market rates are flagged <code>raw</code>.</td>
+</tr>
+<tr class="odd">
+<td>A database, with a CSV file as backup</td>
+<td>I started with only a CSV file. Then I moved to a database and found Neon, a free PostgreSQL option. The CSV stayed as the backup.</td>
+</tr>
+<tr class="even">
+<td>A full check once a week, not on every run</td>
+<td>Checking the whole history every day was not needed. Daily runs look at the last 14 days. Every Monday the script checks everything.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="testing-and-debugging" class="level1">
+<h1>Testing and debugging</h1>
+<p>Getting the data was the easy part. Making it reliable was the real work. I log every issue in GitHub and then solve it.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>What happened</th>
+<th>The fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Days with no data</td>
+<td>Some days were missing from the data completely.</td>
+<td>Every Monday the script checks the whole history for missing days and loads them again. Daily runs check the last 14 days.</td>
+</tr>
+<tr class="even">
+<td>Duplicate data</td>
+<td>The same date and currency appeared more than once.</td>
+<td>A unique key on date and currency. Existing rows are updated, not added again.</td>
+</tr>
+<tr class="odd">
+<td>Wrong values</td>
+<td>Some days were filled before the real rate arrived, so the value was wrong.</td>
+<td>Filled rates from the last 7 days are checked again on every run, and replaced when the real rate arrives.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-i-worked-with-ai" class="level1">
+<h1>How I worked with AI</h1>
+<p>I started with GitHub Copilot in Visual Studio Code. Now I use Claude.</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><strong>My part</strong></p>
+<ul>
+<li>The idea, and clear instructions for every step</li>
+<li>Testing and debugging</li>
+<li>Some pieces myself with AI assistance, like the table settings and the unique key</li>
+<li>The Data Studio report</li>
+</ul>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<p><strong>AI’s part</strong></p>
+<ul>
+<li>Filling my gaps on the most technical side: the code and the connections</li>
+<li>Writing the code from my instructions</li>
+<li>Helping me solve each issue I found when testing</li>
+<li>Helping me polish the report</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why Data Studio and not Power BI
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I can share a link and anyone can open the report. Power BI needs a licence and admin rights to share. I would have been quicker in Power BI, and the report would look nicer, but nobody outside could see it.</p>
+</div>
+</div>
+</section>
+<section id="the-final-result" class="level1">
+<h1>The final result</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>FX rates in one live report</td>
+<td>GBP/USD and EUR/USD come from the market. GBP/EUR is calculated from both.</td>
+</tr>
+<tr class="even">
+<td><strong>0</strong></td>
+<td>manual steps from source to report</td>
+<td>The job runs every day at 18:00 UTC and alerts me only if it fails. Data Studio refreshes the report once a day.</td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td>quality flags on every rate</td>
+<td><code>raw</code> for a market rate, <code>filled</code> for a rate carried forward on a weekend or holiday.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://datastudio.google.com/s/sC5tlwXPGVI" target="_blank">Open the live report</a>: KPI cards for each pair, GBP and EUR against USD rebased to 1 January, GBP/EUR with a 30-day average, and a period summary table.</p>
+</section>
+<section id="run-it-locally" class="level1">
+<h1>Run it locally</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> daily-fx-rates/requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="run" class="level1">
-<h1>Run</h1>
-<p>Run the maintained loader from the repository root:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/daily_fx_rates.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you want to render the report itself with Quarto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render daily-fx-rates/report.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the loader from the repository root (it needs <code>DATABASE_URL</code> in the root <code>.env</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> daily-fx-rates/src/daily_fx_rates.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To force a full check at any time:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> daily-fx-rates/src/daily_fx_rates.py <span class="at">--full</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or set the environment variable <code>FX_FULL_CHECK=1</code>.</p>
 </section>
 <section id="outputs" class="level1">
 <h1>Outputs</h1>
 <ul>
-<li><code>daily-fx-rates/data/fx_rates.csv</code></li>
-<li>Neon PostgreSQL (table: <code>fx_rates</code>)</li>
+<li><code>daily-fx-rates/data/fx_rates.csv</code> (columns: <code>date</code>, <code>currency</code>, <code>fx_to_usd</code>, <code>fx_quality_flag</code>)</li>
+<li>Neon PostgreSQL (table: <code>fx_rates</code>, unique key on <code>date</code> and <code>currency</code>)</li>
 </ul>
 </section>
 <section id="example" class="level1">
 <h1>Example</h1>
-<div id="390e1028" class="cell" data-execution_count="1">
+<div id="f0fdcce4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> Path(<span class="st">'daily-fx-rates/data/fx_rates.csv'</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> p.exists():</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    display(pd.read_csv(p).tail())</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'No fx_rates.csv present; creating a small sample for demonstration:'</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    sample <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'date'</span>:[<span class="st">'2026-08-06'</span>,<span class="st">'2026-08-07'</span>,<span class="st">'2026-08-08'</span>],</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'currency'</span>:[<span class="st">'USD'</span>,<span class="st">'EUR'</span>,<span class="st">'GBP'</span>],</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'fx_to_usd'</span>:[<span class="fl">1.0</span>,<span class="fl">0.91</span>,<span class="fl">0.78</span>]</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    display(sample)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>No fx_rates.csv present; creating a small sample for demonstration:</code></pre>
-</div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Quarto runs from the project folder; a manual run may start at the repo root.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> [Path(<span class="st">'data/fx_rates.csv'</span>), Path(<span class="st">'daily-fx-rates/data/fx_rates.csv'</span>)]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="bu">next</span>((c <span class="cf">for</span> c <span class="kw">in</span> candidates <span class="cf">if</span> c.exists()), candidates[<span class="dv">0</span>])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> p.exists():</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    display(pd.read_csv(p).tail())</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'No fx_rates.csv present; creating a small sample for demonstration:'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    sample <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'date'</span>:[<span class="st">'2026-08-06'</span>,<span class="st">'2026-08-07'</span>,<span class="st">'2026-08-08'</span>],</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'currency'</span>:[<span class="st">'USD'</span>,<span class="st">'EUR'</span>,<span class="st">'GBP'</span>],</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'fx_to_usd'</span>:[<span class="fl">1.0</span>,<span class="fl">0.91</span>,<span class="fl">0.78</span>]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    display(sample)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -294,26 +524,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">date</th>
 <th data-quarto-table-cell-role="th">currency</th>
 <th data-quarto-table-cell-role="th">fx_to_usd</th>
+<th data-quarto-table-cell-role="th">fx_quality_flag</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>2026-08-06</td>
+<th data-quarto-table-cell-role="th">829</th>
+<td>2026-10-01</td>
 <td>USD</td>
-<td>1.00</td>
+<td>1.0</td>
+<td>raw</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>2026-08-07</td>
-<td>EUR</td>
-<td>0.91</td>
+<th data-quarto-table-cell-role="th">830</th>
+<td>2026-10-02</td>
+<td>USD</td>
+<td>1.0</td>
+<td>raw</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>2026-08-08</td>
-<td>GBP</td>
-<td>0.78</td>
+<th data-quarto-table-cell-role="th">831</th>
+<td>2026-10-03</td>
+<td>USD</td>
+<td>1.0</td>
+<td>raw</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">832</th>
+<td>2026-10-04</td>
+<td>USD</td>
+<td>1.0</td>
+<td>raw</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">833</th>
+<td>2026-10-05</td>
+<td>USD</td>
+<td>1.0</td>
+<td>raw</td>
 </tr>
 </tbody>
 </table>
@@ -321,30 +569,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="e26507ec" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: simple FX time series example (synthetic if CSV missing)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> p.exists():</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(p)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pivot to wide if long</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    df_wide <span class="op">=</span> df.pivot(index<span class="op">=</span><span class="st">'date'</span>, columns<span class="op">=</span><span class="st">'currency'</span>, values<span class="op">=</span><span class="st">'fx_to_usd'</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    df_wide <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'date'</span>:[<span class="st">'2026-08-06'</span>,<span class="st">'2026-08-07'</span>,<span class="st">'2026-08-08'</span>],</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'USD'</span>:[<span class="fl">1.0</span>,<span class="fl">1.0</span>,<span class="fl">1.0</span>],</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'EUR'</span>:[<span class="fl">0.905</span>,<span class="fl">0.907</span>,<span class="fl">0.91</span>],</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'GBP'</span>:[<span class="fl">0.775</span>,<span class="fl">0.78</span>,<span class="fl">0.78</span>]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    }).set_index(<span class="st">'date'</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>df_wide.plot(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">3</span>))</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'FX to USD (sample)'</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8cff8168" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: simple FX time series example (synthetic if CSV missing)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> p.exists():</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(p, parse_dates<span class="op">=</span>[<span class="st">'date'</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pivot to wide if long</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    df_wide <span class="op">=</span> df.pivot(index<span class="op">=</span><span class="st">'date'</span>, columns<span class="op">=</span><span class="st">'currency'</span>, values<span class="op">=</span><span class="st">'fx_to_usd'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    df_wide <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'date'</span>:[<span class="st">'2026-08-06'</span>,<span class="st">'2026-08-07'</span>,<span class="st">'2026-08-08'</span>],</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'USD'</span>:[<span class="fl">1.0</span>,<span class="fl">1.0</span>,<span class="fl">1.0</span>],</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'EUR'</span>:[<span class="fl">0.905</span>,<span class="fl">0.907</span>,<span class="fl">0.91</span>],</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'GBP'</span>:[<span class="fl">0.775</span>,<span class="fl">0.78</span>,<span class="fl">0.78</span>]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    }).set_index(<span class="st">'date'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>df_wide.plot(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">3</span>))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'FX to USD'</span> <span class="cf">if</span> p.exists() <span class="cf">else</span> <span class="st">'FX to USD (sample)'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/cell-3-output-1.png" width="758" height="278" class="figure-img"></p>
+<p><img src="report_files/figure-html/cell-3-output-1.png" width="751" height="278" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -352,7 +600,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="notes" class="level1">
 <h1>Notes</h1>
-<p>The current implementation uses USD as base and loads EUR and GBP. It tags source rows as <code>raw</code> and any forward-filled rows as <code>filled</code>, then rechecks recently filled rows on later runs so late-published source data can replace provisional values.</p>
+<p>The loader performs an idempotent upsert, keeps <code>fx_quality_flag</code> values in both CSV and Neon, and rechecks recently filled rows so provisional data can be promoted to <code>raw</code> once the source publishes it.</p>
+<p>The <code>filled</code> flag was introduced partway through the project. Rows loaded before mid-August 2026 carry <code>raw</code>, including weekends; rows from then on are flagged as described above.</p>
 
 
 </section>

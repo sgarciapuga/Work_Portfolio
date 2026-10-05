@@ -57,10 +57,10 @@ Synthetic daily cash movements, internal sweeps, and cash-position reporting per
 ::: {.project-card}
 ### Daily FX Rates
 
-Daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.
+Daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage. Runs by itself every day through GitHub Actions and feeds a live Google Data Studio report, with no manual steps from source to report.
 
 ::: {.project-links}
-[Open the report](daily-fx-rates/report.qmd)
+[Open the report](daily-fx-rates/report.qmd) [Presentation (PDF)](daily-fx-rates/presentation/Daily-FX-Rates.pdf){target="_blank"} [PowerPoint](daily-fx-rates/presentation/Daily-FX-Rates.pptx)
 :::
 :::
 

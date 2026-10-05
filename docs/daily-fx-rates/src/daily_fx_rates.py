@@ -1,9 +1,10 @@
-﻿import os
+﻿import argparse
+import os
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import pandas as pd
 import requests
-from sqlalchemy import create_engine, text, Date
+from sqlalchemy import create_engine, inspect, text, Date
 
 # Load environment variables from local .env file
 load_dotenv()
@@ -13,6 +14,11 @@ HISTORY_START_DATE = datetime(2026, 1, 1).date()
 QUALITY_RAW = "raw"
 QUALITY_FILLED = "filled"
 RECENT_FILLED_LOOKBACK_DAYS = 7
+
+# Daily runs only work on the last DAILY_WINDOW_DAYS days.
+# Once a week (and on the first run) the whole history is checked.
+FULL_CHECK_WEEKDAY = 0  # Monday (0 = Monday ... 6 = Sunday)
+DAILY_WINDOW_DAYS = 14
 
 
 def _empty_fx_frame():
@@ -50,7 +56,18 @@ def _normalize_fx_frame(df):
     return working
 
 
-def update_fx_history():
+def _load_fx_from_db(engine, from_date=None):
+    """Read fx_rates from Neon. Any database error stops the run."""
+    query = "SELECT * FROM fx_rates"
+    params = {}
+    if from_date is not None:
+        query += " WHERE date >= :from_date"
+        params["from_date"] = from_date
+    with engine.connect() as conn:
+        return pd.read_sql(text(query), conn, params=params)
+
+
+def update_fx_history(force_full=False):
     # ---------------------------------------------------------
     # Credentials & Paths
     # ---------------------------------------------------------
@@ -66,25 +83,56 @@ def update_fx_history():
     csv_path = os.path.join(script_dir, "..", "data", "fx_rates.csv")
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
 
+    end_date = datetime.today().date()
+
+    # ---------------------------------------------------------
+    # Decide the run mode: weekly full check or daily window
+    # ---------------------------------------------------------
+    # A missing table is expected on the very first run only. Any other
+    # database problem (connection, permissions) raises here and stops the run.
+    table_exists = inspect(engine).has_table("fx_rates")
+    csv_exists = os.path.exists(csv_path)
+
+    full_check = (
+        force_full
+        or not table_exists
+        or not csv_exists
+        or end_date.weekday() == FULL_CHECK_WEEKDAY
+    )
+    window_start = end_date - timedelta(days=DAILY_WINDOW_DAYS)
+
     # ---------------------------------------------------------
     # Load existing FX from Neon DB
     # ---------------------------------------------------------
-    try:
-        with engine.connect() as conn:
-            df_db = pd.read_sql(text("SELECT * FROM fx_rates"), conn)
-    except Exception:
-        df_db = _empty_fx_frame()
+    df_db = _empty_fx_frame()
+    if table_exists and not full_check:
+        df_db = _normalize_fx_frame(_load_fx_from_db(engine, from_date=window_start))
+        # The daily window needs stored rates at its start to carry forward.
+        # If they are not there (for example the job did not run for a while),
+        # fall back to the full check.
+        if df_db.empty or min(df_db["date"]) > window_start:
+            print("Stored data does not cover the daily window. Switching to full check.")
+            full_check = True
+
+    if table_exists and full_check:
+        df_db = _normalize_fx_frame(_load_fx_from_db(engine))
+
+    print("Run mode:", "FULL CHECK (whole history)" if full_check else f"DAILY (last {DAILY_WINDOW_DAYS} days)")
 
     # ---------------------------------------------------------
     # Load existing FX from CSV
     # ---------------------------------------------------------
-    if os.path.exists(csv_path):
-        df_csv = pd.read_csv(csv_path)
+    if csv_exists:
+        df_csv = _normalize_fx_frame(pd.read_csv(csv_path))
     else:
         df_csv = _empty_fx_frame()
 
-    # Combine DB + CSV after key normalization.
-    df_all = _normalize_fx_frame(pd.concat([_normalize_fx_frame(df_db), _normalize_fx_frame(df_csv)], ignore_index=True))
+    if full_check:
+        # Combine DB + CSV after key normalization.
+        df_all = _normalize_fx_frame(pd.concat([df_db, df_csv], ignore_index=True))
+    else:
+        # Daily runs trust the database for the recent window.
+        df_all = df_db
 
     # ---------------------------------------------------------
     # Determine latest stored date
@@ -92,9 +140,12 @@ def update_fx_history():
     if df_all.empty:
         latest_date = HISTORY_START_DATE - timedelta(days=1)
         history_start = HISTORY_START_DATE
-    else:
+    elif full_check:
         latest_date = max(df_all["date"])
         history_start = min(min(df_all["date"]), HISTORY_START_DATE)
+    else:
+        latest_date = max(df_all["date"])
+        history_start = window_start
 
     print("Latest stored FX date:", latest_date.strftime("%Y-%m-%d"))
 
@@ -102,9 +153,9 @@ def update_fx_history():
     # Determine missing date range
     # ---------------------------------------------------------
     start_date = latest_date + timedelta(days=1)
-    end_date = datetime.today().date()
 
-    # Detect historical holes on business days so we can backfill them too.
+    # Detect holes on business days so we can backfill them too
+    # (whole history on a full check, last days on a daily run).
     expected_bdays = pd.bdate_range(start=history_start, end=end_date).date
     expected_index = pd.MultiIndex.from_product(
         [expected_bdays, TARGET_CURRENCIES], names=["date", "currency"]
@@ -157,9 +208,12 @@ def update_fx_history():
         )
         response = requests.get(url, timeout=30)
 
+        # A failed API call must fail the run, so the workflow turns red
+        # and the Slack alert is sent. Nothing is written in that case.
         if response.status_code != 200:
-            print(f"API request failed with status code {response.status_code}")
-            return
+            raise RuntimeError(
+                f"Frankfurter API request failed with status code {response.status_code}: {url}"
+            )
 
         rates_by_date = response.json().get("rates", {})
 
@@ -209,7 +263,7 @@ def update_fx_history():
         .sort_values(by=["currency", "date"])
     )
 
-    # USD is deterministic; non-USD are gap-filled across the historical series.
+    # USD is deterministic; non-USD are gap-filled across the series.
     missing_before_fill = df_final["fx_to_usd"].isna()
     df_final.loc[df_final["currency"] == "USD", "fx_to_usd"] = 1.0
     df_final["fx_to_usd"] = df_final.groupby("currency")["fx_to_usd"].ffill().bfill()
@@ -234,7 +288,14 @@ def update_fx_history():
     # ---------------------------------------------------------
     # Save to CSV
     # ---------------------------------------------------------
-    df_final.to_csv(csv_path, index=False)
+    if full_check:
+        df_csv_out = df_final
+    else:
+        # Keep the older history as it is and replace only the daily window.
+        df_csv_out = pd.concat(
+            [df_csv[df_csv["date"] < history_start], df_final], ignore_index=True
+        ).sort_values(by=["currency", "date"])
+    df_csv_out.to_csv(csv_path, index=False)
 
     # ---------------------------------------------------------
     # Save to Neon PostgreSQL Database (idempotent upsert)
@@ -253,36 +314,38 @@ def update_fx_history():
             )
         )
 
-        conn.execute(
-            text(
-                """
-                ALTER TABLE fx_rates
-                ADD COLUMN IF NOT EXISTS fx_quality_flag TEXT NOT NULL DEFAULT 'raw'
-                """
+        # Table maintenance only runs with the full check.
+        if full_check:
+            conn.execute(
+                text(
+                    """
+                    ALTER TABLE fx_rates
+                    ADD COLUMN IF NOT EXISTS fx_quality_flag TEXT NOT NULL DEFAULT 'raw'
+                    """
+                )
             )
-        )
 
-        # Clean up any legacy duplicates so a unique key can be enforced.
-        conn.execute(
-            text(
-                """
-                DELETE FROM fx_rates a
-                USING fx_rates b
-                WHERE a.ctid < b.ctid
-                  AND a.date = b.date
-                  AND a.currency = b.currency
-                """
+            # Clean up any legacy duplicates so a unique key can be enforced.
+            conn.execute(
+                text(
+                    """
+                    DELETE FROM fx_rates a
+                    USING fx_rates b
+                    WHERE a.ctid < b.ctid
+                      AND a.date = b.date
+                      AND a.currency = b.currency
+                    """
+                )
             )
-        )
 
-        conn.execute(
-            text(
-                """
-                CREATE UNIQUE INDEX IF NOT EXISTS fx_rates_date_currency_uidx
-                ON fx_rates (date, currency)
-                """
+            conn.execute(
+                text(
+                    """
+                    CREATE UNIQUE INDEX IF NOT EXISTS fx_rates_date_currency_uidx
+                    ON fx_rates (date, currency)
+                    """
+                )
             )
-        )
 
         conn.execute(
             text(
@@ -297,6 +360,7 @@ def update_fx_history():
             )
         )
 
+        # Full check: every row. Daily run: only the rows of the daily window.
         df_final.to_sql(
             "fx_rates_staging",
             conn,
@@ -320,13 +384,22 @@ def update_fx_history():
         )
 
     print(
-        f"FX history updated successfully. Saved {len(df_final)} rows to Neon DB and local CSV."
+        f"FX history updated successfully. Sent {len(df_final)} rows to Neon DB. "
+        f"Local CSV now has {len(df_csv_out)} rows."
     )
-    print(df_final.head())
+    print(df_final.tail())
 
 
 # ---------------------------------------------------------
 # Run script
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    update_fx_history()
+    parser = argparse.ArgumentParser(description="Update the daily FX rates history.")
+    parser.add_argument(
+        "--full",
+        action="store_true",
+        help="Check and rebuild the whole history (this also happens automatically once a week).",
+    )
+    args = parser.parse_args()
+    force_full = args.full or os.getenv("FX_FULL_CHECK", "").strip().lower() in ("1", "true", "yes")
+    update_fx_history(force_full=force_full)

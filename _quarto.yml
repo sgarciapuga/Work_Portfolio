@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - fx-prime-brokerage-collateral/presentation/**
+    - daily-fx-rates/presentation/**
   render:
     - index.qmd
     - treasury-cashflow-simulation/report.qmd
