@@ -28,6 +28,13 @@ table {
   overflow-x: auto;
 }
 
+/* Mermaid: light, readable defaults (Quarto's theme gives clusters a dark fill and blue labels) */
+:root {
+  --mermaid-label-fg-color: #1f3a4d;
+  --mermaid-fg-color--lighter: #6fa1bf;
+  --mermaid-fg-color--lightest: #e3eef5;
+}
+
 /* Ensure content doesn't have fixed widths */
 p,
 li,

@@ -42,22 +42,34 @@ Four questions shaped the work:
 
 ```{mermaid}
 %%| fig-cap: "End-to-end flow: get rates, clean and fill gaps, save the CSV backup, update the database, refresh the report."
+%%| fig-alt: "The Frankfurter API feeds a Python script that runs in GitHub Actions every day at 18:00 UTC or by hand. On every run the script saves a CSV backup back to GitHub, and on failure it sends a Slack alert. The script upserts rates into the fx_rates table in Neon PostgreSQL, which Google Data Studio reads through SQL views. Other reports and Python projects can read the same table."
 flowchart LR
-  API["Frankfurter API<br/>daily EUR and GBP rates against USD"] --> PY
+  API["<b>Frankfurter API</b><br/>daily EUR and GBP<br/>rates against USD"] --> PY
 
-  subgraph GHA["GitHub Actions: every day at 18:00 UTC, or started by hand"]
-    PY["Python script<br/>reads what is stored, gets the missing dates,<br/>cleans the data and fills the gaps"]
-    PY -->|every run| CSV["CSV backup<br/>committed back to GitHub"]
-    PY -.->|on failure| SLACK["Slack alert"]
+  subgraph GHA["<b>GitHub Actions</b><br/>daily at 18:00 UTC"]
+    PY["<b>Python script</b><br/>reads what is stored,<br/>gets the missing dates,<br/>cleans and fills gaps"]
+    PY -->|every run| CSV["<b>CSV backup</b><br/>saved back to GitHub"]
+    PY -.->|on failure| SLACK["<b>Slack alert</b>"]
   end
 
-  PY --> DB[("Neon PostgreSQL<br/>table fx_rates")]
-  DB -->|SQL views| DS["Google Data Studio<br/>live report"]
-  DB -.-> OTHER["Other reports and<br/>Python projects"]
+  PY --> DB[("<b>Neon PostgreSQL</b><br/>table fx_rates")]
+  DB -->|SQL views| DS["<b>Google Data Studio</b><br/>live report"]
+  DB -.-> OTHER["<b>Other reports and</b><br/><b>Python projects</b>"]
+
+  classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+  classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+  classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+  classDef alert fill:#FDF0E6,stroke:#C8692B,stroke-width:1.5px,color:#7A3A10
+  class API,DS,OTHER ext
+  class PY,CSV job
+  class DB store
+  class SLACK alert
+  style GHA fill:#E3EEF5,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+  linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 1. **Source:** the Frankfurter API provides daily EUR and GBP rates against USD.
-2. **Python script:** runs inside GitHub Actions (`.github/workflows/daily_pipeline.yml`). It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.
+2. **Python script:** runs inside GitHub Actions (`.github/workflows/daily_pipeline.yml`) every day at 18:00 UTC, or when started by hand. It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.
 3. **CSV backup:** saved on every run and committed back to the repository.
 4. **Database:** rows are upserted into the `fx_rates` table in Neon PostgreSQL.
 5. **Report:** Google Data Studio reads the table through SQL views and refreshes once a day. The Data Studio report is only the first consumer; other reports and Python projects can read the same table.

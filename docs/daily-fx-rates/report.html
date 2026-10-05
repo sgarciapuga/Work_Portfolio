@@ -310,17 +310,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  API["Frankfurter API&lt;br/&gt;daily EUR and GBP rates against USD"] --&gt; PY
+  API["&lt;b&gt;Frankfurter API&lt;/b&gt;&lt;br/&gt;daily EUR and GBP&lt;br/&gt;rates against USD"] --&gt; PY
 
-  subgraph GHA["GitHub Actions: every day at 18:00 UTC, or started by hand"]
-    PY["Python script&lt;br/&gt;reads what is stored, gets the missing dates,&lt;br/&gt;cleans the data and fills the gaps"]
-    PY --&gt;|every run| CSV["CSV backup&lt;br/&gt;committed back to GitHub"]
-    PY -.-&gt;|on failure| SLACK["Slack alert"]
+  subgraph GHA["&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;br/&gt;daily at 18:00 UTC"]
+    PY["&lt;b&gt;Python script&lt;/b&gt;&lt;br/&gt;reads what is stored,&lt;br/&gt;gets the missing dates,&lt;br/&gt;cleans and fills gaps"]
+    PY --&gt;|every run| CSV["&lt;b&gt;CSV backup&lt;/b&gt;&lt;br/&gt;saved back to GitHub"]
+    PY -.-&gt;|on failure| SLACK["&lt;b&gt;Slack alert&lt;/b&gt;"]
   end
 
-  PY --&gt; DB[("Neon PostgreSQL&lt;br/&gt;table fx_rates")]
-  DB --&gt;|SQL views| DS["Google Data Studio&lt;br/&gt;live report"]
-  DB -.-&gt; OTHER["Other reports and&lt;br/&gt;Python projects"]
+  PY --&gt; DB[("&lt;b&gt;Neon PostgreSQL&lt;/b&gt;&lt;br/&gt;table fx_rates")]
+  DB --&gt;|SQL views| DS["&lt;b&gt;Google Data Studio&lt;/b&gt;&lt;br/&gt;live report"]
+  DB -.-&gt; OTHER["&lt;b&gt;Other reports and&lt;/b&gt;&lt;br/&gt;&lt;b&gt;Python projects&lt;/b&gt;"]
+
+  classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+  classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+  classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+  classDef alert fill:#FDF0E6,stroke:#C8692B,stroke-width:1.5px,color:#7A3A10
+  class API,DS,OTHER ext
+  class PY,CSV job
+  class DB store
+  class SLACK alert
+  style GHA fill:#E3EEF5,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+  linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
 <p></p><figcaption> End-to-end flow: get rates, clean and fill gaps, save the CSV backup, update the database, refresh the report.</figcaption> </figure><p></p>
@@ -329,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ol type="1">
 <li><strong>Source:</strong> the Frankfurter API provides daily EUR and GBP rates against USD.</li>
-<li><strong>Python script:</strong> runs inside GitHub Actions (<code>.github/workflows/daily_pipeline.yml</code>). It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.</li>
+<li><strong>Python script:</strong> runs inside GitHub Actions (<code>.github/workflows/daily_pipeline.yml</code>) every day at 18:00 UTC, or when started by hand. It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.</li>
 <li><strong>CSV backup:</strong> saved on every run and committed back to the repository.</li>
 <li><strong>Database:</strong> rows are upserted into the <code>fx_rates</code> table in Neon PostgreSQL.</li>
 <li><strong>Report:</strong> Google Data Studio reads the table through SQL views and refreshes once a day. The Data Studio report is only the first consumer; other reports and Python projects can read the same table.</li>
@@ -495,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example" class="level1">
 <h1>Example</h1>
-<div id="f0fdcce4" class="cell" data-execution_count="1">
+<div id="7e48b94d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
@@ -569,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="8cff8168" class="cell" data-execution_count="2">
+<div id="b20b3bb9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: simple FX time series example (synthetic if CSV missing)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> p.exists():</span>
