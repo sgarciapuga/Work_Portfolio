@@ -1,4 +1,5 @@
 import os
+import zlib
 from datetime import date
 import numpy as np
 import pandas as pd
@@ -32,8 +33,6 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
     business_days = get_business_days(START_DATE, end_date)
     last_day = business_days[-1]
 
-    rng = np.random.default_rng(seed)
-
     rows = []
     # ensure proper types
     portfolio_df["trade_date"] = pd.to_datetime(portfolio_df["trade_date"])
@@ -48,18 +47,24 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
         # use earliest value_date among legs as final settle for MTM of trade (per leg MTM could differ, but simplified)
         max_value_date = pd.to_datetime(legs["value_date"].max())
         start = pd.to_datetime(trade_date)
-        end = min(max_value_date, last_day)
-        if start > end:
+        if start > last_day:
             continue
-        dates = pd.date_range(start=start, end=end, freq=CustomBusinessDay(calendar=USFederalHolidayCalendar()))
-        if len(dates) == 0:
+        # Simulate the trade's full life, then truncate to last_day, so a trade's
+        # path doesn't change as the report horizon moves forward.
+        life_dates = pd.date_range(start=start, end=max_value_date, freq=CustomBusinessDay(calendar=USFederalHolidayCalendar()))
+        if len(life_dates) == 0:
             continue
 
-        # simulate mtm series starting at 0
+        # simulate mtm series starting at 0, with a per-trade RNG so other trades
+        # (added, removed or reordered) can't shift this trade's draws
+        rng = np.random.default_rng([seed, zlib.crc32(trade_id.encode())])
         drift = rng.normal(0, 0.0001)
         vol = abs(rng.normal(0.001, 0.0005))
-        steps = rng.normal(drift, vol, size=len(dates))
+        steps = rng.normal(drift, vol, size=len(life_dates))
         mtm_series = np.cumsum(steps)
+        visible = life_dates <= last_day
+        dates = life_dates[visible]
+        mtm_series = mtm_series[visible]
 
         # find trade_size_usd per trade (use first row's trade_size_usd)
         trade_size = float(legs.iloc[0]["trade_size_usd"])

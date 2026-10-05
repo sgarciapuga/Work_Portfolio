@@ -34,6 +34,26 @@ def _incremental_slice(df, date_col, last_date):
     return df.loc[dates > last_date].reset_index(drop=True)
 
 
+def _warn_if_history_drifted(df, csv_path, date_col, last_date):
+    """Warn if the regenerated row for ``last_date`` no longer matches the CSV.
+
+    Only new rows are appended, so a regenerated history that differs from what
+    was already written would show up as a jump at the seam.
+    """
+    if df is None or df.empty or last_date is None:
+        return
+    existing = pd.read_csv(csv_path)
+    old = existing.loc[pd.to_datetime(existing[date_col]) == last_date].reset_index(drop=True)
+    new = df.loc[pd.to_datetime(df[date_col]) == last_date].reset_index(drop=True)
+    old[date_col] = old[date_col].astype(str)
+    new[date_col] = new[date_col].astype(str)
+    if old.shape != new.shape or not old.round(2).equals(new[old.columns].round(2)):
+        print(
+            f"WARNING: regenerated {Path(csv_path).name} differs from the CSV on "
+            f"{last_date.date()}; appended rows won't continue the existing history."
+        )
+
+
 def _write_csv(df, csv_path, last_date):
     """Write the full frame on first run, or append only the new rows thereafter."""
     if df is None:
@@ -304,6 +324,8 @@ def run_all(out_dir=None):
         df_mtm_report = generate_mtm_report(
             portfolio_df=df_fx_portfolio, mtm_df=df_mtm_portfolio, out_path=scratch_dir
         )
+
+    _warn_if_history_drifted(df_mtm_report, mtm_report_file, "report_date", last_mtm_report_date)
 
     new_fx_portfolio = _incremental_slice(df_fx_portfolio, "report_date", last_fx_portfolio_date)
     new_limits = _incremental_slice(df_limits, "as_of_date", last_limits_date)

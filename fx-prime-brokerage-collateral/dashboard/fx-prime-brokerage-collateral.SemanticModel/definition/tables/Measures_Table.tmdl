@@ -569,6 +569,35 @@ table Measures_Table
 		displayFolder: Portfolio
 		lineageTag: e7967519-05bf-44bc-9f0c-ded617d21a9b
 
+	measure 'Collateral Coverage' = DIVIDE([Collateral Posted], [Collateral Required (Inverse)])
+		formatString: 0.0%
+		displayFolder: Dashboard v2
+		lineageTag: fb946a2c-e59e-45d0-8971-1fc1c7fc7352
+
+	measure 'Utilization Colour' =
+			VAR Utilization = [Credit Limit Utilization]
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        Utilization >= 1, "#7A0C1E",
+			        Utilization >= 0.75, "#C98A1B",
+			        "#1F7A4D"
+			    )
+		displayFolder: Dashboard v2
+		lineageTag: 3371ebc8-fdc0-44ad-a0e3-93a1e7603c02
+
+	measure 'Collateral Headline' =
+			VAR LastDate = CALCULATE(MAX(mtm_report[report_date]), REMOVEFILTERS(dim_date))
+			VAR Posted = CALCULATE([Collateral Posted], REMOVEFILTERS(dim_date), dim_date[calendar_date] = LastDate)
+			VAR Required = CALCULATE([Collateral Required (Inverse)], REMOVEFILTERS(dim_date), dim_date[calendar_date] = LastDate)
+			VAR Gap = Posted - Required
+			RETURN
+			    "As of " & FORMAT(LastDate, "dd mmm yyyy")
+			        & "  ·  Posted collateral covers " & FORMAT(DIVIDE(Posted, Required), "0%") & " of requirement"
+			        & "  ·  " & IF(Gap >= 0, "Excess ", "Deficit ") & FORMAT(ABS(Gap) / 1000000, "$#,0.00") & "m"
+		displayFolder: Dashboard v2
+		lineageTag: 69a5b748-9ff7-43ef-9ccc-9311aa1839c4
+
 	partition Measures_Table = m
 		mode: import
 		source =

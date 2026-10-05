@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from generate_fx_portfolio import generate_fx_portfolio
 from generate_limits import build_limit_schedule
+from generate_mtm_for_portfolio import generate_mtm_for_portfolio
 from generate_mtm_report import generate_mtm_report
 
 
@@ -103,7 +104,7 @@ class PortfolioDateFilterTests(unittest.TestCase):
         self.assertEqual(-1_000, result.loc[1, "variation_margin"])
         self.assertEqual(-6_000, result.loc[1, "collateral_required"])
 
-    def test_recall_does_not_leave_next_day_below_buffer(self):
+    def test_recall_is_sized_from_current_day_only(self):
         portfolio = pd.DataFrame({
             "trade_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
             "report_date": ["2026-01-02", "2026-01-05", "2026-01-06"],
@@ -122,9 +123,11 @@ class PortfolioDateFilterTests(unittest.TestCase):
                 out_path=output_dir,
             )
 
+        # 01-05 COB: 550k posted, no exposure -> 50k above buffer, so recall 50k.
+        # The bigger 01-06 exposure isn't known at 01-05 COB and must not block it.
         self.assertEqual(550_000, result.loc[1, "collateral_posted"])
-        self.assertEqual(550_000, result.loc[2, "collateral_posted"])
-        self.assertLess(result.loc[2, "excess_deficit"], 500_000)
+        self.assertEqual(500_000, result.loc[2, "collateral_posted"])
+        self.assertEqual(300_000, result.loc[2, "excess_deficit"])
 
     def test_recall_requires_minimum_excess_above_buffer(self):
         portfolio = pd.DataFrame({
@@ -150,6 +153,44 @@ class PortfolioDateFilterTests(unittest.TestCase):
             result.loc[1, "collateral_posted"],
             result.loc[2, "collateral_posted"],
         )
+
+
+class HistoryStabilityTests(unittest.TestCase):
+    """Adding a day must not rewrite earlier days (the daily run only appends)."""
+
+    DAY = "2026-08-05"       # a Wednesday, so the current week is still partial
+    NEXT_DAY = "2026-08-06"
+
+    @staticmethod
+    def _generate(end_date):
+        portfolio = generate_fx_portfolio(end_date=end_date, seed=42)
+        mtm = generate_mtm_for_portfolio(portfolio.copy(), end_date=end_date)
+        with tempfile.TemporaryDirectory() as output_dir:
+            report = generate_mtm_report(
+                portfolio_df=portfolio.copy(), mtm_df=mtm, end_date=end_date, out_path=output_dir
+            )
+        return portfolio, mtm, report
+
+    @classmethod
+    def setUpClass(cls):
+        cls.before = cls._generate(cls.DAY)
+        cls.after = cls._generate(cls.NEXT_DAY)
+
+    def _assert_prefix_unchanged(self, before, after):
+        before = before.astype({"report_date": str})
+        after = after.astype({"report_date": str})
+        after = after.loc[after["report_date"] <= self.DAY]
+        self.assertGreater(len(before), 0)
+        pd.testing.assert_frame_equal(before.reset_index(drop=True), after.reset_index(drop=True))
+
+    def test_portfolio_history_is_stable(self):
+        self._assert_prefix_unchanged(self.before[0], self.after[0])
+
+    def test_mtm_history_is_stable(self):
+        self._assert_prefix_unchanged(self.before[1], self.after[1])
+
+    def test_collateral_report_history_is_stable(self):
+        self._assert_prefix_unchanged(self.before[2], self.after[2])
 
 
 if __name__ == "__main__":

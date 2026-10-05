@@ -73,7 +73,7 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
     collateral_current = 0.0
     collateral_next = 0.0
 
-    for index, rd in enumerate(report_dates):
+    for rd in report_dates:
         rd_str = rd.date().isoformat()
         # raw (internal) values used for collateral logic
         im_raw = 0.05 * exposure_map.get(rd_str, 0.0)
@@ -103,7 +103,8 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
         # Movements are in `MOVE_INCREMENT` chunks and at least `MIN_MOVE`.
         # Posting rule: if deficit -> post enough tomorrow to reach (total_exposure + BUFFER),
         # rounded up to MOVE_INCREMENT and at least MIN_MOVE.
-        # Recall rule: if surplus above BUFFER by at least MIN_MOVE -> recall rounded down to MOVE_INCREMENT,
+        # Recall rule: if surplus above BUFFER by at least MIN_MOVE -> recall rounded down to MOVE_INCREMENT
+        # (decided on today's numbers only),
         # never reducing posted collateral below BUFFER.
         if excess_deficit < 0:
             # amount needed to reach target (exposure + buffer)
@@ -117,24 +118,9 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
                 move_amount = max(moves, MIN_MOVE)
                 collateral_next = collateral_display + float(move_amount)
         else:
-            # A recall is triggered by today's excess, then posted on the next
-            # report date. Size approved recalls against next-day exposure so
-            # the delivered balance remains above the buffer.
+            # A recall is decided from today's COB numbers only (tomorrow's
+            # exposure isn't known yet), then settles on the next report date.
             recall_possible = excess_deficit - BUFFER
-            if recall_possible < MIN_MOVE:
-                collateral_next = collateral_display
-                collateral_current = collateral_next
-                continue
-
-            if index + 1 < len(report_dates):
-                next_rd_str = report_dates[index + 1].date().isoformat()
-                next_exposure = 0.05 * exposure_map.get(next_rd_str, 0.0)
-                next_vm = vm_map.get(next_rd_str, 0.0)
-                next_total_exposure = next_exposure - next_vm
-            else:
-                next_total_exposure = total_exposure
-            next_day_recall_limit = collateral_display - next_total_exposure - BUFFER
-            recall_possible = min(recall_possible, next_day_recall_limit)
             if recall_possible < MIN_MOVE:
                 collateral_next = collateral_display
             else:

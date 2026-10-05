@@ -94,17 +94,22 @@ def generate_fx_portfolio(end_date=None, seed=42):
         end_date = previous[-2].date().isoformat()
 
     report_business_days = get_business_days(START_DATE, end_date)
+    # Simulate trades through the end of end_date's week so the current week's
+    # sampling (and every RNG draw after it) doesn't change as days are added.
+    # Trades dated after end_date are dropped when building report rows below.
+    simulation_end = pd.Timestamp(end_date).to_period("W").end_time.normalize().date().isoformat()
+    trade_business_days = get_business_days(START_DATE, simulation_end)
     value_business_days = get_business_days(
         START_DATE,
-        (pd.Timestamp(end_date) + DateOffset(months=6)).date().isoformat(),
+        (pd.Timestamp(simulation_end) + DateOffset(months=6)).date().isoformat(),
     )
     rng = np.random.default_rng(seed)
 
     trades = []
     daily_trade_numbers = {}
-    limit_schedule = build_limit_schedule(end_date=end_date, seed=seed)
+    limit_schedule = build_limit_schedule(end_date=simulation_end, seed=seed)
 
-    weekly_groups = report_business_days.to_series().groupby(report_business_days.to_series().dt.to_period("W")).apply(list)
+    weekly_groups = trade_business_days.to_series().groupby(trade_business_days.to_series().dt.to_period("W")).apply(list)
     for trade_week in weekly_groups:
         trade_count = sample_weekly_trade_count(rng)
         sample_dates = rng.choice(
