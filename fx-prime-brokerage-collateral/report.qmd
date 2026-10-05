@@ -116,6 +116,14 @@ flowchart TD
 
     I --> J[Power BI semantic model]
     J --> K[Dashboard]
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+    class A,K ext
+    class B,D,E,H job
+    class C,F,G,I,J store
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 This ordering matters. The collateral report cannot be calculated until the portfolio exposure and daily P&L exist.
@@ -139,6 +147,12 @@ flowchart LR
     A --> B
     A --> C
     C --> D
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class E ext
+    class A,B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 ## Stage 1: create the portfolio
@@ -257,6 +271,14 @@ flowchart TD
     G -->|Surplus| J{Above recall buffer?}
     J -->|Yes| K[Potential collateral recall]
     J -->|No| L[No movement]
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef alert fill:#FDF0E6,stroke:#C8692B,stroke-width:1.5px,color:#7A3A10
+    class A,C ext
+    class B,D,E,F,G,I,J,K,L job
+    class H alert
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 The core logic lives in `src/generate_mtm_report.py`. For each business date:

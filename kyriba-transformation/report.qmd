@@ -74,6 +74,10 @@ flowchart LR
     A[Blueprinting &<br/>Functional Design] --> B[Core Data &<br/>Access Setup]
     B --> C[Integration &<br/>Connectivity]
     C --> D[Optimisation &<br/>Continuous Improvement]
+
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class A,B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 | Part | Business purpose | Evidence themes |
@@ -98,6 +102,12 @@ flowchart LR
     A[Treasury requirements<br/>and stakeholder alignment] --> B[Workflow and<br/>process design]
     B --> C[Kyriba functional<br/>specifications]
     C --> D[Functional and<br/>end-to-end testing]
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class A ext
+    class B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 ::: {.evidence-grid}
@@ -147,6 +157,12 @@ flowchart TB
     C --> D[Roles and permissions]
     D --> E[Approval workflows<br/>and segregation of duties]
     E --> F[Treasury-led<br/>administration]
+
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+    class A store
+    class B,C,D,E,F job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 | Foundation area | What the work established |
@@ -178,6 +194,12 @@ flowchart TB
     K --- TM[Trade Management]
     K --- EA[ERP / Accounting]
     K --- DA[Data / API Layer]
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+    class K store
+    class BP,TM,EA,DA ext
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 The diagram shows the integration domains addressed in the transformation. It does not imply undocumented interface direction or technical ownership.
@@ -237,6 +259,10 @@ flowchart LR
     B --> C[Validate with Treasury<br/>users and stakeholders]
     C --> D[Maintain, fix<br/>and optimise]
     D --> A
+
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class A,B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 ::: {.callout-warning}

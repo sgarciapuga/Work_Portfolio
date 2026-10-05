@@ -299,6 +299,10 @@ ul.task-list li input[type="checkbox"] {
     A[Blueprinting &amp;&lt;br/&gt;Functional Design] --&gt; B[Core Data &amp;&lt;br/&gt;Access Setup]
     B --&gt; C[Integration &amp;&lt;br/&gt;Connectivity]
     C --&gt; D[Optimisation &amp;&lt;br/&gt;Continuous Improvement]
+
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class A,B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
 <p></p><figcaption> The four-part transformation journey described in the source presentation.</figcaption> </figure><p></p>
@@ -357,6 +361,12 @@ ul.task-list li input[type="checkbox"] {
     A[Treasury requirements&lt;br/&gt;and stakeholder alignment] --&gt; B[Workflow and&lt;br/&gt;process design]
     B --&gt; C[Kyriba functional&lt;br/&gt;specifications]
     C --&gt; D[Functional and&lt;br/&gt;end-to-end testing]
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class A ext
+    class B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
 <p></p><figcaption> Requirements-to-solution sequence used for functional design and validation.</figcaption> </figure><p></p>
@@ -413,6 +423,12 @@ ul.task-list li input[type="checkbox"] {
     C --&gt; D[Roles and permissions]
     D --&gt; E[Approval workflows&lt;br/&gt;and segregation of duties]
     E --&gt; F[Treasury-led&lt;br/&gt;administration]
+
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+    class A store
+    class B,C,D,E,F job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
 <p></p><figcaption> Conceptual foundation for Kyriba data, access and governance.</figcaption> </figure><p></p>
@@ -484,6 +500,12 @@ ul.task-list li input[type="checkbox"] {
     K --- TM[Trade Management]
     K --- EA[ERP / Accounting]
     K --- DA[Data / API Layer]
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
+    class K store
+    class BP,TM,EA,DA ext
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
 <p></p><figcaption> Conceptual integration landscape based on the source presentation.</figcaption> </figure><p></p>
@@ -579,6 +601,10 @@ ul.task-list li input[type="checkbox"] {
     B --&gt; C[Validate with Treasury&lt;br/&gt;users and stakeholders]
     C --&gt; D[Maintain, fix&lt;br/&gt;and optimise]
     D --&gt; A
+
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class A,B,C,D job
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
 <p></p><figcaption> Qualitative continuous-improvement loop described by the optimisation work.</figcaption> </figure><p></p>

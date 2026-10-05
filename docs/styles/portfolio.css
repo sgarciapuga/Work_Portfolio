@@ -9,6 +9,16 @@
   --pf-muted: #5b645f;
   --pf-line: #d7ddd2;
   --pf-soft-blue: #e9edf1;
+
+  /* Mermaid diagrams: Quarto builds the Mermaid theme from these variables.
+     Defaults give clusters a dark fill and blue labels, so set light, readable values.
+     Node roles (ext / job / store / alert) are set per diagram with classDef. */
+  --mermaid-node-bg-color: #ffffff;
+  --mermaid-node-fg-color: var(--pf-blue);
+  --mermaid-label-fg-color: #1f3a4d;
+  --mermaid-edge-color: #4a7f9e;
+  --mermaid-fg-color--lighter: var(--pf-blue);
+  --mermaid-fg-color--lightest: #e3eef5;
 }
 
 body {

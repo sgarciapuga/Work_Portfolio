@@ -118,6 +118,14 @@ flowchart LR
     BA -.->|payments| RCV
     BA -.->|transfer A to B| BB
     BB -.->|transfer B to A| BA
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    class GE1,GE2,TR1,TR2,BA,BB,RCV ext
+    class FT,NR,NP,TT,PM job
+    style K fill:#E3EEF5,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    style CL fill:#F5F9FB,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
 | Step | What happens |
