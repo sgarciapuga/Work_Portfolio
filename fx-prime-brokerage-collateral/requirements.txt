@@ -5,4 +5,5 @@ pandas==3.0.5
 numpy==2.4.6
 sqlalchemy
 psycopg2-binary
+psycopg[binary]
 python-dotenv
