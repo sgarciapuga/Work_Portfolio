@@ -8,6 +8,7 @@ This mini-project loads and stores daily FX rate history for a small treasury an
 - [Report source](report.qmd)
 - [Presentation (PDF)](presentation/Daily-FX-Rates.pdf) / [PowerPoint](presentation/Daily-FX-Rates.pptx)
 - [Live report (Google Data Studio)](https://datastudio.google.com/s/sC5tlwXPGVI)
+- [Streamlit version of the live report](app/streamlit_app.py) (see [Streamlit report](#streamlit-report))
 
 The maintained implementation lives in [src/daily_fx_rates.py](src/daily_fx_rates.py).
 
@@ -66,15 +67,49 @@ The workflow writes to:
 - daily-fx-rates/data/fx_rates.csv
 - Neon PostgreSQL (table: fx_rates)
 
+## Streamlit report
+
+[app/streamlit_app.py](app/streamlit_app.py) rebuilds the Data Studio report in Streamlit, with the same layout and the same numbers:
+
+- KPI cards for GBP/USD, EUR/USD and GBP/EUR, with the change vs the previous market day and since the start of the period
+- GBP and EUR against USD, rebased to 100 on the first day of the period
+- GBP/EUR with its 30-day average and the period high and low
+- a period summary table (latest, high, low, average, change since start)
+- a date range picker that drives everything on the page
+
+Definitions match Data Studio: "vs previous day" compares the last two market (`raw`) days, so it still shows a move on weekends; high, low and average use every calendar day in the period. The calculations live in [app/fx_metrics.py](app/fx_metrics.py) and are tested in [tests/test_fx_metrics.py](tests/test_fx_metrics.py).
+
+Data comes from the `fx_rates` table when `DATABASE_URL` is set (Streamlit secrets, environment variable, or the root `.env`). If it is not set, or the database cannot be reached within 10 seconds, the app reads `data/fx_rates.csv`. The footer shows which source was used. Data is cached for an hour.
+
+Run it from the repository root:
+
+```bash
+pip install -r daily-fx-rates/app/requirements.txt
+streamlit run daily-fx-rates/app/streamlit_app.py
+```
+
+The app has its own `requirements.txt`, so the daily pipeline does not install Streamlit. To host it on Streamlit Community Cloud, point the app at `daily-fx-rates/app/streamlit_app.py` and add `DATABASE_URL` under the app's secrets. Without the secret it shows the CSV, which the daily workflow commits to GitHub.
+
+Run the tests:
+
+```bash
+python -m unittest daily-fx-rates/tests/test_fx_metrics.py
+```
+
 ## Project structure
 
 ```text
 daily-fx-rates/
+├── app/
+│   ├── streamlit_app.py       # Streamlit report
+│   ├── fx_metrics.py          # pair rates, KPIs, rebasing, moving average
+│   └── requirements.txt       # Streamlit app dependencies
 ├── data/fx_rates.csv          # CSV backup, updated by the scheduled workflow
 ├── presentation/
 │   ├── Daily-FX-Rates.pdf
 │   └── Daily-FX-Rates.pptx
 ├── src/daily_fx_rates.py      # loader
+├── tests/test_fx_metrics.py
 ├── report.qmd                 # Quarto report
 ├── requirements.txt
 └── styles.css
