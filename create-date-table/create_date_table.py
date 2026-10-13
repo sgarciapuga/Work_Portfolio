@@ -120,13 +120,16 @@ def main():
     database_url = get_database_url()
     engine = create_engine(database_url)
 
-    today = date.today()
-    df_calendar = build_date_table(START_DATE, today)
+    # Build ahead to the end of next year so downstream tables with a foreign
+    # key to date_table (e.g. fx_rates) never write a date that is not there yet,
+    # even when the scheduled runs are delayed or run out of order.
+    end_date = date(date.today().year + 1, 12, 31)
+    df_calendar = build_date_table(START_DATE, end_date)
 
     ensure_table_exists(engine)
     insert_missing_dates(engine, df_calendar)
 
-    print(f"Date table ready from {START_DATE} to {today}.")
+    print(f"Date table ready from {START_DATE} to {end_date}.")
 
 
 if __name__ == "__main__":

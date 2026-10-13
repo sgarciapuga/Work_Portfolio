@@ -39,7 +39,7 @@ The workflow is implemented in [create-date-table/create_date_table.py](create-d
 
 1. It reads DATABASE_URL from the repository .env file.
 2. It creates the date_table table if it does not already exist.
-3. It generates a date range from 2026-01-01 through today.
+3. It generates a date range from 2026-01-01 through 31 December of next year, so tables that reference date_table (for example fx_rates through its foreign key) always find today's date.
 4. It inserts only the missing dates, making the script suitable for incremental runs.
 
 ## Usage
