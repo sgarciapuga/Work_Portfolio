@@ -8,7 +8,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "app"))
 
 from datetime import date
 
-from fx_metrics import filter_period, moving_average, period_summary, preset_start, priced_in, rebased, to_pairs
+from fx_metrics import (
+    filter_period,
+    moving_average,
+    period_csv,
+    period_summary,
+    preset_start,
+    priced_in,
+    rebased,
+    to_pairs,
+)
 
 
 def _rates(rows):
@@ -53,6 +62,20 @@ class FxMetricsTests(unittest.TestCase):
         self.assertAlmostEqual(summary.loc["EUR/USD", "high"], 1 / 0.80)
         self.assertAlmostEqual(summary.loc["EUR/USD", "low"], 1 / 0.85)
         self.assertAlmostEqual(summary.loc["EUR/USD", "since_start"], 0.80 / 0.85 - 1)
+
+    def test_high_and_low_dates_use_the_market_day(self):
+        summary = period_summary(to_pairs(RATES))
+        # EUR/USD is highest on 1 Oct and lowest from 2 Oct (carried over the weekend).
+        self.assertEqual(summary.loc["EUR/USD", "high_date"], pd.Timestamp("2026-10-01"))
+        self.assertEqual(summary.loc["EUR/USD", "low_date"], pd.Timestamp("2026-10-02"))
+
+    def test_period_csv(self):
+        lines = period_csv(to_pairs(RATES)).splitlines()
+        self.assertEqual(lines[0], "date,GBP/USD,EUR/USD,GBP/EUR,rate_type")
+        self.assertTrue(lines[1].startswith("2026-10-01,1.333333,1.25,"))
+        self.assertTrue(lines[1].endswith(",market"))
+        self.assertTrue(lines[-1].endswith(",filled"))
+        self.assertEqual(len(lines), 5)
 
     def test_filter_period_is_inclusive(self):
         period = filter_period(to_pairs(RATES), "2026-10-02", "2026-10-03")

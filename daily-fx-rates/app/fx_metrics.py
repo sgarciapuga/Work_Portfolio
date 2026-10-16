@@ -72,7 +72,11 @@ def filter_period(pairs, start, end):
 
 
 def period_summary(pairs):
-    """One row per pair: latest, high, low, average, change vs previous day and since start."""
+    """One row per pair: latest, high, low (and the dates they happened), average,
+    change vs previous day and since start.
+
+    A high or low that carries over a weekend is dated on its market day (the first one).
+    """
     market_days = pairs[pairs["is_raw"]]
     if len(market_days) < 2:
         market_days = pairs
@@ -84,7 +88,9 @@ def period_summary(pairs):
         rows[pair] = {
             "latest": series.iloc[-1],
             "high": series.max(),
+            "high_date": series.idxmax(),
             "low": series.min(),
+            "low_date": series.idxmin(),
             "average": series.mean(),
             "vs_previous_day": market_days[pair].iloc[-1] / previous - 1,
             "since_start": series.iloc[-1] / series.iloc[0] - 1,
@@ -105,6 +111,14 @@ def priced_in(pairs, base):
     return pd.DataFrame(
         {f"{cur}/{base}": usd_value[cur] / usd_value[base] for cur in CURRENCIES if cur != base}
     )
+
+
+def period_csv(pairs):
+    """The period's rates as CSV: one row per day, the three pairs and the rate type."""
+    out = pairs[PAIRS].round(6)
+    out.insert(0, "date", pairs.index.strftime("%Y-%m-%d"))
+    out["rate_type"] = pairs["is_raw"].map({True: "market", False: "filled"})
+    return out.to_csv(index=False)
 
 
 def rebased(pairs, columns=("GBP/USD", "EUR/USD")):

@@ -71,19 +71,21 @@ The workflow writes to:
 
 [app/streamlit_app.py](app/streamlit_app.py) rebuilds the Data Studio report in Streamlit. It has two pages, linked from the top bar. The period controls in the header drive both pages and keep their value when you switch page: quick periods (1M, 3M, YTD, 1Y, All; YTD by default) and a date range picker. Picking dates by hand clears the quick period.
 
-On every chart, the tooltip marks weekends and holidays, where the rate is carried from the last market day. If the latest rate is more than 2 days old, a warning says the daily update may have failed. The app's accent colour is set in `.streamlit/config.toml` at the repository root.
+The **CSV** button next to the date picker downloads the selected period: one row per day with GBP/USD, EUR/USD, GBP/EUR and the rate type (`market` or `filled`).
+
+Charts have no legends: rebased lines are labelled at their end, and the dashed line on rate charts is the 30-day average. On every chart, the tooltip marks weekends and holidays, where the rate is carried from the last market day. If the latest rate is more than 2 days old, a warning says the daily update may have failed. The app's accent colour is set in `.streamlit/config.toml` at the repository root.
 
 **Overview** has the same layout and the same numbers as Data Studio:
 
 - KPI cards for GBP/USD, EUR/USD and GBP/EUR, with the change vs the previous market day and since the start of the period
 - GBP and EUR against USD, rebased to 100 on the first day of the period
-- GBP/EUR with its 30-day average and the period high and low
-- a period summary table (latest, high, low, average, change since start)
+- GBP/EUR with its 30-day average and the period high and low, with the dates they happened
+- a period summary table (latest, high and low with their dates, average, change since start)
 
 **Against GBP & EUR** shows the same rates from the other two currencies' point of view:
 
 - EUR and USD against GBP, and GBP and USD against EUR, rebased to 100 on the first day of the period
-- EUR/USD and GBP/USD with their 30-day averages and the period high and low
+- EUR/USD and GBP/USD with their 30-day averages and the period high and low, with their dates
 
 Definitions match Data Studio: "vs previous day" compares the last two market (`raw`) days, so it still shows a move on weekends; high, low and average use every calendar day in the period. The calculations live in [app/fx_metrics.py](app/fx_metrics.py) and are tested in [tests/test_fx_metrics.py](tests/test_fx_metrics.py).
 

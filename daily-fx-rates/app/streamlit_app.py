@@ -28,6 +28,7 @@ from fx_metrics import (
     PERIOD_PRESETS,
     filter_period,
     moving_average,
+    period_csv,
     period_summary,
     preset_start,
     priced_in,
@@ -50,7 +51,7 @@ CHART_HEIGHT = 380
 CHART_CONFIG = {"displayModeBar": False, "responsive": True}
 # Cards and the summary table keep a fixed width (narrower screens shrink or wrap them);
 # only the line charts stretch with the screen.
-KPI_CARD_WIDTH = 340
+KPI_CARD_WIDTH = 360  # fits both changes on one line, whatever the start date
 KPI_GAP = 16
 SUMMARY_WIDTH = 3 * KPI_CARD_WIDTH + 2 * KPI_GAP  # lines up with the row of cards
 DATE_PICKER_WIDTH = 260
@@ -169,21 +170,22 @@ def chart_height_css(keys, variable, height):
 
 CSS = (
     "<style>\n"
-    ".block-container { padding: 2rem 2.5rem 1rem; max-width: none; }\n"
-    "@media (max-width: 640px) { .block-container { padding: 1.5rem 1rem 1rem; } }\n"
-    # Overview: the charts take the screen height left after the rest of the page (about 670px).
-    + chart_height_css(OVERVIEW_CHARTS, "--fx-chart-height", "clamp(380px, calc(100vh - 670px), 900px)")
+    # Top padding clears the app bar that holds the page links.
+    ".block-container { padding: 3.5rem 2.5rem 1rem; max-width: none; }\n"
+    "@media (max-width: 640px) { .block-container { padding: 3.5rem 1rem 1rem; } }\n"
+    # Overview: the charts take the screen height left after the rest of the page (about 694px).
+    + chart_height_css(OVERVIEW_CHARTS, "--fx-chart-height", "clamp(380px, calc(100vh - 694px), 900px)")
     # Against GBP & EUR: two rows of charts share the height left after the header and footer.
-    + chart_height_css(OTHER_BASES_CHARTS, "--fx-grid-height", "clamp(340px, calc((100vh - 385px) / 2), 700px)")
+    + chart_height_css(OTHER_BASES_CHARTS, "--fx-grid-height", "clamp(340px, calc((100vh - 409px) / 2), 700px)")
     + """@media (max-width: 640px) { :root { --fx-chart-height: 380px; --fx-grid-height: 340px; } }
 .fx-subtitle { opacity: .75; margin-top: -.6rem; }
 .fx-updated { text-align: right; opacity: .75; font-size: .9rem; margin-bottom: .25rem; }
 .fx-pair { font-size: 1.1rem; opacity: .7; display: flex; align-items: center; gap: .45rem; }
 .fx-dot { width: .7rem; height: .7rem; border-radius: 50%; display: inline-block; }
 .fx-value { font-size: 2.4rem; font-weight: 500; line-height: 1.15; margin: .1rem 0 .5rem; font-variant-numeric: tabular-nums; }
-.fx-changes { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; font-size: .9rem; padding-bottom: .9rem; }
+.fx-changes { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .9rem; padding-bottom: .9rem; }
 .fx-section { font-size: 1.15rem; font-weight: 600; margin: .2rem 0 -.4rem; }
-.fx-changes > span { opacity: .9; }
+.fx-changes > span { opacity: .9; white-space: nowrap; }
 .fx-pill { padding: .15rem .45rem; border-radius: 4px; margin-right: .35rem; font-variant-numeric: tabular-nums; }
 .fx-up { background: rgba(30,142,62,.14); color: var(--fx-up); }
 .fx-down { background: rgba(217,48,37,.12); color: var(--fx-down); }
@@ -201,7 +203,9 @@ def _base_layout(fig, dates):
         autosize=True,
         margin=dict(l=10, r=10, t=10, b=10),
         hovermode="x unified",
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+        # No legends: lines are labelled at their end, and rate charts name the rate in
+        # the title (the dashed line is the 30-day average).
+        showlegend=False,
     )
     # Pin the x-axis to the period: Plotly pads it when a chart has markers.
     fig.update_xaxes(
@@ -276,10 +280,7 @@ def performance_chart(prices, is_raw):
 
 
 def rate_chart(series, pair, is_raw):
-    """A rate with its 30-day average and the period high and low.
-
-    No legend: the title names the rate and the dashed line is the average.
-    """
+    """A rate with its 30-day average and the period high and low (with their dates)."""
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
@@ -302,18 +303,17 @@ def rate_chart(series, pair, is_raw):
             hovertemplate="%{y:.4f}%{customdata}<extra>30-day average</extra>",
         )
     )
-    for label, value in (("High", series.max()), ("Low", series.min())):
+    for label, day in (("High", series.idxmax()), ("Low", series.idxmin())):
+        value = series[day]
         fig.add_hline(
             y=value,
             line=dict(color=REFERENCE_GREY, width=1, dash="dot"),
-            annotation_text=f"{label} ({value:.4f})",
+            annotation_text=f"{label} {value:.4f} on {fmt_day(day)}",
             annotation_position="top left" if label == "High" else "bottom left",
             annotation_font_size=11,
             annotation_bgcolor="rgba(128,128,128,.18)",
         )
-    _base_layout(fig, series.index)
-    fig.update_layout(showlegend=False)
-    return fig
+    return _base_layout(fig, series.index)
 
 
 def chart_card(column, title, fig, key):
@@ -353,17 +353,20 @@ def overview_page():
     with st.container(border=True, width=SUMMARY_WIDTH):
         section_title("Period summary")
         since_column = f"Since {start_label}"
-        table = summary[["latest", "high", "low", "average", "since_start"]].rename(
+        table = summary[["latest", "high", "high_date", "low", "low_date", "average", "since_start"]].rename(
             columns={
                 "latest": "Latest",
                 "high": "High",
+                "high_date": "High on",
                 "low": "Low",
+                "low_date": "Low on",
                 "average": "Average",
                 "since_start": since_column,
             }
         )
         styled = (
             table.style.format("{:.4f}", subset=["Latest", "High", "Low", "Average"])
+            .format(fmt_day, subset=["High on", "Low on"])
             .format(fmt_pct, subset=[since_column])
             .map(lambda v: f"color: {UP if v > 0 else DOWN if v < 0 else 'inherit'}", subset=[since_column])
         )
@@ -429,7 +432,7 @@ def _clear_preset():
 
 
 # Shared header: the period controls keep their values when switching pages.
-header, controls = st.columns([3, 2], vertical_alignment="bottom")
+header, controls = st.columns(2, vertical_alignment="bottom")
 with header:
     st.title("FX rates")
     st.markdown(f'<p class="fx-subtitle">{PAGES[nav.title][2]}</p>', unsafe_allow_html=True)
@@ -450,6 +453,7 @@ with controls.container(horizontal_alignment="right"):
             key="period",
             on_change=_clear_preset,
         )
+        download_slot = st.empty()  # filled below, once the period is known
 
 age_days = (datetime.now(REFRESH_TZ).date() - last_day).days
 if age_days > STALE_AFTER_DAYS:
@@ -469,6 +473,17 @@ if len(period) < 2:
 summary = period_summary(period)
 start_label = fmt_day(period.index[0])
 since_label = f"since {start_label}"
+
+first, last = period.index[0], period.index[-1]
+download_slot.download_button(
+    "CSV",
+    data=period_csv(period),
+    file_name=f"fx_rates_{first:%Y-%m-%d}_{last:%Y-%m-%d}.csv",
+    mime="text/csv",
+    icon=":material/download:",
+    help="Download the rates for the selected period",
+    on_click="ignore",
+)
 
 nav.run()
 
