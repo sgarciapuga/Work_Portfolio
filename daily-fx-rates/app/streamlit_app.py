@@ -40,11 +40,19 @@ APP_DIR = Path(__file__).resolve().parent
 REPO_ROOT = APP_DIR.parents[1]
 CSV_PATH = APP_DIR.parent / "data" / "fx_rates.csv"
 
-# Same colours as the Data Studio report (checked for colour-blind separation).
-# Rate charts and KPI cards use the pair colour; performance lines use the colour
-# of the currency being measured (GBP/USD and EUR/USD match both).
-COLORS = {"GBP/USD": "#3B78E7", "EUR/USD": "#F08C2E", "GBP/EUR": "#00939E"}
-CURRENCY_COLORS = {"GBP": "#3B78E7", "EUR": "#F08C2E", "USD": "#B8478F"}
+# One colour per pair, the same on every chart and card. The first three match
+# the Data Studio report. Checked for colour-blind separation: the two lines that
+# share a chart are always far apart; across charts, end labels and titles name each pair.
+COLORS = {
+    "GBP/USD": "#3B78E7",  # blue
+    "EUR/USD": "#F08C2E",  # orange
+    "GBP/EUR": "#00939E",  # teal
+    "EUR/GBP": "#9E7B00",  # gold
+    "USD/GBP": "#4A3AA7",  # violet
+    "USD/EUR": "#C2185B",  # crimson
+}
+# The violet is too dark on the dark theme; a lighter step that stays apart from the blue.
+DARK_COLORS = {"USD/GBP": "#AC72DA"}
 REFERENCE_GREY = "#9AA0A6"
 # Line charts grow with the screen height (see chart_height_css); this is the minimum.
 CHART_HEIGHT = 380
@@ -230,7 +238,7 @@ def performance_chart(prices, is_raw):
     notes = _filled_notes(is_raw)
     fig = go.Figure()
     for i, pair in enumerate(indexed.columns):
-        color = CURRENCY_COLORS[pair.split("/")[0]]
+        color = COLORS[pair]
         last = i == len(indexed.columns) - 1
         fig.add_trace(
             go.Scatter(
@@ -399,8 +407,11 @@ PAGES = {
 # App
 # ---------------------------------------------------------
 st.set_page_config(page_title="FX rates", page_icon="💱", layout="wide")
-# Up/down colours need lighter tones on the dark theme to stay readable.
-UP, DOWN = TREND_COLORS["dark" if st.context.theme.type == "dark" else "light"]
+# Up/down colours (and the violet) need lighter tones on the dark theme to stay readable.
+DARK = st.context.theme.type == "dark"
+UP, DOWN = TREND_COLORS["dark" if DARK else "light"]
+if DARK:
+    COLORS.update(DARK_COLORS)
 st.markdown(CSS + f"<style>:root {{ --fx-up: {UP}; --fx-down: {DOWN}; }}</style>", unsafe_allow_html=True)
 
 nav = st.navigation(
