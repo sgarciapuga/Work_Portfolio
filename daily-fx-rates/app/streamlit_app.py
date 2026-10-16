@@ -27,7 +27,9 @@ CSV_PATH = APP_DIR.parent / "data" / "fx_rates.csv"
 # Same colours as the Data Studio report (checked for colour-blind separation).
 COLORS = {"GBP/USD": "#3B78E7", "EUR/USD": "#F08C2E", "GBP/EUR": "#00939E"}
 REFERENCE_GREY = "#9AA0A6"
+# Line charts grow with the screen height (see the .st-key-fx-chart-* CSS); this is the minimum.
 CHART_HEIGHT = 380
+CHART_CONFIG = {"displayModeBar": False, "responsive": True}
 TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
 
 # Data is reloaded once a day at this time. The pipeline stores the day's
@@ -113,6 +115,13 @@ CSS = """
 <style>
 .block-container { padding: 2rem 2.5rem 1rem; max-width: none; }
 @media (max-width: 640px) { .block-container { padding: 1.5rem 1rem 1rem; } }
+/* Only the line charts grow: they take the screen height left after the rest of the page (about 670px). */
+:root { --fx-chart-height: clamp(380px, calc(100vh - 670px), 900px); }
+.st-key-fx-chart-rebased, .st-key-fx-chart-gbpeur { height: var(--fx-chart-height) !important; flex-basis: var(--fx-chart-height) !important; }
+.st-key-fx-chart-rebased [data-testid="stFullScreenFrame"], .st-key-fx-chart-gbpeur [data-testid="stFullScreenFrame"],
+.st-key-fx-chart-rebased .stPlotlyChart, .st-key-fx-chart-gbpeur .stPlotlyChart,
+.st-key-fx-chart-rebased .js-plotly-plot, .st-key-fx-chart-gbpeur .js-plotly-plot { height: 100% !important; }
+@media (max-width: 640px) { :root { --fx-chart-height: 380px; } }
 .fx-subtitle { opacity: .75; margin-top: -.6rem; }
 .fx-updated { text-align: right; opacity: .75; font-size: .9rem; margin-bottom: .25rem; }
 .fx-pair { font-size: 1.1rem; opacity: .7; display: flex; align-items: center; gap: .45rem; }
@@ -134,7 +143,7 @@ CSS = """
 # ---------------------------------------------------------
 def _base_layout(fig):
     fig.update_layout(
-        height=CHART_HEIGHT,
+        autosize=True,
         margin=dict(l=10, r=10, t=10, b=10),
         hovermode="x unified",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
@@ -265,10 +274,10 @@ for column, pair in zip(st.columns(3), PAIRS):
 left, right = st.columns(2)
 with left.container(border=True):
     section_title(f"GBP and EUR against USD (rebased, {fmt_day(period.index[0])} = 100)")
-    st.plotly_chart(rebased_chart(period), width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(rebased_chart(period), width="stretch", height=CHART_HEIGHT, config=CHART_CONFIG, key="fx-chart-rebased")
 with right.container(border=True):
     section_title("GBP/EUR with 30-day average")
-    st.plotly_chart(gbpeur_chart(period), width="stretch", config={"displayModeBar": False})
+    st.plotly_chart(gbpeur_chart(period), width="stretch", height=CHART_HEIGHT, config=CHART_CONFIG, key="fx-chart-gbpeur")
 
 # Period summary
 with st.container(border=True):
