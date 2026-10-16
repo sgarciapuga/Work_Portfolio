@@ -35,6 +35,7 @@ CHART_CONFIG = {"displayModeBar": False, "responsive": True}
 KPI_CARD_WIDTH = 340
 KPI_GAP = 16
 SUMMARY_WIDTH = 3 * KPI_CARD_WIDTH + 2 * KPI_GAP  # lines up with the row of cards
+DATE_PICKER_WIDTH = 260
 TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
 
 # Data is reloaded once a day at this time. The pipeline stores the day's
@@ -235,7 +236,7 @@ with header:
         '<p class="fx-subtitle">GBP vs EUR: performance against USD and the GBP/EUR rate.</p>',
         unsafe_allow_html=True,
     )
-with controls:
+with controls.container(horizontal_alignment="right"):
     st.markdown(
         f'<div class="fx-updated">Latest rate: <b>{fmt_day(last_day, year=True)}</b></div>',
         unsafe_allow_html=True,
@@ -247,6 +248,7 @@ with controls:
         max_value=last_day,
         format="DD/MM/YYYY",
         label_visibility="collapsed",
+        width=DATE_PICKER_WIDTH,
     )
 
 # While the user is picking, the date input holds only the start date.
