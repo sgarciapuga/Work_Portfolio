@@ -19,7 +19,7 @@ The portfolio is published as a Quarto website. The landing page is [index.qmd](
 - **Kyriba TMS Transformation** — a source-traceable case study of Kyriba Treasury Management System functional design, data governance, integrations and continuous improvement, built from a supplied presentation. Includes an Accounting deep dive, Case 01 on FX platform integration and Case 02 on payments connectivity.
 - **FX Prime Brokerage Collateral** — a reproducible Python pipeline generating synthetic FX portfolio, limits, mark-to-market and collateral datasets, connected to a Power BI dashboard.
 - **Treasury Cashflow Simulation** — synthetic daily cash movements, internal sweeps, and cash-position reporting persisted to PostgreSQL.
-- **Daily FX Rates** — daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage.
+- **Daily FX Rates** — daily FX-rate ingestion from the Frankfurter API with historical backfill, data-quality flags, and PostgreSQL storage, shown in a [live Streamlit app](https://fx-rates-sergio.streamlit.app).
 - **Create Date Table** — a reusable PostgreSQL calendar dimension for reporting and time intelligence.
 
 Each project folder has its own README with setup and run instructions specific to that project.

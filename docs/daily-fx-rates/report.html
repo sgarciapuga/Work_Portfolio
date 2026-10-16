@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sergio">
-<meta name="dcterms.date" content="2026-10-05">
+<meta name="dcterms.date" content="2026-10-16">
 
 <title>Daily FX Rates — Project Report – Professional Portfolio</title>
 <style>
@@ -208,6 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#decisions-i-made" id="toc-decisions-i-made" class="nav-link" data-scroll-target="#decisions-i-made">Decisions I made</a></li>
   <li><a href="#testing-and-debugging" id="toc-testing-and-debugging" class="nav-link" data-scroll-target="#testing-and-debugging">Testing and debugging</a></li>
   <li><a href="#how-i-worked-with-ai" id="toc-how-i-worked-with-ai" class="nav-link" data-scroll-target="#how-i-worked-with-ai">How I worked with AI</a></li>
+  <li><a href="#the-streamlit-app" id="toc-the-streamlit-app" class="nav-link" data-scroll-target="#the-streamlit-app">The Streamlit app</a></li>
   <li><a href="#the-final-result" id="toc-the-final-result" class="nav-link" data-scroll-target="#the-final-result">The final result</a></li>
   <li><a href="#run-it-locally" id="toc-run-it-locally" class="nav-link" data-scroll-target="#run-it-locally">Run it locally</a></li>
   <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
@@ -222,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Daily FX Rates — Project Report</h1>
-<p class="subtitle lead">From a public FX rates source to a live report, with no manual steps</p>
+<p class="subtitle lead">From a public FX rates source to live reports, with no manual steps</p>
 </div>
 
 
@@ -239,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 5, 2026</p>
+      <p class="date">October 16, 2026</p>
     </div>
   </div>
   
@@ -253,8 +254,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>A daily feed of EUR and GBP rates against USD, stored and reported automatically. The loader in <a href="src/daily_fx_rates.py">src/daily_fx_rates.py</a> fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table, and a Google Data Studio report reads the database to show GBP/USD, EUR/USD and GBP/EUR.</p>
+<p>A daily feed of EUR and GBP rates against USD, stored and reported automatically. The loader in <a href="src/daily_fx_rates.py">src/daily_fx_rates.py</a> fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table. Two live reports read the database and show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app and a Google Data Studio report.</p>
 <ul>
+<li><a href="https://fx-rates-sergio.streamlit.app" target="_blank">Live app (Streamlit)</a></li>
 <li><a href="https://datastudio.google.com/s/sC5tlwXPGVI" target="_blank">Live report (Google Data Studio)</a></li>
 <li><a href="presentation/Daily-FX-Rates.pdf" target="_blank">Presentation (PDF)</a></li>
 <li><a href="presentation/Daily-FX-Rates.pptx">Presentation (PowerPoint)</a></li>
@@ -297,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td>4</td>
 <td>How do I make the whole flow run by itself?</td>
-<td>GitHub Actions runs the script every day and alerts me if it fails. Data Studio refreshes the report once a day.</td>
+<td>GitHub Actions runs the script every day and alerts me if it fails. The Streamlit app reloads the data every morning and Data Studio refreshes once a day.</td>
 </tr>
 </tbody>
 </table>
@@ -319,6 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   end
 
   PY --&gt; DB[("&lt;b&gt;Neon PostgreSQL&lt;/b&gt;&lt;br/&gt;table fx_rates")]
+  DB --&gt;|every morning| ST["&lt;b&gt;Streamlit app&lt;/b&gt;&lt;br/&gt;live report"]
   DB --&gt;|SQL views| DS["&lt;b&gt;Google Data Studio&lt;/b&gt;&lt;br/&gt;live report"]
   DB -.-&gt; OTHER["&lt;b&gt;Other reports and&lt;/b&gt;&lt;br/&gt;&lt;b&gt;Python projects&lt;/b&gt;"]
 
@@ -326,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
   classDef store fill:#6FA1BF,stroke:#4A7F9E,stroke-width:1.5px,color:#FFFFFF
   classDef alert fill:#FDF0E6,stroke:#C8692B,stroke-width:1.5px,color:#7A3A10
-  class API,DS,OTHER ext
+  class API,ST,DS,OTHER ext
   class PY,CSV job
   class DB store
   class SLACK alert
@@ -334,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 </pre>
 </div>
-<p></p><figcaption> End-to-end flow: get rates, clean and fill gaps, save the CSV backup, update the database, refresh the report.</figcaption> </figure><p></p>
+<p></p><figcaption> End-to-end flow: get rates, clean and fill gaps, save the CSV backup, update the database, refresh the reports.</figcaption> </figure><p></p>
 </div>
 </div>
 </div>
@@ -343,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Python script:</strong> runs inside GitHub Actions (<code>.github/workflows/daily_pipeline.yml</code>) every day at 18:00 UTC, or when started by hand. It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.</li>
 <li><strong>CSV backup:</strong> saved on every run and committed back to the repository.</li>
 <li><strong>Database:</strong> rows are upserted into the <code>fx_rates</code> table in Neon PostgreSQL.</li>
-<li><strong>Report:</strong> Google Data Studio reads the table through SQL views and refreshes once a day. The Data Studio report is only the first consumer; other reports and Python projects can read the same table.</li>
+<li><strong>Reports:</strong> the Streamlit app reads the table directly and reloads the data every morning at 08:00 UK time. Google Data Studio reads it through SQL views and refreshes once a day. Other reports and Python projects can read the same table.</li>
 </ol>
 <p>If any step fails, the run stops without writing partial results and a Slack message is sent.</p>
 <section id="run-modes" class="level2">
@@ -433,6 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Testing and debugging</li>
 <li>Some pieces myself with AI assistance, like the table settings and the unique key</li>
 <li>The Data Studio report</li>
+<li>The design of the Streamlit app: what to show, the layout and the colours, and the changes after each test</li>
 </ul>
 </div><div class="column" style="width:4%;">
 
@@ -443,6 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Writing the code from my instructions</li>
 <li>Helping me solve each issue I found when testing</li>
 <li>Helping me polish the report</li>
+<li>Building the Streamlit app and its tests from my instructions</li>
 </ul>
 </div>
 </div>
@@ -460,6 +465,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="the-streamlit-app" class="level1">
+<h1>The Streamlit app</h1>
+<p>The same data is also in a <a href="https://fx-rates-sergio.streamlit.app" target="_blank">Streamlit app</a>. It is written in Python and kept in this repository with the rest of the project (<a href="app/streamlit_app.py">app/streamlit_app.py</a>). It is hosted for free on Streamlit Community Cloud, so anyone with the link can open it, and it reads the <code>fx_rates</code> table directly.</p>
+<ul>
+<li><strong>Overview:</strong> KPI cards for GBP/USD, EUR/USD and GBP/EUR, GBP and EUR against USD rebased to the start of the period, GBP/EUR with its 30-day average, and a period summary with the date of each high and low.</li>
+<li><strong>In brief:</strong> a short written summary of the period that updates itself from the numbers.</li>
+<li><strong>Against GBP &amp; EUR:</strong> EUR and USD against GBP, GBP and USD against EUR, and EUR/USD and GBP/USD with their 30-day averages.</li>
+<li><strong>Period controls:</strong> quick periods (1M, 3M, YTD, 1Y, All), a date picker and a CSV download of the selected period.</li>
+</ul>
+<p>The numbers match the Data Studio report. The app reloads the data every morning at 08:00 UK time, and shows a warning if the latest rate is more than 2 days old.</p>
+</section>
 <section id="the-final-result" class="level1">
 <h1>The final result</h1>
 <table class="caption-top table">
@@ -471,13 +487,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><strong>3</strong></td>
-<td>FX rates in one live report</td>
+<td>FX rates in two live reports</td>
 <td>GBP/USD and EUR/USD come from the market. GBP/EUR is calculated from both.</td>
 </tr>
 <tr class="even">
 <td><strong>0</strong></td>
 <td>manual steps from source to report</td>
-<td>The job runs every day at 18:00 UTC and alerts me only if it fails. Data Studio refreshes the report once a day.</td>
+<td>The job runs every day at 18:00 UTC and alerts me only if it fails. The Streamlit app reloads every morning and Data Studio refreshes once a day.</td>
 </tr>
 <tr class="odd">
 <td><strong>2</strong></td>
@@ -486,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p><a href="https://datastudio.google.com/s/sC5tlwXPGVI" target="_blank">Open the live report</a>: KPI cards for each pair, GBP and EUR against USD rebased to 1 January, GBP/EUR with a 30-day average, and a period summary table.</p>
+<p>Open the <a href="https://fx-rates-sergio.streamlit.app" target="_blank">Streamlit app</a> or the <a href="https://datastudio.google.com/s/sC5tlwXPGVI" target="_blank">Data Studio report</a>: KPI cards for each pair, GBP and EUR against USD rebased to 1 January, GBP/EUR with a 30-day average, and a period summary table.</p>
 </section>
 <section id="run-it-locally" class="level1">
 <h1>Run it locally</h1>
@@ -506,7 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example" class="level1">
 <h1>Example</h1>
-<div id="f7c22fb8" class="cell" data-execution_count="1">
+<div id="a3b911c2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
@@ -540,36 +556,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">829</th>
-<td>2026-10-01</td>
+<th data-quarto-table-cell-role="th">859</th>
+<td>2026-10-11</td>
 <td>USD</td>
 <td>1.0</td>
 <td>raw</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">830</th>
-<td>2026-10-02</td>
+<th data-quarto-table-cell-role="th">860</th>
+<td>2026-10-12</td>
 <td>USD</td>
 <td>1.0</td>
 <td>raw</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">831</th>
-<td>2026-10-03</td>
+<th data-quarto-table-cell-role="th">861</th>
+<td>2026-10-13</td>
 <td>USD</td>
 <td>1.0</td>
 <td>raw</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">832</th>
-<td>2026-10-04</td>
+<th data-quarto-table-cell-role="th">862</th>
+<td>2026-10-14</td>
 <td>USD</td>
 <td>1.0</td>
 <td>raw</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">833</th>
-<td>2026-10-05</td>
+<th data-quarto-table-cell-role="th">863</th>
+<td>2026-10-15</td>
 <td>USD</td>
 <td>1.0</td>
 <td>raw</td>
@@ -580,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="1923e0c0" class="cell" data-execution_count="2">
+<div id="2ff36615" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visual: simple FX time series example (synthetic if CSV missing)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> p.exists():</span>
@@ -603,7 +619,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/cell-3-output-1.png" width="751" height="278" class="figure-img"></p>
+<p><img src="report_files/figure-html/cell-3-output-1.png" width="752" height="278" class="figure-img"></p>
 </figure>
 </div>
 </div>
