@@ -35,6 +35,7 @@ from fx_metrics import (
     rebased,
     to_pairs,
 )
+from story import period_story
 
 APP_DIR = Path(__file__).resolve().parent
 REPO_ROOT = APP_DIR.parents[1]
@@ -143,9 +144,10 @@ def section_title(text):
     st.markdown(f'<div class="fx-section">{text}</div>', unsafe_allow_html=True)
 
 
-def pill(value):
+def pill(value, inline=False):
     tone = "neutral" if pd.isna(value) or round(value, 4) == 0 else ("up" if value > 0 else "down")
-    return f'<span class="fx-pill fx-{tone}">{fmt_pct(value)}</span>'
+    extra = " fx-inline" if inline else ""
+    return f'<span class="fx-pill fx-{tone}{extra}">{fmt_pct(value)}</span>'
 
 
 # ---------------------------------------------------------
@@ -181,8 +183,8 @@ CSS = (
     # Top padding clears the app bar that holds the page links.
     ".block-container { padding: 3.5rem 2.5rem 1rem; max-width: none; }\n"
     "@media (max-width: 640px) { .block-container { padding: 3.5rem 1rem 1rem; } }\n"
-    # Overview: the charts take the screen height left after the rest of the page (about 694px).
-    + chart_height_css(OVERVIEW_CHARTS, "--fx-chart-height", "clamp(380px, calc(100vh - 694px), 900px)")
+    # Overview: the charts take the screen height left after the rest of the page (about 714px).
+    + chart_height_css(OVERVIEW_CHARTS, "--fx-chart-height", "clamp(380px, calc(100vh - 714px), 900px)")
     # Against GBP & EUR: two rows of charts share the height left after the header and footer.
     + chart_height_css(OTHER_BASES_CHARTS, "--fx-grid-height", "clamp(340px, calc((100vh - 409px) / 2), 700px)")
     + """@media (max-width: 640px) { :root { --fx-chart-height: 380px; --fx-grid-height: 340px; } }
@@ -198,6 +200,15 @@ CSS = (
 .fx-up { background: rgba(30,142,62,.14); color: var(--fx-up); }
 .fx-down { background: rgba(217,48,37,.12); color: var(--fx-down); }
 .fx-neutral { background: rgba(128,128,128,.15); }
+.fx-inline { margin-right: 0; padding: .05rem .35rem; white-space: nowrap; }
+/* "In brief" fills the row beside the KPI cards, or takes its own row when there is no room.
+   The row item is the wrapper around the keyed block, hence :has(). The row stretches its
+   items so the story and the KPI cards share one height. */
+.st-key-fx-kpi-row { align-items: stretch !important; }
+[data-testid="stLayoutWrapper"]:has(> .st-key-fx-story) { flex: 1 1 420px !important; min-width: min(420px, 100%) !important; }
+.fx-story-label { font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; opacity: .6; }
+.fx-story-headline { font-size: 1.15rem; font-weight: 600; line-height: 1.3; margin: .15rem 0 .4rem; }
+.fx-story-text { font-size: .92rem; line-height: 1.6; margin: 0 0 .5rem; opacity: .9; }
 </style>
 """
 )
@@ -335,7 +346,7 @@ def chart_card(column, title, fig, key):
 # ---------------------------------------------------------
 def overview_page():
     # KPI cards
-    kpi_row = st.container(horizontal=True, gap=KPI_GAP)
+    kpi_row = st.container(horizontal=True, gap=KPI_GAP, key="fx-kpi-row")
     for pair in PAIRS:
         row = summary.loc[pair]
         with kpi_row.container(border=True, width=KPI_CARD_WIDTH):
@@ -350,6 +361,18 @@ def overview_page():
                 """,
                 unsafe_allow_html=True,
             )
+
+    # In brief: a written summary of the period, rebuilt from the same figures on every run.
+    story_title, sentences = period_story(period, summary, fmt=lambda change: pill(change, inline=True))
+    with kpi_row.container(border=True, key="fx-story"):
+        st.markdown(
+            f"""
+            <div class="fx-story-label">In brief</div>
+            <div class="fx-story-headline">{story_title}</div>
+            <p class="fx-story-text">{" ".join(sentences)}</p>
+            """,
+            unsafe_allow_html=True,
+        )
 
     # Charts
     left, right = st.columns(2)

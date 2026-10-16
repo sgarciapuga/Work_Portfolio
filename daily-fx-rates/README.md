@@ -78,6 +78,7 @@ Charts have no legends: rebased lines are labelled at their end, and the dashed 
 **Overview** has the same layout and the same numbers as Data Studio:
 
 - KPI cards for GBP/USD, EUR/USD and GBP/EUR, with the change vs the previous market day and since the start of the period
+- **In brief**: a written summary beside the KPI cards, rebuilt from the same figures whenever the data or the period changes (which currency gained, how both did against the dollar, where GBP/EUR sits in its range and against its 30-day average, and the last market day's moves). The wording rules are in [app/story.py](app/story.py), tested in [tests/test_story.py](tests/test_story.py)
 - GBP and EUR against USD, rebased to 100 on the first day of the period
 - GBP/EUR with its 30-day average and the period high and low, with the dates they happened
 - a period summary table (latest, high and low with their dates, average, change since start)
