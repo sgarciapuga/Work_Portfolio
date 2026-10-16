@@ -1,0 +1,11 @@
+# Streamlit settings for daily-fx-rates/app (Streamlit reads this from the folder it is
+# started in: the repo root, locally and on Streamlit Community Cloud).
+
+# Accent colour for selected buttons and focused inputs. Streamlit's default is red,
+# which reads as "down" next to the report's red/green changes. Blue-grey from the
+# portfolio's house palette; a lighter step on the dark theme.
+[theme.light]
+primaryColor = "#4A7F9E"
+
+[theme.dark]
+primaryColor = "#6FA1BF"

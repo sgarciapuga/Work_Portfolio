@@ -69,7 +69,9 @@ The workflow writes to:
 
 ## Streamlit report
 
-[app/streamlit_app.py](app/streamlit_app.py) rebuilds the Data Studio report in Streamlit. It has two pages, linked from the top bar, and a date range picker that drives both and keeps its value when you switch page.
+[app/streamlit_app.py](app/streamlit_app.py) rebuilds the Data Studio report in Streamlit. It has two pages, linked from the top bar. The period controls in the header drive both pages and keep their value when you switch page: quick periods (1M, 3M, YTD, 1Y, All; YTD by default) and a date range picker. Picking dates by hand clears the quick period.
+
+On every chart, the tooltip marks weekends and holidays, where the rate is carried from the last market day. If the latest rate is more than 2 days old, a warning says the daily update may have failed. The app's accent colour is set in `.streamlit/config.toml` at the repository root.
 
 **Overview** has the same layout and the same numbers as Data Studio:
 

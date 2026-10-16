@@ -23,7 +23,17 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from fx_metrics import PAIRS, filter_period, moving_average, period_summary, priced_in, rebased, to_pairs
+from fx_metrics import (
+    PAIRS,
+    PERIOD_PRESETS,
+    filter_period,
+    moving_average,
+    period_summary,
+    preset_start,
+    priced_in,
+    rebased,
+    to_pairs,
+)
 
 APP_DIR = Path(__file__).resolve().parent
 REPO_ROOT = APP_DIR.parents[1]
@@ -45,11 +55,15 @@ KPI_GAP = 16
 SUMMARY_WIDTH = 3 * KPI_CARD_WIDTH + 2 * KPI_GAP  # lines up with the row of cards
 DATE_PICKER_WIDTH = 260
 TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
+DEFAULT_PRESET = "YTD"
 
 # Data is reloaded once a day at this time. The pipeline stores the day's
 # rates at 18:00 UTC, so they are always in the database by then.
 REFRESH_TZ = ZoneInfo("Europe/London")
 REFRESH_HOUR = 8
+# Normally the latest rate is yesterday's; older than this means the pipeline missed runs.
+STALE_AFTER_DAYS = 2
+FILLED_NOTE = "Weekend or holiday: last market rate"
 
 
 # ---------------------------------------------------------
@@ -182,40 +196,90 @@ CSS = (
 # ---------------------------------------------------------
 # Charts
 # ---------------------------------------------------------
-def _base_layout(fig):
+def _base_layout(fig, dates):
     fig.update_layout(
         autosize=True,
         margin=dict(l=10, r=10, t=10, b=10),
         hovermode="x unified",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
     )
-    fig.update_xaxes(showgrid=False, tickformat="%-d %b", hoverformat="%a %-d %b %Y")
+    # Pin the x-axis to the period: Plotly pads it when a chart has markers.
+    fig.update_xaxes(
+        showgrid=False, tickformat="%-d %b", hoverformat="%a %-d %b %Y", range=[dates[0], dates[-1]]
+    )
     fig.update_yaxes(gridcolor="rgba(128,128,128,.2)", zeroline=False)
     return fig
 
 
-def performance_chart(prices):
-    """Each column (a pair such as EUR/GBP) rebased to 100 on the first day."""
+def _filled_notes(is_raw):
+    """Tooltip line for weekends and holidays (rate carried from the last market day).
+
+    Added to the last trace's own tooltip text: a separate trace would be pulled
+    into the unified tooltip on nearby market days too.
+    """
+    return ["" if raw else "<br>" + FILLED_NOTE for raw in is_raw]
+
+
+def performance_chart(prices, is_raw):
+    """Each column (a pair such as EUR/GBP) rebased to 100 on the first day, labelled at its end."""
     indexed = rebased(prices, prices.columns)
+    notes = _filled_notes(is_raw)
     fig = go.Figure()
-    for pair in indexed.columns:
+    for i, pair in enumerate(indexed.columns):
+        color = CURRENCY_COLORS[pair.split("/")[0]]
+        last = i == len(indexed.columns) - 1
         fig.add_trace(
             go.Scatter(
                 x=indexed.index,
                 y=indexed[pair],
                 name=pair,
                 mode="lines",
-                line=dict(color=CURRENCY_COLORS[pair.split("/")[0]], width=2),
-                customdata=prices[pair],
-                hovertemplate="%{y:.2f} (rate %{customdata:.4f})<extra>" + pair + "</extra>",
+                line=dict(color=color, width=2),
+                customdata=list(zip(prices[pair], notes if last else [""] * len(notes))),
+                hovertemplate="%{y:.2f} (rate %{customdata[0]:.4f})%{customdata[1]}<extra>" + pair + "</extra>",
             )
         )
+        # End marker in the line colour; the label beside it stays in the text colour.
+        fig.add_trace(
+            go.Scatter(
+                x=indexed.index[-1:],
+                y=indexed[pair].iloc[-1:],
+                mode="markers",
+                marker=dict(color=color, size=8),
+                cliponaxis=False,  # the dot sits on the right edge of the plot
+                showlegend=False,
+                hoverinfo="skip",
+            )
+        )
+
+    # Label each line at its last point. When the two ends are close, push the
+    # labels apart so they don't overlap.
+    ends = indexed.iloc[-1].sort_values(ascending=False)
+    span = indexed.max().max() - indexed.min().min()
+    close = span > 0 and (ends.iloc[0] - ends.iloc[-1]) < span * 0.06
+    for rank, (pair, value) in enumerate(ends.items()):
+        fig.add_annotation(
+            x=indexed.index[-1],
+            y=value,
+            text=f"{pair} {value:.1f}",
+            showarrow=False,
+            xanchor="left",
+            xshift=8,
+            yshift=(9 if rank == 0 else -9) if close else 0,
+            font=dict(size=12),
+        )
+
     fig.add_hline(y=100, line=dict(color=REFERENCE_GREY, width=1))
-    return _base_layout(fig)
+    _base_layout(fig, indexed.index)
+    fig.update_layout(margin=dict(r=100))  # room for the end labels
+    return fig
 
 
-def rate_chart(series, pair):
-    """A rate with its 30-day average and the period high and low."""
+def rate_chart(series, pair, is_raw):
+    """A rate with its 30-day average and the period high and low.
+
+    No legend: the title names the rate and the dashed line is the average.
+    """
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
@@ -234,7 +298,8 @@ def rate_chart(series, pair):
             name="30-day average",
             mode="lines",
             line=dict(color=REFERENCE_GREY, width=1.5, dash="dash"),
-            hovertemplate="%{y:.4f}<extra>30-day average</extra>",
+            customdata=_filled_notes(is_raw),
+            hovertemplate="%{y:.4f}%{customdata}<extra>30-day average</extra>",
         )
     )
     for label, value in (("High", series.max()), ("Low", series.min())):
@@ -246,7 +311,9 @@ def rate_chart(series, pair):
             annotation_font_size=11,
             annotation_bgcolor="rgba(128,128,128,.18)",
         )
-    return _base_layout(fig)
+    _base_layout(fig, series.index)
+    fig.update_layout(showlegend=False)
+    return fig
 
 
 def chart_card(column, title, fig, key):
@@ -279,8 +346,8 @@ def overview_page():
     # Charts
     left, right = st.columns(2)
     chart_card(left, f"GBP and EUR against USD (rebased, {start_label} = 100)",
-               performance_chart(priced_in(period, "USD")), "fx-chart-rebased")
-    chart_card(right, "GBP/EUR with 30-day average", rate_chart(period["GBP/EUR"], "GBP/EUR"), "fx-chart-gbpeur")
+               performance_chart(priced_in(period, "USD"), period["is_raw"]), "fx-chart-rebased")
+    chart_card(right, "GBP/EUR with 30-day average", rate_chart(period["GBP/EUR"], "GBP/EUR", period["is_raw"]), "fx-chart-gbpeur")
 
     # Period summary
     with st.container(border=True, width=SUMMARY_WIDTH):
@@ -306,13 +373,13 @@ def overview_page():
 def other_bases_page():
     top_left, top_right = st.columns(2)
     chart_card(top_left, f"EUR and USD against GBP (rebased, {start_label} = 100)",
-               performance_chart(priced_in(period, "GBP")), "fx-chart-gbp-base")
+               performance_chart(priced_in(period, "GBP"), period["is_raw"]), "fx-chart-gbp-base")
     chart_card(top_right, f"GBP and USD against EUR (rebased, {start_label} = 100)",
-               performance_chart(priced_in(period, "EUR")), "fx-chart-eur-base")
+               performance_chart(priced_in(period, "EUR"), period["is_raw"]), "fx-chart-eur-base")
 
     bottom_left, bottom_right = st.columns(2)
-    chart_card(bottom_left, "EUR/USD with 30-day average", rate_chart(period["EUR/USD"], "EUR/USD"), "fx-chart-eurusd")
-    chart_card(bottom_right, "GBP/USD with 30-day average", rate_chart(period["GBP/USD"], "GBP/USD"), "fx-chart-gbpusd")
+    chart_card(bottom_left, "EUR/USD with 30-day average", rate_chart(period["EUR/USD"], "EUR/USD", period["is_raw"]), "fx-chart-eurusd")
+    chart_card(bottom_right, "GBP/USD with 30-day average", rate_chart(period["GBP/USD"], "GBP/USD", period["is_raw"]), "fx-chart-gbpusd")
 
 
 PAGES = {
@@ -349,8 +416,20 @@ if pairs.empty:
 
 first_day, last_day = pairs.index.min().date(), pairs.index.max().date()
 
-# Shared header: the period picker keeps its value when switching pages.
-header, controls = st.columns([3, 1], vertical_alignment="bottom")
+# Quick periods: while one is selected it sets the date picker (and follows new
+# data); picking dates by hand clears it.
+if "preset" not in st.session_state:
+    st.session_state.preset = DEFAULT_PRESET
+if st.session_state.preset:
+    st.session_state.period = (preset_start(st.session_state.preset, first_day, last_day), last_day)
+
+
+def _clear_preset():
+    st.session_state.preset = None
+
+
+# Shared header: the period controls keep their values when switching pages.
+header, controls = st.columns([3, 2], vertical_alignment="bottom")
 with header:
     st.title("FX rates")
     st.markdown(f'<p class="fx-subtitle">{PAGES[nav.title][2]}</p>', unsafe_allow_html=True)
@@ -359,15 +438,25 @@ with controls.container(horizontal_alignment="right"):
         f'<div class="fx-updated">Latest rate: <b>{fmt_day(last_day, year=True)}</b></div>',
         unsafe_allow_html=True,
     )
-    selected = st.date_input(
-        "Period",
-        value=(first_day, last_day),
-        min_value=first_day,
-        max_value=last_day,
-        format="DD/MM/YYYY",
-        label_visibility="collapsed",
-        width=DATE_PICKER_WIDTH,
-        key="period",
+    with st.container(horizontal=True, horizontal_alignment="right", vertical_alignment="center", gap="small"):
+        st.segmented_control("Quick period", PERIOD_PRESETS, key="preset", label_visibility="collapsed")
+        selected = st.date_input(
+            "Period",
+            min_value=first_day,
+            max_value=last_day,
+            format="DD/MM/YYYY",
+            label_visibility="collapsed",
+            width=DATE_PICKER_WIDTH,
+            key="period",
+            on_change=_clear_preset,
+        )
+
+age_days = (datetime.now(REFRESH_TZ).date() - last_day).days
+if age_days > STALE_AFTER_DAYS:
+    st.warning(
+        f"The latest rate is from {fmt_day(last_day, year=True)} ({age_days} days ago). "
+        "The daily update may have failed, so these figures may be out of date.",
+        icon="⚠️",
     )
 
 # While the user is picking, the date input holds only the start date.

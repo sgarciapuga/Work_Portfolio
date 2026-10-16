@@ -50,6 +50,22 @@ def to_pairs(rates):
     return pairs
 
 
+PERIOD_PRESETS = ["1M", "3M", "YTD", "1Y", "All"]
+
+
+def preset_start(preset, first_day, last_day):
+    """First day of a quick period that ends on last_day, never before the data starts."""
+    last = pd.Timestamp(last_day)
+    starts = {
+        "1M": last - pd.DateOffset(months=1),
+        "3M": last - pd.DateOffset(months=3),
+        "YTD": pd.Timestamp(last.year, 1, 1),
+        "1Y": last - pd.DateOffset(years=1),
+        "All": pd.Timestamp(first_day),
+    }
+    return max(starts[preset].date(), first_day)
+
+
 def filter_period(pairs, start, end):
     """Rows between start and end, both included."""
     return pairs.loc[pd.Timestamp(start) : pd.Timestamp(end)]

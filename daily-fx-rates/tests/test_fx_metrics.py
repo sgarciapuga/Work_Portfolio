@@ -6,7 +6,9 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "app"))
 
-from fx_metrics import filter_period, moving_average, period_summary, priced_in, rebased, to_pairs
+from datetime import date
+
+from fx_metrics import filter_period, moving_average, period_summary, preset_start, priced_in, rebased, to_pairs
 
 
 def _rates(rows):
@@ -70,6 +72,17 @@ class FxMetricsTests(unittest.TestCase):
         self.assertAlmostEqual(in_eur["USD/EUR"], 0.80)
         self.assertAlmostEqual(in_eur["GBP/EUR"], pairs["GBP/EUR"].iloc[0])
         self.assertEqual(list(priced_in(pairs, "USD").columns), ["GBP/USD", "EUR/USD"])
+
+    def test_preset_start(self):
+        first, last = date(2026, 1, 1), date(2026, 10, 15)
+        self.assertEqual(preset_start("1M", first, last), date(2026, 9, 15))
+        self.assertEqual(preset_start("3M", first, last), date(2026, 7, 15))
+        self.assertEqual(preset_start("YTD", first, last), date(2026, 1, 1))
+        self.assertEqual(preset_start("All", first, last), first)
+        # Never before the first day of data.
+        self.assertEqual(preset_start("1Y", first, last), first)
+        self.assertEqual(preset_start("1Y", date(2025, 1, 1), date(2026, 3, 31)), date(2025, 3, 31))
+        self.assertEqual(preset_start("YTD", date(2025, 1, 1), date(2027, 2, 1)), date(2027, 1, 1))
 
     def test_moving_average_starts_with_first_value(self):
         series = pd.Series([1.0, 2.0, 3.0])
