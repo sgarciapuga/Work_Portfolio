@@ -69,13 +69,19 @@ The workflow writes to:
 
 ## Streamlit report
 
-[app/streamlit_app.py](app/streamlit_app.py) rebuilds the Data Studio report in Streamlit, with the same layout and the same numbers:
+[app/streamlit_app.py](app/streamlit_app.py) rebuilds the Data Studio report in Streamlit. It has two pages, linked from the top bar, and a date range picker that drives both and keeps its value when you switch page.
+
+**Overview** has the same layout and the same numbers as Data Studio:
 
 - KPI cards for GBP/USD, EUR/USD and GBP/EUR, with the change vs the previous market day and since the start of the period
 - GBP and EUR against USD, rebased to 100 on the first day of the period
 - GBP/EUR with its 30-day average and the period high and low
 - a period summary table (latest, high, low, average, change since start)
-- a date range picker that drives everything on the page
+
+**Against GBP & EUR** shows the same rates from the other two currencies' point of view:
+
+- EUR and USD against GBP, and GBP and USD against EUR, rebased to 100 on the first day of the period
+- EUR/USD and GBP/USD with their 30-day averages and the period high and low
 
 Definitions match Data Studio: "vs previous day" compares the last two market (`raw`) days, so it still shows a move on weekends; high, low and average use every calendar day in the period. The calculations live in [app/fx_metrics.py](app/fx_metrics.py) and are tested in [tests/test_fx_metrics.py](tests/test_fx_metrics.py).
 

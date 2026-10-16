@@ -1,4 +1,9 @@
-"""FX rates report in Streamlit: a copy of the Google Data Studio report.
+"""FX rates report in Streamlit, based on the Google Data Studio report.
+
+Two pages share the header (latest rate and period picker) and footer:
+- Overview: GBP and EUR against USD, the GBP/EUR rate, KPI cards and a period summary.
+- Against GBP & EUR: EUR and USD against GBP, GBP and USD against EUR, and the
+  EUR/USD and GBP/USD rates.
 
 Run from the repository root:
 
@@ -18,16 +23,19 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from fx_metrics import PAIRS, filter_period, moving_average, period_summary, rebased, to_pairs
+from fx_metrics import PAIRS, filter_period, moving_average, period_summary, priced_in, rebased, to_pairs
 
 APP_DIR = Path(__file__).resolve().parent
 REPO_ROOT = APP_DIR.parents[1]
 CSV_PATH = APP_DIR.parent / "data" / "fx_rates.csv"
 
 # Same colours as the Data Studio report (checked for colour-blind separation).
+# Rate charts and KPI cards use the pair colour; performance lines use the colour
+# of the currency being measured (GBP/USD and EUR/USD match both).
 COLORS = {"GBP/USD": "#3B78E7", "EUR/USD": "#F08C2E", "GBP/EUR": "#00939E"}
+CURRENCY_COLORS = {"GBP": "#3B78E7", "EUR": "#F08C2E", "USD": "#B8478F"}
 REFERENCE_GREY = "#9AA0A6"
-# Line charts grow with the screen height (see the .st-key-fx-chart-* CSS); this is the minimum.
+# Line charts grow with the screen height (see chart_height_css); this is the minimum.
 CHART_HEIGHT = 380
 CHART_CONFIG = {"displayModeBar": False, "responsive": True}
 # Cards and the summary table keep a fixed width (narrower screens shrink or wrap them);
@@ -117,17 +125,43 @@ def pill(value):
     return f'<span class="fx-pill fx-{tone}">{fmt_pct(value)}</span>'
 
 
-CSS = """
-<style>
-.block-container { padding: 2rem 2.5rem 1rem; max-width: none; }
-@media (max-width: 640px) { .block-container { padding: 1.5rem 1rem 1rem; } }
-/* Only the line charts grow: they take the screen height left after the rest of the page (about 670px). */
-:root { --fx-chart-height: clamp(380px, calc(100vh - 670px), 900px); }
-.st-key-fx-chart-rebased, .st-key-fx-chart-gbpeur { height: var(--fx-chart-height) !important; flex-basis: var(--fx-chart-height) !important; }
-.st-key-fx-chart-rebased [data-testid="stFullScreenFrame"], .st-key-fx-chart-gbpeur [data-testid="stFullScreenFrame"],
-.st-key-fx-chart-rebased .stPlotlyChart, .st-key-fx-chart-gbpeur .stPlotlyChart,
-.st-key-fx-chart-rebased .js-plotly-plot, .st-key-fx-chart-gbpeur .js-plotly-plot { height: 100% !important; }
-@media (max-width: 640px) { :root { --fx-chart-height: 380px; } }
+# ---------------------------------------------------------
+# Styles
+# ---------------------------------------------------------
+# Chart keys per page. Each chart's wrapper gets the class st-key-<key>, which is
+# how the CSS below resizes only the line charts.
+OVERVIEW_CHARTS = ["fx-chart-rebased", "fx-chart-gbpeur"]
+OTHER_BASES_CHARTS = ["fx-chart-gbp-base", "fx-chart-eur-base", "fx-chart-eurusd", "fx-chart-gbpusd"]
+
+
+def chart_height_css(keys, variable, height):
+    """CSS that sizes the charts with these keys to ``height``.
+
+    Streamlit sizes the wrapper with flex-basis, so it is overridden together with height.
+    (No '*' selectors: st.markdown would read them as Markdown emphasis.)
+    """
+    wrappers = ", ".join(f".st-key-{key}" for key in keys)
+    inner = ", ".join(
+        f".st-key-{key} {part}"
+        for key in keys
+        for part in ('[data-testid="stFullScreenFrame"]', ".stPlotlyChart", ".js-plotly-plot")
+    )
+    return (
+        f":root {{ {variable}: {height}; }}\n"
+        f"{wrappers} {{ height: var({variable}) !important; flex-basis: var({variable}) !important; }}\n"
+        f"{inner} {{ height: 100% !important; }}\n"
+    )
+
+
+CSS = (
+    "<style>\n"
+    ".block-container { padding: 2rem 2.5rem 1rem; max-width: none; }\n"
+    "@media (max-width: 640px) { .block-container { padding: 1.5rem 1rem 1rem; } }\n"
+    # Overview: the charts take the screen height left after the rest of the page (about 670px).
+    + chart_height_css(OVERVIEW_CHARTS, "--fx-chart-height", "clamp(380px, calc(100vh - 670px), 900px)")
+    # Against GBP & EUR: two rows of charts share the height left after the header and footer.
+    + chart_height_css(OTHER_BASES_CHARTS, "--fx-grid-height", "clamp(340px, calc((100vh - 385px) / 2), 700px)")
+    + """@media (max-width: 640px) { :root { --fx-chart-height: 380px; --fx-grid-height: 340px; } }
 .fx-subtitle { opacity: .75; margin-top: -.6rem; }
 .fx-updated { text-align: right; opacity: .75; font-size: .9rem; margin-bottom: .25rem; }
 .fx-pair { font-size: 1.1rem; opacity: .7; display: flex; align-items: center; gap: .45rem; }
@@ -142,6 +176,7 @@ CSS = """
 .fx-neutral { background: rgba(128,128,128,.15); }
 </style>
 """
+)
 
 
 # ---------------------------------------------------------
@@ -159,8 +194,9 @@ def _base_layout(fig):
     return fig
 
 
-def rebased_chart(period):
-    indexed = rebased(period)
+def performance_chart(prices):
+    """Each column (a pair such as EUR/GBP) rebased to 100 on the first day."""
+    indexed = rebased(prices, prices.columns)
     fig = go.Figure()
     for pair in indexed.columns:
         fig.add_trace(
@@ -169,8 +205,8 @@ def rebased_chart(period):
                 y=indexed[pair],
                 name=pair,
                 mode="lines",
-                line=dict(color=COLORS[pair], width=2),
-                customdata=period[pair],
+                line=dict(color=CURRENCY_COLORS[pair.split("/")[0]], width=2),
+                customdata=prices[pair],
                 hovertemplate="%{y:.2f} (rate %{customdata:.4f})<extra>" + pair + "</extra>",
             )
         )
@@ -178,17 +214,17 @@ def rebased_chart(period):
     return _base_layout(fig)
 
 
-def gbpeur_chart(period):
-    series = period["GBP/EUR"]
+def rate_chart(series, pair):
+    """A rate with its 30-day average and the period high and low."""
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
             x=series.index,
             y=series,
-            name="GBP/EUR",
+            name=pair,
             mode="lines",
-            line=dict(color=COLORS["GBP/EUR"], width=2),
-            hovertemplate="%{y:.4f}<extra>GBP/EUR</extra>",
+            line=dict(color=COLORS[pair], width=2),
+            hovertemplate="%{y:.4f}<extra>" + pair + "</extra>",
         )
     )
     fig.add_trace(
@@ -213,13 +249,97 @@ def gbpeur_chart(period):
     return _base_layout(fig)
 
 
+def chart_card(column, title, fig, key):
+    with column.container(border=True):
+        section_title(title)
+        st.plotly_chart(fig, width="stretch", height=CHART_HEIGHT, config=CHART_CONFIG, key=key)
+
+
 # ---------------------------------------------------------
-# Page
+# Pages (they read `period`, `summary` and `since_label`, set below before nav.run())
+# ---------------------------------------------------------
+def overview_page():
+    # KPI cards
+    kpi_row = st.container(horizontal=True, gap=KPI_GAP)
+    for pair in PAIRS:
+        row = summary.loc[pair]
+        with kpi_row.container(border=True, width=KPI_CARD_WIDTH):
+            st.markdown(
+                f"""
+                <div class="fx-pair">{pair}<span class="fx-dot" style="background:{COLORS[pair]}"></span></div>
+                <div class="fx-value">{row.latest:.4f}</div>
+                <div class="fx-changes">
+                  <span>{pill(row.vs_previous_day)}vs previous day</span>
+                  <span>{pill(row.since_start)}{since_label}</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    # Charts
+    left, right = st.columns(2)
+    chart_card(left, f"GBP and EUR against USD (rebased, {start_label} = 100)",
+               performance_chart(priced_in(period, "USD")), "fx-chart-rebased")
+    chart_card(right, "GBP/EUR with 30-day average", rate_chart(period["GBP/EUR"], "GBP/EUR"), "fx-chart-gbpeur")
+
+    # Period summary
+    with st.container(border=True, width=SUMMARY_WIDTH):
+        section_title("Period summary")
+        since_column = f"Since {start_label}"
+        table = summary[["latest", "high", "low", "average", "since_start"]].rename(
+            columns={
+                "latest": "Latest",
+                "high": "High",
+                "low": "Low",
+                "average": "Average",
+                "since_start": since_column,
+            }
+        )
+        styled = (
+            table.style.format("{:.4f}", subset=["Latest", "High", "Low", "Average"])
+            .format(fmt_pct, subset=[since_column])
+            .map(lambda v: f"color: {UP if v > 0 else DOWN if v < 0 else 'inherit'}", subset=[since_column])
+        )
+        st.dataframe(styled, width="stretch")
+
+
+def other_bases_page():
+    top_left, top_right = st.columns(2)
+    chart_card(top_left, f"EUR and USD against GBP (rebased, {start_label} = 100)",
+               performance_chart(priced_in(period, "GBP")), "fx-chart-gbp-base")
+    chart_card(top_right, f"GBP and USD against EUR (rebased, {start_label} = 100)",
+               performance_chart(priced_in(period, "EUR")), "fx-chart-eur-base")
+
+    bottom_left, bottom_right = st.columns(2)
+    chart_card(bottom_left, "EUR/USD with 30-day average", rate_chart(period["EUR/USD"], "EUR/USD"), "fx-chart-eurusd")
+    chart_card(bottom_right, "GBP/USD with 30-day average", rate_chart(period["GBP/USD"], "GBP/USD"), "fx-chart-gbpusd")
+
+
+PAGES = {
+    "Overview": (overview_page, "overview", "GBP vs EUR: performance against USD and the GBP/EUR rate."),
+    "Against GBP & EUR": (
+        other_bases_page,
+        "against-gbp-eur",
+        "EUR and USD against GBP, GBP and USD against EUR, and the EUR/USD and GBP/USD rates.",
+    ),
+}
+
+
+# ---------------------------------------------------------
+# App
 # ---------------------------------------------------------
 st.set_page_config(page_title="FX rates", page_icon="💱", layout="wide")
 # Up/down colours need lighter tones on the dark theme to stay readable.
 UP, DOWN = TREND_COLORS["dark" if st.context.theme.type == "dark" else "light"]
 st.markdown(CSS + f"<style>:root {{ --fx-up: {UP}; --fx-down: {DOWN}; }}</style>", unsafe_allow_html=True)
+
+nav = st.navigation(
+    [
+        st.Page(page, title=title, url_path=url_path, default=(title == "Overview"))
+        for title, (page, url_path, _) in PAGES.items()
+    ],
+    position="top",
+)
 
 rows, source, loaded_at = load_rates(refresh_key())
 pairs = to_pairs(rows)
@@ -229,13 +349,11 @@ if pairs.empty:
 
 first_day, last_day = pairs.index.min().date(), pairs.index.max().date()
 
+# Shared header: the period picker keeps its value when switching pages.
 header, controls = st.columns([3, 1], vertical_alignment="bottom")
 with header:
     st.title("FX rates")
-    st.markdown(
-        '<p class="fx-subtitle">GBP vs EUR: performance against USD and the GBP/EUR rate.</p>',
-        unsafe_allow_html=True,
-    )
+    st.markdown(f'<p class="fx-subtitle">{PAGES[nav.title][2]}</p>', unsafe_allow_html=True)
 with controls.container(horizontal_alignment="right"):
     st.markdown(
         f'<div class="fx-updated">Latest rate: <b>{fmt_day(last_day, year=True)}</b></div>',
@@ -249,6 +367,7 @@ with controls.container(horizontal_alignment="right"):
         format="DD/MM/YYYY",
         label_visibility="collapsed",
         width=DATE_PICKER_WIDTH,
+        key="period",
     )
 
 # While the user is picking, the date input holds only the start date.
@@ -259,53 +378,10 @@ if len(period) < 2:
     st.stop()
 
 summary = period_summary(period)
-since_label = f"since {fmt_day(period.index[0])}"
+start_label = fmt_day(period.index[0])
+since_label = f"since {start_label}"
 
-# KPI cards
-kpi_row = st.container(horizontal=True, gap=KPI_GAP)
-for pair in PAIRS:
-    row = summary.loc[pair]
-    with kpi_row.container(border=True, width=KPI_CARD_WIDTH):
-        st.markdown(
-            f"""
-            <div class="fx-pair">{pair}<span class="fx-dot" style="background:{COLORS[pair]}"></span></div>
-            <div class="fx-value">{row.latest:.4f}</div>
-            <div class="fx-changes">
-              <span>{pill(row.vs_previous_day)}vs previous day</span>
-              <span>{pill(row.since_start)}{since_label}</span>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-# Charts
-left, right = st.columns(2)
-with left.container(border=True):
-    section_title(f"GBP and EUR against USD (rebased, {fmt_day(period.index[0])} = 100)")
-    st.plotly_chart(rebased_chart(period), width="stretch", height=CHART_HEIGHT, config=CHART_CONFIG, key="fx-chart-rebased")
-with right.container(border=True):
-    section_title("GBP/EUR with 30-day average")
-    st.plotly_chart(gbpeur_chart(period), width="stretch", height=CHART_HEIGHT, config=CHART_CONFIG, key="fx-chart-gbpeur")
-
-# Period summary
-with st.container(border=True, width=SUMMARY_WIDTH):
-    section_title("Period summary")
-    since_column = f"Since {fmt_day(period.index[0])}"
-    table = summary[["latest", "high", "low", "average", "since_start"]].rename(
-        columns={
-            "latest": "Latest",
-            "high": "High",
-            "low": "Low",
-            "average": "Average",
-            "since_start": since_column,
-        }
-    )
-    styled = (
-        table.style.format("{:.4f}", subset=["Latest", "High", "Low", "Average"])
-        .format(fmt_pct, subset=[since_column])
-        .map(lambda v: f"color: {UP if v > 0 else DOWN if v < 0 else 'inherit'}", subset=[since_column])
-    )
-    st.dataframe(styled, width="stretch")
+nav.run()
 
 st.caption(
     f"Rates from the Frankfurter API, stored daily by the GitHub Actions pipeline. "

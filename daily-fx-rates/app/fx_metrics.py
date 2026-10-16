@@ -14,6 +14,7 @@ The definitions match the Google Data Studio report:
 import pandas as pd
 
 QUALITY_RAW = "raw"
+CURRENCIES = ["GBP", "EUR", "USD"]
 PAIRS = ["GBP/USD", "EUR/USD", "GBP/EUR"]
 MOVING_AVERAGE_DAYS = 30
 
@@ -73,6 +74,21 @@ def period_summary(pairs):
             "since_start": series.iloc[-1] / series.iloc[0] - 1,
         }
     return pd.DataFrame.from_dict(rows, orient="index")
+
+
+def priced_in(pairs, base):
+    """The other two currencies priced in ``base``, one column per pair.
+
+    For base GBP this returns EUR/GBP and USD/GBP (GBP per EUR and per USD).
+    """
+    usd_value = {
+        "USD": pd.Series(1.0, index=pairs.index),
+        "GBP": pairs["GBP/USD"],
+        "EUR": pairs["EUR/USD"],
+    }
+    return pd.DataFrame(
+        {f"{cur}/{base}": usd_value[cur] / usd_value[base] for cur in CURRENCIES if cur != base}
+    )
 
 
 def rebased(pairs, columns=("GBP/USD", "EUR/USD")):

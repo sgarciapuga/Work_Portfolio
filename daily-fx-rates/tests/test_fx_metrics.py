@@ -6,7 +6,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "app"))
 
-from fx_metrics import filter_period, moving_average, period_summary, rebased, to_pairs
+from fx_metrics import filter_period, moving_average, period_summary, priced_in, rebased, to_pairs
 
 
 def _rates(rows):
@@ -59,6 +59,17 @@ class FxMetricsTests(unittest.TestCase):
     def test_rebased_starts_at_100(self):
         indexed = rebased(to_pairs(RATES))
         self.assertTrue((indexed.iloc[0] == 100).all())
+
+    def test_priced_in_other_bases(self):
+        pairs = to_pairs(RATES)
+        in_gbp = priced_in(pairs, "GBP").iloc[0]
+        in_eur = priced_in(pairs, "EUR").iloc[0]
+        # 1 USD = 0.80 EUR = 0.75 GBP on 1 Oct.
+        self.assertAlmostEqual(in_gbp["USD/GBP"], 0.75)
+        self.assertAlmostEqual(in_gbp["EUR/GBP"], 0.75 / 0.80)
+        self.assertAlmostEqual(in_eur["USD/EUR"], 0.80)
+        self.assertAlmostEqual(in_eur["GBP/EUR"], pairs["GBP/EUR"].iloc[0])
+        self.assertEqual(list(priced_in(pairs, "USD").columns), ["GBP/USD", "EUR/USD"])
 
     def test_moving_average_starts_with_first_value(self):
         series = pd.Series([1.0, 2.0, 3.0])
