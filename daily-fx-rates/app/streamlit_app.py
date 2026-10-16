@@ -10,8 +10,9 @@ app reads the CSV backup in daily-fx-rates/data/.
 """
 
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -28,6 +29,11 @@ COLORS = {"GBP/USD": "#3B78E7", "EUR/USD": "#F08C2E", "GBP/EUR": "#00939E"}
 REFERENCE_GREY = "#9AA0A6"
 CHART_HEIGHT = 380
 TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
+
+# Data is reloaded once a day at this time. The pipeline stores the day's
+# rates at 18:00 UTC, so they are always in the database by then.
+REFRESH_TZ = ZoneInfo("Europe/London")
+REFRESH_HOUR = 8
 
 
 # ---------------------------------------------------------
@@ -49,10 +55,19 @@ def _database_url():
     return url
 
 
-@st.cache_data(ttl=3600, show_spinner="Loading FX rates...")
-def load_rates():
+def refresh_key():
+    """Date of the latest daily refresh. It changes once a day at REFRESH_HOUR UK time."""
+    now = datetime.now(REFRESH_TZ)
+    day = now.date() if now.hour >= REFRESH_HOUR else now.date() - timedelta(days=1)
+    return day.isoformat()
+
+
+# The cache is keyed on refresh_key(): when it changes at 08:00 the next visit
+# reloads the data, and max_entries=1 drops the previous day's copy.
+@st.cache_data(max_entries=1, show_spinner="Loading FX rates...")
+def load_rates(refresh_day):
     """Return (rows, source label, loaded at). Falls back to the CSV if the database fails."""
-    loaded_at = datetime.now(timezone.utc)
+    loaded_at = datetime.now(REFRESH_TZ)
     url = _database_url()
     if url:
         try:
@@ -96,7 +111,8 @@ def pill(value):
 
 CSS = """
 <style>
-.block-container { padding-top: 2rem; max-width: 1400px; }
+.block-container { padding: 2rem 2.5rem 1rem; max-width: none; }
+@media (max-width: 640px) { .block-container { padding: 1.5rem 1rem 1rem; } }
 .fx-subtitle { opacity: .75; margin-top: -.6rem; }
 .fx-updated { text-align: right; opacity: .75; font-size: .9rem; margin-bottom: .25rem; }
 .fx-pair { font-size: 1.1rem; opacity: .7; display: flex; align-items: center; gap: .45rem; }
@@ -190,7 +206,7 @@ st.set_page_config(page_title="FX rates", page_icon="💱", layout="wide")
 UP, DOWN = TREND_COLORS["dark" if st.context.theme.type == "dark" else "light"]
 st.markdown(CSS + f"<style>:root {{ --fx-up: {UP}; --fx-down: {DOWN}; }}</style>", unsafe_allow_html=True)
 
-rows, source, loaded_at = load_rates()
+rows, source, loaded_at = load_rates(refresh_key())
 pairs = to_pairs(rows)
 if pairs.empty:
     st.error("No FX rates found.")
@@ -277,5 +293,5 @@ with st.container(border=True):
 st.caption(
     f"Rates from the Frankfurter API, stored daily by the GitHub Actions pipeline. "
     f"Weekends and holidays carry the last market rate. Source: {source}. "
-    f"Loaded {loaded_at:%d %b %Y %H:%M} UTC (refreshes every hour)."
+    f"Loaded {loaded_at:%d %b %Y %H:%M} UK time (refreshes daily at {REFRESH_HOUR:02d}:00)."
 )

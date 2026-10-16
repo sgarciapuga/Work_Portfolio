@@ -79,7 +79,7 @@ The workflow writes to:
 
 Definitions match Data Studio: "vs previous day" compares the last two market (`raw`) days, so it still shows a move on weekends; high, low and average use every calendar day in the period. The calculations live in [app/fx_metrics.py](app/fx_metrics.py) and are tested in [tests/test_fx_metrics.py](tests/test_fx_metrics.py).
 
-Data comes from the `fx_rates` table when `DATABASE_URL` is set (Streamlit secrets, environment variable, or the root `.env`). If it is not set, or the database cannot be reached within 10 seconds, the app reads `data/fx_rates.csv`. The footer shows which source was used. Data is cached for an hour.
+Data comes from the `fx_rates` table when `DATABASE_URL` is set (Streamlit secrets, environment variable, or the root `.env`). If it is not set, or the database cannot be reached within 10 seconds, the app reads `data/fx_rates.csv`. The footer shows which source was used. Data is reloaded once a day, on the first visit after 08:00 UK time (`REFRESH_HOUR` in the app); the pipeline has stored the previous day's rates by then.
 
 Run it from the repository root:
 
