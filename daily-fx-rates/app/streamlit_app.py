@@ -30,6 +30,11 @@ REFERENCE_GREY = "#9AA0A6"
 # Line charts grow with the screen height (see the .st-key-fx-chart-* CSS); this is the minimum.
 CHART_HEIGHT = 380
 CHART_CONFIG = {"displayModeBar": False, "responsive": True}
+# Cards and the summary table keep a fixed width (narrower screens shrink or wrap them);
+# only the line charts stretch with the screen.
+KPI_CARD_WIDTH = 340
+KPI_GAP = 16
+SUMMARY_WIDTH = 3 * KPI_CARD_WIDTH + 2 * KPI_GAP  # lines up with the row of cards
 TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
 
 # Data is reloaded once a day at this time. The pipeline stores the day's
@@ -255,9 +260,10 @@ summary = period_summary(period)
 since_label = f"since {fmt_day(period.index[0])}"
 
 # KPI cards
-for column, pair in zip(st.columns(3), PAIRS):
+kpi_row = st.container(horizontal=True, gap=KPI_GAP)
+for pair in PAIRS:
     row = summary.loc[pair]
-    with column.container(border=True):
+    with kpi_row.container(border=True, width=KPI_CARD_WIDTH):
         st.markdown(
             f"""
             <div class="fx-pair">{pair}<span class="fx-dot" style="background:{COLORS[pair]}"></span></div>
@@ -280,7 +286,7 @@ with right.container(border=True):
     st.plotly_chart(gbpeur_chart(period), width="stretch", height=CHART_HEIGHT, config=CHART_CONFIG, key="fx-chart-gbpeur")
 
 # Period summary
-with st.container(border=True):
+with st.container(border=True, width=SUMMARY_WIDTH):
     section_title("Period summary")
     since_column = f"Since {fmt_day(period.index[0])}"
     table = summary[["latest", "high", "low", "average", "since_start"]].rename(
