@@ -1,0 +1,25 @@
+schedule_id,entity_code,flow_code,currency,amount,frequency,day_rule,counterparty,counterparty_entity
+F01,MGT,MGMT_FEE,GBP,6000000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
+F02,US,MGMT_FEE,USD,4500000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
+F03,CH,MGMT_FEE,CHF,1800000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
+F04,EU,ADMIN_FEE,EUR,700000,monthly,day:20,Managed funds,
+F05,MGT,PAYROLL,GBP,-1600000,monthly,day:25,Employees,
+F06,US,PAYROLL,USD,-550000,semi_monthly,day:15|last_bd,Employees,
+F07,CH,PAYROLL,CHF,-380000,monthly,day:25,Employees,
+F08,EU,PAYROLL,EUR,-260000,monthly,last_bd,Employees,
+F09,MGT,RENT,GBP,-450000,quarterly,03-25|06-24|09-29|12-25,Landlord,
+F10,US,RENT,USD,-120000,monthly,bd:1,Landlord,
+F11,MGT,SUPPLIER,GBP,-400000,monthly,last_bd,Suppliers,
+F12,US,SUPPLIER,USD,-250000,monthly,last_bd,Suppliers,
+F13,CH,SUPPLIER,CHF,-90000,monthly,last_bd,Suppliers,
+F14,EU,SUPPLIER,EUR,-110000,monthly,last_bd,Suppliers,
+F15,MGT,AUDIT_FEE,GBP,-300000,annual,03-31|09-30,Audit firm,
+F16,US,AUDIT_FEE,USD,-150000,annual,03-31|09-30,Audit firm,
+F17,CH,AUDIT_FEE,CHF,-60000,annual,04-30|10-31,Audit firm,
+F18,EU,AUDIT_FEE,EUR,-50000,annual,04-30|10-31,Audit firm,
+F19,MGT,TAX,GBP,-900000,quarterly,01-14|04-14|07-14|10-14,Tax authority,
+F20,US,TAX,USD,-500000,quarterly,04-15|06-15|09-15|12-15,Tax authority,
+F21,US,IC_RECHARGE,GBP,-220000,monthly,last_bd,Aldmere Management Ltd,MGT
+F22,MGT,IC_RECHARGE,GBP,220000,monthly,last_bd,Aldmere Advisors Inc,US
+F23,CH,IC_RECHARGE,GBP,-150000,monthly,last_bd,Aldmere Management Ltd,MGT
+F24,MGT,IC_RECHARGE,GBP,150000,monthly,last_bd,Aldmere Advisory SA,CH

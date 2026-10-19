@@ -11,7 +11,9 @@ repo_root = Path(__file__).resolve().parent.parent
 load_dotenv(repo_root / ".env")
 
 TABLE_NAME = "date_table"
-START_DATE = date(2026, 1, 1)
+# Must cover the earliest date of every table with a foreign key to date_table
+# (fx_rates and the treasury simulator backfill start on 1 Jan 2025).
+START_DATE = date(2025, 1, 1)
 
 
 def build_date_table(start_date: date, end_date: date) -> pd.DataFrame:

@@ -1,0 +1,3 @@
+facility_id,facility_name,facility_type,currency,limit_amount,base_rate,margin_bp,commitment_fee_pct_of_margin,secured,advance_rate,agent_bank,start_date,maturity_date
+SEC1,Secured facility,secured,USD,300000000,SOFR,150,0.35,true,0.25,BKA,2024-07-01,2029-06-30
+RCF1,Revolving credit facility,unsecured,USD,200000000,SOFR,200,0.35,false,,BKB,2024-07-01,2029-06-30

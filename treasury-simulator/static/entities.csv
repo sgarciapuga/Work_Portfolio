@@ -1,0 +1,7 @@
+entity_code,entity_name,country,functional_ccy,role,description
+TRS,Aldmere Treasury Ltd,GB,USD,treasury,"In-house bank: bank accounts in 4 currencies, MMFs, external facilities, FX deals; counterparty to all entities"
+IV,Aldmere Investments Sarl,LU,USD,investment_vehicle,"Investment vehicle: capital calls and distributions in USD, EUR, GBP and CHF; keeps a USD 50m buffer as a deposit with TRS"
+MGT,Aldmere Management Ltd,GB,GBP,service_company,"Main service company: earns management fees; pays payroll, rent, suppliers, audit"
+US,Aldmere Advisors Inc,US,USD,service_company,"Service company: fees in, payroll and costs out"
+CH,Aldmere Advisory SA,CH,CHF,service_company,"Service company: fees in, payroll and costs out"
+EU,Aldmere Services Sarl,LU,EUR,service_company,"Fund administration company: fees in, costs out"

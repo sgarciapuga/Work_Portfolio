@@ -9,8 +9,11 @@ from sqlalchemy import create_engine, inspect, text, Date
 # Load environment variables from local .env file
 load_dotenv()
 
-TARGET_CURRENCIES = ["USD", "EUR", "GBP"]
-HISTORY_START_DATE = datetime(2026, 1, 1).date()
+TARGET_CURRENCIES = ["USD", "EUR", "GBP", "CHF"]
+# Currencies fetched from the API (USD is the base and always 1.0).
+QUOTED_CURRENCIES = [c for c in TARGET_CURRENCIES if c != "USD"]
+# 2025 history is needed by the treasury simulator (its backfill starts on 1 Jan 2025).
+HISTORY_START_DATE = datetime(2025, 1, 1).date()
 QUALITY_RAW = "raw"
 QUALITY_FILLED = "filled"
 RECENT_FILLED_LOOKBACK_DAYS = 7
@@ -54,6 +57,25 @@ def _normalize_fx_frame(df):
     working = working.drop_duplicates(subset=["date", "currency"], keep="last")
 
     return working
+
+
+def _rows_from_api(rates_by_date):
+    """Turn the Frankfurter 'rates' block into fx_rates rows (USD row = 1.0 each day)."""
+    rows = []
+    for date_str, rate_dict in rates_by_date.items():
+        rows.append(
+            {"date": date_str, "currency": "USD", "fx_to_usd": 1.00, "fx_quality_flag": QUALITY_RAW}
+        )
+        for currency in QUOTED_CURRENCIES:
+            rows.append(
+                {
+                    "date": date_str,
+                    "currency": currency,
+                    "fx_to_usd": rate_dict.get(currency),
+                    "fx_quality_flag": QUALITY_RAW,
+                }
+            )
+    return rows
 
 
 def _load_fx_from_db(engine, from_date=None):
@@ -204,7 +226,7 @@ def update_fx_history(force_full=False):
     # Fetch missing FX from Frankfurter API
     # ---------------------------------------------------------
         url = (
-            f"https://api.frankfurter.app/{start_str}..{end_str}?from=USD&to=EUR,GBP"
+            f"https://api.frankfurter.app/{start_str}..{end_str}?from=USD&to={','.join(QUOTED_CURRENCIES)}"
         )
         response = requests.get(url, timeout=30)
 
@@ -217,32 +239,7 @@ def update_fx_history(force_full=False):
 
         rates_by_date = response.json().get("rates", {})
 
-        rows = []
-        for date_str, rate_dict in rates_by_date.items():
-            rows.append(
-                {
-                    "date": date_str,
-                    "currency": "USD",
-                    "fx_to_usd": 1.00,
-                    "fx_quality_flag": QUALITY_RAW,
-                }
-            )
-            rows.append(
-                {
-                    "date": date_str,
-                    "currency": "EUR",
-                    "fx_to_usd": rate_dict.get("EUR"),
-                    "fx_quality_flag": QUALITY_RAW,
-                }
-            )
-            rows.append(
-                {
-                    "date": date_str,
-                    "currency": "GBP",
-                    "fx_to_usd": rate_dict.get("GBP"),
-                    "fx_quality_flag": QUALITY_RAW,
-                }
-            )
+        rows = _rows_from_api(rates_by_date)
 
         df_fetched = _normalize_fx_frame(pd.DataFrame(rows))
 

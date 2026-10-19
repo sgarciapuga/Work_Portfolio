@@ -1,0 +1,5 @@
+bank_code,bank_name,role
+BKA,Global Bank A,"Cash management bank: operating accounts in all currencies; agent of the secured facility"
+BKB,Relationship Bank B,"Second operating bank for TRS; RCF agent"
+BKC,Swiss Bank C,"Local bank for the Swiss entity"
+BKD,Lending Bank D,"Lender in both facilities, no accounts"

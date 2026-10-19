@@ -1,0 +1,32 @@
+flow_code,category,description,direction,nature,tier
+MGMT_FEE,group_flows,Management fees received from managed funds,in,scheduled,2
+ADMIN_FEE,group_flows,Fund administration fees received,in,scheduled,2
+IC_RECHARGE,group_flows,Intercompany recharge between service companies,both,scheduled,2
+PAYROLL,group_flows,Salaries and social charges,out,scheduled,2
+RENT,group_flows,Office rent,out,scheduled,2
+SUPPLIER,group_flows,Supplier invoices,out,scheduled,2
+AUDIT_FEE,group_flows,External audit fee,out,scheduled,2
+TAX,group_flows,Corporate tax instalments,out,scheduled,2
+BANK_FEE,group_flows,Bank account fees,out,scheduled,2
+IV_CALL,investment_vehicle,Capital call paid by the IV,out,uncertain,2
+IV_DIST,investment_vehicle,Distribution received by the IV,in,uncertain,2
+IHB_SETTLE,in_house_bank,Daily settlement between an entity and TRS,both,treasury,1
+MMF_SUB,investments,MMF subscription,out,treasury,1
+MMF_RED,investments,MMF redemption,in,treasury,1
+MMF_INT,investments,MMF interest received (BD2 of next month),in,treasury,1
+DEP_PLACE,investments,Bank deposit placed,out,treasury,1
+DEP_RETURN,investments,Bank deposit returned with interest,in,treasury,1
+ICL_DRAW,intercompany,IC loan paid out by TRS,out,treasury,1
+ICL_REPAY,intercompany,IC loan repaid to TRS,in,treasury,1
+ICL_INT,intercompany,IC loan interest received by TRS,in,treasury,1
+ICD_PLACE,intercompany,IC deposit received by TRS,in,treasury,1
+ICD_RETURN,intercompany,IC deposit returned by TRS,out,treasury,1
+ICD_INT,intercompany,IC deposit interest paid by TRS,out,treasury,1
+FAC_DRAW,funding,Facility drawing received,in,treasury,1
+FAC_REPAY,funding,Facility drawing repaid,out,treasury,1
+FAC_INT,funding,Facility interest paid,out,treasury,1
+FAC_FEE,funding,Commitment fee on undrawn amount,out,treasury,3
+FX_SPOT,fx,FX spot settlement leg,both,treasury,1
+FX_FWD,fx,FX forward settlement leg,both,treasury,1
+FX_SWAP_NEAR,fx,FX swap near leg,both,treasury,1
+FX_SWAP_FAR,fx,FX swap far leg,both,treasury,1

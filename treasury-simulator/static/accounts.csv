@@ -1,0 +1,28 @@
+account_id,entity_code,bank_code,mca_id,currency,account_type,purpose,signatories,monthly_fee_usd
+TRS-BKA-USD,TRS,BKA,,USD,operating,"TRS main USD account; MMF, facility and FX settlements",4,250
+TRS-BKA-EUR,TRS,BKA,,EUR,operating,TRS main EUR account,4,250
+TRS-BKA-GBP,TRS,BKA,,GBP,operating,TRS main GBP account,4,250
+TRS-BKA-CHF,TRS,BKA,,CHF,operating,TRS main CHF account,4,250
+TRS-BKA-CHF-DEP,TRS,BKA,,CHF,deposit,CHF call deposit (no CHF MMF),4,0
+TRS-BKB-USD,TRS,BKB,,USD,operating,TRS second USD account; RCF drawings,4,150
+TRS-BKB-GBP,TRS,BKB,,GBP,operating,TRS second GBP account,4,150
+IV-BKA-USD,IV,BKA,IV-BKA-MCA,USD,operating,IV USD capital calls and distributions,3,100
+IV-BKA-EUR,IV,BKA,IV-BKA-MCA,EUR,operating,IV EUR capital calls and distributions,3,100
+IV-BKA-GBP,IV,BKA,IV-BKA-MCA,GBP,operating,IV GBP capital calls and distributions,3,100
+IV-BKA-CHF,IV,BKA,IV-BKA-MCA,CHF,operating,IV CHF capital calls and distributions,3,100
+MGT-BKA-USD,MGT,BKA,MGT-BKA-MCA,USD,operating,MGT USD sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+MGT-BKA-EUR,MGT,BKA,MGT-BKA-MCA,EUR,operating,MGT EUR sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+MGT-BKA-GBP,MGT,BKA,MGT-BKA-MCA,GBP,operating,"MGT fees, payroll and suppliers",3,120
+MGT-BKA-CHF,MGT,BKA,MGT-BKA-MCA,CHF,operating,MGT CHF sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+US-BKA-USD,US,BKA,US-BKA-MCA,USD,operating,"US fees, payroll and suppliers",3,120
+US-BKA-EUR,US,BKA,US-BKA-MCA,EUR,operating,US EUR sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+US-BKA-GBP,US,BKA,US-BKA-MCA,GBP,operating,US GBP sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+US-BKA-CHF,US,BKA,US-BKA-MCA,CHF,operating,US CHF sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+CH-BKC-USD,CH,BKC,CH-BKC-MCA,USD,operating,CH USD sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+CH-BKC-EUR,CH,BKC,CH-BKC-MCA,EUR,operating,CH EUR sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+CH-BKC-GBP,CH,BKC,CH-BKC-MCA,GBP,operating,CH GBP sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+CH-BKC-CHF,CH,BKC,CH-BKC-MCA,CHF,operating,"CH fees, payroll and suppliers",3,180
+EU-BKA-USD,EU,BKA,EU-BKA-MCA,USD,operating,EU USD sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+EU-BKA-EUR,EU,BKA,EU-BKA-MCA,EUR,operating,"EU fees, payroll and suppliers",3,120
+EU-BKA-GBP,EU,BKA,EU-BKA-MCA,GBP,operating,EU GBP sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40
+EU-BKA-CHF,EU,BKA,EU-BKA-MCA,CHF,operating,EU CHF sub-account (foreign-currency receipts and payments; settles daily with TRS),3,40

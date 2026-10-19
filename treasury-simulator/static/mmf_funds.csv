@@ -1,0 +1,5 @@
+fund_id,fund_name,currency,bank_code,limit_amount,limit_currency,interest_paid_bd
+MMF-USD-A,USD Liquidity Fund A,USD,BKA,150000000,USD,2
+MMF-USD-B,USD Treasury Fund B,USD,BKB,150000000,USD,2
+MMF-GBP-A,GBP Liquidity Fund A,GBP,BKA,80000000,GBP,2
+MMF-EUR-A,EUR Liquidity Fund A,EUR,BKA,80000000,EUR,2
