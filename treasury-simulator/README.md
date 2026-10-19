@@ -13,19 +13,23 @@ The full design (decisions, tier map, balance sheet, daily cycle, data model, KP
 
 ## Status
 
-Phase 1 (foundation) is done:
+Phase 1 (foundation) is done and Phase 2 (cash and balance sheet) is built:
 
-- static data for the made-up Aldmere Group
-- the `tsim` schema for Neon
-- an app with the page structure
-
-Daily history starts in Phase 2.
+- static data for the made-up Aldmere Group, the `tsim` schema for Neon, and an app with the page structure
+- a daily engine that rebuilds the history from 1 Jan 2025:
+  - scheduled group flows (with small, reproducible variation)
+  - zero-balancing of every entity sub-account against TRS, booked on IC current accounts
+  - MMF / deposit investing above the USD 100k operating minimum, with interest paid on BD2
+  - IC interest (MMF + 50 bp / MMF − 10 bp), posted at month end
+  - the TRS balance sheet and NAV per currency and in USD
+- real overnight rates (SOFR, €STR, SONIA, SARON), downloaded daily
+- live Overview and Balance sheet & NAV pages
 
 | Phase | Content | Status |
 |---|---|---|
 | 1 | Static data, `tsim` schema, CHF in the FX feed, app skeleton | Done |
-| 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Next |
-| 3 | Daily cash management: autopilot, IC loans and deposits, FX deals with MTM | |
+| 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Built |
+| 3 | Daily cash management: autopilot, IC loans and deposits, FX deals with MTM | Next |
 | 4 | IV and facilities: calls and distributions, USD 50m buffer, drawings | |
 | 5 | Forecasting: downside / base / upside, 13-week view, accuracy | |
 | 6 | Scenarios, bank accounts, Learn page | |
@@ -38,6 +42,8 @@ treasury-simulator/
 ├── README.md
 ├── requirements.txt
 ├── run_setup.py            # validate static data; create schema; load static data
+├── run_daily.py            # daily engine: rebuild history, write CSVs, store in Neon
+├── data/                   # engine outputs and overnight rates (CSV backups, updated by the workflow)
 ├── static/                 # hand-written seed data (not pipeline outputs)
 │   ├── entities.csv  banks.csv  accounts.csv  flow_codes.csv
 │   ├── fee_schedule.csv  iv_commitments.csv  facilities.csv  mmf_funds.csv
@@ -46,7 +52,11 @@ treasury-simulator/
 ├── src/tsim/
 │   ├── config.py           # agreed settings (buffer, tolerance, margins, day counts)
 │   ├── static_data.py      # load + validate the static CSVs
-│   └── db.py               # create schema, upsert static data
+│   ├── calendars.py        # business days per currency (US, TARGET, England, Zurich)
+│   ├── schedule.py         # fee and cost schedules -> dated flows
+│   ├── rates.py            # SOFR, €STR, SONIA, SARON download; MMF and IC rates
+│   ├── engine.py           # the daily engine
+│   └── db.py               # schema, static data, engine outputs in Neon
 ├── app/                    # Streamlit app (8 pages)
 └── tests/
 ```
@@ -76,6 +86,12 @@ python treasury-simulator/run_setup.py --check
 # Create the tsim schema in Neon and load the static data (needs DATABASE_URL in the root .env)
 python treasury-simulator/run_setup.py --schema --static
 
+# Daily engine: download overnight rates, rebuild the history, write CSVs to treasury-simulator/data/
+python treasury-simulator/run_daily.py --fetch-rates
+
+# ...and store it in Neon (the whole history with --full; otherwise the last 14 days)
+python treasury-simulator/run_daily.py --fetch-rates --db --full
+
 # Tests
 python -m pytest treasury-simulator/tests
 
@@ -83,6 +99,8 @@ python -m pytest treasury-simulator/tests
 pip install -r treasury-simulator/app/requirements.txt
 streamlit run treasury-simulator/app/streamlit_app.py
 ```
+
+The workflow `.github/workflows/treasury_simulator_7pm.yml` runs every day at 19:00 UTC (after the FX feed). It runs the tests, creates or updates the schema, runs the engine with fresh rates, stores the results in Neon (the whole history on Mondays) and commits the CSV backups.
 
 FX rates come from the Daily FX Rates feed (`public.fx_rates`), shown in the schema as the view `tsim.fx_rate`.
 

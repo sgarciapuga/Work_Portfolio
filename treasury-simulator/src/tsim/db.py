@@ -94,3 +94,44 @@ def load_static_to_db(engine, data=None):
                 df["secured"] = df["secured"].astype(str).str.lower() == "true"
             counts[table] = upsert(conn, df, table, keys)
     return counts
+
+
+# ---------------------------------------------------------------
+# Phase 2: engine outputs
+# ---------------------------------------------------------------
+# Engine table -> (tsim table, date column). The engine rebuilds history every run,
+# so each table is refreshed by deleting the window and inserting it again:
+# re-running gives the same rows, never more.
+ENGINE_TABLES = {
+    "cash_txn": ("cash_txn", "value_date"),
+    "cash_balance": ("cash_balance", "balance_date"),
+    "ic_current_account": ("ic_current_account", "balance_date"),
+    "valuation": ("valuation", "valuation_date"),
+    "nav_daily": ("nav_daily", "nav_date"),
+    "alerts": ("alert", "alert_date"),
+    "pnl_daily": ("pnl_daily", "pnl_date"),
+}
+
+
+def replace_window(conn, df, table, date_col, from_date=None):
+    """Delete tsim.<table> rows on or after from_date (all rows if None), then insert df's rows in that window."""
+    if from_date is None:
+        conn.execute(text(f'DELETE FROM {SCHEMA}."{table}"'))
+    else:
+        conn.execute(text(f'DELETE FROM {SCHEMA}."{table}" WHERE "{date_col}" >= :d'), {"d": from_date})
+        df = df[df[date_col] >= from_date]
+    if not df.empty:
+        df.to_sql(table, conn, schema=SCHEMA, if_exists="append", index=False, method="multi", chunksize=2000)
+    return len(df)
+
+
+def save_engine_results(engine, results, rates=None, from_date=None):
+    """Store the engine outputs (and the overnight rates) in Neon. Returns rows written per table."""
+    counts = {}
+    with engine.begin() as conn:
+        for name, (table, date_col) in ENGINE_TABLES.items():
+            counts[table] = replace_window(conn, results[name], table, date_col, from_date)
+        counts["position"] = upsert(conn, results["position"], "position", ["position_id"])
+        if rates is not None:
+            counts["ir_rate"] = upsert(conn, rates, "ir_rate", ["rate_date", "currency", "tenor"])
+    return counts

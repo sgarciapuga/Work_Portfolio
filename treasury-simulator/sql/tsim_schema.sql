@@ -214,3 +214,37 @@ CREATE TABLE IF NOT EXISTS tsim.scenario (
     settings     JSONB NOT NULL,
     created_at   TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- ---------------------------------------------------------------
+-- Phase 2 additions
+-- ---------------------------------------------------------------
+-- Daily IC current account per entity and currency (positive = TRS owes the entity).
+CREATE TABLE IF NOT EXISTS tsim.ic_current_account (
+    balance_date      DATE NOT NULL,
+    entity_code       TEXT NOT NULL,
+    currency          TEXT NOT NULL,
+    opening           NUMERIC(18, 2) NOT NULL,
+    settlements       NUMERIC(18, 2) NOT NULL,
+    interest_posted   NUMERIC(18, 2) NOT NULL,
+    closing           NUMERIC(18, 2) NOT NULL,
+    accrued_interest  NUMERIC(18, 2) NOT NULL,
+    PRIMARY KEY (balance_date, entity_code, currency)
+);
+
+-- Daily TRS P&L by source; the parts add up to the daily change in NAV (USD).
+CREATE TABLE IF NOT EXISTS tsim.pnl_daily (
+    pnl_date    DATE NOT NULL,
+    currency    TEXT NOT NULL,
+    component   TEXT NOT NULL,
+    amount_ccy  NUMERIC(18, 2) NOT NULL,
+    amount_usd  NUMERIC(18, 2) NOT NULL,
+    PRIMARY KEY (pnl_date, currency, component)
+);
+
+CREATE TABLE IF NOT EXISTS tsim.alert (
+    alert_date  DATE NOT NULL,
+    currency    TEXT NOT NULL,
+    alert       TEXT NOT NULL,
+    amount      NUMERIC(18, 2),
+    PRIMARY KEY (alert_date, currency, alert)
+);

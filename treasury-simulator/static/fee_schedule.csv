@@ -1,6 +1,6 @@
 schedule_id,entity_code,flow_code,currency,amount,frequency,day_rule,counterparty,counterparty_entity
-F01,MGT,MGMT_FEE,GBP,6000000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
-F02,US,MGMT_FEE,USD,4500000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
+F01,MGT,MGMT_FEE,GBP,7500000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
+F02,US,MGMT_FEE,USD,5000000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
 F03,CH,MGMT_FEE,CHF,1800000,quarterly,01-10|04-10|07-10|10-10,Managed funds,
 F04,EU,ADMIN_FEE,EUR,700000,monthly,day:20,Managed funds,
 F05,MGT,PAYROLL,GBP,-1600000,monthly,day:25,Employees,

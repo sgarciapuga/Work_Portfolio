@@ -1,4 +1,7 @@
 pandas
+numpy
+holidays
+requests
 sqlalchemy
 psycopg2-binary
 python-dotenv

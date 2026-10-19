@@ -1,0 +1,81 @@
+name: Treasury Simulator - 7:00 PM UTC
+
+on:
+  schedule:
+    # 19:00 UTC: after the Daily FX & Data Pipeline (18:00 UTC) has stored the day's FX rates
+    - cron: '0 19 * * *'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Store the whole history in Neon (also happens every Monday)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: treasury-simulator-7pm
+  cancel-in-progress: false
+
+jobs:
+  run-treasury-simulator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.4.0
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r treasury-simulator/requirements.txt
+
+      - name: Run tests
+        run: |
+          python -m pytest -q treasury-simulator/tests --ignore=treasury-simulator/tests/test_app.py
+
+      - name: Create schema and load static data (safe to re-run)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          python treasury-simulator/run_setup.py --schema --static
+
+      - name: Run daily engine
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ "${{ inputs.full }}" = "true" ]; then FULL="--full"; else FULL=""; fi
+          python treasury-simulator/run_daily.py --fetch-rates --db $FULL
+
+      - name: Upload generated CSV files
+        uses: actions/upload-artifact@v4
+        with:
+          name: treasury-simulator-csv
+          path: treasury-simulator/data/*.csv
+
+      - name: Commit updated CSV backups
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add treasury-simulator/data/*.csv
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+          else
+            git commit -m "auto: update treasury simulator CSVs [skip ci]"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          payload=$(jq -n --arg text "Workflow '${{ github.workflow }}' failed for ${{ github.ref }} (run: ${{ github.run_number }}). <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View run>" '{text: $text}')
+          curl -s -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK"

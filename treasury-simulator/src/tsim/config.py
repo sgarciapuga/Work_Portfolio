@@ -40,3 +40,28 @@ TIERS = {
     3: "I know the definition",
     4: "Good to know it exists",
 }
+
+# ---------------------------------------------------------------
+# Phase 2: daily engine
+# ---------------------------------------------------------------
+# MMF yield = overnight rate (SOFR, ESTR, SONIA, SARON) + this spread
+MMF_SPREAD_BP = -5
+OVERNIGHT_INDEX = {"USD": "SOFR", "EUR": "ESTR", "GBP": "SONIA", "CHF": "SARON"}
+
+# Where TRS invests surplus cash in each currency (no CHF MMF: CHF call deposit)
+INVESTMENT_ACCOUNT = {"USD": "MMF-USD-A", "EUR": "MMF-EUR-A", "GBP": "MMF-GBP-A", "CHF": "TRS-BKA-CHF-DEP"}
+TRS_MAIN_ACCOUNT = {c: f"TRS-BKA-{c}" for c in CURRENCIES}
+
+# Small, reproducible variation on scheduled flows: max +/- share of the amount
+FLOW_VARIATION = {"MGMT_FEE": 0.05, "ADMIN_FEE": 0.05, "PAYROLL": 0.02, "SUPPLIER": 0.05}
+# Some supplier payments go out a few business days late
+LATE_PAYMENT = {"SUPPLIER": {"probability": 0.2, "max_days": 5}}
+
+# Opening position on HISTORY_START (clean start), in each currency
+TRS_EQUITY_USD = 20_000_000
+OPENING_IV_DEPOSIT_USD = 80_000_000
+# Service companies' cash already held with TRS on their IC current accounts
+OPENING_IC_CURRENT_ACCOUNTS = {("MGT", "GBP"): 10_000_000, ("US", "USD"): 5_000_000,
+                               ("CH", "CHF"): 3_000_000, ("EU", "EUR"): 5_000_000}
+# Only move cash in or out of the MMF when the change is at least this much (USD equivalent)
+MIN_INVESTMENT_TRADE_USD = 25_000

@@ -12,9 +12,14 @@ PAGES = sorted(p.name for p in (APP_DIR / "pages").glob("*.py"))
 
 
 @pytest.fixture(autouse=True)
-def app_on_path(monkeypatch):
+def app_on_path(monkeypatch, tmp_path):
     monkeypatch.syspath_prepend(str(APP_DIR))
     monkeypatch.chdir(APP_DIR)
+    monkeypatch.setenv("TSIM_DATA_DIR", str(tmp_path))   # no history: pages must still run
+    monkeypatch.setenv("TSIM_NO_DB", "1")
+    import streamlit as st
+
+    st.cache_data.clear()
 
 
 def test_main_app_runs():

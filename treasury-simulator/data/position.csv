@@ -1,0 +1,6 @@
+position_id,position_type,counterparty,currency,principal,rate,start_date,maturity_date,status,facility_id,fund_id,linked_position_id
+MMF-USD-A,MMF,MMF-USD-A,USD,116796662.78,,2025-01-01,,open,,MMF-USD-A,
+MMF-EUR-A,MMF,MMF-EUR-A,EUR,12119336.58,,2025-01-01,,open,,MMF-EUR-A,
+MMF-GBP-A,MMF,MMF-GBP-A,GBP,17160485.36,,2025-01-01,,open,,MMF-GBP-A,
+TRS-BKA-CHF-DEP,DEPOSIT,TRS-BKA-CHF-DEP,CHF,7518874.83,,2025-01-01,,open,,,
+ICD-IV-USD-001,IC_DEPOSIT,IV,USD,85621523.47,,2025-01-01,,open,,,

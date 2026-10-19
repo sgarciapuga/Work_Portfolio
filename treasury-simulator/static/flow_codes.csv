@@ -30,3 +30,4 @@ FX_SPOT,fx,FX spot settlement leg,both,treasury,1
 FX_FWD,fx,FX forward settlement leg,both,treasury,1
 FX_SWAP_NEAR,fx,FX swap near leg,both,treasury,1
 FX_SWAP_FAR,fx,FX swap far leg,both,treasury,1
+DEP_INT,investments,Call deposit interest received (BD2 of next month),in,treasury,1
