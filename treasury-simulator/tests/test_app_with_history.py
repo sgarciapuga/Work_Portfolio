@@ -23,10 +23,13 @@ def history_dir(tmp_path_factory):
     out = tmp_path_factory.mktemp("tsim_data")
     for name, df in run_engine(load_static(), on, fx, start, end).items():
         df.to_csv(out / f"{name}.csv", index=False)
+    rates = on.stack().rename("rate").reset_index().rename(columns={"level_0": "rate_date", "level_1": "currency"})
+    rates["tenor"], rates["source"] = "ON", "test"
+    rates.to_csv(out / "ir_rates.csv", index=False)
     return out
 
 
-@pytest.mark.parametrize("page", ["pages/overview.py", "pages/balance_sheet.py"])
+@pytest.mark.parametrize("page", ["pages/overview.py", "pages/balance_sheet.py", "pages/market_data.py"])
 def test_pages_with_history(page, history_dir, monkeypatch):
     monkeypatch.setenv("TSIM_DATA_DIR", str(history_dir))
     monkeypatch.setenv("TSIM_NO_DB", "1")

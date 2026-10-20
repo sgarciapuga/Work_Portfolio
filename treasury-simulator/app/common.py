@@ -105,6 +105,33 @@ def _dates(tables):
     return tables
 
 
+@st.cache_data(ttl=3600, show_spinner="Loading market data...")
+def market_data():
+    """(FX rows as stored in fx_rates, overnight rates as in ir_rate, source label). Neon first, CSV backups second."""
+    url = _database_url()
+    if url:
+        try:
+            from sqlalchemy import create_engine
+
+            engine = create_engine(url, pool_pre_ping=True, connect_args={"connect_timeout": 10})
+            with engine.connect() as conn:
+                fx = pd.read_sql("SELECT date, currency, fx_to_usd, fx_quality_flag FROM fx_rates", conn)
+                ir = pd.read_sql("SELECT rate_date, currency, tenor, rate, source FROM tsim.ir_rate", conn)
+            if not fx.empty and not ir.empty:
+                ir["rate"] = ir["rate"].astype(float)
+                ir["rate_date"] = pd.to_datetime(ir["rate_date"]).dt.date
+                return fx, ir, "Neon PostgreSQL (fx_rates, tsim.ir_rate)"
+        except Exception:
+            pass
+    fx_csv = PROJECT_DIR.parent / "daily-fx-rates" / "data" / "fx_rates.csv"
+    ir_csv = data_dir() / "ir_rates.csv"
+    if not fx_csv.exists() or not ir_csv.exists():
+        return pd.DataFrame(), pd.DataFrame(), "none"
+    ir = pd.read_csv(ir_csv)
+    ir["rate_date"] = pd.to_datetime(ir["rate_date"]).dt.date
+    return pd.read_csv(fx_csv), ir, "CSV backups (fx_rates.csv, ir_rates.csv)"
+
+
 def no_history_message():
     st.info("No simulated history yet. From the repository root run "
             "`python treasury-simulator/run_daily.py --fetch-rates` (CSV only) or wait for the daily workflow.")

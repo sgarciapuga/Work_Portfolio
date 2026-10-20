@@ -24,11 +24,13 @@ Phase 1 (foundation) is done and Phase 2 (cash and balance sheet) is built:
   - the TRS balance sheet and NAV per currency and in USD
 - real overnight rates (SOFR, €STR, SONIA, SARON), downloaded daily
 - live Overview and Balance sheet & NAV pages
+- Phase 2.1: a Market data page (FX in market convention, overnight rates, rate differentials, implied 1M / 3M forwards)
 
 | Phase | Content | Status |
 |---|---|---|
 | 1 | Static data, `tsim` schema, CHF in the FX feed, app skeleton | Done |
 | 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Built |
+| 2.1 | Market data page: FX rates, overnight rates, differentials, implied forwards | Built |
 | 3 | Daily cash management: autopilot, IC loans and deposits, FX deals with MTM | Next |
 | 4 | IV and facilities: calls and distributions, USD 50m buffer, drawings | |
 | 5 | Forecasting: downside / base / upside, 13-week view, accuracy | |
@@ -55,9 +57,10 @@ treasury-simulator/
 │   ├── calendars.py        # business days per currency (US, TARGET, England, Zurich)
 │   ├── schedule.py         # fee and cost schedules -> dated flows
 │   ├── rates.py            # SOFR, €STR, SONIA, SARON download; MMF and IC rates
+│   ├── market.py           # FX in market convention, implied forwards, differentials
 │   ├── engine.py           # the daily engine
 │   └── db.py               # schema, static data, engine outputs in Neon
-├── app/                    # Streamlit app (8 pages)
+├── app/                    # Streamlit app (9 pages)
 └── tests/
 ```
 
