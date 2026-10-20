@@ -8,7 +8,8 @@ have primary keys from the start, so no legacy-duplicate clean-up is needed.
 import os
 from pathlib import Path
 
-from sqlalchemy import create_engine, text
+import pandas as pd
+from sqlalchemy import Date, MetaData, Table, create_engine, text
 
 from tsim.static_data import load_static, validate
 
@@ -59,6 +60,25 @@ def create_schema(engine):
             conn.execute(text(statement))
 
 
+def typed_for_table(conn, df, table):
+    """(df, dtype) ready for to_sql into a table shaped like tsim.<table>.
+
+    The column types come from the database, not from pandas. psycopg 3 (the
+    driver of the CI DATABASE_URL) casts every text value to VARCHAR, and
+    Postgres will not put a VARCHAR into a DATE, NUMERIC or BOOLEAN column;
+    psycopg2 sent text untyped, so it worked locally. Date columns are also
+    turned into real dates, since the static CSVs hold them as text.
+    """
+    target = Table(table, MetaData(), schema=SCHEMA, autoload_with=conn)
+    dtype = {c.name: c.type for c in target.columns if c.name in df.columns}
+    date_cols = [name for name, col_type in dtype.items() if isinstance(col_type, Date)]
+    if date_cols:
+        df = df.copy()
+        for col in date_cols:
+            df[col] = pd.to_datetime(df[col]).dt.date
+    return df, dtype
+
+
 def upsert(conn, df, table, key_cols):
     """Stage df in a TEMP table and upsert it into tsim.<table> on key_cols."""
     if df.empty:
@@ -67,7 +87,8 @@ def upsert(conn, df, table, key_cols):
     conn.execute(text(
         f'CREATE TEMP TABLE "{staging}" (LIKE {SCHEMA}."{table}" INCLUDING DEFAULTS) ON COMMIT DROP'
     ))
-    df.to_sql(staging, conn, if_exists="append", index=False)
+    df, dtype = typed_for_table(conn, df, table)
+    df.to_sql(staging, conn, if_exists="append", index=False, dtype=dtype)
     cols = list(df.columns)
     cols_sql = ", ".join(f'"{c}"' for c in cols)
     updates = ", ".join(f'"{c}" = EXCLUDED."{c}"' for c in cols if c not in key_cols)
@@ -121,7 +142,9 @@ def replace_window(conn, df, table, date_col, from_date=None):
         conn.execute(text(f'DELETE FROM {SCHEMA}."{table}" WHERE "{date_col}" >= :d'), {"d": from_date})
         df = df[df[date_col] >= from_date]
     if not df.empty:
-        df.to_sql(table, conn, schema=SCHEMA, if_exists="append", index=False, method="multi", chunksize=2000)
+        df, dtype = typed_for_table(conn, df, table)
+        df.to_sql(table, conn, schema=SCHEMA, if_exists="append", index=False, method="multi", chunksize=2000,
+                  dtype=dtype)
     return len(df)
 
 
