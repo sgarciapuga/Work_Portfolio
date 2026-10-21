@@ -36,39 +36,57 @@ python create-date-table/create_date_table.py
 
 # Table schema
 
-The script generates a table with `calendar_date`, `year`, `month`, `quarter`, `weekday`, `is_weekend`, `is_month_start`, `is_month_end`, and ISO week/year.
+One row per calendar day, keyed on `calendar_date`:
+
+| Column | Description |
+|---|---|
+| `calendar_date` | The date (primary key) |
+| `year`, `quarter`, `month`, `day` | Calendar parts |
+| `month_name`, `day_name` | English names, e.g. `October`, `Wednesday` |
+| `day_of_week` | ISO day number, Monday = 1 … Sunday = 7 |
+| `weekday` | Monday = 0 … Sunday = 6 |
+| `is_weekend`, `is_month_start`, `is_month_end` | Boolean flags |
+| `week_num`, `iso_week`, `iso_year` | ISO week and ISO week-year (`week_num` equals `iso_week`; kept for the Power BI model) |
+| `year_month`, `year_quarter` | Labels such as `2026-10` and `2026-Q4` |
 
 # Notes
 
-The script is idempotent and inserts only missing dates, making it safe for scheduled incremental runs in CI.
+The script stages the rows in a temporary table and upserts them on `calendar_date`, so it is idempotent: new dates are inserted, changed rows are corrected and identical rows are left alone. After each scheduled run, a check fails the workflow if the table has gaps or does not cover 1 January 2025 to 31 December of next year. Seven fact tables (FX rates, FX Prime Brokerage, Treasury Simulator) reference it through foreign keys.
 
-# Example: preview calendar rows (safe local sample if DB not available)
+# Preview: calendar rows
 
 ```{python}
 import pandas as pd
 from pathlib import Path
 from IPython.display import display
-csv_path = Path('create-date-table/sample_dates_preview.csv')
-if csv_path.exists():
-	display(pd.read_csv(csv_path).head())
+
+# Quarto runs from the project folder; a manual run may start at the repo root.
+candidates = [Path('data/date_table.csv'), Path('create-date-table/data/date_table.csv')]
+p = next((c for c in candidates if c.exists()), candidates[0])
+if p.exists():
+    df = pd.read_csv(p, parse_dates=['calendar_date'])
+    print(f"{len(df)} rows from {df['calendar_date'].min():%Y-%m-%d} to {df['calendar_date'].max():%Y-%m-%d}")
 else:
-	# Generate a small in-memory sample
-	import datetime
-	dates = pd.date_range(start='2026-07-25', periods=7, freq='D')
-	df = pd.DataFrame({'calendar_date': dates.date})
-	df['year'] = df['calendar_date'].apply(lambda d: d.year)
-	df['month'] = df['calendar_date'].apply(lambda d: d.month)
-	df['is_weekend'] = df['calendar_date'].apply(lambda d: d.weekday()>=5)
-	display(df.head())
+    print('No date_table.csv present; creating a small sample for demonstration:')
+    dates = pd.date_range(start='2026-07-25', periods=7, freq='D')
+    df = pd.DataFrame({'calendar_date': dates, 'year': dates.year, 'is_weekend': dates.dayofweek >= 5})
+display(df.head(10))
 ```
 
 ```{python}
-# Visual: count of weekend vs weekday in the sample
+# Visual: weekdays vs weekend days per year
 import matplotlib.pyplot as plt
-counts = df['is_weekend'].value_counts().sort_index()
-counts.index = ['weekday','weekend']
-counts.plot(kind='bar', figsize=(4,3))
-plt.title('Weekday vs Weekend (sample)')
+counts = (
+    df.assign(day_type=df['is_weekend'].map({False: 'Weekday', True: 'Weekend'}))
+      .groupby([df['calendar_date'].dt.year, 'day_type']).size()
+      .unstack(fill_value=0)
+)
+counts.plot(kind='bar', stacked=True, figsize=(6, 3))
+plt.title('Days per year' if p.exists() else 'Days per year (sample)')
+plt.xlabel('Year')
+plt.ylabel('Days')
+plt.xticks(rotation=0)
+plt.legend(title=None, loc='upper left', bbox_to_anchor=(1, 1), frameon=False)
 plt.tight_layout()
 plt.show()
 ```

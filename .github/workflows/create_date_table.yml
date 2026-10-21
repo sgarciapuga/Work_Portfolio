@@ -46,6 +46,10 @@ jobs:
           done
           if [ $count -ge $attempts ]; then echo "pip install failed after $attempts attempts"; exit 1; fi
 
+      - name: Run tests
+        run: |
+          python -m unittest discover -s create-date-table/tests -v
+
       - name: Execute date table script
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
