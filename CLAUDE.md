@@ -42,4 +42,4 @@ Done = tests pass, script runs, re-running doesn't grow row counts unexpectedly,
 
 ## Diagrams
 
-Mermaid diagrams go in `.mmd` files (or ```mermaid blocks in `.qmd`). The Mermaid extension's validator/preview tools aren't available to Claude — check syntax carefully and tell the user to preview in VS Code.
+Mermaid diagrams go in `.mmd` files (or ```mermaid blocks in `.qmd`). Before handing one over, render it with the Mermaid CLI (`mmdc`, set up on the user's machine — see memory) to catch syntax errors and look at the PNG. If `mmdc` isn't available, check syntax carefully and ask the user to preview in VS Code.
