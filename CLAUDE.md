@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Instructions for Claude Code in this repo. The Copilot versions live in `.github/`; this file adapts them.
+Instructions for Claude Code in this repo.
 
 ## Working style
 
