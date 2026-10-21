@@ -6,6 +6,7 @@
 # Python
 __pycache__/
 *.pyc
+*.egg-info/
 
 # RStudio & R Markdown outputs
 .Rproj.user/
@@ -23,13 +24,10 @@ __pycache__/
 # Power BI Project (.pbip) ignore rules
 *.tmp
 *.log
-*.pbi/cache.abf
-*.pbi/localSettings.json
-*.pbi/userSettings.json
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+**/.pbi/userSettings.json
 
 /.quarto/
 **/*.quarto_ipynb
-
-# Internal Docs
-docs-internal/
 
