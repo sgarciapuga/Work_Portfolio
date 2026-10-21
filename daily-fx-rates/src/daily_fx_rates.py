@@ -291,7 +291,7 @@ def update_fx_history(force_full=False):
     # Fetch missing FX from Frankfurter API
     # ---------------------------------------------------------
         url = (
-            f"https://api.frankfurter.app/{start_str}..{end_str}?from=USD&to={','.join(QUOTED_CURRENCIES)}"
+            f"https://api.frankfurter.dev/v1/{start_str}..{end_str}?from=USD&to={','.join(QUOTED_CURRENCIES)}"
         )
         response = requests.get(url, timeout=30)
 

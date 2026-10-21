@@ -52,7 +52,7 @@ or set the environment variable `FX_FULL_CHECK=1`.
 It currently covers:
 
 - USD as the base currency
-- EUR and GBP as target currencies
+- EUR, GBP and CHF as target currencies
 - a quality flag so filled rows can be tracked and revalidated later
 - a database-level unique key on date and currency to prevent duplicates
 
