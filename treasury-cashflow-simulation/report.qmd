@@ -36,12 +36,15 @@ python treasury-cashflow-simulation/run_pipeline.py
 
 # Pipeline architecture
 
-- Entry point: `treasury-cashflow-simulation/run_pipeline.py`
-- Main pipeline: `treasury-cashflow-simulation/src/simulate_pipeline.py`
-- Static data loader: `treasury-cashflow-simulation/src/load_static.py`
-- Movement generator: `treasury-cashflow-simulation/src/generate_movements.py`
-- Sweep engine: `treasury-cashflow-simulation/src/sweep_engine.py`
-- Balances preparation: `treasury-cashflow-simulation/src/balances_engine.py`
+`run_pipeline.py` is the entry point. It calls the main pipeline, which works through every day from the last stored date to today:
+
+| Module | What it does |
+|---|---|
+| `src/simulate_pipeline.py` | Runs the day-by-day loop, writes the daily CSVs and replaces that day's rows in PostgreSQL, so re-runs don't duplicate data. |
+| `src/load_static.py` | Reads the 12 bank accounts (4 banks × USD, EUR, GBP) and the movement types from `data/setup.xlsx`. |
+| `src/balances_engine.py` | Starts each run from the last closing balances stored in the database. |
+| `src/generate_movements.py` | Generates the day's deposits, withdrawals and bank charges, plus interest at month end. |
+| `src/sweep_engine.py` | Covers overdrawn accounts by sweeping cash from accounts in surplus in the same currency. |
 
 # Outputs
 
@@ -49,68 +52,71 @@ python treasury-cashflow-simulation/run_pipeline.py
 - `treasury-cashflow-simulation/data/Movements/movements_YYYYMMDD.csv`
 - PostgreSQL tables: `treasury_balances`, `treasury_movements`
 
-# Code walkthrough
-
-Explain key modules and functions used in the simulation. Use the code cells below to show examples and small excerpts.
-
-```{python}
-# Example: show latest 5 movements from PostgreSQL (safe if DATABASE_URL is missing)
-import os
-import pandas as pd
-
-try:
-    from dotenv import load_dotenv
-    from sqlalchemy import create_engine, text
-
-    load_dotenv()
-    database_url = os.getenv('DATABASE_URL')
-except ModuleNotFoundError:
-    database_url = None
-
-if database_url:
-    engine = create_engine(database_url)
-    with engine.connect() as conn:
-        df = pd.read_sql(text('SELECT * FROM treasury_movements ORDER BY date DESC LIMIT 5'), conn)
-        display(df)
-else:
-    print('DATABASE_URL not found. Showing a generated sample:')
-    sample = pd.DataFrame({
-        'date': ['2026-07-30','2026-07-30','2026-07-29'],
-        'transaction_id': ['TX20260730000001','TX20260730000002','TX20260729000001'],
-        'account_number': ['1001','1002','1001'],
-        'amount': [1250.0, -500.0, 3000.0]
-    })
-    display(sample)
-```
-
-# Visual example: plot latest balances (reads CSV if present, otherwise uses sample)
+A scheduled GitHub Action runs the pipeline every day and commits the new CSVs. The tables and charts below are built from those CSVs.
 
 ```{python}
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+from IPython.display import display
 
-balances_dir = Path('treasury-cashflow-simulation/data/Balances')
-csvs = sorted(balances_dir.glob('balances_*.csv')) if balances_dir.exists() else []
-if csvs:
-    # load last 7 days (if available)
-    frames = [pd.read_csv(p) for p in csvs[-7:]]
-    df_all = pd.concat(frames, ignore_index=True)
-    latest = df_all.groupby('account_number')['closing_balance'].last().reset_index()
-else:
-    latest = pd.DataFrame({'account_number':['1001','1002','1003'],'closing_balance':[120000,80000,45000]})
+# Quarto runs from the project folder; a manual run may start at the repo root.
+candidates = [Path('data'), Path('treasury-cashflow-simulation/data')]
+data_dir = next((c for c in candidates if (c / 'Balances').exists()), None)
+if data_dir is None:
+    raise FileNotFoundError('No treasury-cashflow-simulation/data folder found; run the pipeline first.')
 
-plt.figure(figsize=(7,3))
-plt.bar(latest['account_number'], latest['closing_balance'])
-plt.title('Sample latest closing balances by account')
-plt.xlabel('Account')
-plt.ylabel('Closing balance')
-plt.tight_layout()
+balances = pd.concat(
+    [pd.read_csv(p) for p in sorted((data_dir / 'Balances').glob('balances_*.csv'))],
+    ignore_index=True,
+)
+balances['date'] = pd.to_datetime(balances['date'])
+latest_day = balances['date'].max()
+movements = pd.read_csv(data_dir / 'Movements' / f"movements_{latest_day:%Y%m%d}.csv")
+print(f"{balances['date'].nunique()} days of balances, from {balances['date'].min():%d %b %Y} to {latest_day:%d %b %Y}")
+```
+
+# Latest day's movements
+
+```{python}
+print(f"{len(movements)} movements on {latest_day:%d %b %Y}")
+display(movements.groupby(['type', 'category']).size().rename('movements').reset_index())
+display(movements.head(8))
+```
+
+# Closing balances
+
+Total closing balance per currency across the four banks. Each currency has its own panel and scale; the amounts are not converted.
+
+```{python}
+totals = balances.groupby(['date', 'currency'])['closing_balance'].sum().unstack('currency')
+currencies = [c for c in ['USD', 'EUR', 'GBP'] if c in totals.columns]
+
+fig, axes = plt.subplots(1, len(currencies), figsize=(10, 3), sharex=True)
+for ax, cur in zip(axes, currencies):
+    ax.plot(totals.index, totals[cur] / 1000, color='#4A7F9E', linewidth=2)
+    ax.axhline(0, color='#9AA5AD', linewidth=1, linestyle='--')
+    ax.set_title(f'{cur} (thousands)', fontsize=10, color='#1F3A4D', loc='left')
+    ax.grid(axis='y', color='#E3E8EC', linewidth=0.8)
+    ax.tick_params(colors='#5B6770', labelsize=8)
+    for side in ['top', 'right']:
+        ax.spines[side].set_visible(False)
+    for side in ['left', 'bottom']:
+        ax.spines[side].set_color('#C9D1D7')
+    ax.xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter('%b'))
+fig.tight_layout()
 plt.show()
+```
+
+Closing balances on the latest day, by account:
+
+```{python}
+latest = balances[balances['date'] == latest_day]
+table = latest[['bank_name', 'account_number', 'currency', 'closing_balance']].copy()
+table['closing_balance'] = table['closing_balance'].map('{:,.2f}'.format)
+display(table.reset_index(drop=True))
 ```
 
 # Notes
 
-This report is intended as a narrative guide; run the pipeline to generate sample outputs before rendering the full HTML report.
-
-If you want, I can run `quarto render treasury-cashflow-simulation/report.qmd` next to produce an HTML file (requires Quarto installed).
+The data is synthetic and the logic is intentionally simple: the project demonstrates the pipeline, persistence and reporting, not a production cash-management engine.
