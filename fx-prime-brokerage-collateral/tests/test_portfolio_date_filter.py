@@ -9,7 +9,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from generate_fx_portfolio import generate_fx_portfolio, get_business_days
-from generate_limits import build_limit_schedule
+from generate_limits import build_limit_schedule, generate_limits
 from generate_mtm_for_portfolio import generate_mtm_for_portfolio
 from generate_mtm_report import generate_mtm_report
 
@@ -283,6 +283,30 @@ class HistoryStabilityTests(unittest.TestCase):
 
     def test_collateral_report_history_is_stable(self):
         self._assert_prefix_unchanged(self.before[2], self.after[2])
+
+
+class SharedInputTests(unittest.TestCase):
+    """generate_fx_datasets passes one portfolio frame to every generator."""
+
+    END = "2026-02-27"
+
+    def test_generators_leave_the_shared_portfolio_unchanged(self):
+        portfolio = generate_fx_portfolio(end_date=self.END, seed=42)
+        original = portfolio.copy()
+        mtm = generate_mtm_for_portfolio(portfolio, end_date=self.END)
+        mtm_original = mtm.copy()
+        generate_limits(end_date=self.END, portfolio_df=portfolio)
+        with tempfile.TemporaryDirectory() as output_dir:
+            generate_mtm_report(portfolio_df=portfolio, mtm_df=mtm, end_date=self.END, out_path=output_dir)
+        pd.testing.assert_frame_equal(original, portfolio)
+        pd.testing.assert_frame_equal(mtm_original, mtm)
+
+    def test_limits_exposure_accepts_report_dates_as_dates(self):
+        portfolio = generate_fx_portfolio(end_date=self.END, seed=42)
+        as_text = generate_limits(end_date=self.END, portfolio_df=portfolio)
+        as_dates = portfolio.assign(report_date=pd.to_datetime(portfolio["report_date"]))
+        pd.testing.assert_frame_equal(as_text, generate_limits(end_date=self.END, portfolio_df=as_dates))
+        self.assertGreater(as_text["counterparty_exposure_usd"].sum(), 0)
 
 
 if __name__ == "__main__":

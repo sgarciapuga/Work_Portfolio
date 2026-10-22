@@ -42,6 +42,9 @@ def generate_mtm_report(portfolio_df=None, mtm_df=None, end_date=None, out_path=
     if mtm_df is None:
         m = os.path.join(base_dir, "Mark-to-market", "mark_to_market_portfolio.csv")
         mtm_df = pd.read_csv(m)
+    # Work on copies: the caller passes the same frames to the other generators.
+    portfolio_df = portfolio_df.copy()
+    mtm_df = mtm_df.copy()
 
     if end_date is None:
         business_day = CustomBusinessDay(calendar=USFederalHolidayCalendar())

@@ -78,7 +78,9 @@ def exposures_from_portfolio(portfolio_df):
     if portfolio_df is None or portfolio_df.empty:
         return {}
 
-    df = portfolio_df[["report_date", "bank_id", "trade_size_usd"]]
+    df = portfolio_df[["report_date", "bank_id", "trade_size_usd"]].copy()
+    # The limit schedule is keyed on ISO date strings; accept dates or strings.
+    df["report_date"] = pd.to_datetime(df["report_date"]).dt.strftime("%Y-%m-%d")
     grouped = df.groupby(["report_date", "bank_id"], as_index=False)["trade_size_usd"].sum()
     return {
         (row["report_date"], row["bank_id"]): float(row["trade_size_usd"])

@@ -22,6 +22,8 @@ def generate_mtm_for_portfolio(portfolio_df=None, end_date=None, seed=2026):
         if not os.path.exists(path):
             raise FileNotFoundError("portfolio.csv not found; run generate_fx_datasets first")
         portfolio_df = pd.read_csv(path)
+    # Work on a copy: the caller passes the same portfolio to the other generators.
+    portfolio_df = portfolio_df.copy()
 
     if end_date is None:
         # use previous business day
