@@ -18,7 +18,9 @@ def sweep_cash(daily_balances: pd.DataFrame):
                     break
 
                 surplus_acc = surplus_row["account_number"]
-                surplus_amt = surplus_row["closing_balance"]
+                # Current balance, not the one before the sweep: an earlier
+                # deficit may already have taken part or all of this surplus.
+                surplus_amt = df.loc[df["account_number"] == surplus_acc, "closing_balance"].item()
 
                 if surplus_amt <= 0:
                     continue

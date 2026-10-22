@@ -46,6 +46,12 @@ Run the pipeline from the repository root:
 python treasury-cashflow-simulation/run_pipeline.py
 ```
 
+Run the tests (no database needed):
+
+```bash
+python -m pytest -q treasury-cashflow-simulation/tests
+```
+
 ## Outputs
 
 - `treasury-cashflow-simulation/data/Balances/balances_YYYYMMDD.csv`
