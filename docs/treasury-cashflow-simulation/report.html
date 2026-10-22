@@ -300,8 +300,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>treasury-cashflow-simulation/data/Movements/movements_YYYYMMDD.csv</code></li>
 <li>PostgreSQL tables: <code>treasury_balances</code>, <code>treasury_movements</code></li>
 </ul>
+<p><code>total_movements</code> in the balances excludes internal sweeps, which are recorded as movements of type <code>Internal Sweep</code>. <code>closing_balance</code> includes them, so closing = starting + total_movements + sweeps. This keeps the sweeps visible on their own.</p>
 <p>A scheduled GitHub Action runs the pipeline every day and commits the new CSVs. The tables and charts below are built from those CSVs.</p>
-<div id="0ad2099b" class="cell" data-execution_count="1">
+<div id="82933e75" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -328,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="latest-days-movements" class="level1">
 <h1>Latest day’s movements</h1>
-<div id="ae5ac33b" class="cell" data-execution_count="2">
+<div id="3e60d50e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(movements)<span class="sc">}</span><span class="ss"> movements on </span><span class="sc">{</span>latest_day<span class="sc">:</span><span class="op">%</span>d <span class="op">%</span>b <span class="op">%</span>Y<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>display(movements.groupby([<span class="st">'type'</span>, <span class="st">'category'</span>]).size().rename(<span class="st">'movements'</span>).reset_index())</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>display(movements.head(<span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -489,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="closing-balances" class="level1">
 <h1>Closing balances</h1>
 <p>Total closing balance per currency across the four banks. Each currency has its own panel and scale; the amounts are not converted.</p>
-<div id="4402863e" class="cell" data-execution_count="3">
+<div id="743cbcfb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>totals <span class="op">=</span> balances.groupby([<span class="st">'date'</span>, <span class="st">'currency'</span>])[<span class="st">'closing_balance'</span>].<span class="bu">sum</span>().unstack(<span class="st">'currency'</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>currencies <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">'USD'</span>, <span class="st">'EUR'</span>, <span class="st">'GBP'</span>] <span class="cf">if</span> c <span class="kw">in</span> totals.columns]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -516,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Closing balances on the latest day, by account:</p>
-<div id="720cc612" class="cell" data-execution_count="4">
+<div id="1fd2a381" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>latest <span class="op">=</span> balances[balances[<span class="st">'date'</span>] <span class="op">==</span> latest_day]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> latest[[<span class="st">'bank_name'</span>, <span class="st">'account_number'</span>, <span class="st">'currency'</span>, <span class="st">'closing_balance'</span>]].copy()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>table[<span class="st">'closing_balance'</span>] <span class="op">=</span> table[<span class="st">'closing_balance'</span>].<span class="bu">map</span>(<span class="st">'</span><span class="sc">{:,.2f}</span><span class="st">'</span>.<span class="bu">format</span>)</span>
