@@ -58,6 +58,8 @@ python -m pytest -q treasury-cashflow-simulation/tests
 - `treasury-cashflow-simulation/data/Movements/movements_YYYYMMDD.csv`
 - PostgreSQL tables: `treasury_balances`, `treasury_movements`
 
+`total_movements` in the balances excludes internal sweeps, which are recorded as movements of type `Internal Sweep`. `closing_balance` includes them, so closing = starting + total_movements + sweeps. This keeps the sweeps visible on their own (the Power BI model shows them with the `Sweep` and `Closing Balance No Sweeps` measures).
+
 ## Notes
 
 The logic is intentionally synthetic and designed for portfolio-style demonstration, not as a production treasury cash-management engine.
