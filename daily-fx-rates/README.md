@@ -39,7 +39,7 @@ The script reads existing FX history, normalizes the keys, identifies missing bu
 It has two run modes:
 
 - **Daily run** (default): works only on the last 14 days. It loads that window from the database, gets the new rates, rechecks recently filled days, and upserts only those rows. The older part of the CSV is left as it is.
-- **Full check**: reads the whole history from the database and the CSV, looks for missing business days since the start, rebuilds everything and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window (for example after the job was off for a while).
+- **Full check**: fetches the whole history from the API again and rebuilds every day from it (a rate is `raw` only when the source has it), then upserts every row. It stops if the API returns rates for under 95% of business days. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window (for example after the job was off for a while).
 
 To force a full check at any time:
 

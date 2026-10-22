@@ -18,7 +18,7 @@
     "href": "daily-fx-rates/report.html",
     "title": "Daily FX Rates — Project Report",
     "section": "",
-    "text": "A daily feed of EUR and GBP rates against USD, stored and reported automatically. The loader in src/daily_fx_rates.py fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table. Two live reports read the database and show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app and a Google Data Studio report.\n\nLive app (Streamlit)\nLive report (Google Data Studio)\nPresentation (PDF)\nPresentation (PowerPoint)\n\nThe result: one clean source of FX rates that my other reports and projects can use."
+    "text": "A daily feed of EUR, GBP and CHF rates against USD, stored and reported automatically (CHF is stored for the Treasury Simulator). The loader in src/daily_fx_rates.py fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table. Two live reports read the database and show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app and a Google Data Studio report.\n\nLive app (Streamlit)\nLive report (Google Data Studio)\nPresentation (PDF)\nPresentation (PowerPoint)\n\nThe result: one clean source of FX rates that my other reports and projects can use."
   },
   {
     "objectID": "create-date-table/report.html",
@@ -459,6 +459,6 @@
     "href": "daily-fx-rates/report.html#run-modes",
     "title": "Daily FX Rates — Project Report",
     "section": "Run modes",
-    "text": "Run modes\n\nDaily run (default): works only on the last 14 days. It loads that window from the database, gets the new rates, rechecks recently filled days, and upserts only those rows.\nFull check: reads the whole history from the database and the CSV, looks for missing business days since the start, and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window."
+    "text": "Run modes\n\nDaily run (default): works only on the last 14 days. It loads that window from the database, gets the new rates, rechecks recently filled days, and upserts only those rows.\nFull check: fetches the whole history from the API again and rebuilds every day from it, so a rate is flagged raw only when the source has it, and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window."
   }
 ]

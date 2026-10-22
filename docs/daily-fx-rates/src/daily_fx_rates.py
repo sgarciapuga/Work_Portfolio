@@ -9,11 +9,17 @@ from sqlalchemy import create_engine, inspect, text, Date
 # Load environment variables from local .env file
 load_dotenv()
 
-TARGET_CURRENCIES = ["USD", "EUR", "GBP"]
-HISTORY_START_DATE = datetime(2026, 1, 1).date()
+TARGET_CURRENCIES = ["USD", "EUR", "GBP", "CHF"]
+# Currencies fetched from the API (USD is the base and always 1.0).
+QUOTED_CURRENCIES = [c for c in TARGET_CURRENCIES if c != "USD"]
+# 2025 history is needed by the treasury simulator (its backfill starts on 1 Jan 2025).
+HISTORY_START_DATE = datetime(2025, 1, 1).date()
 QUALITY_RAW = "raw"
 QUALITY_FILLED = "filled"
 RECENT_FILLED_LOOKBACK_DAYS = 7
+# A full check stops if the API has rates for fewer business days than this
+# share (ECB holidays are about 2-3%), rather than turn real history into filled rows.
+MIN_MARKET_DAY_SHARE = 0.95
 
 # Daily runs only work on the last DAILY_WINDOW_DAYS days.
 # Once a week (and on the first run) the whole history is checked.
@@ -54,6 +60,81 @@ def _normalize_fx_frame(df):
     working = working.drop_duplicates(subset=["date", "currency"], keep="last")
 
     return working
+
+
+def _rows_from_api(rates_by_date):
+    """Turn the Frankfurter 'rates' block into fx_rates rows (USD row = 1.0 each day)."""
+    rows = []
+    for date_str, rate_dict in rates_by_date.items():
+        rows.append(
+            {"date": date_str, "currency": "USD", "fx_to_usd": 1.00, "fx_quality_flag": QUALITY_RAW}
+        )
+        for currency in QUOTED_CURRENCIES:
+            rows.append(
+                {
+                    "date": date_str,
+                    "currency": currency,
+                    "fx_to_usd": rate_dict.get(currency),
+                    "fx_quality_flag": QUALITY_RAW,
+                }
+            )
+    return rows
+
+
+def build_daily_grid(df_inputs, start_date, end_date):
+    """One row per calendar day and currency from start_date to end_date.
+
+    df_inputs holds the rates to build from: market rates from the API and, on
+    a daily run, the stored rows of the window. Days without a rate are carried
+    forward from the last earlier rate of the same currency (or back from the
+    first later one at the very start) and flagged filled. Inputs dated before
+    start_date are only used to carry forward into it.
+    """
+    inputs = _normalize_fx_frame(df_inputs)
+    first_date = min([start_date, *inputs["date"]])
+    calendar_dates = pd.date_range(start=first_date, end=end_date, freq="D").date
+    canonical_index = pd.MultiIndex.from_product(
+        [calendar_dates, TARGET_CURRENCIES], names=["date", "currency"]
+    )
+
+    grid = (
+        inputs.set_index(["date", "currency"])
+        .reindex(canonical_index)
+        .reset_index()
+        .sort_values(by=["currency", "date"])
+    )
+
+    # USD is deterministic; non-USD are gap-filled within each currency.
+    missing_before_fill = grid["fx_to_usd"].isna()
+    grid.loc[grid["currency"] == "USD", "fx_to_usd"] = 1.0
+    grid["fx_to_usd"] = grid.groupby("currency")["fx_to_usd"].transform(lambda s: s.ffill().bfill())
+    grid["fx_quality_flag"] = grid["fx_quality_flag"].fillna(QUALITY_RAW)
+    grid.loc[missing_before_fill & grid["fx_to_usd"].notna(), "fx_quality_flag"] = QUALITY_FILLED
+    grid.loc[grid["currency"] == "USD", "fx_quality_flag"] = QUALITY_RAW
+
+    return grid[grid["date"] >= start_date].reset_index(drop=True)
+
+
+def daily_window_inputs(df_stored, df_fetched, window_start):
+    """Rates a daily run builds its window from.
+
+    Filled days are worked out again from the market rates, so they pick up any
+    late correction. The first day of the window is kept whatever its flag, so
+    the window carries on from the days before it. Fetched rows win over stored ones.
+    """
+    keep = (df_stored["fx_quality_flag"] == QUALITY_RAW) | (df_stored["date"] == window_start)
+    return pd.concat([df_stored[keep], df_fetched], ignore_index=True)
+
+
+def check_api_coverage(df_fetched, start_date, end_date):
+    """Stop a full check when the API returned too little history to rebuild from."""
+    business_days = len(pd.bdate_range(start=start_date, end=end_date))
+    market_days = df_fetched.loc[df_fetched["date"] >= start_date, "date"].nunique()
+    if market_days < MIN_MARKET_DAY_SHARE * business_days:
+        raise RuntimeError(
+            f"Frankfurter API returned rates for {market_days} of {business_days} business days "
+            f"since {start_date}; refusing to rebuild the history from it."
+        )
 
 
 def _load_fx_from_db(engine, from_date=None):
@@ -152,45 +233,51 @@ def update_fx_history(force_full=False):
     # ---------------------------------------------------------
     # Determine missing date range
     # ---------------------------------------------------------
-    start_date = latest_date + timedelta(days=1)
-
-    # Detect holes on business days so we can backfill them too
-    # (whole history on a full check, last days on a daily run).
     expected_bdays = pd.bdate_range(start=history_start, end=end_date).date
-    expected_index = pd.MultiIndex.from_product(
-        [expected_bdays, TARGET_CURRENCIES], names=["date", "currency"]
-    )
 
-    missing_index = expected_index.difference(
-        pd.MultiIndex.from_frame(df_all[["date", "currency"]])
-    )
-
-    missing_business_days = sorted({idx[0] for idx in missing_index})
-
-    if missing_business_days:
-        fetch_start = min(start_date, missing_business_days[0])
-        print(
-            f"Detected {len(missing_index)} missing business-day currency rows. Backfilling from {fetch_start}..."
-        )
+    if full_check:
+        # The full check rebuilds the whole history from the API, so a row is
+        # raw only when the API has a rate for it. Stored rows are not reused:
+        # older ones may carry a wrong flag or a filled value that is out of date.
+        fetch_start = history_start
     else:
-        fetch_start = start_date
+        start_date = latest_date + timedelta(days=1)
 
-    # Re-check recently filled rows because the source may have published late data.
-    lookback_start = end_date - timedelta(days=RECENT_FILLED_LOOKBACK_DAYS)
-    recent_filled_dates = sorted(
-        set(
-            df_all.loc[
-                (df_all["fx_quality_flag"] == QUALITY_FILLED)
-                & (df_all["date"] >= lookback_start),
-                "date",
-            ]
+        # Detect holes on business days in the window so we can backfill them too.
+        expected_index = pd.MultiIndex.from_product(
+            [expected_bdays, TARGET_CURRENCIES], names=["date", "currency"]
         )
-    )
-    if recent_filled_dates:
-        fetch_start = min(fetch_start, recent_filled_dates[0])
-        print(
-            f"Rechecking {len(recent_filled_dates)} recently filled day(s) from {recent_filled_dates[0]}..."
+
+        missing_index = expected_index.difference(
+            pd.MultiIndex.from_frame(df_all[["date", "currency"]])
         )
+
+        missing_business_days = sorted({idx[0] for idx in missing_index})
+
+        if missing_business_days:
+            fetch_start = min(start_date, missing_business_days[0])
+            print(
+                f"Detected {len(missing_index)} missing business-day currency rows. Backfilling from {fetch_start}..."
+            )
+        else:
+            fetch_start = start_date
+
+        # Re-check recently filled rows because the source may have published late data.
+        lookback_start = end_date - timedelta(days=RECENT_FILLED_LOOKBACK_DAYS)
+        recent_filled_dates = sorted(
+            set(
+                df_all.loc[
+                    (df_all["fx_quality_flag"] == QUALITY_FILLED)
+                    & (df_all["date"] >= lookback_start),
+                    "date",
+                ]
+            )
+        )
+        if recent_filled_dates:
+            fetch_start = min(fetch_start, recent_filled_dates[0])
+            print(
+                f"Rechecking {len(recent_filled_dates)} recently filled day(s) from {recent_filled_dates[0]}..."
+            )
 
     if fetch_start > end_date:
         print("FX data is already up to date. Rebuilding clean history and writing outputs...")
@@ -204,7 +291,7 @@ def update_fx_history(force_full=False):
     # Fetch missing FX from Frankfurter API
     # ---------------------------------------------------------
         url = (
-            f"https://api.frankfurter.app/{start_str}..{end_str}?from=USD&to=EUR,GBP"
+            f"https://api.frankfurter.dev/v1/{start_str}..{end_str}?from=USD&to={','.join(QUOTED_CURRENCIES)}"
         )
         response = requests.get(url, timeout=30)
 
@@ -217,61 +304,20 @@ def update_fx_history(force_full=False):
 
         rates_by_date = response.json().get("rates", {})
 
-        rows = []
-        for date_str, rate_dict in rates_by_date.items():
-            rows.append(
-                {
-                    "date": date_str,
-                    "currency": "USD",
-                    "fx_to_usd": 1.00,
-                    "fx_quality_flag": QUALITY_RAW,
-                }
-            )
-            rows.append(
-                {
-                    "date": date_str,
-                    "currency": "EUR",
-                    "fx_to_usd": rate_dict.get("EUR"),
-                    "fx_quality_flag": QUALITY_RAW,
-                }
-            )
-            rows.append(
-                {
-                    "date": date_str,
-                    "currency": "GBP",
-                    "fx_to_usd": rate_dict.get("GBP"),
-                    "fx_quality_flag": QUALITY_RAW,
-                }
-            )
+        rows = _rows_from_api(rates_by_date)
 
         df_fetched = _normalize_fx_frame(pd.DataFrame(rows))
 
     # ---------------------------------------------------------
     # Build canonical daily grid and forward-fill per currency
     # ---------------------------------------------------------
-    df_raw = _normalize_fx_frame(pd.concat([df_all, df_fetched], ignore_index=True))
+    if full_check:
+        check_api_coverage(df_fetched, history_start, end_date)
+        df_inputs = df_fetched
+    else:
+        df_inputs = daily_window_inputs(df_all, df_fetched, history_start)
 
-    calendar_dates = pd.date_range(start=history_start, end=end_date, freq="D").date
-    canonical_index = pd.MultiIndex.from_product(
-        [calendar_dates, TARGET_CURRENCIES], names=["date", "currency"]
-    )
-
-    df_final = (
-        df_raw.set_index(["date", "currency"])
-        .reindex(canonical_index)
-        .reset_index()
-        .sort_values(by=["currency", "date"])
-    )
-
-    # USD is deterministic; non-USD are gap-filled across the series.
-    missing_before_fill = df_final["fx_to_usd"].isna()
-    df_final.loc[df_final["currency"] == "USD", "fx_to_usd"] = 1.0
-    df_final["fx_to_usd"] = df_final.groupby("currency")["fx_to_usd"].ffill().bfill()
-    df_final["fx_quality_flag"] = df_final["fx_quality_flag"].where(
-        df_final["fx_quality_flag"].isin([QUALITY_RAW, QUALITY_FILLED]), QUALITY_RAW
-    )
-    df_final.loc[missing_before_fill & df_final["fx_to_usd"].notna(), "fx_quality_flag"] = QUALITY_FILLED
-    df_final.loc[df_final["currency"] == "USD", "fx_quality_flag"] = QUALITY_RAW
+    df_final = build_daily_grid(df_inputs, history_start, end_date)
 
     missing_after_fill = (
         df_final[df_final["date"].isin(expected_bdays)]

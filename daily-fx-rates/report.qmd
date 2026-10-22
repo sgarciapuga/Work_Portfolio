@@ -17,7 +17,7 @@ format:
 
 # Overview
 
-A daily feed of EUR and GBP rates against USD, stored and reported automatically. The loader in [src/daily_fx_rates.py](src/daily_fx_rates.py) fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table. Two live reports read the database and show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app and a Google Data Studio report.
+A daily feed of EUR, GBP and CHF rates against USD, stored and reported automatically (CHF is stored for the Treasury Simulator). The loader in [src/daily_fx_rates.py](src/daily_fx_rates.py) fetches rates from the Frankfurter API, saves them to a CSV backup and a Neon PostgreSQL table. Two live reports read the database and show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app and a Google Data Studio report.
 
 - [Live app (Streamlit)](https://fx-rates-sergio.streamlit.app){target="_blank"}
 - [Live report (Google Data Studio)](https://datastudio.google.com/s/sC5tlwXPGVI){target="_blank"}
@@ -45,7 +45,7 @@ Four questions shaped the work:
 %%| fig-cap: "End-to-end flow: get rates, clean and fill gaps, save the CSV backup, update the database, refresh the reports."
 %%| fig-alt: "The Frankfurter API feeds a Python script that runs in GitHub Actions every day at 18:00 UTC or by hand. On every run the script saves a CSV backup back to GitHub, and on failure it sends a Slack alert. The script upserts rates into the fx_rates table in Neon PostgreSQL. A Streamlit app reads the table every morning, and Google Data Studio reads it through SQL views. Other reports and Python projects can read the same table."
 flowchart LR
-  API["<b>Frankfurter API</b><br/>daily EUR and GBP<br/>rates against USD"] --> PY
+  API["<b>Frankfurter API</b><br/>daily EUR, GBP and CHF<br/>rates against USD"] --> PY
 
   subgraph GHA["<b>GitHub Actions</b><br/>daily at 18:00 UTC"]
     PY["<b>Python script</b><br/>reads what is stored,<br/>gets the missing dates,<br/>cleans and fills gaps"]
@@ -70,7 +70,7 @@ flowchart LR
   linkStyle default stroke:#4A7F9E,stroke-width:1.5px
 ```
 
-1. **Source:** the Frankfurter API provides daily EUR and GBP rates against USD.
+1. **Source:** the Frankfurter API provides daily EUR, GBP and CHF rates against USD.
 2. **Python script:** runs inside GitHub Actions (`.github/workflows/daily_pipeline.yml`) every day at 18:00 UTC, or when started by hand. It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.
 3. **CSV backup:** saved on every run and committed back to the repository.
 4. **Database:** rows are upserted into the `fx_rates` table in Neon PostgreSQL.
@@ -81,7 +81,7 @@ If any step fails, the run stops without writing partial results and a Slack mes
 ## Run modes
 
 - **Daily run** (default): works only on the last 14 days. It loads that window from the database, gets the new rates, rechecks recently filled days, and upserts only those rows.
-- **Full check**: reads the whole history from the database and the CSV, looks for missing business days since the start, and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window.
+- **Full check**: fetches the whole history from the API again and rebuilds every day from it, so a rate is flagged `raw` only when the source has it, and upserts every row. It runs automatically every Monday, on the first run (no table or no CSV yet), and when the stored data does not cover the daily window.
 
 # Decisions I made
 
@@ -101,6 +101,7 @@ Getting the data was the easy part. Making it reliable was the real work. I log 
 | Days with no data | Some days were missing from the data completely. | Every Monday the script checks the whole history for missing days and loads them again. Daily runs check the last 14 days. |
 | Duplicate data | The same date and currency appeared more than once. | A unique key on date and currency. Existing rows are updated, not added again. |
 | Wrong values | Some days were filled before the real rate arrived, so the value was wrong. | Filled rates from the last 7 days are checked again on every run, and replaced when the real rate arrives. |
+| Wrong flags on old rows | Weekends and holidays from January to August 2026 were flagged `raw`, as if they were market rates. | The weekly full check now rebuilds the whole history from the source, so the flags cannot drift. |
 
 # How I worked with AI
 
@@ -187,50 +188,60 @@ or set the environment variable `FX_FULL_CHECK=1`.
 
 # Example
 
+The CSV stores units of each currency per 1 USD. The reports turn them into market pairs: GBP/USD and EUR/USD (dollars per pound and per euro), and GBP/EUR (euros per pound). The latest days:
+
 ```{python}
 import pandas as pd
+import matplotlib.pyplot as plt
 from pathlib import Path
 from IPython.display import display
 
 # Quarto runs from the project folder; a manual run may start at the repo root.
 candidates = [Path('data/fx_rates.csv'), Path('daily-fx-rates/data/fx_rates.csv')]
-p = next((c for c in candidates if c.exists()), candidates[0])
-if p.exists():
-    display(pd.read_csv(p).tail())
-else:
-    print('No fx_rates.csv present; creating a small sample for demonstration:')
-    sample = pd.DataFrame({
-        'date':['2026-08-06','2026-08-07','2026-08-08'],
-        'currency':['USD','EUR','GBP'],
-        'fx_to_usd':[1.0,0.91,0.78]
-    })
-    display(sample)
+p = next((c for c in candidates if c.exists()), None)
+if p is None:
+    raise FileNotFoundError('No daily-fx-rates/data/fx_rates.csv found; run the loader first.')
+
+rates = pd.read_csv(p, parse_dates=['date'])
+wide = rates.pivot(index='date', columns='currency', values='fx_to_usd')
+flags = rates.pivot(index='date', columns='currency', values='fx_quality_flag')
+pairs = pd.DataFrame({
+    'GBP/USD': 1 / wide['GBP'],
+    'EUR/USD': 1 / wide['EUR'],
+    'GBP/EUR': wide['EUR'] / wide['GBP'],
+})
+pairs['Rate type'] = ((flags['EUR'] == 'raw') & (flags['GBP'] == 'raw')).map({True: 'market', False: 'filled'})
+
+latest = pairs.tail(7).copy()
+latest.index = latest.index.strftime('%a %d %b %Y')
+latest.index.name = 'Date'
+display(latest.style.format('{:.4f}', subset=['GBP/USD', 'EUR/USD', 'GBP/EUR']))
 ```
 
-```{python}
-# Visual: simple FX time series example (synthetic if CSV missing)
-import matplotlib.pyplot as plt
-if p.exists():
-    df = pd.read_csv(p, parse_dates=['date'])
-    # pivot to wide if long
-    df_wide = df.pivot(index='date', columns='currency', values='fx_to_usd')
-else:
-    df_wide = pd.DataFrame({
-        'date':['2026-08-06','2026-08-07','2026-08-08'],
-        'USD':[1.0,1.0,1.0],
-        'EUR':[0.905,0.907,0.91],
-        'GBP':[0.775,0.78,0.78]
-    }).set_index('date')
+This year's performance, one panel per pair:
 
-df_wide.plot(figsize=(8,3))
-plt.title('FX to USD' if p.exists() else 'FX to USD (sample)')
-plt.xlabel('Date')
-plt.tight_layout()
+```{python}
+# Same colour per pair as the Streamlit app.
+colors = {'GBP/USD': '#3B78E7', 'EUR/USD': '#F08C2E', 'GBP/EUR': '#00939E'}
+this_year = pairs.loc[str(pairs.index.max().year)]
+
+fig, axes = plt.subplots(1, 3, figsize=(10, 3), sharex=True)
+for ax, pair in zip(axes, colors):
+    series = this_year[pair]
+    ax.plot(series.index, series, color=colors[pair], linewidth=2)
+    change = series.iloc[-1] / series.iloc[0] - 1
+    ax.set_title(f'{pair}  {series.iloc[-1]:.4f}  ({change:+.1%} this year)', fontsize=10, color='#1F3A4D', loc='left')
+    ax.grid(axis='y', color='#E3E8EC', linewidth=0.8)
+    ax.tick_params(colors='#5B6770', labelsize=8)
+    for side in ['top', 'right']:
+        ax.spines[side].set_visible(False)
+    for side in ['left', 'bottom']:
+        ax.spines[side].set_color('#C9D1D7')
+    ax.xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter('%b'))
+fig.tight_layout()
 plt.show()
 ```
 
 # Notes
 
 The loader performs an idempotent upsert, keeps `fx_quality_flag` values in both CSV and Neon, and rechecks recently filled rows so provisional data can be promoted to `raw` once the source publishes it.
-
-The `filled` flag was introduced partway through the project. Rows loaded before mid-August 2026 carry `raw`, including weekends; rows from then on are flagged as described above.
