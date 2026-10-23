@@ -30,7 +30,7 @@ def history_dir(tmp_path_factory):
 
 
 @pytest.mark.parametrize("page", ["pages/overview.py", "pages/balance_sheet.py", "pages/market_data.py",
-                                  "pages/positions.py", "pages/activity.py"])
+                                  "pages/positions.py", "pages/activity.py", "pages/today.py"])
 def test_pages_with_history(page, history_dir, monkeypatch):
     monkeypatch.setenv("TSIM_DATA_DIR", str(history_dir))
     monkeypatch.setenv("TSIM_NO_DB", "1")
@@ -47,3 +47,20 @@ def test_pages_with_history(page, history_dir, monkeypatch):
         assert "TRS NAV (USD)" in labels
         nav = [m.value for m in at.metric if m.label == "TRS NAV (USD)"][0]
         assert nav.startswith("USD 20")
+
+
+def test_today_runs_your_day(history_dir, monkeypatch):
+    monkeypatch.setenv("TSIM_DATA_DIR", str(history_dir))
+    monkeypatch.setenv("TSIM_NO_DB", "1")
+    monkeypatch.syspath_prepend(str(APP_DIR))
+    monkeypatch.chdir(APP_DIR)
+    import streamlit as st
+
+    st.cache_data.clear()
+    at = st_testing.AppTest.from_file(str(APP_DIR / "streamlit_app.py"), default_timeout=120).run()
+    at.switch_page("pages/today.py").run()
+    at.number_input[0].set_value(0.0)          # skip / change the first decision
+    at.button[0].click().run()                 # Run my day
+    assert not at.exception, at.exception
+    assert any("Your day against the autopilot" in m.value for m in at.markdown)
+    assert len(at.dataframe) >= 2               # start of day + the comparison

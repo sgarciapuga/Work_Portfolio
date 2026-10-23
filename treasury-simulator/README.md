@@ -13,7 +13,7 @@ The full design (decisions, tier map, balance sheet, daily cycle, data model, KP
 
 ## Status
 
-Phases 1 and 2 are done and Phase 3a (the autopilot) is built:
+Phases 1 and 2 are done and Phase 3 (the autopilot and the Today page) is built:
 
 - static data for the made-up Aldmere Group, the `tsim` schema for Neon, and an app with the page structure
 - a daily engine that rebuilds the history from 1 Jan 2025:
@@ -34,6 +34,12 @@ Phases 1 and 2 are done and Phase 3a (the autopilot) is built:
   - a Positions page: MMFs, IC term deposits, FX deal blotter, 13-week maturity ladder
   - the treasurer's log (`activity`): one plain-English line per decision, with the autopilot's reason, and per scheduled event (settlements, maturities, interest); an Activity page shows each day's group flows, actions, events and end-of-day check
   - the plan (`activity_plan`): every run also plays the next 5 business days ahead, holding the latest rates, so the Activity page shows what the autopilot will do next and the group flows behind it
+- Phase 3b: the Today page (`src/tsim/whatif.py`), where you play treasurer for a day:
+  - today (the day after the last closed day, rates held) or a replay of any past day (the real rates that followed)
+  - the start-of-day position, the group flows due, the entities' FX requests and the IV buffer
+  - each autopilot proposal (covers, spot, deposits, invest / redeem, swaps) to accept, re-size or skip, plus your own spot deals; only what is on the form happens on your day, and the autopilot takes over the next day
+  - your day against the autopilot's over 1 week or 1 month: NAV, interest and FX P&L, largest open FX, days outside tolerance, overdrafts, idle cash, and the loss on an FX stress you choose
+  - the app rebuilds the history itself for this (about 4 seconds per day, then under a second per comparison)
 
 | Phase | Content | Status |
 |---|---|---|
@@ -41,7 +47,7 @@ Phases 1 and 2 are done and Phase 3a (the autopilot) is built:
 | 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Done |
 | 2.1 | Market data page: FX rates, overnight rates, differentials, implied forwards | Done |
 | 3a | Autopilot: FX conversion, cover and flattening, swaps, IC term deposits, MTM; treasurer's log; Positions and Activity pages | Built |
-| 3b | Today page: take a day's decisions by hand and compare them with the autopilot | Next |
+| 3b | Today page: take a day's decisions by hand and compare them with the autopilot | Built |
 | 4 | IV and facilities: calls and distributions, USD 50m buffer, drawings | |
 | 5 | Forecasting: downside / base / upside, 13-week view, accuracy | |
 | 6 | Scenarios, bank accounts, Learn page | |
@@ -70,6 +76,7 @@ treasury-simulator/
 │   ├── market.py           # FX in market convention, implied forwards, differentials
 │   ├── autopilot.py        # the daily decisions, as rules (FX, IC deposits, investing, swaps)
 │   ├── engine.py           # the daily engine (bookkeeping, interest, MTM, NAV)
+│   ├── whatif.py           # play treasurer: one day with your decisions against the autopilot's
 │   └── db.py               # schema, static data, engine outputs in Neon
 ├── app/                    # Streamlit app (10 pages)
 └── tests/                  # what each file checks: tests/README.md

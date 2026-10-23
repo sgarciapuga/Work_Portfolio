@@ -512,30 +512,43 @@ class Engine:
 
     # ---------------- run ----------------
     def run(self):
-        d = self.start
-        while d <= self.end:
-            opening_ic = dict(self.ic)
-            opening_cash = {**self.cash, "CHF-DEP": self.inv["CHF"]}
-            settled, posted, transfers = defaultdict(float), defaultdict(float), defaultdict(float)
-            self._group_flows(d)
-            self._zero_balance(d, settled)
-            self._settle_fx(d, transfers)
-            matured = self._mature_terms(d, transfers)
-            self._place_terms(d, matured, transfers)
-            for ccy in config.CURRENCIES[1:]:
-                self._invest_step(d, ccy)
-            self._fx_decisions(d, transfers)   # after investing: the flatten counts today's MMF income
-            for ccy in config.CURRENCIES[1:]:
-                self._funding_swap(d, ccy, transfers)
-            self._invest_step(d, "USD")        # last: swaps move USD
-            pnl = self._accrue(d)
-            mtm = self._revalue_fx(d)
-            if _is_month_end(d):
-                self._post_ic_interest(d, posted)
-            self._record_pnl(d, pnl)
-            self._record(d, opening_ic, settled, posted, transfers, opening_cash, mtm)
-            d += timedelta(days=1)
+        self.run_until(self.end)
         return self.results()
+
+    def run_until(self, until):
+        """Simulate the days from the next one not yet run up to `until` (inclusive). The engine can stop
+        and go on later: the what-if tools stop it on the eve of a day and continue copies of it."""
+        d = getattr(self, "next_day", self.start)
+        while d <= until:
+            self._run_day(d)
+            d += timedelta(days=1)
+        self.next_day = d
+
+    def clear_outputs(self):
+        """Forget the rows recorded so far (the state stays): a continued copy then returns only its new days."""
+        self.out = defaultdict(list)
+
+    def _run_day(self, d):
+        opening_ic = dict(self.ic)
+        opening_cash = {**self.cash, "CHF-DEP": self.inv["CHF"]}
+        settled, posted, transfers = defaultdict(float), defaultdict(float), defaultdict(float)
+        self._group_flows(d)
+        self._zero_balance(d, settled)
+        self._settle_fx(d, transfers)
+        matured = self._mature_terms(d, transfers)
+        self._place_terms(d, matured, transfers)
+        for ccy in config.CURRENCIES[1:]:
+            self._invest_step(d, ccy)
+        self._fx_decisions(d, transfers)   # after investing: the flatten counts today's MMF income
+        for ccy in config.CURRENCIES[1:]:
+            self._funding_swap(d, ccy, transfers)
+        self._invest_step(d, "USD")        # last: swaps move USD
+        pnl = self._accrue(d)
+        mtm = self._revalue_fx(d)
+        if _is_month_end(d):
+            self._post_ic_interest(d, posted)
+        self._record_pnl(d, pnl)
+        self._record(d, opening_ic, settled, posted, transfers, opening_cash, mtm)
 
     def results(self):
         tables = {name: pd.DataFrame(rows) for name, rows in self.out.items()}

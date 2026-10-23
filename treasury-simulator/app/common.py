@@ -204,7 +204,9 @@ def sidebar():
             st.session_state["as_of_day"] = st.session_state.pop("goto_day")
         if data:
             days = sorted(data["nav_daily"]["nav_date"].unique())
-            st.date_input("As-of date", value=days[-1], min_value=days[0], max_value=days[-1], key="as_of_day")
+            if st.session_state.get("as_of_day") is None:   # default through session state, not value=, so the
+                st.session_state["as_of_day"] = days[-1]     # pages' buttons can move it without a warning
+            st.date_input("As-of date", min_value=days[0], max_value=days[-1], key="as_of_day")
         else:
             st.date_input("As-of date", value=config.HISTORY_START, disabled=True, help="No history yet.")
         st.selectbox("Group profile", ["Investment group", "Corporate group (later)"], key="profile",
