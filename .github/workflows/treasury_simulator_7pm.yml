@@ -29,7 +29,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5.4.0
         with:
-          python-version: '3.11'
+          python-version: '3.14.6'
 
       - name: Install dependencies
         run: |
@@ -38,7 +38,8 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m pytest -q treasury-simulator/tests --ignore=treasury-simulator/tests/test_app.py
+          # App tests need streamlit and run locally only (env_1)
+          python -m pytest -q treasury-simulator/tests --ignore=treasury-simulator/tests/test_app.py --ignore=treasury-simulator/tests/test_app_with_history.py
 
       - name: Create schema and load static data (safe to re-run)
         env:
