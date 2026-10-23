@@ -15,10 +15,10 @@ hist, source = results()
 if not hist:
     no_history_message()
     st.stop()
-deals, pos = hist["fx_deal"], hist["position"]
+deals, pos = hist.get("fx_deal", pd.DataFrame()), hist.get("position", pd.DataFrame())
 if "deal_type" not in deals.columns or "position_type" not in pos.columns:
-    st.info("Positions arrive with the Phase 3 engine: run `python treasury-simulator/run_daily.py` "
-            "or wait for the daily workflow.")
+    st.info("No positions loaded. If the app was just updated, reboot it (Manage app → Reboot app) so it "
+            "loads the new tables; otherwise wait for the daily workflow.")
     st.stop()
 
 day = as_of()

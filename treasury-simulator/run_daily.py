@@ -9,6 +9,8 @@ Run from the repository root:
 
 The engine always rebuilds the history from 1 Jan 2025 (it is quick and
 deterministic). On Mondays, and with --full, the whole history is stored.
+It then plans the next business days (the autopilot's expected actions, holding
+the latest rates) into data/activity_plan.csv and tsim.activity_plan.
 FX rates come from the Daily FX Rates CSV (updated daily by its own workflow).
 """
 
@@ -23,7 +25,7 @@ PROJECT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT / "src"))
 
 from tsim import config  # noqa: E402
-from tsim.engine import fx_daily, run_engine  # noqa: E402
+from tsim.engine import fx_daily, plan_ahead, run_engine  # noqa: E402
 from tsim.rates import daily_rates, fetch_all  # noqa: E402
 from tsim.static_data import load_static, validate  # noqa: E402
 
@@ -77,6 +79,7 @@ def main():
     fx = fx_daily(pd.read_csv(FX_CSV), config.HISTORY_START, end)
     on = daily_rates(rates, config.HISTORY_START, end)
     results = run_engine(static, on, fx, config.HISTORY_START, end)
+    results["activity_plan"] = plan_ahead(static, on, fx, config.HISTORY_START, end)
 
     DATA.mkdir(exist_ok=True)
     for name, df in results.items():

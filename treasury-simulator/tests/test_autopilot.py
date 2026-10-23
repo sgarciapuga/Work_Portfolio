@@ -7,7 +7,7 @@ import pytest
 
 from tsim import config
 from tsim.calendars import add_joint_business_days, add_months
-from tsim.engine import run_engine
+from tsim.engine import plan_ahead, run_engine
 from tsim.market import deal_rate
 from tsim.static_data import load_static
 
@@ -73,7 +73,30 @@ def test_log_has_a_line_for_every_decision_with_its_reason(result):
     jan24 = log[log["activity_date"] == date(2025, 1, 24)]
     assert jan24["description"].str.contains("TRS buys GBP 370,000 forward").any()
     settled = log[(log["activity_date"] == date(2025, 1, 31)) & (log["kind"] == "event")]
-    assert settled["description"].str.contains("settled").sum() == 4   # 2 internal + 2 external forwards
+    assert settled["description"].str.contains("settles").sum() == 4   # 2 internal + 2 external forwards
+
+
+def test_history_does_not_change_when_more_days_are_simulated():
+    # the autopilot projects up to 3 months ahead: a later run must take the same decisions on past days
+    short = run_engine(load_static(), _flat(ON, date(2025, 3, 31)), _flat(FX, date(2025, 3, 31)), START,
+                       date(2025, 3, 31))
+    long = run_engine(load_static(), _flat(ON), _flat(FX), START, END)
+    for name, col in [("activity", "activity_date"), ("cash_txn", "value_date"), ("nav_daily", "nav_date")]:
+        a, b = short[name], long[name]
+        b = b[b[col] <= date(2025, 3, 31)].reset_index(drop=True)
+        pd.testing.assert_frame_equal(a.reset_index(drop=True), b, check_dtype=False)
+
+
+def test_plan_shows_the_next_business_days():
+    end = date(2025, 1, 21)
+    plan = plan_ahead(load_static(), _flat(ON), _flat(FX), START, end)
+    assert (plan["activity_date"] > end).all() and (plan["plan_date"] == end).all()
+    assert plan["activity_date"].max() <= add_joint_business_days(end, config.PLAN_BUSINESS_DAYS, config.CURRENCIES)
+    # the month-end forwards are booked on 24 Jan, inside the plan
+    assert plan["description"].str.contains("TRS buys GBP 370,000 forward").any()
+    # the group flows behind the actions are in the plan too, and each day's lines are numbered once
+    assert (plan["category"] == "Group flows").any()
+    assert not plan.duplicated(["activity_date", "seq"]).any()
 
 
 # ---------------- MTM ----------------

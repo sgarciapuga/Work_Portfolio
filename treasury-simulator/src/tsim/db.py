@@ -159,6 +159,8 @@ def save_engine_results(engine, results, rates=None, from_date=None):
         if from_date is None:  # whole history: positions a rule change no longer creates must go too
             conn.execute(text(f'DELETE FROM {SCHEMA}."position"'))
         counts["position"] = upsert(conn, results["position"], "position", ["position_id"])
+        if "activity_plan" in results:   # the plan is made fresh every run: replace it whole
+            counts["activity_plan"] = replace_window(conn, results["activity_plan"], "activity_plan", "activity_date")
         if rates is not None:
             counts["ir_rate"] = upsert(conn, rates, "ir_rate", ["rate_date", "currency", "tenor"])
     return counts

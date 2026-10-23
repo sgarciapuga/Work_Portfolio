@@ -270,3 +270,19 @@ CREATE TABLE IF NOT EXISTS tsim.activity (
     reason         TEXT,                       -- why the autopilot did it (actions only)
     PRIMARY KEY (activity_date, seq)
 );
+
+-- The autopilot's plan for the next business days (same lines as the log), made fresh every run.
+CREATE TABLE IF NOT EXISTS tsim.activity_plan (
+    plan_date      DATE NOT NULL,              -- the last simulated day, when the plan was made
+    activity_date  DATE NOT NULL,
+    seq            INTEGER NOT NULL,
+    kind           TEXT NOT NULL CHECK (kind IN ('action', 'event')),
+    category       TEXT NOT NULL,
+    entity_code    TEXT,
+    currency       TEXT,
+    amount         NUMERIC(18, 2),
+    ref            TEXT,
+    description    TEXT NOT NULL,
+    reason         TEXT,
+    PRIMARY KEY (activity_date, seq)
+);

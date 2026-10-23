@@ -91,3 +91,9 @@ FX_SWAP_ROUNDING = 100_000
 FX_BANK = "BKA"                      # TRS deals external FX with its main bank
 # Market quoting order: the first currency of a pair is the base (EUR/USD, GBP/USD, USD/CHF, GBP/CHF)
 FX_PAIR_PRIORITY = ["EUR", "GBP", "USD", "CHF"]
+
+# Scheduled flows are generated this far beyond the last simulated day, so the autopilot's projections
+# (3-month deposits, 5-day look-ahead) see the same future on every run and the history never changes.
+PROJECTION_HORIZON_DAYS = 190
+# The plan: what the autopilot expects to do over the next business days, holding the latest rates
+PLAN_BUSINESS_DAYS = LOOKAHEAD_BUSINESS_DAYS

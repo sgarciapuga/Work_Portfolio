@@ -95,7 +95,9 @@ class Engine:
         acc = static["accounts"]
         self.entity_accounts = acc[(acc["entity_code"] != "TRS") & (acc["account_type"] == "operating")]
         self.account_of = {(r.entity_code, r.currency): r.account_id for r in self.entity_accounts.itertuples()}
-        self.flows = expand_schedule(static["fee_schedule"], start, end, vary=vary)
+        # beyond `end` too: the autopilot projects ahead; only flows up to `end` are booked
+        self.flows = expand_schedule(static["fee_schedule"], start, end + timedelta(days=config.PROJECTION_HORIZON_DAYS),
+                                     vary=vary)
         self.basis = config.DAY_COUNT_BASIS
         self.out = defaultdict(list)
         self._seq = 0
@@ -196,8 +198,8 @@ class Engine:
         if log:
             where = f"on {t['counterparty']}'s IC current accounts" if t["is_internal"] else "on TRS's bank accounts"
             leg = "" if t["leg"] == "single" else f" ({t['leg']} leg)"
-            self._log(d, "event", "FX", f"{t['deal_id']}{leg} settled {where}: TRS received {t['buy_ccy']} "
-                      f"{t['buy_amount']:,.0f} and paid {t['sell_ccy']} {t['sell_amount']:,.0f}.",
+            self._log(d, "event", "FX", f"{t['deal_id']}{leg} settles {where}: TRS receives {t['buy_ccy']} "
+                      f"{t['buy_amount']:,.0f} and pays {t['sell_ccy']} {t['sell_amount']:,.0f}.",
                       entity=t["counterparty"] if t["is_internal"] else None, ref=t["deal_id"])
         for ccy, amount in self.ticket_legs(t):
             if t["is_internal"]:
@@ -271,8 +273,8 @@ class Engine:
                 sign = 1 if p["position_type"] == "IC_DEPOSIT" else -1
                 self.ic[(p["counterparty"], p["currency"])] += sign * amount
                 transfers[(p["counterparty"], p["currency"])] += sign * amount
-                self._log(d, "event", "Deposits", f"{pid} matured: {p['currency']} {amount:,.0f} (principal "
-                          f"{p['principal']:,.0f} + interest {p['accrued']:,.0f}) back on {p['counterparty']}'s "
+                self._log(d, "event", "Deposits", f"{pid} matures: {p['currency']} {amount:,.0f} (principal "
+                          f"{p['principal']:,.0f} + interest {p['accrued']:,.0f}) goes back on {p['counterparty']}'s "
                           "on-call account.", entity=p["counterparty"], ccy=p["currency"], amount=amount, ref=pid)
                 p["accrued"], p["status"] = 0.0, "repaid"
                 matured.add((p["counterparty"], p["currency"]))
@@ -328,7 +330,7 @@ class Engine:
             self._txn(d, config.TRS_MAIN_ACCOUNT[ccy], code, ccy, amt, config.INVESTMENT_ACCOUNT[ccy],
                       position=config.INVESTMENT_ACCOUNT[ccy])
             months = ", ".join(f"{pd.Timestamp(year=y, month=m, day=1):%b %Y}" for _, (y, m) in sorted(due))
-            self._log(d, "event", "Interest", f"Received {ccy} {amt:,.0f} interest on "
+            self._log(d, "event", "Interest", f"TRS receives {ccy} {amt:,.0f} interest on "
                       f"{config.INVESTMENT_ACCOUNT[ccy]} for {months} (paid on business day "
                       f"{config.MMF_INTEREST_PAY_BD}).", ccy=ccy, amount=amt, ref=config.INVESTMENT_ACCOUNT[ccy])
 
@@ -346,7 +348,7 @@ class Engine:
         self.inv[ccy] += excess
         account = config.INVESTMENT_ACCOUNT[ccy]
         self._txn(d, config.TRS_MAIN_ACCOUNT[ccy], sub if excess > 0 else red, ccy, -excess, account, position=account)
-        self._log(d, "action", "Cash", f"{'Invested' if excess > 0 else 'Redeemed'} {ccy} {abs(excess):,.0f} "
+        self._log(d, "action", "Cash", f"TRS {'invests' if excess > 0 else 'redeems'} {ccy} {abs(excess):,.0f} "
                   f"{'in' if excess > 0 else 'from'} {account}.", reason, None, ccy, excess, account)
 
     def _interest_items(self, d):
@@ -399,9 +401,9 @@ class Engine:
             self.ic_accrued[key] = 0.0
         for ccy, amt in sorted(by_ccy.items()):
             if abs(amt) >= 0.5:
-                self._log(d, "event", "Interest", f"Month end: net IC interest of {ccy} {amt:+,.0f} posted to the "
-                          "entities' current accounts (+ = TRS pays).", ccy=ccy, amount=amt)
-        self._log(d, "event", "Interest", f"Month end: USD {self.iv_accrued:,.0f} interest added to the IV deposit "
+                self._log(d, "event", "Interest", f"Month end: net IC interest of {ccy} {amt:+,.0f} is posted to "
+                          "the entities' current accounts (+ = TRS pays).", ccy=ccy, amount=amt)
+        self._log(d, "event", "Interest", f"Month end: USD {self.iv_accrued:,.0f} interest is added to the IV deposit "
                   f"({IV_DEPOSIT_ID}).", entity="IV", ccy="USD", amount=self.iv_accrued, ref=IV_DEPOSIT_ID)
         self.iv_dep += self.iv_accrued
         self.iv_accrued = 0.0
@@ -566,3 +568,32 @@ class Engine:
 
 def run_engine(static, on_rates, fx, start, end, vary=True):
     return Engine(static, on_rates, fx, start, end, vary=vary).run()
+
+
+def plan_ahead(static, on_rates, fx, start, end, vary=True):
+    """The autopilot's plan: what it expects to do on the business days after `end`.
+
+    Runs the engine on past `end` for config.PLAN_BUSINESS_DAYS joint business days, holding the
+    last FX and overnight rates, and returns those days' log lines (activity columns plus plan_date,
+    the day the plan was made). The scheduled flows are known; rates are not, so the real actions
+    can differ when rates move. The group flows due on those days come first, as the cause of
+    most of the actions.
+    """
+    plan_end = add_joint_business_days(end, config.PLAN_BUSINESS_DAYS, config.CURRENCIES)
+    days = pd.date_range(end + timedelta(days=1), plan_end).date
+    hold = lambda df: pd.concat([df.loc[:end], pd.DataFrame([df.loc[end]] * len(days), index=days)])  # noqa: E731
+    eng = Engine(static, hold(on_rates), hold(fx), start, plan_end, vary=vary)
+    log = eng.run()["activity"]
+    names = static["flow_codes"].set_index("flow_code")["description"]
+    flows = eng.flows[(eng.flows["value_date"] > end) & (eng.flows["value_date"] <= plan_end)]
+    due = pd.DataFrame([{
+        "activity_date": f.value_date, "seq": 0, "kind": "event", "category": "Group flows",
+        "entity_code": f.entity_code, "currency": f.currency, "amount": round(f.amount, 2), "ref": f.schedule_id,
+        "description": f"{f.entity_code} {'receives' if f.amount > 0 else 'pays'} {f.currency} {abs(f.amount):,.0f}: "
+                       f"{names[f.flow_code][0].lower() + names[f.flow_code][1:]}.", "reason": None}
+        for f in flows.itertuples()], columns=ACTIVITY_COLUMNS)
+    plan = pd.concat([due, log[log["activity_date"] > end]], ignore_index=True)
+    plan = plan.sort_values("activity_date", kind="stable").reset_index(drop=True)
+    plan["seq"] = plan.groupby("activity_date").cumcount() + 1
+    plan.insert(0, "plan_date", end)
+    return plan

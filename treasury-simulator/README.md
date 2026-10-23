@@ -33,6 +33,7 @@ Phases 1 and 2 are done and Phase 3a (the autopilot) is built:
   - FX deals valued daily at MTM (undiscounted); the P&L splits FX revaluation from FX deal MTM
   - a Positions page: MMFs, IC term deposits, FX deal blotter, 13-week maturity ladder
   - the treasurer's log (`activity`): one plain-English line per decision, with the autopilot's reason, and per scheduled event (settlements, maturities, interest); an Activity page shows each day's group flows, actions, events and end-of-day check
+  - the plan (`activity_plan`): every run also plays the next 5 business days ahead, holding the latest rates, so the Activity page shows what the autopilot will do next and the group flows behind it
 
 | Phase | Content | Status |
 |---|---|---|

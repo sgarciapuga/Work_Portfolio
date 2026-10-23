@@ -8,6 +8,7 @@ from common import as_of, config, money, no_history_message, page_header, result
 
 KIND_COLORS = {"Treasurer's actions": "#2a78d6", "Scheduled events": "#eb6834"}   # categorical slots 1-2
 KIND_OF = {"action": "Treasurer's actions", "event": "Scheduled events"}
+PLAN_LABEL, PLAN_COLOR = "Planned (autopilot)", "#1baf7a"                         # categorical slot 3
 
 page_header("Activity", 1, "The treasurer's log: what happened each day, what the autopilot decided and why.")
 
@@ -15,31 +16,39 @@ hist, source = results()
 if not hist:
     no_history_message()
     st.stop()
-act = hist["activity"]
-if "description" not in act.columns:
-    st.info("The treasurer's log arrives with the next engine run: run `python treasury-simulator/run_daily.py` "
-            "or wait for the daily workflow.")
+act = hist.get("activity", pd.DataFrame())
+if "description" not in act.columns or "cash_txn" not in hist:
+    st.info("No treasurer's log loaded. If the app was just updated, reboot it (Manage app → Reboot app) so it "
+            "loads the new tables; otherwise wait for the daily workflow.")
     st.stop()
 
 day = as_of()
 first, last = min(hist["nav_daily"]["nav_date"]), max(hist["nav_daily"]["nav_date"])
+plan = hist.get("activity_plan", pd.DataFrame())
+plan = plan[plan["activity_date"] > last] if "description" in plan.columns else plan.iloc[0:0]
 action_days = sorted(set(act.loc[act["kind"] == "action", "activity_date"]))
-prev_day = max((d for d in action_days if d < day), default=None)
-next_day = min((d for d in action_days if d > day), default=None)
+prev_active = max((d for d in action_days if d < day), default=None)
+# no later day with a decision: the button still reaches the latest simulated day
+next_active = min((d for d in action_days if d > day), default=last if day < last else None)
 
 
 def go_to(d):
-    st.session_state["goto_day"] = d
+    st.session_state["goto_day"] = min(max(d, first), last)   # the sidebar date stays inside the history
 
 
 # ---------------- day navigation ----------------
-c1, c2, c3 = st.columns([1, 3, 1], vertical_alignment="center")
-c1.button("◀ Previous active day", on_click=go_to, args=(prev_day,), disabled=prev_day is None, width="stretch")
-c2.markdown(f"<h3 style='text-align:center;margin:0'>{day:%A %d %B %Y}</h3>", unsafe_allow_html=True)
-c3.button("Next active day ▶", on_click=go_to, args=(next_day,), disabled=next_day is None, width="stretch")
+c1, c2, c3, c4, c5 = st.columns([1.3, 1, 3, 1, 1.3], vertical_alignment="center")
+c1.button("◀◀ Previous active day", on_click=go_to, args=(prev_active,), disabled=prev_active is None,
+          width="stretch")
+c2.button("◀ Day before", on_click=go_to, args=(day - timedelta(days=1),), disabled=day <= first, width="stretch")
+c3.markdown(f"<h3 style='text-align:center;margin:0'>{day:%A %d %B %Y}</h3>", unsafe_allow_html=True)
+c4.button("Day after ▶", on_click=go_to, args=(day + timedelta(days=1),), disabled=day >= last, width="stretch")
+c5.button("Next active day ▶▶" if next_active != last or last in action_days else "Latest day ▶▶",
+          on_click=go_to, args=(next_active,), disabled=next_active is None, width="stretch")
 
 # ---------------- activity strip ----------------
-start, end = max(first, day - timedelta(days=60)), min(last, day + timedelta(days=30))
+plan_end = max(plan["activity_date"]) if len(plan) else last
+start, end = max(first, day - timedelta(days=60)), min(plan_end, day + timedelta(days=30))
 window = act[(act["activity_date"] >= start) & (act["activity_date"] <= end)]
 days = pd.date_range(start, end).date
 fig = go.Figure()
@@ -47,6 +56,11 @@ for kind, label in KIND_OF.items():
     counts = window[window["kind"] == kind].groupby("activity_date").size().reindex(days, fill_value=0)
     fig.add_trace(go.Bar(x=list(days), y=counts.values, name=label, marker_color=KIND_COLORS[label],
                          hovertemplate=f"%{{x|%a %d %b %Y}}<br>{label}: %{{y}}<extra></extra>"))
+if len(plan) and end > last:
+    counts = plan.groupby("activity_date").size().reindex(days, fill_value=0)
+    fig.add_trace(go.Bar(x=list(days), y=counts.values, name=PLAN_LABEL, marker_color=PLAN_COLOR,
+                         marker_pattern_shape="/",
+                         hovertemplate=f"%{{x|%a %d %b %Y}}<br>{PLAN_LABEL}: %{{y}}<extra></extra>"))
 fig.add_vline(x=day, line=dict(width=1, color="#52514e", dash="dot"))
 fig.update_layout(barmode="stack", bargap=0.15, height=180, margin=dict(l=10, r=10, t=10, b=10),
                   legend=dict(orientation="h", y=1.25, traceorder="normal"), yaxis=dict(title=None, dtick=2),
@@ -55,12 +69,13 @@ event = st.plotly_chart(fig, theme="streamlit", config={"displayModeBar": False}
                         selection_mode="points", key=f"strip-{day}")
 picked = [p["x"] for p in (event.selection.points if event else [])]
 if picked:
-    target = pd.to_datetime(picked[0]).date()
+    target = min(max(pd.to_datetime(picked[0]).date(), first), last)   # a planned bar opens the latest day
     if target != day:
         go_to(target)
         st.rerun()
-st.caption("Entries per day around the as-of date (dotted line). Click a bar to open that day; the buttons skip to "
-           "the previous or next day with a decision.")
+st.caption("Entries per day around the as-of date (dotted line); hatched bars are the autopilot's plan for the coming "
+           "business days. Click a bar to open that day; the outer buttons skip to the previous or next day with a "
+           "decision.")
 
 # ---------------- the day ----------------
 today = act[act["activity_date"] == day].sort_values("seq")
@@ -81,6 +96,23 @@ elif today.empty and flows.empty:
     st.info("A quiet day: no group flows, nothing scheduled and nothing for the treasurer to do.")
 else:
     st.markdown(f"**{', '.join(parts)}.**")
+
+# ---------------- the plan (latest day only) ----------------
+if day == last and len(plan):
+    with st.container(border=True):
+        st.markdown("#### Coming up: the autopilot's plan")
+        st.caption(f"What the autopilot expects to do over the next {config.PLAN_BUSINESS_DAYS} business days, from "
+                   f"the known schedule and holding the FX and interest rates of {last:%d %b}. It is planned again "
+                   "every evening, so the actions can change when rates move.")
+        for d, rows in plan.sort_values(["activity_date", "seq"]).groupby("activity_date"):
+            st.markdown(f"**{d:%A %d %B}**")
+            for r in rows.itertuples():
+                tag = "Will do" if r.kind == "action" else ("Due" if r.category == "Group flows" else "Scheduled")
+                st.markdown(f"- *{tag}* · **{r.category}** · {r.description}")
+                if isinstance(r.reason, str):
+                    st.caption(f"Why: {r.reason}")
+elif day == last:
+    st.caption("No plan yet: it arrives with the next engine run.")
 
 left, right = st.columns(2, gap="large")
 with left:

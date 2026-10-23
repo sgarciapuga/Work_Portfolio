@@ -26,6 +26,7 @@ RESULT_TABLES = {  # app name -> (tsim table, date column)
     "fx_deal": ("fx_deal", "trade_date"),
     "position": ("position", "start_date"),
     "activity": ("activity", "activity_date"),
+    "activity_plan": ("activity_plan", "activity_date"),
     "cash_txn": ("cash_txn", "value_date"),
 }
 
