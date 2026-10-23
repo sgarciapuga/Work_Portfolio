@@ -66,9 +66,20 @@ st.caption("Market convention: EUR/USD and GBP/USD are USD per 1 EUR / GBP; USD/
 # ---------------- Overnight rates ----------------
 st.markdown(f"### Overnight interest rates {tier_badge(2)}", unsafe_allow_html=True)
 pct = r * 100
-st.plotly_chart(line_chart(pct, config.CURRENCIES, CCY_COLORS, names={c: f"{INDEX_NAMES[c]} ({c})" for c in
-                                                                     config.CURRENCIES},
-                           fmt=".2f", suffix="%", height=320, ref=0), theme="streamlit", config=CHART)
+# One chart per index, each on its own scale: on a shared axis SARON (near 0%) flattens the others.
+# Each axis spans at least 0.5 pp, so a few bp of noise doesn't fill a chart.
+cols = st.columns(len(config.CURRENCIES))
+for col, c in zip(cols, config.CURRENCIES):
+    name = f"{INDEX_NAMES[c]} ({c})"
+    change_bp = round((r[c].iloc[-1] - r[c].iloc[0]) * 10_000)
+    col.metric(name, f"{pct[c].iloc[-1]:.2f}%", f"{change_bp:+.0f} bp over {period}" if change_bp else
+               f"0 bp over {period}", delta_color="off", delta_arrow="auto" if change_bp else "off")
+    fig = line_chart(pct, [c], CCY_COLORS, names={c: name}, fmt=".2f", suffix="%", height=220,
+                     ref=0 if pct[c].min() < 0 else None)
+    lo, hi = pct[c].min(), pct[c].max()
+    pad = max(0.5 - (hi - lo), 0) / 2 + 0.05
+    fig.update_yaxes(range=[lo - pad, hi + pad])
+    col.plotly_chart(fig, theme="streamlit", config=CHART, key=f"on-{c}")
 latest = pd.DataFrame({
     "Index": [INDEX_NAMES[c] for c in config.CURRENCIES], "Currency": config.CURRENCIES,
     f"Rate on {end:%d %b %Y} (%)": [r[c].iloc[-1] * 100 for c in config.CURRENCIES],
