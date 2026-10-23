@@ -1,0 +1,736 @@
+activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reason
+2025-01-02,1,action,Deposits,MGT,GBP,6700000.0,ICD-MGT-GBP-20250102,"MGT places GBP 6,700,000 with TRS for 3 months at a fixed 4.600%, maturing 02 Apr 2025 (ICD-MGT-GBP-20250102).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 10,000,000 over the next 3 months; keeping 3,200,250 for about a month of OPEX leaves 6,799,750 that can be locked."
+2025-01-02,2,action,Deposits,US,USD,2900000.0,ICD-US-USD-20250102,"US places USD 2,900,000 with TRS for 3 months at a fixed 4.300%, maturing 02 Apr 2025 (ICD-US-USD-20250102).","First business day of the month. US's on-call USD balance is projected to fall no lower than 4,249,052 over the next 3 months; keeping 1,341,100 for about a month of OPEX leaves 2,907,952 that can be locked."
+2025-01-02,3,action,Deposits,CH,CHF,2400000.0,ICD-CH-CHF-20250102,"CH places CHF 2,400,000 with TRS for 3 months at a fixed 0.350%, maturing 02 Apr 2025 (ICD-CH-CHF-20250102).","First business day of the month. CH's on-call CHF balance is projected to fall no lower than 2,933,225 over the next 3 months; keeping 519,174 for about a month of OPEX leaves 2,414,051 that can be locked."
+2025-01-02,4,action,Deposits,EU,EUR,4500000.0,ICD-EU-EUR-20250102,"EU places EUR 4,500,000 with TRS for 3 months at a fixed 2.820%, maturing 02 Apr 2025 (ICD-EU-EUR-20250102).","First business day of the month. EU's on-call EUR balance is projected to fall no lower than 5,000,000 over the next 3 months; keeping 405,716 for about a month of OPEX leaves 4,594,284 that can be locked."
+2025-01-02,5,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-01-10,1,action,Cash,,GBP,7255240.51,MMF-GBP-A,"Invested GBP 7,255,241 in MMF-GBP-A.","Bank cash 7,336,465 is above the GBP 81,224 operating minimum."
+2025-01-10,2,action,Cash,,CHF,1855090.7,TRS-BKA-CHF-DEP,"Invested CHF 1,855,091 in TRS-BKA-CHF-DEP.","Bank cash 1,946,473 is above the CHF 91,382 operating minimum."
+2025-01-10,3,action,Cash,,USD,4755594.16,MMF-USD-A,"Invested USD 4,755,594 in MMF-USD-A.","Bank cash 4,855,594 is above the USD 100,000 operating minimum."
+2025-01-14,1,action,Cash,,GBP,-901048.0,MMF-GBP-A,"Redeemed GBP 901,048 from MMF-GBP-A.","Bank cash -818,776 is below the GBP 82,272 operating minimum."
+2025-01-15,1,action,Cash,,USD,-556088.21,MMF-USD-A,"Redeemed USD 556,088 from MMF-USD-A.","Bank cash -456,088 is below the USD 100,000 operating minimum."
+2025-01-20,1,action,Cash,,EUR,676156.06,MMF-EUR-A,"Invested EUR 676,156 in MMF-EUR-A.","Bank cash 773,093 is above the EUR 96,937 operating minimum."
+2025-01-24,1,action,FX,US,GBP,220000.0,FXI20250124-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Jan (FXI20250124-001: TRS buys USD 272,910 against GBP 220,000 at 1.2405).","US will be short GBP 220,000 on 31 Jan (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-01-24,2,action,FX,CH,GBP,150000.0,FXI20250124-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Jan (FXI20250124-002: TRS buys CHF 168,570 against GBP 150,000 at 1.1238).","CH will be short GBP 150,000 on 31 Jan (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-01-24,3,action,FX,,CHF,-168569.69,FXE20250124-003,"TRS sells CHF 168,570 forward to BKA, value 31 Jan (FXE20250124-003: USD 186,075 against CHF 168,570 at 0.9059).","Today's 1 internal deal leaves TRS long CHF 168,570 for 31 Jan. One external forward offsets the net, so TRS stays flat."
+2025-01-24,4,action,FX,,GBP,370000.0,FXE20250124-004,"TRS buys GBP 370,000 forward from BKA, value 31 Jan (FXE20250124-004: GBP 370,000 against USD 458,985 at 1.2405).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Jan. One external forward offsets the net, so TRS stays flat."
+2025-01-27,1,action,Cash,,GBP,-1607311.91,MMF-GBP-A,"Redeemed GBP 1,607,312 from MMF-GBP-A.","Bank cash -1,527,439 is below the GBP 79,873 operating minimum."
+2025-01-27,2,action,Cash,,CHF,-378701.23,TRS-BKA-CHF-DEP,"Redeemed CHF 378,701 from TRS-BKA-CHF-DEP.","Bank cash -288,929 is below the CHF 89,772 operating minimum."
+2025-01-31,1,event,FX,US,,,FXI20250124-001,"FXI20250124-001 settled on US's IC current accounts: TRS received USD 272,910 and paid GBP 220,000.",
+2025-01-31,2,event,FX,CH,,,FXI20250124-002,"FXI20250124-002 settled on CH's IC current accounts: TRS received CHF 168,570 and paid GBP 150,000.",
+2025-01-31,3,event,FX,,,,FXE20250124-003,"FXE20250124-003 settled on TRS's bank accounts: TRS received USD 186,075 and paid CHF 168,570.",
+2025-01-31,4,event,FX,,,,FXE20250124-004,"FXE20250124-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 458,985.",
+2025-01-31,5,action,Cash,,EUR,-368114.31,MMF-EUR-A,"Redeemed EUR 368,114 from MMF-EUR-A.","Bank cash -271,895 is below the EUR 96,219 operating minimum."
+2025-01-31,6,action,Cash,,GBP,-30180.59,MMF-GBP-A,"Redeemed GBP 30,181 from MMF-GBP-A.","Bank cash 50,265 is below the GBP 80,446 operating minimum."
+2025-01-31,7,action,Cash,,CHF,-261380.05,TRS-BKA-CHF-DEP,"Redeemed CHF 261,380 from TRS-BKA-CHF-DEP.","Bank cash -170,463 is below the CHF 90,917 operating minimum."
+2025-01-31,8,action,Cash,,USD,-816004.0,MMF-USD-A,"Redeemed USD 816,004 from MMF-USD-A.","Bank cash -716,004 is below the USD 100,000 operating minimum."
+2025-01-31,9,event,Interest,,CHF,481.87,,Month end: net IC interest of CHF +482 posted to the entities' current accounts (+ = TRS pays).,
+2025-01-31,10,event,Interest,,EUR,2132.71,,"Month end: net IC interest of EUR +2,133 posted to the entities' current accounts (+ = TRS pays).",
+2025-01-31,11,event,Interest,,GBP,30461.62,,"Month end: net IC interest of GBP +30,462 posted to the entities' current accounts (+ = TRS pays).",
+2025-01-31,12,event,Interest,,USD,18386.53,,"Month end: net IC interest of USD +18,387 posted to the entities' current accounts (+ = TRS pays).",
+2025-01-31,13,event,Interest,IV,USD,287200.0,ICD-IV-USD-001,"Month end: USD 287,200 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-02-03,1,action,Deposits,MGT,GBP,1500000.0,ICD-MGT-GBP-20250203,"MGT places GBP 1,500,000 with TRS for 3 months at a fixed 4.604%, maturing 06 May 2025 (ICD-MGT-GBP-20250203).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 3,687,874 over the next 3 months; keeping 2,174,691 for about a month of OPEX leaves 1,513,183 that can be locked."
+2025-02-03,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-02-04,1,event,Interest,,EUR,12730.68,MMF-EUR-A,"Received EUR 12,731 interest on MMF-EUR-A for Jan 2025 (paid on business day 2).",
+2025-02-04,2,event,Interest,,GBP,56417.95,MMF-GBP-A,"Received GBP 56,418 interest on MMF-GBP-A for Jan 2025 (paid on business day 2).",
+2025-02-04,3,action,Cash,,GBP,56371.95,MMF-GBP-A,"Invested GBP 56,372 in MMF-GBP-A.","Bank cash 136,864 is above the GBP 80,492 operating minimum."
+2025-02-04,4,event,Interest,,CHF,1399.59,TRS-BKA-CHF-DEP,"Received CHF 1,400 interest on TRS-BKA-CHF-DEP for Jan 2025 (paid on business day 2).",
+2025-02-04,5,event,Interest,,USD,396374.07,MMF-USD-A,"Received USD 396,374 interest on MMF-USD-A for Jan 2025 (paid on business day 2).",
+2025-02-04,6,action,Cash,,USD,396374.07,MMF-USD-A,"Invested USD 396,374 in MMF-USD-A.","Bank cash 496,374 is above the USD 100,000 operating minimum."
+2025-02-05,1,action,Cash,,USD,-256267.98,MMF-USD-A,"Redeemed USD 256,268 from MMF-USD-A.","Bank cash -156,268 is below the USD 100,000 operating minimum."
+2025-02-18,1,action,Cash,,USD,-550090.69,MMF-USD-A,"Redeemed USD 550,091 from MMF-USD-A.","Bank cash -450,091 is below the USD 100,000 operating minimum."
+2025-02-20,1,action,Cash,,EUR,688349.43,MMF-EUR-A,"Invested EUR 688,349 in MMF-EUR-A.","Bank cash 784,107 is above the EUR 95,758 operating minimum."
+2025-02-21,1,action,FX,US,GBP,220000.0,FXI20250221-001,"US buys GBP 220,000 from TRS against USD, forward value 28 Feb (FXI20250221-001: TRS buys USD 278,186 against GBP 220,000 at 1.2645).","US will be short GBP 220,000 on 28 Feb (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-02-21,2,action,FX,CH,GBP,150000.0,FXI20250221-002,"CH buys GBP 150,000 from TRS against CHF, forward value 28 Feb (FXI20250221-002: TRS buys CHF 170,602 against GBP 150,000 at 1.1373).","CH will be short GBP 150,000 on 28 Feb (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-02-21,3,action,FX,,CHF,-170602.13,FXE20250221-003,"TRS sells CHF 170,602 forward to BKA, value 28 Feb (FXE20250221-003: USD 189,672 against CHF 170,602 at 0.8995).","Today's 1 internal deal leaves TRS long CHF 170,602 for 28 Feb. One external forward offsets the net, so TRS stays flat."
+2025-02-21,4,action,FX,,GBP,370000.0,FXE20250221-004,"TRS buys GBP 370,000 forward from BKA, value 28 Feb (FXE20250221-004: GBP 370,000 against USD 467,858 at 1.2645).","Today's 2 internal deals leave TRS short GBP 370,000 for 28 Feb. One external forward offsets the net, so TRS stays flat."
+2025-02-25,1,action,Cash,,GBP,-1585182.89,MMF-GBP-A,"Redeemed GBP 1,585,183 from MMF-GBP-A.","Bank cash -1,506,200 is below the GBP 78,983 operating minimum."
+2025-02-25,2,action,Cash,,CHF,-378727.34,TRS-BKA-CHF-DEP,"Redeemed CHF 378,727 from TRS-BKA-CHF-DEP.","Bank cash -289,311 is below the CHF 89,416 operating minimum."
+2025-02-28,1,event,FX,US,,,FXI20250221-001,"FXI20250221-001 settled on US's IC current accounts: TRS received USD 278,186 and paid GBP 220,000.",
+2025-02-28,2,event,FX,CH,,,FXI20250221-002,"FXI20250221-002 settled on CH's IC current accounts: TRS received CHF 170,602 and paid GBP 150,000.",
+2025-02-28,3,event,FX,,,,FXE20250221-003,"FXE20250221-003 settled on TRS's bank accounts: TRS received USD 189,672 and paid CHF 170,602.",
+2025-02-28,4,event,FX,,,,FXE20250221-004,"FXE20250221-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 467,858.",
+2025-02-28,5,action,Cash,,EUR,-372581.46,MMF-EUR-A,"Redeemed EUR 372,581 from MMF-EUR-A.","Bank cash -276,529 is below the EUR 96,052 operating minimum."
+2025-02-28,6,action,Cash,,GBP,-20663.62,MMF-GBP-A,"Redeemed GBP 20,664 from MMF-GBP-A.","Bank cash 58,683 is below the GBP 79,347 operating minimum."
+2025-02-28,7,action,Cash,,CHF,-171417.13,TRS-BKA-CHF-DEP,"Redeemed CHF 171,417 from TRS-BKA-CHF-DEP.","Bank cash -81,186 is below the CHF 90,231 operating minimum."
+2025-02-28,8,action,Cash,,USD,-1089261.82,MMF-USD-A,"Redeemed USD 1,089,262 from MMF-USD-A.","Bank cash -989,262 is below the USD 100,000 operating minimum."
+2025-02-28,9,event,Interest,,CHF,393.67,,Month end: net IC interest of CHF +394 posted to the entities' current accounts (+ = TRS pays).,
+2025-02-28,10,event,Interest,,EUR,2004.8,,"Month end: net IC interest of EUR +2,005 posted to the entities' current accounts (+ = TRS pays).",
+2025-02-28,11,event,Interest,,GBP,21465.84,,"Month end: net IC interest of GBP +21,466 posted to the entities' current accounts (+ = TRS pays).",
+2025-02-28,12,event,Interest,,USD,15646.52,,"Month end: net IC interest of USD +15,647 posted to the entities' current accounts (+ = TRS pays).",
+2025-02-28,13,event,Interest,IV,USD,261959.29,ICD-IV-USD-001,"Month end: USD 261,959 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-03-03,1,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-03-04,1,event,Interest,,EUR,11168.29,MMF-EUR-A,"Received EUR 11,168 interest on MMF-EUR-A for Feb 2025 (paid on business day 2).",
+2025-03-04,2,event,Interest,,GBP,49355.41,MMF-GBP-A,"Received GBP 49,355 interest on MMF-GBP-A for Feb 2025 (paid on business day 2).",
+2025-03-04,3,action,Cash,,GBP,50282.41,MMF-GBP-A,"Invested GBP 50,282 in MMF-GBP-A.","Bank cash 128,702 is above the GBP 78,420 operating minimum."
+2025-03-04,4,event,Interest,,CHF,1228.0,TRS-BKA-CHF-DEP,"Received CHF 1,228 interest on TRS-BKA-CHF-DEP for Feb 2025 (paid on business day 2).",
+2025-03-04,5,event,Interest,,USD,360548.63,MMF-USD-A,"Received USD 360,549 interest on MMF-USD-A for Feb 2025 (paid on business day 2).",
+2025-03-04,6,action,Cash,,USD,360548.63,MMF-USD-A,"Invested USD 360,549 in MMF-USD-A.","Bank cash 460,549 is above the USD 100,000 operating minimum."
+2025-03-05,1,action,Cash,,CHF,-85793.13,TRS-BKA-CHF-DEP,"Redeemed CHF 85,793 from TRS-BKA-CHF-DEP.","Bank cash 3,173 is below the CHF 88,966 operating minimum."
+2025-03-17,1,action,Cash,,USD,-556968.31,MMF-USD-A,"Redeemed USD 556,968 from MMF-USD-A.","Bank cash -456,968 is below the USD 100,000 operating minimum."
+2025-03-20,1,action,Cash,,EUR,749909.29,MMF-EUR-A,"Invested EUR 749,909 in MMF-EUR-A.","Bank cash 842,220 is above the EUR 92,311 operating minimum."
+2025-03-24,1,action,FX,US,GBP,220000.0,FXI20250324-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Mar (FXI20250324-001: TRS buys USD 284,623 against GBP 220,000 at 1.2937).","US will be short GBP 220,000 on 31 Mar (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-03-24,2,action,FX,CH,GBP,150000.0,FXI20250324-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Mar (FXI20250324-002: TRS buys CHF 170,974 against GBP 150,000 at 1.1398).","CH will be short GBP 150,000 on 31 Mar (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-03-24,3,action,FX,,CHF,-170974.37,FXE20250324-003,"TRS sells CHF 170,974 forward to BKA, value 31 Mar (FXE20250324-003: USD 194,061 against CHF 170,974 at 0.8810).","Today's 1 internal deal leaves TRS long CHF 170,974 for 31 Mar. One external forward offsets the net, so TRS stays flat."
+2025-03-24,4,action,FX,,GBP,370000.0,FXE20250324-004,"TRS buys GBP 370,000 forward from BKA, value 31 Mar (FXE20250324-004: GBP 370,000 against USD 478,684 at 1.2937).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Mar. One external forward offsets the net, so TRS stays flat."
+2025-03-25,1,action,Cash,,GBP,-2040507.78,MMF-GBP-A,"Redeemed GBP 2,040,508 from MMF-GBP-A.","Bank cash -1,963,312 is below the GBP 77,196 operating minimum."
+2025-03-25,2,action,Cash,,CHF,-378631.53,TRS-BKA-CHF-DEP,"Redeemed CHF 378,632 from TRS-BKA-CHF-DEP.","Bank cash -290,512 is below the CHF 88,120 operating minimum."
+2025-03-31,1,event,FX,US,,,FXI20250324-001,"FXI20250324-001 settled on US's IC current accounts: TRS received USD 284,623 and paid GBP 220,000.",
+2025-03-31,2,event,FX,CH,,,FXI20250324-002,"FXI20250324-002 settled on CH's IC current accounts: TRS received CHF 170,974 and paid GBP 150,000.",
+2025-03-31,3,event,FX,,,,FXE20250324-003,"FXE20250324-003 settled on TRS's bank accounts: TRS received USD 194,061 and paid CHF 170,974.",
+2025-03-31,4,event,FX,,,,FXE20250324-004,"FXE20250324-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 478,684.",
+2025-03-31,5,action,Cash,,EUR,-365503.52,MMF-EUR-A,"Redeemed EUR 365,504 from MMF-EUR-A.","Bank cash -273,040 is below the EUR 92,464 operating minimum."
+2025-03-31,6,action,Cash,,GBP,-340522.36,MMF-GBP-A,"Redeemed GBP 340,522 from MMF-GBP-A.","Bank cash -263,281 is below the GBP 77,241 operating minimum."
+2025-03-31,7,action,Cash,,CHF,-264724.93,TRS-BKA-CHF-DEP,"Redeemed CHF 264,725 from TRS-BKA-CHF-DEP.","Bank cash -176,597 is below the CHF 88,128 operating minimum."
+2025-03-31,8,action,Cash,,USD,-980539.85,MMF-USD-A,"Redeemed USD 980,540 from MMF-USD-A.","Bank cash -880,540 is below the USD 100,000 operating minimum."
+2025-03-31,9,event,Interest,,CHF,206.26,,Month end: net IC interest of CHF +206 posted to the entities' current accounts (+ = TRS pays).,
+2025-03-31,10,event,Interest,,EUR,2791.34,,"Month end: net IC interest of EUR +2,791 posted to the entities' current accounts (+ = TRS pays).",
+2025-03-31,11,event,Interest,,GBP,16416.5,,"Month end: net IC interest of GBP +16,417 posted to the entities' current accounts (+ = TRS pays).",
+2025-03-31,12,event,Interest,,USD,10681.47,,"Month end: net IC interest of USD +10,681 posted to the entities' current accounts (+ = TRS pays).",
+2025-03-31,13,event,Interest,IV,USD,289865.1,ICD-IV-USD-001,"Month end: USD 289,865 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-04-01,1,action,Deposits,EU,EUR,1000000.0,ICD-EU-EUR-20250401,"EU places EUR 1,000,000 with TRS for 3 months at a fixed 2.320%, maturing 01 Jul 2025 (ICD-EU-EUR-20250401).","First business day of the month. EU's on-call EUR balance is projected to fall no lower than 1,486,819 over the next 3 months; keeping 469,911 for about a month of OPEX leaves 1,016,909 that can be locked."
+2025-04-01,2,action,Cash,,USD,-357500.0,MMF-USD-A,"Redeemed USD 357,500 from MMF-USD-A.","Bank cash -257,500 is below the USD 100,000 operating minimum."
+2025-04-02,1,event,Deposits,MGT,GBP,6775994.52,ICD-MGT-GBP-20250102,"ICD-MGT-GBP-20250102 matured: GBP 6,775,995 (principal 6,700,000 + interest 75,995) back on MGT's on-call account.",
+2025-04-02,2,event,Deposits,US,USD,2931175.0,ICD-US-USD-20250102,"ICD-US-USD-20250102 matured: USD 2,931,175 (principal 2,900,000 + interest 31,175) back on US's on-call account.",
+2025-04-02,3,event,Deposits,CH,CHF,2402100.0,ICD-CH-CHF-20250102,"ICD-CH-CHF-20250102 matured: CHF 2,402,100 (principal 2,400,000 + interest 2,100) back on CH's on-call account.",
+2025-04-02,4,event,Deposits,EU,EUR,4531725.0,ICD-EU-EUR-20250102,"ICD-EU-EUR-20250102 matured: EUR 4,531,725 (principal 4,500,000 + interest 31,725) back on EU's on-call account.",
+2025-04-02,5,action,Deposits,MGT,GBP,6200000.0,ICD-MGT-GBP-20250402,"MGT places GBP 6,200,000 with TRS for 3 months at a fixed 4.355%, maturing 02 Jul 2025 (ICD-MGT-GBP-20250402, rolling ICD-MGT-GBP-20250102).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 9,371,751 over the next 3 months; keeping 3,170,986 for about a month of OPEX leaves 6,200,765 that can be locked."
+2025-04-02,6,action,Deposits,US,USD,1000000.0,ICD-US-USD-20250402,"US places USD 1,000,000 with TRS for 3 months at a fixed 4.270%, maturing 02 Jul 2025 (ICD-US-USD-20250402, rolling ICD-US-USD-20250102).","A deposit matured today. US's on-call USD balance is projected to fall no lower than 3,277,741 over the next 3 months; keeping 2,181,488 for about a month of OPEX leaves 1,096,253 that can be locked."
+2025-04-02,7,action,Deposits,CH,CHF,2200000.0,ICD-CH-CHF-20250402,"CH places CHF 2,200,000 with TRS for 3 months at a fixed 0.110%, maturing 02 Jul 2025 (ICD-CH-CHF-20250402, rolling ICD-CH-CHF-20250102).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,798,443 over the next 3 months; keeping 578,709 for about a month of OPEX leaves 2,219,734 that can be locked."
+2025-04-02,8,action,Deposits,EU,EUR,4500000.0,ICD-EU-EUR-20250402,"EU places EUR 4,500,000 with TRS for 3 months at a fixed 2.317%, maturing 02 Jul 2025 (ICD-EU-EUR-20250402, rolling ICD-EU-EUR-20250102).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 5,018,544 over the next 3 months; keeping 469,911 for about a month of OPEX leaves 4,548,634 that can be locked."
+2025-04-02,9,event,Interest,,EUR,12246.97,MMF-EUR-A,"Received EUR 12,247 interest on MMF-EUR-A for Mar 2025 (paid on business day 2).",
+2025-04-02,10,event,Interest,,GBP,47369.85,MMF-GBP-A,"Received GBP 47,370 interest on MMF-GBP-A for Mar 2025 (paid on business day 2).",
+2025-04-02,11,action,Cash,,GBP,47358.85,MMF-GBP-A,"Invested GBP 47,359 in MMF-GBP-A.","Bank cash 124,611 is above the GBP 77,252 operating minimum."
+2025-04-02,12,event,Interest,,CHF,908.66,TRS-BKA-CHF-DEP,Received CHF 909 interest on TRS-BKA-CHF-DEP for Mar 2025 (paid on business day 2).,
+2025-04-02,13,event,Interest,,USD,392260.39,MMF-USD-A,"Received USD 392,260 interest on MMF-USD-A for Mar 2025 (paid on business day 2).",
+2025-04-02,14,action,Cash,,USD,392260.39,MMF-USD-A,"Invested USD 392,260 in MMF-USD-A.","Bank cash 492,260 is above the USD 100,000 operating minimum."
+2025-04-10,1,action,Cash,,GBP,7511284.83,MMF-GBP-A,"Invested GBP 7,511,285 in MMF-GBP-A.","Bank cash 7,588,667 is above the GBP 77,382 operating minimum."
+2025-04-10,2,action,Cash,,CHF,1842614.97,TRS-BKA-CHF-DEP,"Invested CHF 1,842,615 in TRS-BKA-CHF-DEP.","Bank cash 1,926,526 is above the CHF 83,911 operating minimum."
+2025-04-10,3,action,Cash,,USD,4971792.77,MMF-USD-A,"Invested USD 4,971,793 in MMF-USD-A.","Bank cash 5,071,793 is above the USD 100,000 operating minimum."
+2025-04-14,1,action,Cash,,GBP,-898546.0,MMF-GBP-A,"Redeemed GBP 898,546 from MMF-GBP-A.","Bank cash -822,618 is below the GBP 75,928 operating minimum."
+2025-04-15,1,action,Cash,,USD,-1056790.57,MMF-USD-A,"Redeemed USD 1,056,791 from MMF-USD-A.","Bank cash -956,791 is below the USD 100,000 operating minimum."
+2025-04-22,1,action,Cash,,EUR,703159.29,MMF-EUR-A,"Invested EUR 703,159 in MMF-EUR-A.","Bank cash 790,297 is above the EUR 87,138 operating minimum."
+2025-04-23,1,action,FX,US,GBP,220000.0,FXI20250423-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Apr (FXI20250423-001: TRS buys USD 292,710 against GBP 220,000 at 1.3305).","US will be short GBP 220,000 on 30 Apr (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-04-23,2,action,FX,CH,GBP,150000.0,FXI20250423-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Apr (FXI20250423-002: TRS buys CHF 163,900 against GBP 150,000 at 1.0927).","CH will be short GBP 150,000 on 30 Apr (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-04-23,3,action,FX,,CHF,-163900.02,FXE20250423-003,"TRS sells CHF 163,900 forward to BKA, value 30 Apr (FXE20250423-003: USD 199,575 against CHF 163,900 at 0.8212).","Today's 1 internal deal leaves TRS long CHF 163,900 for 30 Apr. One external forward offsets the net, so TRS stays flat."
+2025-04-23,4,action,FX,,GBP,370000.0,FXE20250423-004,"TRS buys GBP 370,000 forward from BKA, value 30 Apr (FXE20250423-004: GBP 370,000 against USD 492,285 at 1.3305).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Apr. One external forward offsets the net, so TRS stays flat."
+2025-04-25,1,action,Cash,,GBP,-1593358.26,MMF-GBP-A,"Redeemed GBP 1,593,358 from MMF-GBP-A.","Bank cash -1,518,241 is below the GBP 75,117 operating minimum."
+2025-04-25,2,action,Cash,,CHF,-375832.1,TRS-BKA-CHF-DEP,"Redeemed CHF 375,832 from TRS-BKA-CHF-DEP.","Bank cash -292,879 is below the CHF 82,953 operating minimum."
+2025-04-30,1,event,FX,US,,,FXI20250423-001,"FXI20250423-001 settled on US's IC current accounts: TRS received USD 292,710 and paid GBP 220,000.",
+2025-04-30,2,event,FX,CH,,,FXI20250423-002,"FXI20250423-002 settled on CH's IC current accounts: TRS received CHF 163,900 and paid GBP 150,000.",
+2025-04-30,3,event,FX,,,,FXE20250423-003,"FXE20250423-003 settled on TRS's bank accounts: TRS received USD 199,575 and paid CHF 163,900.",
+2025-04-30,4,event,FX,,,,FXE20250423-004,"FXE20250423-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 492,285.",
+2025-04-30,5,action,Cash,,EUR,-312481.69,MMF-EUR-A,"Redeemed EUR 312,482 from MMF-EUR-A.","Bank cash -224,554 is below the EUR 87,928 operating minimum."
+2025-04-30,6,action,Cash,,CHF,-312811.11,TRS-BKA-CHF-DEP,"Redeemed CHF 312,811 from TRS-BKA-CHF-DEP.","Bank cash -230,256 is below the CHF 82,555 operating minimum."
+2025-04-30,7,action,Cash,,USD,-1099090.23,MMF-USD-A,"Redeemed USD 1,099,090 from MMF-USD-A.","Bank cash -999,090 is below the USD 100,000 operating minimum."
+2025-04-30,8,event,Interest,,CHF,69.08,,Month end: net IC interest of CHF +69 posted to the entities' current accounts (+ = TRS pays).,
+2025-04-30,9,event,Interest,,EUR,1281.39,,"Month end: net IC interest of EUR +1,281 posted to the entities' current accounts (+ = TRS pays).",
+2025-04-30,10,event,Interest,,GBP,26845.93,,"Month end: net IC interest of GBP +26,846 posted to the entities' current accounts (+ = TRS pays).",
+2025-04-30,11,event,Interest,,USD,21367.73,,"Month end: net IC interest of USD +21,368 posted to the entities' current accounts (+ = TRS pays).",
+2025-04-30,12,event,Interest,IV,USD,282487.48,ICD-IV-USD-001,"Month end: USD 282,487 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-05-01,1,action,Deposits,MGT,GBP,2200000.0,ICD-MGT-GBP-20250501,"MGT places GBP 2,200,000 with TRS for 3 months at a fixed 4.359%, maturing 01 Aug 2025 (ICD-MGT-GBP-20250501).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 4,465,898 over the next 3 months; keeping 2,189,780 for about a month of OPEX leaves 2,276,118 that can be locked."
+2025-05-01,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-05-02,1,action,Cash,,EUR,-115732.0,MMF-EUR-A,"Redeemed EUR 115,732 from MMF-EUR-A.","Bank cash -27,572 is below the EUR 88,160 operating minimum."
+2025-05-02,2,event,Interest,,GBP,55186.81,MMF-GBP-A,"Received GBP 55,187 interest on MMF-GBP-A for Apr 2025 (paid on business day 2).",
+2025-05-02,3,action,Cash,,GBP,36531.3,MMF-GBP-A,"Invested GBP 36,531 in MMF-GBP-A.","Bank cash 111,758 is above the GBP 75,227 operating minimum."
+2025-05-02,4,event,Interest,,USD,386901.41,MMF-USD-A,"Received USD 386,901 interest on MMF-USD-A for Apr 2025 (paid on business day 2).",
+2025-05-02,5,action,Cash,,USD,386901.41,MMF-USD-A,"Invested USD 386,901 in MMF-USD-A.","Bank cash 486,901 is above the USD 100,000 operating minimum."
+2025-05-05,1,event,Interest,,EUR,11686.32,MMF-EUR-A,"Received EUR 11,686 interest on MMF-EUR-A for Apr 2025 (paid on business day 2).",
+2025-05-05,2,event,Interest,,CHF,489.03,TRS-BKA-CHF-DEP,Received CHF 489 interest on TRS-BKA-CHF-DEP for Apr 2025 (paid on business day 2).,
+2025-05-06,1,event,Deposits,MGT,GBP,1517407.66,ICD-MGT-GBP-20250203,"ICD-MGT-GBP-20250203 matured: GBP 1,517,408 (principal 1,500,000 + interest 17,408) back on MGT's on-call account.",
+2025-05-06,2,action,Deposits,MGT,GBP,1500000.0,ICD-MGT-GBP-20250506,"MGT places GBP 1,500,000 with TRS for 3 months at a fixed 4.359%, maturing 06 Aug 2025 (ICD-MGT-GBP-20250506, rolling ICD-MGT-GBP-20250203).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 3,783,306 over the next 3 months; keeping 2,189,780 for about a month of OPEX leaves 1,593,526 that can be locked."
+2025-05-15,1,action,Cash,,USD,-539018.16,MMF-USD-A,"Redeemed USD 539,018 from MMF-USD-A.","Bank cash -439,018 is below the USD 100,000 operating minimum."
+2025-05-20,1,action,Cash,,EUR,713061.79,MMF-EUR-A,"Invested EUR 713,062 in MMF-EUR-A.","Bank cash 802,022 is above the EUR 88,960 operating minimum."
+2025-05-21,1,action,FX,US,GBP,220000.0,FXI20250521-001,"US buys GBP 220,000 from TRS against USD, forward value 30 May (FXI20250521-001: TRS buys USD 294,894 against GBP 220,000 at 1.3404).","US will be short GBP 220,000 on 30 May (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-05-21,2,action,FX,CH,GBP,150000.0,FXI20250521-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 May (FXI20250521-002: TRS buys CHF 165,927 against GBP 150,000 at 1.1062).","CH will be short GBP 150,000 on 30 May (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-05-21,3,action,FX,,CHF,-165927.16,FXE20250521-003,"TRS sells CHF 165,927 forward to BKA, value 30 May (FXE20250521-003: USD 201,064 against CHF 165,927 at 0.8252).","Today's 1 internal deal leaves TRS long CHF 165,927 for 30 May. One external forward offsets the net, so TRS stays flat."
+2025-05-21,4,action,FX,,GBP,370000.0,FXE20250521-004,"TRS buys GBP 370,000 forward from BKA, value 30 May (FXE20250521-004: GBP 370,000 against USD 495,958 at 1.3404).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 May. One external forward offsets the net, so TRS stays flat."
+2025-05-26,1,action,Cash,,CHF,-374300.62,TRS-BKA-CHF-DEP,"Redeemed CHF 374,301 from TRS-BKA-CHF-DEP.","Bank cash -292,094 is below the CHF 82,207 operating minimum."
+2025-05-27,1,action,Cash,,GBP,-1586600.27,MMF-GBP-A,"Redeemed GBP 1,586,600 from MMF-GBP-A.","Bank cash -1,512,798 is below the GBP 73,802 operating minimum."
+2025-05-30,1,event,FX,US,,,FXI20250521-001,"FXI20250521-001 settled on US's IC current accounts: TRS received USD 294,894 and paid GBP 220,000.",
+2025-05-30,2,event,FX,CH,,,FXI20250521-002,"FXI20250521-002 settled on CH's IC current accounts: TRS received CHF 165,927 and paid GBP 150,000.",
+2025-05-30,3,event,FX,,,,FXE20250521-003,"FXE20250521-003 settled on TRS's bank accounts: TRS received USD 201,064 and paid CHF 165,927.",
+2025-05-30,4,event,FX,,,,FXE20250521-004,"FXE20250521-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 495,958.",
+2025-05-30,5,action,Cash,,EUR,-260471.32,MMF-EUR-A,"Redeemed EUR 260,471 from MMF-EUR-A.","Bank cash -172,280 is below the EUR 88,191 operating minimum."
+2025-05-30,6,action,Cash,,GBP,-33067.99,MMF-GBP-A,"Redeemed GBP 33,068 from MMF-GBP-A.","Bank cash 41,118 is below the GBP 74,186 operating minimum."
+2025-05-30,7,action,Cash,,CHF,-258116.34,TRS-BKA-CHF-DEP,"Redeemed CHF 258,116 from TRS-BKA-CHF-DEP.","Bank cash -175,737 is below the CHF 82,379 operating minimum."
+2025-05-30,8,action,Cash,,USD,-1086580.91,MMF-USD-A,"Redeemed USD 1,086,581 from MMF-USD-A.","Bank cash -986,581 is below the USD 100,000 operating minimum."
+2025-05-31,1,event,Interest,,CHF,85.37,,Month end: net IC interest of CHF +85 posted to the entities' current accounts (+ = TRS pays).,
+2025-05-31,2,event,Interest,,EUR,1802.17,,"Month end: net IC interest of EUR +1,802 posted to the entities' current accounts (+ = TRS pays).",
+2025-05-31,3,event,Interest,,GBP,20129.5,,"Month end: net IC interest of GBP +20,129 posted to the entities' current accounts (+ = TRS pays).",
+2025-05-31,4,event,Interest,,USD,20246.46,,"Month end: net IC interest of USD +20,246 posted to the entities' current accounts (+ = TRS pays).",
+2025-05-31,5,event,Interest,IV,USD,290167.14,ICD-IV-USD-001,"Month end: USD 290,167 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-06-02,1,action,Cash,,EUR,-112115.11,MMF-EUR-A,"Redeemed EUR 112,115 from MMF-EUR-A.","Bank cash -24,542 is below the EUR 87,573 operating minimum."
+2025-06-02,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-06-03,1,event,Interest,,EUR,11764.74,MMF-EUR-A,"Received EUR 11,765 interest on MMF-EUR-A for May 2025 (paid on business day 2).",
+2025-06-03,2,event,Interest,,GBP,55882.44,MMF-GBP-A,"Received GBP 55,882 interest on MMF-GBP-A for May 2025 (paid on business day 2).",
+2025-06-03,3,action,Cash,,GBP,55977.44,MMF-GBP-A,"Invested GBP 55,977 in MMF-GBP-A.","Bank cash 130,068 is above the GBP 74,091 operating minimum."
+2025-06-03,4,event,Interest,,CHF,523.24,TRS-BKA-CHF-DEP,Received CHF 523 interest on TRS-BKA-CHF-DEP for May 2025 (paid on business day 2).,
+2025-06-03,5,event,Interest,,USD,395560.04,MMF-USD-A,"Received USD 395,560 interest on MMF-USD-A for May 2025 (paid on business day 2).",
+2025-06-03,6,action,Cash,,USD,395560.04,MMF-USD-A,"Invested USD 395,560 in MMF-USD-A.","Bank cash 495,560 is above the USD 100,000 operating minimum."
+2025-06-16,1,action,Cash,,USD,-1048987.06,MMF-USD-A,"Redeemed USD 1,048,987 from MMF-USD-A.","Bank cash -948,987 is below the USD 100,000 operating minimum."
+2025-06-20,1,action,Cash,,EUR,677494.74,MMF-EUR-A,"Invested EUR 677,495 in MMF-EUR-A.","Bank cash 764,338 is above the EUR 86,843 operating minimum."
+2025-06-23,1,action,FX,US,GBP,220000.0,FXI20250623-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Jun (FXI20250623-001: TRS buys USD 294,610 against GBP 220,000 at 1.3391).","US will be short GBP 220,000 on 30 Jun (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-06-23,2,action,FX,CH,GBP,150000.0,FXI20250623-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Jun (FXI20250623-002: TRS buys CHF 164,223 against GBP 150,000 at 1.0948).","CH will be short GBP 150,000 on 30 Jun (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-06-23,3,action,FX,,CHF,-164223.44,FXE20250623-003,"TRS sells CHF 164,223 forward to BKA, value 30 Jun (FXE20250623-003: USD 200,870 against CHF 164,223 at 0.8176).","Today's 1 internal deal leaves TRS long CHF 164,223 for 30 Jun. One external forward offsets the net, so TRS stays flat."
+2025-06-23,4,action,FX,,GBP,370000.0,FXE20250623-004,"TRS buys GBP 370,000 forward from BKA, value 30 Jun (FXE20250623-004: GBP 370,000 against USD 495,480 at 1.3391).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Jun. One external forward offsets the net, so TRS stays flat."
+2025-06-24,1,action,Cash,,GBP,-449373.0,MMF-GBP-A,"Redeemed GBP 449,373 from MMF-GBP-A.","Bank cash -375,909 is below the GBP 73,464 operating minimum."
+2025-06-25,1,action,Cash,,GBP,-1623106.24,MMF-GBP-A,"Redeemed GBP 1,623,106 from MMF-GBP-A.","Bank cash -1,549,593 is below the GBP 73,513 operating minimum."
+2025-06-25,2,action,Cash,,CHF,-375149.54,TRS-BKA-CHF-DEP,"Redeemed CHF 375,150 from TRS-BKA-CHF-DEP.","Bank cash -294,438 is below the CHF 80,712 operating minimum."
+2025-06-30,1,event,FX,US,,,FXI20250623-001,"FXI20250623-001 settled on US's IC current accounts: TRS received USD 294,610 and paid GBP 220,000.",
+2025-06-30,2,event,FX,CH,,,FXI20250623-002,"FXI20250623-002 settled on CH's IC current accounts: TRS received CHF 164,223 and paid GBP 150,000.",
+2025-06-30,3,event,FX,,,,FXE20250623-003,"FXE20250623-003 settled on TRS's bank accounts: TRS received USD 200,870 and paid CHF 164,223.",
+2025-06-30,4,event,FX,,,,FXE20250623-004,"FXE20250623-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 495,480.",
+2025-06-30,5,action,Cash,,EUR,-363371.8,MMF-EUR-A,"Redeemed EUR 363,372 from MMF-EUR-A.","Bank cash -278,048 is below the EUR 85,324 operating minimum."
+2025-06-30,6,action,Cash,,GBP,370518.0,MMF-GBP-A,"Invested GBP 370,518 in MMF-GBP-A.","Bank cash 443,513 is above the GBP 72,995 operating minimum."
+2025-06-30,7,action,Cash,,CHF,-250748.34,TRS-BKA-CHF-DEP,"Redeemed CHF 250,748 from TRS-BKA-CHF-DEP.","Bank cash -170,995 is below the CHF 79,753 operating minimum."
+2025-06-30,8,action,Cash,,USD,-840214.43,MMF-USD-A,"Redeemed USD 840,214 from MMF-USD-A.","Bank cash -740,214 is below the USD 100,000 operating minimum."
+2025-06-30,9,event,Interest,,CHF,-26.42,,Month end: net IC interest of CHF -26 posted to the entities' current accounts (+ = TRS pays).,
+2025-06-30,10,event,Interest,,EUR,2063.85,,"Month end: net IC interest of EUR +2,064 posted to the entities' current accounts (+ = TRS pays).",
+2025-06-30,11,event,Interest,,GBP,13350.77,,"Month end: net IC interest of GBP +13,351 posted to the entities' current accounts (+ = TRS pays).",
+2025-06-30,12,event,Interest,,USD,13012.5,,"Month end: net IC interest of USD +13,012 posted to the entities' current accounts (+ = TRS pays).",
+2025-06-30,13,event,Interest,IV,USD,282588.98,ICD-IV-USD-001,"Month end: USD 282,589 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-07-01,1,event,Deposits,EU,EUR,1005864.44,ICD-EU-EUR-20250401,"ICD-EU-EUR-20250401 matured: EUR 1,005,864 (principal 1,000,000 + interest 5,864) back on EU's on-call account.",
+2025-07-01,2,action,Deposits,EU,EUR,2000000.0,ICD-EU-EUR-20250701,"EU places EUR 2,000,000 with TRS for 3 months at a fixed 1.821%, maturing 01 Oct 2025 (ICD-EU-EUR-20250701, rolling ICD-EU-EUR-20250401).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 2,416,262 over the next 3 months; keeping 410,109 for about a month of OPEX leaves 2,006,153 that can be locked."
+2025-07-01,3,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-07-02,1,event,Deposits,MGT,GBP,6267316.02,ICD-MGT-GBP-20250402,"ICD-MGT-GBP-20250402 matured: GBP 6,267,316 (principal 6,200,000 + interest 67,316) back on MGT's on-call account.",
+2025-07-02,2,event,Deposits,US,USD,1010793.61,ICD-US-USD-20250402,"ICD-US-USD-20250402 matured: USD 1,010,794 (principal 1,000,000 + interest 10,794) back on US's on-call account.",
+2025-07-02,3,event,Deposits,CH,CHF,2200611.72,ICD-CH-CHF-20250402,"ICD-CH-CHF-20250402 matured: CHF 2,200,612 (principal 2,200,000 + interest 612) back on CH's on-call account.",
+2025-07-02,4,event,Deposits,EU,EUR,4526355.88,ICD-EU-EUR-20250402,"ICD-EU-EUR-20250402 matured: EUR 4,526,356 (principal 4,500,000 + interest 26,356) back on EU's on-call account.",
+2025-07-02,5,action,Deposits,MGT,GBP,5800000.0,ICD-MGT-GBP-20250702,"MGT places GBP 5,800,000 with TRS for 3 months at a fixed 4.117%, maturing 02 Oct 2025 (ICD-MGT-GBP-20250702, rolling ICD-MGT-GBP-20250402).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 8,584,102 over the next 3 months; keeping 2,762,398 for about a month of OPEX leaves 5,821,704 that can be locked."
+2025-07-02,6,action,Deposits,CH,CHF,2200000.0,ICD-CH-CHF-20250702,"CH places CHF 2,200,000 with TRS for 3 months at a fixed -0.140%, maturing 02 Oct 2025 (ICD-CH-CHF-20250702, rolling ICD-CH-CHF-20250402).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,762,640 over the next 3 months; keeping 515,886 for about a month of OPEX leaves 2,246,754 that can be locked."
+2025-07-02,7,action,Deposits,EU,EUR,4500000.0,ICD-EU-EUR-20250702,"EU places EUR 4,500,000 with TRS for 3 months at a fixed 1.823%, maturing 02 Oct 2025 (ICD-EU-EUR-20250702, rolling ICD-EU-EUR-20250402).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 4,942,618 over the next 3 months; keeping 410,109 for about a month of OPEX leaves 4,532,508 that can be locked."
+2025-07-02,8,event,Interest,,EUR,11018.68,MMF-EUR-A,"Received EUR 11,019 interest on MMF-EUR-A for Jun 2025 (paid on business day 2).",
+2025-07-02,9,event,Interest,,GBP,47488.66,MMF-GBP-A,"Received GBP 47,489 interest on MMF-GBP-A for Jun 2025 (paid on business day 2).",
+2025-07-02,10,action,Cash,,GBP,-360351.2,MMF-GBP-A,"Redeemed GBP 360,351 from MMF-GBP-A.","Bank cash -287,148 is below the GBP 73,203 operating minimum."
+2025-07-02,11,event,Interest,,CHF,180.01,TRS-BKA-CHF-DEP,Received CHF 180 interest on TRS-BKA-CHF-DEP for Jun 2025 (paid on business day 2).,
+2025-07-02,12,event,Interest,,USD,378322.39,MMF-USD-A,"Received USD 378,322 interest on MMF-USD-A for Jun 2025 (paid on business day 2).",
+2025-07-02,13,action,Cash,,USD,378322.39,MMF-USD-A,"Invested USD 378,322 in MMF-USD-A.","Bank cash 478,322 is above the USD 100,000 operating minimum."
+2025-07-08,1,action,Cash,,USD,-247415.95,MMF-USD-A,"Redeemed USD 247,416 from MMF-USD-A.","Bank cash -147,416 is below the USD 100,000 operating minimum."
+2025-07-10,1,action,Cash,,GBP,7230543.03,MMF-GBP-A,"Invested GBP 7,230,543 in MMF-GBP-A.","Bank cash 7,304,221 is above the GBP 73,678 operating minimum."
+2025-07-10,2,action,Cash,,CHF,1831971.52,TRS-BKA-CHF-DEP,"Invested CHF 1,831,972 in TRS-BKA-CHF-DEP.","Bank cash 1,911,569 is above the CHF 79,597 operating minimum."
+2025-07-10,3,action,Cash,,USD,5130252.24,MMF-USD-A,"Invested USD 5,130,252 in MMF-USD-A.","Bank cash 5,230,252 is above the USD 100,000 operating minimum."
+2025-07-14,1,action,Cash,,GBP,-900462.0,MMF-GBP-A,"Redeemed GBP 900,462 from MMF-GBP-A.","Bank cash -826,322 is below the GBP 74,140 operating minimum."
+2025-07-15,1,action,Cash,,USD,-546869.83,MMF-USD-A,"Redeemed USD 546,870 from MMF-USD-A.","Bank cash -446,870 is below the USD 100,000 operating minimum."
+2025-07-21,1,action,Cash,,EUR,741078.3,MMF-EUR-A,"Invested EUR 741,078 in MMF-EUR-A.","Bank cash 826,790 is above the EUR 85,712 operating minimum."
+2025-07-24,1,action,FX,US,GBP,220000.0,FXI20250724-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Jul (FXI20250724-001: TRS buys USD 298,143 against GBP 220,000 at 1.3552).","US will be short GBP 220,000 on 31 Jul (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-07-24,2,action,FX,CH,GBP,150000.0,FXI20250724-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Jul (FXI20250724-002: TRS buys CHF 161,383 against GBP 150,000 at 1.0759).","CH will be short GBP 150,000 on 31 Jul (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-07-24,3,action,FX,,CHF,-161383.38,FXE20250724-003,"TRS sells CHF 161,383 forward to BKA, value 31 Jul (FXE20250724-003: USD 203,280 against CHF 161,383 at 0.7939).","Today's 1 internal deal leaves TRS long CHF 161,383 for 31 Jul. One external forward offsets the net, so TRS stays flat."
+2025-07-24,4,action,FX,,GBP,370000.0,FXE20250724-004,"TRS buys GBP 370,000 forward from BKA, value 31 Jul (FXE20250724-004: GBP 370,000 against USD 501,423 at 1.3552).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Jul. One external forward offsets the net, so TRS stays flat."
+2025-07-25,1,action,Cash,,GBP,-1611466.27,MMF-GBP-A,"Redeemed GBP 1,611,466 from MMF-GBP-A.","Bank cash -1,537,131 is below the GBP 74,335 operating minimum."
+2025-07-25,2,action,Cash,,CHF,-378190.01,TRS-BKA-CHF-DEP,"Redeemed CHF 378,190 from TRS-BKA-CHF-DEP.","Bank cash -298,499 is below the CHF 79,691 operating minimum."
+2025-07-31,1,event,FX,US,,,FXI20250724-001,"FXI20250724-001 settled on US's IC current accounts: TRS received USD 298,143 and paid GBP 220,000.",
+2025-07-31,2,event,FX,CH,,,FXI20250724-002,"FXI20250724-002 settled on CH's IC current accounts: TRS received CHF 161,383 and paid GBP 150,000.",
+2025-07-31,3,event,FX,,,,FXE20250724-003,"FXE20250724-003 settled on TRS's bank accounts: TRS received USD 203,280 and paid CHF 161,383.",
+2025-07-31,4,event,FX,,,,FXE20250724-004,"FXE20250724-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 501,423.",
+2025-07-31,5,action,Cash,,EUR,-374481.8,MMF-EUR-A,"Redeemed EUR 374,482 from MMF-EUR-A.","Bank cash -287,115 is below the EUR 87,367 operating minimum."
+2025-07-31,6,action,Cash,,GBP,368771.0,MMF-GBP-A,"Invested GBP 368,771 in MMF-GBP-A.","Bank cash 444,335 is above the GBP 75,564 operating minimum."
+2025-07-31,7,action,Cash,,CHF,-253808.39,TRS-BKA-CHF-DEP,"Redeemed CHF 253,808 from TRS-BKA-CHF-DEP.","Bank cash -172,583 is below the CHF 81,225 operating minimum."
+2025-07-31,8,action,Cash,,USD,-1101624.31,MMF-USD-A,"Redeemed USD 1,101,624 from MMF-USD-A.","Bank cash -1,001,624 is below the USD 100,000 operating minimum."
+2025-07-31,9,event,Interest,,CHF,-308.05,,Month end: net IC interest of CHF -308 posted to the entities' current accounts (+ = TRS pays).,
+2025-07-31,10,event,Interest,,EUR,1051.77,,"Month end: net IC interest of EUR +1,052 posted to the entities' current accounts (+ = TRS pays).",
+2025-07-31,11,event,Interest,,GBP,24316.59,,"Month end: net IC interest of GBP +24,317 posted to the entities' current accounts (+ = TRS pays).",
+2025-07-31,12,event,Interest,,USD,23022.64,,"Month end: net IC interest of USD +23,023 posted to the entities' current accounts (+ = TRS pays).",
+2025-07-31,13,event,Interest,IV,USD,294439.76,ICD-IV-USD-001,"Month end: USD 294,440 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-08-01,1,event,Deposits,MGT,GBP,2224169.33,ICD-MGT-GBP-20250501,"ICD-MGT-GBP-20250501 matured: GBP 2,224,169 (principal 2,200,000 + interest 24,169) back on MGT's on-call account.",
+2025-08-01,2,action,Deposits,MGT,GBP,2700000.0,ICD-MGT-GBP-20250801,"MGT places GBP 2,700,000 with TRS for 3 months at a fixed 4.118%, maturing 03 Nov 2025 (ICD-MGT-GBP-20250801, rolling ICD-MGT-GBP-20250501).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 5,350,195 over the next 3 months; keeping 2,640,009 for about a month of OPEX leaves 2,710,185 that can be locked."
+2025-08-01,3,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-08-04,1,event,Interest,,EUR,11434.76,MMF-EUR-A,"Received EUR 11,435 interest on MMF-EUR-A for Jul 2025 (paid on business day 2).",
+2025-08-04,2,event,Interest,,GBP,58403.1,MMF-GBP-A,"Received GBP 58,403 interest on MMF-GBP-A for Jul 2025 (paid on business day 2).",
+2025-08-04,3,action,Cash,,GBP,58705.1,MMF-GBP-A,"Invested GBP 58,705 in MMF-GBP-A.","Bank cash 133,967 is above the GBP 75,262 operating minimum."
+2025-08-04,4,event,Interest,,USD,400312.27,MMF-USD-A,"Received USD 400,312 interest on MMF-USD-A for Jul 2025 (paid on business day 2).",
+2025-08-04,5,action,Cash,,USD,400312.27,MMF-USD-A,"Invested USD 400,312 in MMF-USD-A.","Bank cash 500,312 is above the USD 100,000 operating minimum."
+2025-08-05,1,event,Interest,,CHF,-323.44,TRS-BKA-CHF-DEP,Received CHF -323 interest on TRS-BKA-CHF-DEP for Jul 2025 (paid on business day 2).,
+2025-08-06,1,event,Deposits,MGT,GBP,1516480.6,ICD-MGT-GBP-20250506,"ICD-MGT-GBP-20250506 matured: GBP 1,516,481 (principal 1,500,000 + interest 16,481) back on MGT's on-call account.",
+2025-08-06,2,action,Deposits,MGT,GBP,1500000.0,ICD-MGT-GBP-20250806,"MGT places GBP 1,500,000 with TRS for 3 months at a fixed 4.117%, maturing 06 Nov 2025 (ICD-MGT-GBP-20250806, rolling ICD-MGT-GBP-20250506).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 4,166,675 over the next 3 months; keeping 2,640,009 for about a month of OPEX leaves 1,526,666 that can be locked."
+2025-08-07,1,action,Cash,,GBP,-419229.0,MMF-GBP-A,"Redeemed GBP 419,229 from MMF-GBP-A.","Bank cash -344,738 is below the GBP 74,491 operating minimum."
+2025-08-15,1,action,Cash,,USD,-549148.09,MMF-USD-A,"Redeemed USD 549,148 from MMF-USD-A.","Bank cash -449,148 is below the USD 100,000 operating minimum."
+2025-08-20,1,action,Cash,,EUR,740368.13,MMF-EUR-A,"Invested EUR 740,368 in MMF-EUR-A.","Bank cash 826,198 is above the EUR 85,830 operating minimum."
+2025-08-21,1,action,FX,US,GBP,220000.0,FXI20250821-001,"US buys GBP 220,000 from TRS against USD, forward value 29 Aug (FXI20250821-001: TRS buys USD 295,913 against GBP 220,000 at 1.3451).","US will be short GBP 220,000 on 29 Aug (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-08-21,2,action,FX,CH,GBP,150000.0,FXI20250821-002,"CH buys GBP 150,000 from TRS against CHF, forward value 29 Aug (FXI20250821-002: TRS buys CHF 162,597 against GBP 150,000 at 1.0840).","CH will be short GBP 150,000 on 29 Aug (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-08-21,3,action,FX,,CHF,-162597.06,FXE20250821-003,"TRS sells CHF 162,597 forward to BKA, value 29 Aug (FXE20250821-003: USD 201,759 against CHF 162,597 at 0.8059).","Today's 1 internal deal leaves TRS long CHF 162,597 for 29 Aug. One external forward offsets the net, so TRS stays flat."
+2025-08-21,4,action,FX,,GBP,370000.0,FXE20250821-004,"TRS buys GBP 370,000 forward from BKA, value 29 Aug (FXE20250821-004: GBP 370,000 against USD 497,671 at 1.3451).","Today's 2 internal deals leave TRS short GBP 370,000 for 29 Aug. One external forward offsets the net, so TRS stays flat."
+2025-08-25,1,action,Cash,,CHF,-378969.26,TRS-BKA-CHF-DEP,"Redeemed CHF 378,969 from TRS-BKA-CHF-DEP.","Bank cash -298,735 is below the CHF 80,234 operating minimum."
+2025-08-26,1,action,Cash,,GBP,-1592319.38,MMF-GBP-A,"Redeemed GBP 1,592,319 from MMF-GBP-A.","Bank cash -1,518,177 is below the GBP 74,142 operating minimum."
+2025-08-29,1,event,FX,US,,,FXI20250821-001,"FXI20250821-001 settled on US's IC current accounts: TRS received USD 295,913 and paid GBP 220,000.",
+2025-08-29,2,event,FX,CH,,,FXI20250821-002,"FXI20250821-002 settled on CH's IC current accounts: TRS received CHF 162,597 and paid GBP 150,000.",
+2025-08-29,3,event,FX,,,,FXE20250821-003,"FXE20250821-003 settled on TRS's bank accounts: TRS received USD 201,759 and paid CHF 162,597.",
+2025-08-29,4,event,FX,,,,FXE20250821-004,"FXE20250821-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 497,671.",
+2025-08-29,5,action,Cash,,EUR,-256287.11,MMF-EUR-A,"Redeemed EUR 256,287 from MMF-EUR-A.","Bank cash -170,509 is below the EUR 85,778 operating minimum."
+2025-08-29,6,action,Cash,,CHF,-162686.06,TRS-BKA-CHF-DEP,"Redeemed CHF 162,686 from TRS-BKA-CHF-DEP.","Bank cash -82,363 is below the CHF 80,323 operating minimum."
+2025-08-29,7,action,Cash,,USD,-847811.71,MMF-USD-A,"Redeemed USD 847,812 from MMF-USD-A.","Bank cash -747,812 is below the USD 100,000 operating minimum."
+2025-08-31,1,event,Interest,,CHF,-281.89,,Month end: net IC interest of CHF -282 posted to the entities' current accounts (+ = TRS pays).,
+2025-08-31,2,event,Interest,,EUR,1616.4,,"Month end: net IC interest of EUR +1,616 posted to the entities' current accounts (+ = TRS pays).",
+2025-08-31,3,event,Interest,,GBP,22310.04,,"Month end: net IC interest of GBP +22,310 posted to the entities' current accounts (+ = TRS pays).",
+2025-08-31,4,event,Interest,,USD,21930.74,,"Month end: net IC interest of USD +21,931 posted to the entities' current accounts (+ = TRS pays).",
+2025-08-31,5,event,Interest,IV,USD,296252.53,ICD-IV-USD-001,"Month end: USD 296,253 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-09-01,1,action,Cash,,CHF,-88373.57,TRS-BKA-CHF-DEP,"Redeemed CHF 88,374 from TRS-BKA-CHF-DEP.","Bank cash -8,280 is below the CHF 80,094 operating minimum."
+2025-09-02,1,event,Interest,,EUR,12053.05,MMF-EUR-A,"Received EUR 12,053 interest on MMF-EUR-A for Aug 2025 (paid on business day 2).",
+2025-09-02,2,event,Interest,,GBP,56363.14,MMF-GBP-A,"Received GBP 56,363 interest on MMF-GBP-A for Aug 2025 (paid on business day 2).",
+2025-09-02,3,action,Cash,,GBP,38443.91,MMF-GBP-A,"Invested GBP 38,444 in MMF-GBP-A.","Bank cash 113,165 is above the GBP 74,721 operating minimum."
+2025-09-02,4,event,Interest,,CHF,-299.92,TRS-BKA-CHF-DEP,Received CHF -300 interest on TRS-BKA-CHF-DEP for Aug 2025 (paid on business day 2).,
+2025-09-02,5,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-09-03,1,event,Interest,,USD,401303.37,MMF-USD-A,"Received USD 401,303 interest on MMF-USD-A for Aug 2025 (paid on business day 2).",
+2025-09-03,2,action,Cash,,USD,401303.37,MMF-USD-A,"Invested USD 401,303 in MMF-USD-A.","Bank cash 501,303 is above the USD 100,000 operating minimum."
+2025-09-04,1,action,Cash,,EUR,-95309.71,MMF-EUR-A,"Redeemed EUR 95,310 from MMF-EUR-A.","Bank cash -9,451 is below the EUR 85,859 operating minimum."
+2025-09-05,1,action,Cash,,USD,-251505.98,MMF-USD-A,"Redeemed USD 251,506 from MMF-USD-A.","Bank cash -151,506 is below the USD 100,000 operating minimum."
+2025-09-15,1,action,Cash,,USD,-1048611.25,MMF-USD-A,"Redeemed USD 1,048,611 from MMF-USD-A.","Bank cash -948,611 is below the USD 100,000 operating minimum."
+2025-09-22,1,action,Cash,,EUR,713693.3,MMF-EUR-A,"Invested EUR 713,693 in MMF-EUR-A.","Bank cash 798,575 is above the EUR 84,882 operating minimum."
+2025-09-23,1,action,FX,US,GBP,220000.0,FXI20250923-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Sep (FXI20250923-001: TRS buys USD 297,237 against GBP 220,000 at 1.3511).","US will be short GBP 220,000 on 30 Sep (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-09-23,2,action,FX,CH,GBP,150000.0,FXI20250923-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Sep (FXI20250923-002: TRS buys CHF 160,445 against GBP 150,000 at 1.0696).","CH will be short GBP 150,000 on 30 Sep (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-09-23,3,action,FX,,CHF,-160445.04,FXE20250923-003,"TRS sells CHF 160,445 forward to BKA, value 30 Sep (FXE20250923-003: USD 202,662 against CHF 160,445 at 0.7917).","Today's 1 internal deal leaves TRS long CHF 160,445 for 30 Sep. One external forward offsets the net, so TRS stays flat."
+2025-09-23,4,action,FX,,GBP,370000.0,FXE20250923-004,"TRS buys GBP 370,000 forward from BKA, value 30 Sep (FXE20250923-004: GBP 370,000 against USD 499,898 at 1.3511).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Sep. One external forward offsets the net, so TRS stays flat."
+2025-09-25,1,action,Cash,,GBP,-1592499.86,MMF-GBP-A,"Redeemed GBP 1,592,500 from MMF-GBP-A.","Bank cash -1,517,979 is below the GBP 74,521 operating minimum."
+2025-09-25,2,action,Cash,,CHF,-375281.54,TRS-BKA-CHF-DEP,"Redeemed CHF 375,282 from TRS-BKA-CHF-DEP.","Bank cash -295,684 is below the CHF 79,598 operating minimum."
+2025-09-29,1,action,Cash,,GBP,-449888.0,MMF-GBP-A,"Redeemed GBP 449,888 from MMF-GBP-A.","Bank cash -375,479 is below the GBP 74,409 operating minimum."
+2025-09-30,1,event,FX,US,,,FXI20250923-001,"FXI20250923-001 settled on US's IC current accounts: TRS received USD 297,237 and paid GBP 220,000.",
+2025-09-30,2,event,FX,CH,,,FXI20250923-002,"FXI20250923-002 settled on CH's IC current accounts: TRS received CHF 160,445 and paid GBP 150,000.",
+2025-09-30,3,event,FX,,,,FXE20250923-003,"FXE20250923-003 settled on TRS's bank accounts: TRS received USD 202,662 and paid CHF 160,445.",
+2025-09-30,4,event,FX,,,,FXE20250923-004,"FXE20250923-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 499,898.",
+2025-09-30,5,action,Cash,,EUR,-364676.44,MMF-EUR-A,"Redeemed EUR 364,676 from MMF-EUR-A.","Bank cash -279,504 is below the EUR 85,172 operating minimum."
+2025-09-30,6,action,Cash,,GBP,-329411.75,MMF-GBP-A,"Redeemed GBP 329,412 from MMF-GBP-A.","Bank cash -255,023 is below the GBP 74,389 operating minimum."
+2025-09-30,7,action,Cash,,CHF,-248686.96,TRS-BKA-CHF-DEP,"Redeemed CHF 248,687 from TRS-BKA-CHF-DEP.","Bank cash -168,932 is below the CHF 79,755 operating minimum."
+2025-09-30,8,action,Cash,,USD,-1244471.18,MMF-USD-A,"Redeemed USD 1,244,471 from MMF-USD-A.","Bank cash -1,144,471 is below the USD 100,000 operating minimum."
+2025-09-30,9,event,Interest,,CHF,-174.97,,Month end: net IC interest of CHF -175 posted to the entities' current accounts (+ = TRS pays).,
+2025-09-30,10,event,Interest,,EUR,2039.62,,"Month end: net IC interest of EUR +2,040 posted to the entities' current accounts (+ = TRS pays).",
+2025-09-30,11,event,Interest,,GBP,15911.57,,"Month end: net IC interest of GBP +15,912 posted to the entities' current accounts (+ = TRS pays).",
+2025-09-30,12,event,Interest,,USD,14365.19,,"Month end: net IC interest of USD +14,365 posted to the entities' current accounts (+ = TRS pays).",
+2025-09-30,13,event,Interest,IV,USD,284363.11,ICD-IV-USD-001,"Month end: USD 284,363 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-10-01,1,event,Deposits,EU,EUR,2009307.33,ICD-EU-EUR-20250701,"ICD-EU-EUR-20250701 matured: EUR 2,009,307 (principal 2,000,000 + interest 9,307) back on EU's on-call account.",
+2025-10-01,2,action,Deposits,EU,EUR,3000000.0,ICD-EU-EUR-20251001,"EU places EUR 3,000,000 with TRS for 3 months at a fixed 1.827%, maturing 02 Jan 2026 (ICD-EU-EUR-20251001, rolling ICD-EU-EUR-20250701).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 3,526,359 over the next 3 months; keeping 464,177 for about a month of OPEX leaves 3,062,182 that can be locked."
+2025-10-01,3,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-10-02,1,event,Deposits,MGT,GBP,5860188.62,ICD-MGT-GBP-20250702,"ICD-MGT-GBP-20250702 matured: GBP 5,860,189 (principal 5,800,000 + interest 60,189) back on MGT's on-call account.",
+2025-10-02,2,event,Deposits,CH,CHF,2199212.89,ICD-CH-CHF-20250702,"ICD-CH-CHF-20250702 matured: CHF 2,199,213 (principal 2,200,000 + interest -787) back on CH's on-call account.",
+2025-10-02,3,event,Deposits,EU,EUR,4520964.5,ICD-EU-EUR-20250702,"ICD-EU-EUR-20250702 matured: EUR 4,520,964 (principal 4,500,000 + interest 20,964) back on EU's on-call account.",
+2025-10-02,4,action,Deposits,MGT,GBP,5700000.0,ICD-MGT-GBP-20251002,"MGT places GBP 5,700,000 with TRS for 3 months at a fixed 3.867%, maturing 02 Jan 2026 (ICD-MGT-GBP-20251002, rolling ICD-MGT-GBP-20250702).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 8,935,086 over the next 3 months; keeping 3,164,611 for about a month of OPEX leaves 5,770,475 that can be locked."
+2025-10-02,5,action,Deposits,CH,CHF,2000000.0,ICD-CH-CHF-20251002,"CH places CHF 2,000,000 with TRS for 3 months at a fixed -0.140%, maturing 02 Jan 2026 (ICD-CH-CHF-20251002, rolling ICD-CH-CHF-20250702).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,649,262 over the next 3 months; keeping 587,643 for about a month of OPEX leaves 2,061,619 that can be locked."
+2025-10-02,6,action,Deposits,EU,EUR,4500000.0,ICD-EU-EUR-20251002,"EU places EUR 4,500,000 with TRS for 3 months at a fixed 1.823%, maturing 02 Jan 2026 (ICD-EU-EUR-20251002, rolling ICD-EU-EUR-20250702).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 5,047,324 over the next 3 months; keeping 464,177 for about a month of OPEX leaves 4,583,147 that can be locked."
+2025-10-02,7,event,Interest,,EUR,12197.15,MMF-EUR-A,"Received EUR 12,197 interest on MMF-EUR-A for Sep 2025 (paid on business day 2).",
+2025-10-02,8,event,Interest,,GBP,48439.95,MMF-GBP-A,"Received GBP 48,440 interest on MMF-GBP-A for Sep 2025 (paid on business day 2).",
+2025-10-02,9,action,Cash,,GBP,48632.95,MMF-GBP-A,"Invested GBP 48,633 in MMF-GBP-A.","Bank cash 122,829 is above the GBP 74,196 operating minimum."
+2025-10-02,10,event,Interest,,CHF,-241.86,TRS-BKA-CHF-DEP,Received CHF -242 interest on TRS-BKA-CHF-DEP for Sep 2025 (paid on business day 2).,
+2025-10-02,11,event,Interest,,USD,378530.18,MMF-USD-A,"Received USD 378,530 interest on MMF-USD-A for Sep 2025 (paid on business day 2).",
+2025-10-02,12,action,Cash,,USD,378530.18,MMF-USD-A,"Invested USD 378,530 in MMF-USD-A.","Bank cash 478,530 is above the USD 100,000 operating minimum."
+2025-10-10,1,action,Cash,,GBP,7352311.69,MMF-GBP-A,"Invested GBP 7,352,312 in MMF-GBP-A.","Bank cash 7,427,597 is above the GBP 75,285 operating minimum."
+2025-10-10,2,action,Cash,,CHF,1846645.51,TRS-BKA-CHF-DEP,"Invested CHF 1,846,646 in TRS-BKA-CHF-DEP.","Bank cash 1,927,248 is above the CHF 80,602 operating minimum."
+2025-10-10,3,action,Cash,,USD,4909244.02,MMF-USD-A,"Invested USD 4,909,244 in MMF-USD-A.","Bank cash 5,009,244 is above the USD 100,000 operating minimum."
+2025-10-14,1,action,Cash,,GBP,-900124.0,MMF-GBP-A,"Redeemed GBP 900,124 from MMF-GBP-A.","Bank cash -824,715 is below the GBP 75,409 operating minimum."
+2025-10-15,1,action,Cash,,USD,-549317.43,MMF-USD-A,"Redeemed USD 549,317 from MMF-USD-A.","Bank cash -449,317 is below the USD 100,000 operating minimum."
+2025-10-20,1,action,Cash,,EUR,719607.51,MMF-EUR-A,"Invested EUR 719,608 in MMF-EUR-A.","Bank cash 805,408 is above the EUR 85,800 operating minimum."
+2025-10-24,1,action,FX,US,GBP,220000.0,FXI20251024-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Oct (FXI20251024-001: TRS buys USD 292,782 against GBP 220,000 at 1.3308).","US will be short GBP 220,000 on 31 Oct (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-10-24,2,action,FX,CH,GBP,150000.0,FXI20251024-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Oct (FXI20251024-002: TRS buys CHF 158,852 against GBP 150,000 at 1.0590).","CH will be short GBP 150,000 on 31 Oct (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-10-24,3,action,FX,,CHF,-158852.07,FXE20251024-003,"TRS sells CHF 158,852 forward to BKA, value 31 Oct (FXE20251024-003: USD 199,624 against CHF 158,852 at 0.7958).","Today's 1 internal deal leaves TRS long CHF 158,852 for 31 Oct. One external forward offsets the net, so TRS stays flat."
+2025-10-24,4,action,FX,,GBP,370000.0,FXE20251024-004,"TRS buys GBP 370,000 forward from BKA, value 31 Oct (FXE20251024-004: GBP 370,000 against USD 492,406 at 1.3308).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Oct. One external forward offsets the net, so TRS stays flat."
+2025-10-27,1,action,Cash,,GBP,-1567514.0,MMF-GBP-A,"Redeemed GBP 1,567,514 from MMF-GBP-A.","Bank cash -1,492,591 is below the GBP 74,923 operating minimum."
+2025-10-27,2,action,Cash,,CHF,-380518.13,TRS-BKA-CHF-DEP,"Redeemed CHF 380,518 from TRS-BKA-CHF-DEP.","Bank cash -300,930 is below the CHF 79,588 operating minimum."
+2025-10-31,1,event,FX,US,,,FXI20251024-001,"FXI20251024-001 settled on US's IC current accounts: TRS received USD 292,782 and paid GBP 220,000.",
+2025-10-31,2,event,FX,CH,,,FXI20251024-002,"FXI20251024-002 settled on CH's IC current accounts: TRS received CHF 158,852 and paid GBP 150,000.",
+2025-10-31,3,event,FX,,,,FXE20251024-003,"FXE20251024-003 settled on TRS's bank accounts: TRS received USD 199,624 and paid CHF 158,852.",
+2025-10-31,4,event,FX,,,,FXE20251024-004,"FXE20251024-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 492,406.",
+2025-10-31,5,action,Cash,,EUR,-422729.28,MMF-EUR-A,"Redeemed EUR 422,729 from MMF-EUR-A.","Bank cash -336,179 is below the EUR 86,550 operating minimum."
+2025-10-31,6,action,Cash,,GBP,-40299.25,MMF-GBP-A,"Redeemed GBP 40,299 from MMF-GBP-A.","Bank cash 36,004 is below the GBP 76,303 operating minimum."
+2025-10-31,7,action,Cash,,CHF,-312331.56,TRS-BKA-CHF-DEP,"Redeemed CHF 312,332 from TRS-BKA-CHF-DEP.","Bank cash -231,953 is below the CHF 80,379 operating minimum."
+2025-10-31,8,action,Cash,,USD,-1090089.62,MMF-USD-A,"Redeemed USD 1,090,090 from MMF-USD-A.","Bank cash -990,090 is below the USD 100,000 operating minimum."
+2025-10-31,9,event,Interest,,CHF,-334.24,,Month end: net IC interest of CHF -334 posted to the entities' current accounts (+ = TRS pays).,
+2025-10-31,10,event,Interest,,EUR,1235.16,,"Month end: net IC interest of EUR +1,235 posted to the entities' current accounts (+ = TRS pays).",
+2025-10-31,11,event,Interest,,GBP,24878.77,,"Month end: net IC interest of GBP +24,879 posted to the entities' current accounts (+ = TRS pays).",
+2025-10-31,12,event,Interest,,USD,19035.12,,"Month end: net IC interest of USD +19,035 posted to the entities' current accounts (+ = TRS pays).",
+2025-10-31,13,event,Interest,IV,USD,287662.35,ICD-IV-USD-001,"Month end: USD 287,662 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-11-03,1,event,Deposits,MGT,GBP,2728631.42,ICD-MGT-GBP-20250801,"ICD-MGT-GBP-20250801 matured: GBP 2,728,631 (principal 2,700,000 + interest 28,631) back on MGT's on-call account.",
+2025-11-03,2,action,Deposits,MGT,GBP,4900000.0,ICD-MGT-GBP-20251103,"MGT places GBP 4,900,000 with TRS for 3 months at a fixed 3.869%, maturing 03 Feb 2026 (ICD-MGT-GBP-20251103, rolling ICD-MGT-GBP-20250801).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 7,156,424 over the next 3 months; keeping 2,170,905 for about a month of OPEX leaves 4,985,519 that can be locked."
+2025-11-03,3,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-11-04,1,event,Interest,,EUR,13267.39,MMF-EUR-A,"Received EUR 13,267 interest on MMF-EUR-A for Oct 2025 (paid on business day 2).",
+2025-11-04,2,event,Interest,,GBP,58311.02,MMF-GBP-A,"Received GBP 58,311 interest on MMF-GBP-A for Oct 2025 (paid on business day 2).",
+2025-11-04,3,action,Cash,,GBP,58076.02,MMF-GBP-A,"Invested GBP 58,076 in MMF-GBP-A.","Bank cash 134,614 is above the GBP 76,538 operating minimum."
+2025-11-04,4,event,Interest,,CHF,-317.47,TRS-BKA-CHF-DEP,Received CHF -317 interest on TRS-BKA-CHF-DEP for Oct 2025 (paid on business day 2).,
+2025-11-04,5,event,Interest,,USD,387847.68,MMF-USD-A,"Received USD 387,848 interest on MMF-USD-A for Oct 2025 (paid on business day 2).",
+2025-11-04,6,action,Cash,,USD,387847.68,MMF-USD-A,"Invested USD 387,848 in MMF-USD-A.","Bank cash 487,848 is above the USD 100,000 operating minimum."
+2025-11-06,1,event,Deposits,MGT,GBP,1515565.64,ICD-MGT-GBP-20250806,"ICD-MGT-GBP-20250806 matured: GBP 1,515,566 (principal 1,500,000 + interest 15,566) back on MGT's on-call account.",
+2025-11-06,2,action,Deposits,MGT,GBP,1600000.0,ICD-MGT-GBP-20251106,"MGT places GBP 1,600,000 with TRS for 3 months at a fixed 3.869%, maturing 06 Feb 2026 (ICD-MGT-GBP-20251106, rolling ICD-MGT-GBP-20250806).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 3,771,990 over the next 3 months; keeping 2,170,905 for about a month of OPEX leaves 1,601,084 that can be locked."
+2025-11-17,1,action,Cash,,USD,-560419.81,MMF-USD-A,"Redeemed USD 560,420 from MMF-USD-A.","Bank cash -460,420 is below the USD 100,000 operating minimum."
+2025-11-20,1,action,Cash,,EUR,733153.45,MMF-EUR-A,"Invested EUR 733,153 in MMF-EUR-A.","Bank cash 820,004 is above the EUR 86,851 operating minimum."
+2025-11-20,2,action,FX,US,GBP,220000.0,FXI20251120-001,"US buys GBP 220,000 from TRS against USD, forward value 28 Nov (FXI20251120-001: TRS buys USD 287,360 against GBP 220,000 at 1.3062).","US will be short GBP 220,000 on 28 Nov (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-11-20,3,action,FX,CH,GBP,150000.0,FXI20251120-002,"CH buys GBP 150,000 from TRS against CHF, forward value 28 Nov (FXI20251120-002: TRS buys CHF 158,012 against GBP 150,000 at 1.0534).","CH will be short GBP 150,000 on 28 Nov (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-11-20,4,action,FX,,CHF,-158011.71,FXE20251120-003,"TRS sells CHF 158,012 forward to BKA, value 28 Nov (FXE20251120-003: USD 195,927 against CHF 158,012 at 0.8065).","Today's 1 internal deal leaves TRS long CHF 158,012 for 28 Nov. One external forward offsets the net, so TRS stays flat."
+2025-11-20,5,action,FX,,GBP,370000.0,FXE20251120-004,"TRS buys GBP 370,000 forward from BKA, value 28 Nov (FXE20251120-004: GBP 370,000 against USD 483,287 at 1.3062).","Today's 2 internal deals leave TRS short GBP 370,000 for 28 Nov. One external forward offsets the net, so TRS stays flat."
+2025-11-25,1,action,Cash,,GBP,-1575445.04,MMF-GBP-A,"Redeemed GBP 1,575,445 from MMF-GBP-A.","Bank cash -1,499,365 is below the GBP 76,080 operating minimum."
+2025-11-25,2,action,Cash,,CHF,-382707.31,TRS-BKA-CHF-DEP,"Redeemed CHF 382,707 from TRS-BKA-CHF-DEP.","Bank cash -301,805 is below the CHF 80,902 operating minimum."
+2025-11-28,1,event,FX,US,,,FXI20251120-001,"FXI20251120-001 settled on US's IC current accounts: TRS received USD 287,360 and paid GBP 220,000.",
+2025-11-28,2,event,FX,CH,,,FXI20251120-002,"FXI20251120-002 settled on CH's IC current accounts: TRS received CHF 158,012 and paid GBP 150,000.",
+2025-11-28,3,event,FX,,,,FXE20251120-003,"FXE20251120-003 settled on TRS's bank accounts: TRS received USD 195,927 and paid CHF 158,012.",
+2025-11-28,4,event,FX,,,,FXE20251120-004,"FXE20251120-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 483,287.",
+2025-11-28,5,action,Cash,,EUR,-370538.18,MMF-EUR-A,"Redeemed EUR 370,538 from MMF-EUR-A.","Bank cash -284,078 is below the EUR 86,460 operating minimum."
+2025-11-28,6,action,Cash,,GBP,-27237.32,MMF-GBP-A,"Redeemed GBP 27,237 from MMF-GBP-A.","Bank cash 48,433 is below the GBP 75,670 operating minimum."
+2025-11-28,7,action,Cash,,CHF,-245933.01,TRS-BKA-CHF-DEP,"Redeemed CHF 245,933 from TRS-BKA-CHF-DEP.","Bank cash -165,369 is below the CHF 80,564 operating minimum."
+2025-11-28,8,action,Cash,,USD,-836158.59,MMF-USD-A,"Redeemed USD 836,159 from MMF-USD-A.","Bank cash -736,159 is below the USD 100,000 operating minimum."
+2025-11-30,1,event,Interest,,CHF,-291.57,,Month end: net IC interest of CHF -292 posted to the entities' current accounts (+ = TRS pays).,
+2025-11-30,2,event,Interest,,EUR,1572.81,,"Month end: net IC interest of EUR +1,573 posted to the entities' current accounts (+ = TRS pays).",
+2025-11-30,3,event,Interest,,GBP,17866.35,,"Month end: net IC interest of GBP +17,866 posted to the entities' current accounts (+ = TRS pays).",
+2025-11-30,4,event,Interest,,USD,16466.26,,"Month end: net IC interest of USD +16,466 posted to the entities' current accounts (+ = TRS pays).",
+2025-11-30,5,event,Interest,IV,USD,265602.67,ICD-IV-USD-001,"Month end: USD 265,603 interest added to the IV deposit (ICD-IV-USD-001).",
+2025-12-01,1,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2025-12-02,1,event,Interest,,EUR,13263.38,MMF-EUR-A,"Received EUR 13,263 interest on MMF-EUR-A for Nov 2025 (paid on business day 2).",
+2025-12-02,2,event,Interest,,GBP,56894.27,MMF-GBP-A,"Received GBP 56,894 interest on MMF-GBP-A for Nov 2025 (paid on business day 2).",
+2025-12-02,3,action,Cash,,GBP,56828.27,MMF-GBP-A,"Invested GBP 56,828 in MMF-GBP-A.","Bank cash 132,564 is above the GBP 75,736 operating minimum."
+2025-12-02,4,event,Interest,,CHF,-288.45,TRS-BKA-CHF-DEP,Received CHF -288 interest on TRS-BKA-CHF-DEP for Nov 2025 (paid on business day 2).,
+2025-12-02,5,event,Interest,,USD,357352.45,MMF-USD-A,"Received USD 357,352 interest on MMF-USD-A for Nov 2025 (paid on business day 2).",
+2025-12-02,6,action,Cash,,USD,357352.45,MMF-USD-A,"Invested USD 357,352 in MMF-USD-A.","Bank cash 457,352 is above the USD 100,000 operating minimum."
+2025-12-04,1,action,Cash,,USD,-256872.75,MMF-USD-A,"Redeemed USD 256,873 from MMF-USD-A.","Bank cash -156,873 is below the USD 100,000 operating minimum."
+2025-12-15,1,action,Cash,,USD,-1052191.66,MMF-USD-A,"Redeemed USD 1,052,192 from MMF-USD-A.","Bank cash -952,192 is below the USD 100,000 operating minimum."
+2025-12-22,1,action,Cash,,EUR,735922.36,MMF-EUR-A,"Invested EUR 735,922 in MMF-EUR-A.","Bank cash 821,065 is above the EUR 85,143 operating minimum."
+2025-12-22,2,action,FX,US,GBP,220000.0,FXI20251222-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Dec (FXI20251222-001: TRS buys USD 295,572 against GBP 220,000 at 1.3435).","US will be short GBP 220,000 on 31 Dec (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2025-12-22,3,action,FX,CH,GBP,150000.0,FXI20251222-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Dec (FXI20251222-002: TRS buys CHF 159,700 against GBP 150,000 at 1.0647).","CH will be short GBP 150,000 on 31 Dec (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2025-12-22,4,action,FX,,CHF,-159700.38,FXE20251222-003,"TRS sells CHF 159,700 forward to BKA, value 31 Dec (FXE20251222-003: USD 201,527 against CHF 159,700 at 0.7925).","Today's 1 internal deal leaves TRS long CHF 159,700 for 31 Dec. One external forward offsets the net, so TRS stays flat."
+2025-12-22,5,action,FX,,GBP,370000.0,FXE20251222-004,"TRS buys GBP 370,000 forward from BKA, value 31 Dec (FXE20251222-004: GBP 370,000 against USD 497,099 at 1.3435).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Dec. One external forward offsets the net, so TRS stays flat."
+2025-12-29,1,action,Cash,,GBP,-2058453.22,MMF-GBP-A,"Redeemed GBP 2,058,453 from MMF-GBP-A.","Bank cash -1,984,290 is below the GBP 74,163 operating minimum."
+2025-12-29,2,action,Cash,,CHF,-381890.69,TRS-BKA-CHF-DEP,"Redeemed CHF 381,891 from TRS-BKA-CHF-DEP.","Bank cash -302,909 is below the CHF 78,982 operating minimum."
+2025-12-31,1,event,FX,US,,,FXI20251222-001,"FXI20251222-001 settled on US's IC current accounts: TRS received USD 295,572 and paid GBP 220,000.",
+2025-12-31,2,event,FX,CH,,,FXI20251222-002,"FXI20251222-002 settled on CH's IC current accounts: TRS received CHF 159,700 and paid GBP 150,000.",
+2025-12-31,3,event,FX,,,,FXE20251222-003,"FXE20251222-003 settled on TRS's bank accounts: TRS received USD 201,527 and paid CHF 159,700.",
+2025-12-31,4,event,FX,,,,FXE20251222-004,"FXE20251222-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 497,099.",
+2025-12-31,5,action,Cash,,EUR,-361799.29,MMF-EUR-A,"Redeemed EUR 361,799 from MMF-EUR-A.","Bank cash -276,693 is below the EUR 85,106 operating minimum."
+2025-12-31,6,action,Cash,,GBP,369899.0,MMF-GBP-A,"Invested GBP 369,899 in MMF-GBP-A.","Bank cash 444,163 is above the GBP 74,264 operating minimum."
+2025-12-31,7,action,Cash,,CHF,-253046.05,TRS-BKA-CHF-DEP,"Redeemed CHF 253,046 from TRS-BKA-CHF-DEP.","Bank cash -173,778 is below the CHF 79,268 operating minimum."
+2025-12-31,8,action,Cash,,USD,-1090173.63,MMF-USD-A,"Redeemed USD 1,090,174 from MMF-USD-A.","Bank cash -990,174 is below the USD 100,000 operating minimum."
+2025-12-31,9,event,Interest,,CHF,-204.46,,Month end: net IC interest of CHF -204 posted to the entities' current accounts (+ = TRS pays).,
+2025-12-31,10,event,Interest,,EUR,2154.71,,"Month end: net IC interest of EUR +2,155 posted to the entities' current accounts (+ = TRS pays).",
+2025-12-31,11,event,Interest,,GBP,12874.29,,"Month end: net IC interest of GBP +12,874 posted to the entities' current accounts (+ = TRS pays).",
+2025-12-31,12,event,Interest,,USD,9840.07,,"Month end: net IC interest of USD +9,840 posted to the entities' current accounts (+ = TRS pays).",
+2025-12-31,13,event,Interest,IV,USD,260104.43,ICD-IV-USD-001,"Month end: USD 260,104 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-01-02,1,event,Deposits,EU,EUR,3014159.25,ICD-EU-EUR-20251001,"ICD-EU-EUR-20251001 matured: EUR 3,014,159 (principal 3,000,000 + interest 14,159) back on EU's on-call account.",
+2026-01-02,2,event,Deposits,MGT,GBP,5755563.41,ICD-MGT-GBP-20251002,"ICD-MGT-GBP-20251002 matured: GBP 5,755,563 (principal 5,700,000 + interest 55,563) back on MGT's on-call account.",
+2026-01-02,3,event,Deposits,CH,CHF,1999284.44,ICD-CH-CHF-20251002,"ICD-CH-CHF-20251002 matured: CHF 1,999,284 (principal 2,000,000 + interest -716) back on CH's on-call account.",
+2026-01-02,4,event,Deposits,EU,EUR,4520964.5,ICD-EU-EUR-20251002,"ICD-EU-EUR-20251002 matured: EUR 4,520,964 (principal 4,500,000 + interest 20,964) back on EU's on-call account.",
+2026-01-02,5,action,Deposits,MGT,GBP,4300000.0,ICD-MGT-GBP-20260102,"MGT places GBP 4,300,000 with TRS for 3 months at a fixed 3.626%, maturing 02 Apr 2026 (ICD-MGT-GBP-20260102, rolling ICD-MGT-GBP-20251002).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 7,958,294 over the next 3 months; keeping 3,603,668 for about a month of OPEX leaves 4,354,626 that can be locked."
+2026-01-02,6,action,Deposits,CH,CHF,2000000.0,ICD-CH-CHF-20260102,"CH places CHF 2,000,000 with TRS for 3 months at a fixed -0.180%, maturing 02 Apr 2026 (ICD-CH-CHF-20260102, rolling ICD-CH-CHF-20251002).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,616,468 over the next 3 months; keeping 517,252 for about a month of OPEX leaves 2,099,216 that can be locked."
+2026-01-02,7,action,Deposits,EU,EUR,8600000.0,ICD-EU-EUR-20260102,"EU places EUR 8,600,000 with TRS for 3 months at a fixed 1.836%, maturing 02 Apr 2026 (ICD-EU-EUR-20260102, rolling ICD-EU-EUR-20251002).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 9,082,233 over the next 3 months; keeping 402,470 for about a month of OPEX leaves 8,679,763 that can be locked."
+2026-01-02,8,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-01-05,1,event,Interest,,EUR,14290.53,MMF-EUR-A,"Received EUR 14,291 interest on MMF-EUR-A for Dec 2025 (paid on business day 2).",
+2026-01-05,2,event,Interest,,GBP,52624.3,MMF-GBP-A,"Received GBP 52,624 interest on MMF-GBP-A for Dec 2025 (paid on business day 2).",
+2026-01-05,3,action,Cash,,GBP,52505.3,MMF-GBP-A,"Invested GBP 52,505 in MMF-GBP-A.","Bank cash 126,888 is above the GBP 74,383 operating minimum."
+2026-01-05,4,event,Interest,,CHF,-248.27,TRS-BKA-CHF-DEP,Received CHF -248 interest on TRS-BKA-CHF-DEP for Dec 2025 (paid on business day 2).,
+2026-01-05,5,event,Interest,,USD,344134.1,MMF-USD-A,"Received USD 344,134 interest on MMF-USD-A for Dec 2025 (paid on business day 2).",
+2026-01-05,6,action,Cash,,USD,344134.1,MMF-USD-A,"Invested USD 344,134 in MMF-USD-A.","Bank cash 444,134 is above the USD 100,000 operating minimum."
+2026-01-08,1,action,Cash,,GBP,-385100.82,MMF-GBP-A,"Redeemed GBP 385,101 from MMF-GBP-A.","Bank cash -310,694 is below the GBP 74,407 operating minimum."
+2026-01-12,1,action,Cash,,GBP,7875220.0,MMF-GBP-A,"Invested GBP 7,875,220 in MMF-GBP-A.","Bank cash 7,949,407 is above the GBP 74,187 operating minimum."
+2026-01-12,2,action,Cash,,CHF,1856291.2,TRS-BKA-CHF-DEP,"Invested CHF 1,856,291 in TRS-BKA-CHF-DEP.","Bank cash 1,935,944 is above the CHF 79,653 operating minimum."
+2026-01-12,3,action,Cash,,USD,5075024.32,MMF-USD-A,"Invested USD 5,075,024 in MMF-USD-A.","Bank cash 5,175,024 is above the USD 100,000 operating minimum."
+2026-01-14,1,action,Cash,,GBP,-900210.0,MMF-GBP-A,"Redeemed GBP 900,210 from MMF-GBP-A.","Bank cash -825,813 is below the GBP 74,397 operating minimum."
+2026-01-15,1,action,Cash,,USD,-550674.86,MMF-USD-A,"Redeemed USD 550,675 from MMF-USD-A.","Bank cash -450,675 is below the USD 100,000 operating minimum."
+2026-01-20,1,action,Cash,,EUR,727566.74,MMF-EUR-A,"Invested EUR 727,567 in MMF-EUR-A.","Bank cash 812,833 is above the EUR 85,266 operating minimum."
+2026-01-23,1,action,FX,US,GBP,220000.0,FXI20260123-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Jan (FXI20260123-001: TRS buys USD 297,573 against GBP 220,000 at 1.3526).","US will be short GBP 220,000 on 30 Jan (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-01-23,2,action,FX,CH,GBP,150000.0,FXI20260123-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Jan (FXI20260123-002: TRS buys CHF 160,183 against GBP 150,000 at 1.0679).","CH will be short GBP 150,000 on 30 Jan (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-01-23,3,action,FX,,CHF,-160183.07,FXE20260123-003,"TRS sells CHF 160,183 forward to BKA, value 30 Jan (FXE20260123-003: USD 202,891 against CHF 160,183 at 0.7895).","Today's 1 internal deal leaves TRS long CHF 160,183 for 30 Jan. One external forward offsets the net, so TRS stays flat."
+2026-01-23,4,action,FX,,GBP,370000.0,FXE20260123-004,"TRS buys GBP 370,000 forward from BKA, value 30 Jan (FXE20260123-004: GBP 370,000 against USD 500,464 at 1.3526).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Jan. One external forward offsets the net, so TRS stays flat."
+2026-01-26,1,action,Cash,,GBP,-1598330.17,MMF-GBP-A,"Redeemed GBP 1,598,330 from MMF-GBP-A.","Bank cash -1,525,037 is below the GBP 73,293 operating minimum."
+2026-01-26,2,action,Cash,,CHF,-376152.41,TRS-BKA-CHF-DEP,"Redeemed CHF 376,152 from TRS-BKA-CHF-DEP.","Bank cash -298,229 is below the CHF 77,923 operating minimum."
+2026-01-30,1,event,FX,US,,,FXI20260123-001,"FXI20260123-001 settled on US's IC current accounts: TRS received USD 297,573 and paid GBP 220,000.",
+2026-01-30,2,event,FX,CH,,,FXI20260123-002,"FXI20260123-002 settled on CH's IC current accounts: TRS received CHF 160,183 and paid GBP 150,000.",
+2026-01-30,3,event,FX,,,,FXE20260123-003,"FXE20260123-003 settled on TRS's bank accounts: TRS received USD 202,891 and paid CHF 160,183.",
+2026-01-30,4,event,FX,,,,FXE20260123-004,"FXE20260123-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 500,464.",
+2026-01-30,5,action,Cash,,EUR,-364515.88,MMF-EUR-A,"Redeemed EUR 364,516 from MMF-EUR-A.","Bank cash -280,616 is below the EUR 83,900 operating minimum."
+2026-01-30,6,action,Cash,,GBP,370619.0,MMF-GBP-A,"Invested GBP 370,619 in MMF-GBP-A.","Bank cash 443,293 is above the GBP 72,674 operating minimum."
+2026-01-30,7,action,Cash,,CHF,-251434.17,TRS-BKA-CHF-DEP,"Redeemed CHF 251,434 from TRS-BKA-CHF-DEP.","Bank cash -174,607 is below the CHF 76,827 operating minimum."
+2026-01-30,8,action,Cash,,USD,-845340.93,MMF-USD-A,"Redeemed USD 845,341 from MMF-USD-A.","Bank cash -745,341 is below the USD 100,000 operating minimum."
+2026-01-31,1,event,Interest,,CHF,-312.73,,Month end: net IC interest of CHF -313 posted to the entities' current accounts (+ = TRS pays).,
+2026-01-31,2,event,Interest,,EUR,1179.85,,"Month end: net IC interest of EUR +1,180 posted to the entities' current accounts (+ = TRS pays).",
+2026-01-31,3,event,Interest,,GBP,24202.0,,"Month end: net IC interest of GBP +24,202 posted to the entities' current accounts (+ = TRS pays).",
+2026-01-31,4,event,Interest,,USD,13250.28,,"Month end: net IC interest of USD +13,250 posted to the entities' current accounts (+ = TRS pays).",
+2026-01-31,5,event,Interest,IV,USD,252603.24,ICD-IV-USD-001,"Month end: USD 252,603 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-02-02,1,action,Deposits,MGT,GBP,2400000.0,ICD-MGT-GBP-20260202,"MGT places GBP 2,400,000 with TRS for 3 months at a fixed 3.626%, maturing 05 May 2026 (ICD-MGT-GBP-20260202).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 4,660,175 over the next 3 months; keeping 2,229,211 for about a month of OPEX leaves 2,430,964 that can be locked."
+2026-02-02,2,action,Cash,,GBP,-392001.52,MMF-GBP-A,"Redeemed GBP 392,002 from MMF-GBP-A.","Bank cash -318,877 is below the GBP 73,125 operating minimum."
+2026-02-02,3,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-02-03,1,event,Deposits,MGT,GBP,4947789.74,ICD-MGT-GBP-20251103,"ICD-MGT-GBP-20251103 matured: GBP 4,947,790 (principal 4,900,000 + interest 47,790) back on MGT's on-call account.",
+2026-02-03,2,action,Deposits,MGT,GBP,4900000.0,ICD-MGT-GBP-20260203,"MGT places GBP 4,900,000 with TRS for 3 months at a fixed 3.626%, maturing 05 May 2026 (ICD-MGT-GBP-20260203, rolling ICD-MGT-GBP-20251103).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 7,207,965 over the next 3 months; keeping 2,229,211 for about a month of OPEX leaves 4,978,754 that can be locked."
+2026-02-03,3,event,Interest,,EUR,14966.66,MMF-EUR-A,"Received EUR 14,967 interest on MMF-EUR-A for Jan 2026 (paid on business day 2).",
+2026-02-03,4,event,Interest,,GBP,58591.57,MMF-GBP-A,"Received GBP 58,592 interest on MMF-GBP-A for Jan 2026 (paid on business day 2).",
+2026-02-03,5,action,Cash,,GBP,58646.57,MMF-GBP-A,"Invested GBP 58,647 in MMF-GBP-A.","Bank cash 131,717 is above the GBP 73,070 operating minimum."
+2026-02-03,6,event,Interest,,CHF,-345.82,TRS-BKA-CHF-DEP,Received CHF -346 interest on TRS-BKA-CHF-DEP for Jan 2026 (paid on business day 2).,
+2026-02-03,7,event,Interest,,USD,338230.73,MMF-USD-A,"Received USD 338,231 interest on MMF-USD-A for Jan 2026 (paid on business day 2).",
+2026-02-03,8,action,Cash,,USD,338230.73,MMF-USD-A,"Invested USD 338,231 in MMF-USD-A.","Bank cash 438,231 is above the USD 100,000 operating minimum."
+2026-02-06,1,event,Deposits,MGT,GBP,1615604.41,ICD-MGT-GBP-20251106,"ICD-MGT-GBP-20251106 matured: GBP 1,615,604 (principal 1,600,000 + interest 15,604) back on MGT's on-call account.",
+2026-02-06,2,action,Deposits,MGT,GBP,1600000.0,ICD-MGT-GBP-20260206,"MGT places GBP 1,600,000 with TRS for 3 months at a fixed 3.628%, maturing 06 May 2026 (ICD-MGT-GBP-20260206, rolling ICD-MGT-GBP-20251106).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 3,923,569 over the next 3 months; keeping 2,229,211 for about a month of OPEX leaves 1,694,358 that can be locked."
+2026-02-06,3,action,Cash,,USD,-247745.82,MMF-USD-A,"Redeemed USD 247,746 from MMF-USD-A.","Bank cash -147,746 is below the USD 100,000 operating minimum."
+2026-02-17,1,action,Cash,,USD,-543953.84,MMF-USD-A,"Redeemed USD 543,954 from MMF-USD-A.","Bank cash -443,954 is below the USD 100,000 operating minimum."
+2026-02-20,1,action,Cash,,EUR,713507.85,MMF-EUR-A,"Invested EUR 713,508 in MMF-EUR-A.","Bank cash 798,491 is above the EUR 84,983 operating minimum."
+2026-02-20,2,action,FX,US,GBP,220000.0,FXI20260220-001,"US buys GBP 220,000 from TRS against USD, forward value 27 Feb (FXI20260220-001: TRS buys USD 296,599 against GBP 220,000 at 1.3482).","US will be short GBP 220,000 on 27 Feb (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-02-20,3,action,FX,CH,GBP,150000.0,FXI20260220-002,"CH buys GBP 150,000 from TRS against CHF, forward value 27 Feb (FXI20260220-002: TRS buys CHF 156,829 against GBP 150,000 at 1.0455).","CH will be short GBP 150,000 on 27 Feb (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-02-20,4,action,FX,,CHF,-156828.8,FXE20260220-003,"TRS sells CHF 156,829 forward to BKA, value 27 Feb (FXE20260220-003: USD 202,227 against CHF 156,829 at 0.7755).","Today's 1 internal deal leaves TRS long CHF 156,829 for 27 Feb. One external forward offsets the net, so TRS stays flat."
+2026-02-20,5,action,FX,,GBP,370000.0,FXE20260220-004,"TRS buys GBP 370,000 forward from BKA, value 27 Feb (FXE20260220-004: GBP 370,000 against USD 498,825 at 1.3482).","Today's 2 internal deals leave TRS short GBP 370,000 for 27 Feb. One external forward offsets the net, so TRS stays flat."
+2026-02-25,1,action,Cash,,GBP,-1615327.05,MMF-GBP-A,"Redeemed GBP 1,615,327 from MMF-GBP-A.","Bank cash -1,541,379 is below the GBP 73,948 operating minimum."
+2026-02-25,2,action,Cash,,CHF,-388596.82,TRS-BKA-CHF-DEP,"Redeemed CHF 388,597 from TRS-BKA-CHF-DEP.","Bank cash -311,119 is below the CHF 77,478 operating minimum."
+2026-02-27,1,event,FX,US,,,FXI20260220-001,"FXI20260220-001 settled on US's IC current accounts: TRS received USD 296,599 and paid GBP 220,000.",
+2026-02-27,2,event,FX,CH,,,FXI20260220-002,"FXI20260220-002 settled on CH's IC current accounts: TRS received CHF 156,829 and paid GBP 150,000.",
+2026-02-27,3,event,FX,,,,FXE20260220-003,"FXE20260220-003 settled on TRS's bank accounts: TRS received USD 202,227 and paid CHF 156,829.",
+2026-02-27,4,event,FX,,,,FXE20260220-004,"FXE20260220-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 498,825.",
+2026-02-27,5,action,Cash,,EUR,-372067.71,MMF-EUR-A,"Redeemed EUR 372,068 from MMF-EUR-A.","Bank cash -287,358 is below the EUR 84,710 operating minimum."
+2026-02-27,6,action,Cash,,GBP,-42389.62,MMF-GBP-A,"Redeemed GBP 42,390 from MMF-GBP-A.","Bank cash 31,841 is below the GBP 74,231 operating minimum."
+2026-02-27,7,action,Cash,,CHF,-247786.71,TRS-BKA-CHF-DEP,"Redeemed CHF 247,787 from TRS-BKA-CHF-DEP.","Bank cash -170,667 is below the CHF 77,120 operating minimum."
+2026-02-27,8,action,Cash,,USD,-1095088.91,MMF-USD-A,"Redeemed USD 1,095,089 from MMF-USD-A.","Bank cash -995,089 is below the USD 100,000 operating minimum."
+2026-02-28,1,event,Interest,,CHF,-278.72,,Month end: net IC interest of CHF -279 posted to the entities' current accounts (+ = TRS pays).,
+2026-02-28,2,event,Interest,,EUR,1425.82,,"Month end: net IC interest of EUR +1,426 posted to the entities' current accounts (+ = TRS pays).",
+2026-02-28,3,event,Interest,,GBP,18001.39,,"Month end: net IC interest of GBP +18,001 posted to the entities' current accounts (+ = TRS pays).",
+2026-02-28,4,event,Interest,,USD,12377.58,,"Month end: net IC interest of USD +12,378 posted to the entities' current accounts (+ = TRS pays).",
+2026-02-28,5,event,Interest,IV,USD,228649.61,ICD-IV-USD-001,"Month end: USD 228,650 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-03-02,1,action,Deposits,EU,EUR,800000.0,ICD-EU-EUR-20260302,"EU places EUR 800,000 with TRS for 3 months at a fixed 1.834%, maturing 02 Jun 2026 (ICD-EU-EUR-20260302).","First business day of the month. EU's on-call EUR balance is projected to fall no lower than 1,159,676 over the next 3 months; keeping 284,338 for about a month of OPEX leaves 875,338 that can be locked."
+2026-03-02,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-03-03,1,event,Interest,,EUR,13963.02,MMF-EUR-A,"Received EUR 13,963 interest on MMF-EUR-A for Feb 2026 (paid on business day 2).",
+2026-03-03,2,event,Interest,,GBP,55314.43,MMF-GBP-A,"Received GBP 55,314 interest on MMF-GBP-A for Feb 2026 (paid on business day 2).",
+2026-03-03,3,action,Cash,,GBP,54437.43,MMF-GBP-A,"Invested GBP 54,437 in MMF-GBP-A.","Bank cash 129,545 is above the GBP 75,108 operating minimum."
+2026-03-03,4,event,Interest,,CHF,-286.9,TRS-BKA-CHF-DEP,Received CHF -287 interest on TRS-BKA-CHF-DEP for Feb 2026 (paid on business day 2).,
+2026-03-03,5,event,Interest,,USD,306645.02,MMF-USD-A,"Received USD 306,645 interest on MMF-USD-A for Feb 2026 (paid on business day 2).",
+2026-03-03,6,action,Cash,,USD,306645.02,MMF-USD-A,"Invested USD 306,645 in MMF-USD-A.","Bank cash 406,645 is above the USD 100,000 operating minimum."
+2026-03-16,1,action,Cash,,USD,-547407.66,MMF-USD-A,"Redeemed USD 547,408 from MMF-USD-A.","Bank cash -447,408 is below the USD 100,000 operating minimum."
+2026-03-20,1,action,Cash,,EUR,722833.31,MMF-EUR-A,"Invested EUR 722,833 in MMF-EUR-A.","Bank cash 809,376 is above the EUR 86,543 operating minimum."
+2026-03-24,1,action,FX,US,GBP,220000.0,FXI20260324-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Mar (FXI20260324-001: TRS buys USD 294,174 against GBP 220,000 at 1.3372).","US will be short GBP 220,000 on 31 Mar (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-03-24,2,action,FX,CH,GBP,150000.0,FXI20260324-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Mar (FXI20260324-002: TRS buys CHF 158,394 against GBP 150,000 at 1.0560).","CH will be short GBP 150,000 on 31 Mar (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-03-24,3,action,FX,,CHF,-158393.62,FXE20260324-003,"TRS sells CHF 158,394 forward to BKA, value 31 Mar (FXE20260324-003: USD 200,573 against CHF 158,394 at 0.7897).","Today's 1 internal deal leaves TRS long CHF 158,394 for 31 Mar. One external forward offsets the net, so TRS stays flat."
+2026-03-24,4,action,FX,,GBP,370000.0,FXE20260324-004,"TRS buys GBP 370,000 forward from BKA, value 31 Mar (FXE20260324-004: GBP 370,000 against USD 494,747 at 1.3372).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Mar. One external forward offsets the net, so TRS stays flat."
+2026-03-25,1,action,Cash,,GBP,-2027468.25,MMF-GBP-A,"Redeemed GBP 2,027,468 from MMF-GBP-A.","Bank cash -1,952,798 is below the GBP 74,670 operating minimum."
+2026-03-25,2,action,Cash,,CHF,-377636.06,TRS-BKA-CHF-DEP,"Redeemed CHF 377,636 from TRS-BKA-CHF-DEP.","Bank cash -298,676 is below the CHF 78,960 operating minimum."
+2026-03-31,1,event,FX,US,,,FXI20260324-001,"FXI20260324-001 settled on US's IC current accounts: TRS received USD 294,174 and paid GBP 220,000.",
+2026-03-31,2,event,FX,CH,,,FXI20260324-002,"FXI20260324-002 settled on CH's IC current accounts: TRS received CHF 158,394 and paid GBP 150,000.",
+2026-03-31,3,event,FX,,,,FXE20260324-003,"FXE20260324-003 settled on TRS's bank accounts: TRS received USD 200,573 and paid CHF 158,394.",
+2026-03-31,4,event,FX,,,,FXE20260324-004,"FXE20260324-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 494,747.",
+2026-03-31,5,action,Cash,,EUR,-258918.29,MMF-EUR-A,"Redeemed EUR 258,918 from MMF-EUR-A.","Bank cash -171,946 is below the EUR 86,972 operating minimum."
+2026-03-31,6,action,Cash,,GBP,-322723.7,MMF-GBP-A,"Redeemed GBP 322,724 from MMF-GBP-A.","Bank cash -247,204 is below the GBP 75,520 operating minimum."
+2026-03-31,7,action,Cash,,CHF,-249022.58,TRS-BKA-CHF-DEP,"Redeemed CHF 249,023 from TRS-BKA-CHF-DEP.","Bank cash -169,061 is below the CHF 79,962 operating minimum."
+2026-03-31,8,action,Cash,,USD,-1244412.49,MMF-USD-A,"Redeemed USD 1,244,412 from MMF-USD-A.","Bank cash -1,144,412 is below the USD 100,000 operating minimum."
+2026-03-31,9,event,Interest,,CHF,-202.44,,Month end: net IC interest of CHF -202 posted to the entities' current accounts (+ = TRS pays).,
+2026-03-31,10,event,Interest,,EUR,1000.55,,"Month end: net IC interest of EUR +1,001 posted to the entities' current accounts (+ = TRS pays).",
+2026-03-31,11,event,Interest,,GBP,13961.11,,"Month end: net IC interest of GBP +13,961 posted to the entities' current accounts (+ = TRS pays).",
+2026-03-31,12,event,Interest,,USD,8212.48,,"Month end: net IC interest of USD +8,212 posted to the entities' current accounts (+ = TRS pays).",
+2026-03-31,13,event,Interest,IV,USD,252616.84,ICD-IV-USD-001,"Month end: USD 252,617 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-04-01,1,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-04-02,1,event,Deposits,MGT,GBP,4338448.72,ICD-MGT-GBP-20260102,"ICD-MGT-GBP-20260102 matured: GBP 4,338,449 (principal 4,300,000 + interest 38,449) back on MGT's on-call account.",
+2026-04-02,2,event,Deposits,CH,CHF,1999100.0,ICD-CH-CHF-20260102,"ICD-CH-CHF-20260102 matured: CHF 1,999,100 (principal 2,000,000 + interest -900) back on CH's on-call account.",
+2026-04-02,3,event,Deposits,EU,EUR,8639474.0,ICD-EU-EUR-20260102,"ICD-EU-EUR-20260102 matured: EUR 8,639,474 (principal 8,600,000 + interest 39,474) back on EU's on-call account.",
+2026-04-02,4,action,Deposits,MGT,GBP,3800000.0,ICD-MGT-GBP-20260402,"MGT places GBP 3,800,000 with TRS for 3 months at a fixed 3.630%, maturing 02 Jul 2026 (ICD-MGT-GBP-20260402, rolling ICD-MGT-GBP-20260102).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 7,063,981 over the next 3 months; keeping 3,191,933 for about a month of OPEX leaves 3,872,048 that can be locked."
+2026-04-02,5,action,Deposits,CH,CHF,1800000.0,ICD-CH-CHF-20260402,"CH places CHF 1,800,000 with TRS for 3 months at a fixed -0.140%, maturing 02 Jul 2026 (ICD-CH-CHF-20260402, rolling ICD-CH-CHF-20260102).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,448,371 over the next 3 months; keeping 589,319 for about a month of OPEX leaves 1,859,052 that can be locked."
+2026-04-02,6,action,Deposits,EU,EUR,8800000.0,ICD-EU-EUR-20260402,"EU places EUR 8,800,000 with TRS for 3 months at a fixed 1.831%, maturing 02 Jul 2026 (ICD-EU-EUR-20260402, rolling ICD-EU-EUR-20260102).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 9,344,661 over the next 3 months; keeping 459,269 for about a month of OPEX leaves 8,885,392 that can be locked."
+2026-04-02,7,event,Interest,,EUR,16131.03,MMF-EUR-A,"Received EUR 16,131 interest on MMF-EUR-A for Mar 2026 (paid on business day 2).",
+2026-04-02,8,event,Interest,,GBP,55483.35,MMF-GBP-A,"Received GBP 55,483 interest on MMF-GBP-A for Mar 2026 (paid on business day 2).",
+2026-04-02,9,action,Cash,,GBP,55295.35,MMF-GBP-A,"Invested GBP 55,295 in MMF-GBP-A.","Bank cash 131,003 is above the GBP 75,708 operating minimum."
+2026-04-02,10,event,Interest,,CHF,-275.49,TRS-BKA-CHF-DEP,Received CHF -275 interest on TRS-BKA-CHF-DEP for Mar 2026 (paid on business day 2).,
+2026-04-02,11,event,Interest,,USD,333253.8,MMF-USD-A,"Received USD 333,254 interest on MMF-USD-A for Mar 2026 (paid on business day 2).",
+2026-04-02,12,action,Cash,,USD,333253.8,MMF-USD-A,"Invested USD 333,254 in MMF-USD-A.","Bank cash 433,254 is above the USD 100,000 operating minimum."
+2026-04-07,1,action,Cash,,EUR,-91128.58,MMF-EUR-A,"Redeemed EUR 91,129 from MMF-EUR-A.","Bank cash -4,601 is below the EUR 86,528 operating minimum."
+2026-04-10,1,action,Cash,,GBP,7366981.48,MMF-GBP-A,"Invested GBP 7,366,981 in MMF-GBP-A.","Bank cash 7,441,360 is above the GBP 74,379 operating minimum."
+2026-04-10,2,action,Cash,,CHF,1774718.35,TRS-BKA-CHF-DEP,"Invested CHF 1,774,718 in TRS-BKA-CHF-DEP.","Bank cash 1,853,627 is above the CHF 78,909 operating minimum."
+2026-04-10,3,action,Cash,,USD,4901724.96,MMF-USD-A,"Invested USD 4,901,725 in MMF-USD-A.","Bank cash 5,001,725 is above the USD 100,000 operating minimum."
+2026-04-14,1,action,Cash,,GBP,-899320.0,MMF-GBP-A,"Redeemed GBP 899,320 from MMF-GBP-A.","Bank cash -825,621 is below the GBP 73,699 operating minimum."
+2026-04-15,1,action,Cash,,USD,-1052242.46,MMF-USD-A,"Redeemed USD 1,052,242 from MMF-USD-A.","Bank cash -952,242 is below the USD 100,000 operating minimum."
+2026-04-20,1,action,Cash,,EUR,720321.56,MMF-EUR-A,"Invested EUR 720,322 in MMF-EUR-A.","Bank cash 805,356 is above the EUR 85,034 operating minimum."
+2026-04-23,1,action,FX,US,GBP,220000.0,FXI20260423-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Apr (FXI20260423-001: TRS buys USD 297,159 against GBP 220,000 at 1.3507).","US will be short GBP 220,000 on 30 Apr (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-04-23,2,action,FX,CH,GBP,150000.0,FXI20260423-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Apr (FXI20260423-002: TRS buys CHF 158,885 against GBP 150,000 at 1.0592).","CH will be short GBP 150,000 on 30 Apr (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-04-23,3,action,FX,,CHF,-158884.99,FXE20260423-003,"TRS sells CHF 158,885 forward to BKA, value 30 Apr (FXE20260423-003: USD 202,608 against CHF 158,885 at 0.7842).","Today's 1 internal deal leaves TRS long CHF 158,885 for 30 Apr. One external forward offsets the net, so TRS stays flat."
+2026-04-23,4,action,FX,,GBP,370000.0,FXE20260423-004,"TRS buys GBP 370,000 forward from BKA, value 30 Apr (FXE20260423-004: GBP 370,000 against USD 499,767 at 1.3507).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Apr. One external forward offsets the net, so TRS stays flat."
+2026-04-27,1,action,Cash,,GBP,-1616063.43,MMF-GBP-A,"Redeemed GBP 1,616,063 from MMF-GBP-A.","Bank cash -1,542,372 is below the GBP 73,691 operating minimum."
+2026-04-27,2,action,Cash,,CHF,-382894.61,TRS-BKA-CHF-DEP,"Redeemed CHF 382,895 from TRS-BKA-CHF-DEP.","Bank cash -304,505 is below the CHF 78,390 operating minimum."
+2026-04-30,1,event,FX,US,,,FXI20260423-001,"FXI20260423-001 settled on US's IC current accounts: TRS received USD 297,159 and paid GBP 220,000.",
+2026-04-30,2,event,FX,CH,,,FXI20260423-002,"FXI20260423-002 settled on CH's IC current accounts: TRS received CHF 158,885 and paid GBP 150,000.",
+2026-04-30,3,event,FX,,,,FXE20260423-003,"FXE20260423-003 settled on TRS's bank accounts: TRS received USD 202,608 and paid CHF 158,885.",
+2026-04-30,4,event,FX,,,,FXE20260423-004,"FXE20260423-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 499,767.",
+2026-04-30,5,action,Cash,,EUR,-310235.02,MMF-EUR-A,"Redeemed EUR 310,235 from MMF-EUR-A.","Bank cash -224,780 is below the EUR 85,455 operating minimum."
+2026-04-30,6,action,Cash,,CHF,-311359.83,TRS-BKA-CHF-DEP,"Redeemed CHF 311,360 from TRS-BKA-CHF-DEP.","Bank cash -232,826 is below the CHF 78,534 operating minimum."
+2026-04-30,7,action,Cash,,USD,-1099750.64,MMF-USD-A,"Redeemed USD 1,099,751 from MMF-USD-A.","Bank cash -999,751 is below the USD 100,000 operating minimum."
+2026-04-30,8,event,Interest,,CHF,-318.44,,Month end: net IC interest of CHF -318 posted to the entities' current accounts (+ = TRS pays).,
+2026-04-30,9,event,Interest,,EUR,1224.66,,"Month end: net IC interest of EUR +1,225 posted to the entities' current accounts (+ = TRS pays).",
+2026-04-30,10,event,Interest,,GBP,22586.55,,"Month end: net IC interest of GBP +22,587 posted to the entities' current accounts (+ = TRS pays).",
+2026-04-30,11,event,Interest,,USD,11573.96,,"Month end: net IC interest of USD +11,574 posted to the entities' current accounts (+ = TRS pays).",
+2026-04-30,12,event,Interest,IV,USD,244872.66,ICD-IV-USD-001,"Month end: USD 244,873 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-05-01,1,action,Deposits,MGT,GBP,1700000.0,ICD-MGT-GBP-20260501,"MGT places GBP 1,700,000 with TRS for 3 months at a fixed 3.629%, maturing 03 Aug 2026 (ICD-MGT-GBP-20260501).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 4,006,053 over the next 3 months; keeping 2,212,094 for about a month of OPEX leaves 1,793,959 that can be locked."
+2026-05-01,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-05-04,1,event,Interest,,USD,326820.81,MMF-USD-A,"Received USD 326,821 interest on MMF-USD-A for Apr 2026 (paid on business day 2).",
+2026-05-04,2,action,Cash,,USD,326820.81,MMF-USD-A,"Invested USD 326,821 in MMF-USD-A.","Bank cash 426,821 is above the USD 100,000 operating minimum."
+2026-05-05,1,event,Deposits,MGT,GBP,2421934.82,ICD-MGT-GBP-20260202,"ICD-MGT-GBP-20260202 matured: GBP 2,421,935 (principal 2,400,000 + interest 21,935) back on MGT's on-call account.",
+2026-05-05,2,event,Deposits,MGT,GBP,4944296.81,ICD-MGT-GBP-20260203,"ICD-MGT-GBP-20260203 matured: GBP 4,944,297 (principal 4,900,000 + interest 44,297) back on MGT's on-call account.",
+2026-05-05,3,action,Deposits,MGT,GBP,7400000.0,ICD-MGT-GBP-20260505,"MGT places GBP 7,400,000 with TRS for 3 months at a fixed 3.629%, maturing 05 Aug 2026 (ICD-MGT-GBP-20260505, rolling ICD-MGT-GBP-20260203).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 9,672,285 over the next 3 months; keeping 2,212,094 for about a month of OPEX leaves 7,460,190 that can be locked."
+2026-05-05,4,event,Interest,,EUR,16195.19,MMF-EUR-A,"Received EUR 16,195 interest on MMF-EUR-A for Apr 2026 (paid on business day 2).",
+2026-05-05,5,action,Cash,,EUR,-88766.7,MMF-EUR-A,"Redeemed EUR 88,767 from MMF-EUR-A.","Bank cash -3,195 is below the EUR 85,572 operating minimum."
+2026-05-05,6,event,Interest,,GBP,61594.69,MMF-GBP-A,"Received GBP 61,595 interest on MMF-GBP-A for Apr 2026 (paid on business day 2).",
+2026-05-05,7,action,Cash,,GBP,45713.77,MMF-GBP-A,"Invested GBP 45,714 in MMF-GBP-A.","Bank cash 119,600 is above the GBP 73,886 operating minimum."
+2026-05-05,8,event,Interest,,CHF,-284.56,TRS-BKA-CHF-DEP,Received CHF -285 interest on TRS-BKA-CHF-DEP for Apr 2026 (paid on business day 2).,
+2026-05-06,1,event,Deposits,MGT,GBP,1614153.78,ICD-MGT-GBP-20260206,"ICD-MGT-GBP-20260206 matured: GBP 1,614,154 (principal 1,600,000 + interest 14,154) back on MGT's on-call account.",
+2026-05-06,2,action,Deposits,MGT,GBP,1600000.0,ICD-MGT-GBP-20260506,"MGT places GBP 1,600,000 with TRS for 3 months at a fixed 3.629%, maturing 06 Aug 2026 (ICD-MGT-GBP-20260506, rolling ICD-MGT-GBP-20260206).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 3,886,438 over the next 3 months; keeping 2,212,094 for about a month of OPEX leaves 1,674,344 that can be locked."
+2026-05-15,1,action,Cash,,USD,-557917.28,MMF-USD-A,"Redeemed USD 557,917 from MMF-USD-A.","Bank cash -457,917 is below the USD 100,000 operating minimum."
+2026-05-20,1,action,Cash,,EUR,705335.63,MMF-EUR-A,"Invested EUR 705,336 in MMF-EUR-A.","Bank cash 791,543 is above the EUR 86,207 operating minimum."
+2026-05-21,1,action,FX,US,GBP,220000.0,FXI20260521-001,"US buys GBP 220,000 from TRS against USD, forward value 29 May (FXI20260521-001: TRS buys USD 295,220 against GBP 220,000 at 1.3419).","US will be short GBP 220,000 on 29 May (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-05-21,2,action,FX,CH,GBP,150000.0,FXI20260521-002,"CH buys GBP 150,000 from TRS against CHF, forward value 29 May (FXI20260521-002: TRS buys CHF 158,575 against GBP 150,000 at 1.0572).","CH will be short GBP 150,000 on 29 May (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-05-21,3,action,FX,,CHF,-158574.52,FXE20260521-003,"TRS sells CHF 158,575 forward to BKA, value 29 May (FXE20260521-003: USD 201,286 against CHF 158,575 at 0.7878).","Today's 1 internal deal leaves TRS long CHF 158,575 for 29 May. One external forward offsets the net, so TRS stays flat."
+2026-05-21,4,action,FX,,GBP,370000.0,FXE20260521-004,"TRS buys GBP 370,000 forward from BKA, value 29 May (FXE20260521-004: GBP 370,000 against USD 496,506 at 1.3419).","Today's 2 internal deals leave TRS short GBP 370,000 for 29 May. One external forward offsets the net, so TRS stays flat."
+2026-05-26,1,action,Cash,,GBP,-1600429.96,MMF-GBP-A,"Redeemed GBP 1,600,430 from MMF-GBP-A.","Bank cash -1,526,186 is below the GBP 74,244 operating minimum."
+2026-05-26,2,action,Cash,,CHF,-383692.13,TRS-BKA-CHF-DEP,"Redeemed CHF 383,692 from TRS-BKA-CHF-DEP.","Bank cash -305,164 is below the CHF 78,528 operating minimum."
+2026-05-29,1,event,FX,US,,,FXI20260521-001,"FXI20260521-001 settled on US's IC current accounts: TRS received USD 295,220 and paid GBP 220,000.",
+2026-05-29,2,event,FX,CH,,,FXI20260521-002,"FXI20260521-002 settled on CH's IC current accounts: TRS received CHF 158,575 and paid GBP 150,000.",
+2026-05-29,3,event,FX,,,,FXE20260521-003,"FXE20260521-003 settled on TRS's bank accounts: TRS received USD 201,286 and paid CHF 158,575.",
+2026-05-29,4,event,FX,,,,FXE20260521-004,"FXE20260521-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 496,506.",
+2026-05-29,5,action,Cash,,EUR,-367054.31,MMF-EUR-A,"Redeemed EUR 367,054 from MMF-EUR-A.","Bank cash -281,173 is below the EUR 85,881 operating minimum."
+2026-05-29,6,action,Cash,,GBP,-41157.86,MMF-GBP-A,"Redeemed GBP 41,158 from MMF-GBP-A.","Bank cash 33,321 is below the GBP 74,479 operating minimum."
+2026-05-29,7,action,Cash,,CHF,-248118.84,TRS-BKA-CHF-DEP,"Redeemed CHF 248,119 from TRS-BKA-CHF-DEP.","Bank cash -169,873 is below the CHF 78,246 operating minimum."
+2026-05-29,8,action,Cash,,USD,-1090800.35,MMF-USD-A,"Redeemed USD 1,090,800 from MMF-USD-A.","Bank cash -990,800 is below the USD 100,000 operating minimum."
+2026-05-31,1,event,Interest,,CHF,-304.5,,Month end: net IC interest of CHF -305 posted to the entities' current accounts (+ = TRS pays).,
+2026-05-31,2,event,Interest,,EUR,1688.48,,"Month end: net IC interest of EUR +1,688 posted to the entities' current accounts (+ = TRS pays).",
+2026-05-31,3,event,Interest,,GBP,18513.17,,"Month end: net IC interest of GBP +18,513 posted to the entities' current accounts (+ = TRS pays).",
+2026-05-31,4,event,Interest,,USD,9977.54,,"Month end: net IC interest of USD +9,978 posted to the entities' current accounts (+ = TRS pays).",
+2026-05-31,5,event,Interest,IV,USD,249686.41,ICD-IV-USD-001,"Month end: USD 249,686 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-06-01,1,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-06-02,1,event,Deposits,EU,EUR,803749.51,ICD-EU-EUR-20260302,"ICD-EU-EUR-20260302 matured: EUR 803,750 (principal 800,000 + interest 3,750) back on EU's on-call account.",
+2026-06-02,2,action,Deposits,EU,EUR,1500000.0,ICD-EU-EUR-20260602,"EU places EUR 1,500,000 with TRS for 3 months at a fixed 1.832%, maturing 02 Sep 2026 (ICD-EU-EUR-20260602, rolling ICD-EU-EUR-20260302).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 1,994,083 over the next 3 months; keeping 405,123 for about a month of OPEX leaves 1,588,960 that can be locked."
+2026-06-02,3,event,Interest,,EUR,17206.35,MMF-EUR-A,"Received EUR 17,206 interest on MMF-EUR-A for May 2026 (paid on business day 2).",
+2026-06-02,4,event,Interest,,GBP,64104.35,MMF-GBP-A,"Received GBP 64,104 interest on MMF-GBP-A for May 2026 (paid on business day 2).",
+2026-06-02,5,action,Cash,,GBP,64358.35,MMF-GBP-A,"Invested GBP 64,358 in MMF-GBP-A.","Bank cash 138,583 is above the GBP 74,225 operating minimum."
+2026-06-02,6,event,Interest,,CHF,-293.24,TRS-BKA-CHF-DEP,Received CHF -293 interest on TRS-BKA-CHF-DEP for May 2026 (paid on business day 2).,
+2026-06-02,7,event,Interest,,USD,331484.17,MMF-USD-A,"Received USD 331,484 interest on MMF-USD-A for May 2026 (paid on business day 2).",
+2026-06-02,8,action,Cash,,USD,331484.17,MMF-USD-A,"Invested USD 331,484 in MMF-USD-A.","Bank cash 431,484 is above the USD 100,000 operating minimum."
+2026-06-15,1,action,Cash,,USD,-1054018.84,MMF-USD-A,"Redeemed USD 1,054,019 from MMF-USD-A.","Bank cash -954,019 is below the USD 100,000 operating minimum."
+2026-06-22,1,action,Cash,,EUR,721303.36,MMF-EUR-A,"Invested EUR 721,303 in MMF-EUR-A.","Bank cash 808,594 is above the EUR 87,291 operating minimum."
+2026-06-23,1,action,FX,US,GBP,220000.0,FXI20260623-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Jun (FXI20260623-001: TRS buys USD 290,744 against GBP 220,000 at 1.3216).","US will be short GBP 220,000 on 30 Jun (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-06-23,2,action,FX,CH,GBP,150000.0,FXI20260623-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Jun (FXI20260623-002: TRS buys CHF 160,412 against GBP 150,000 at 1.0694).","CH will be short GBP 150,000 on 30 Jun (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-06-23,3,action,FX,,CHF,-160412.38,FXE20260623-003,"TRS sells CHF 160,412 forward to BKA, value 30 Jun (FXE20260623-003: USD 198,235 against CHF 160,412 at 0.8092).","Today's 1 internal deal leaves TRS long CHF 160,412 for 30 Jun. One external forward offsets the net, so TRS stays flat."
+2026-06-23,4,action,FX,,GBP,370000.0,FXE20260623-004,"TRS buys GBP 370,000 forward from BKA, value 30 Jun (FXE20260623-004: GBP 370,000 against USD 488,979 at 1.3216).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Jun. One external forward offsets the net, so TRS stays flat."
+2026-06-24,1,action,Cash,,GBP,-451758.0,MMF-GBP-A,"Redeemed GBP 451,758 from MMF-GBP-A.","Bank cash -375,775 is below the GBP 75,983 operating minimum."
+2026-06-25,1,action,Cash,,GBP,-1620891.78,MMF-GBP-A,"Redeemed GBP 1,620,892 from MMF-GBP-A.","Bank cash -1,544,906 is below the GBP 75,986 operating minimum."
+2026-06-25,2,action,Cash,,CHF,-376285.93,TRS-BKA-CHF-DEP,"Redeemed CHF 376,286 from TRS-BKA-CHF-DEP.","Bank cash -294,969 is below the CHF 81,317 operating minimum."
+2026-06-30,1,event,FX,US,,,FXI20260623-001,"FXI20260623-001 settled on US's IC current accounts: TRS received USD 290,744 and paid GBP 220,000.",
+2026-06-30,2,event,FX,CH,,,FXI20260623-002,"FXI20260623-002 settled on CH's IC current accounts: TRS received CHF 160,412 and paid GBP 150,000.",
+2026-06-30,3,event,FX,,,,FXE20260623-003,"FXE20260623-003 settled on TRS's bank accounts: TRS received USD 198,235 and paid CHF 160,412.",
+2026-06-30,4,event,FX,,,,FXE20260623-004,"FXE20260623-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 488,979.",
+2026-06-30,5,action,Cash,,EUR,-368767.55,MMF-EUR-A,"Redeemed EUR 368,768 from MMF-EUR-A.","Bank cash -281,003 is below the EUR 87,765 operating minimum."
+2026-06-30,6,action,Cash,,GBP,-32174.76,MMF-GBP-A,"Redeemed GBP 32,175 from MMF-GBP-A.","Bank cash 43,460 is below the GBP 75,635 operating minimum."
+2026-06-30,7,action,Cash,,CHF,-247715.54,TRS-BKA-CHF-DEP,"Redeemed CHF 247,716 from TRS-BKA-CHF-DEP.","Bank cash -166,761 is below the CHF 80,955 operating minimum."
+2026-06-30,8,action,Cash,,USD,-848421.01,MMF-USD-A,"Redeemed USD 848,421 from MMF-USD-A.","Bank cash -748,421 is below the USD 100,000 operating minimum."
+2026-06-30,9,event,Interest,,CHF,-187.34,,Month end: net IC interest of CHF -187 posted to the entities' current accounts (+ = TRS pays).,
+2026-06-30,10,event,Interest,,EUR,1153.38,,"Month end: net IC interest of EUR +1,153 posted to the entities' current accounts (+ = TRS pays).",
+2026-06-30,11,event,Interest,,GBP,12793.73,,"Month end: net IC interest of GBP +12,794 posted to the entities' current accounts (+ = TRS pays).",
+2026-06-30,12,event,Interest,,USD,4152.15,,"Month end: net IC interest of USD +4,152 posted to the entities' current accounts (+ = TRS pays).",
+2026-06-30,13,event,Interest,IV,USD,245254.74,ICD-IV-USD-001,"Month end: USD 245,255 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-07-01,1,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-07-02,1,event,Deposits,MGT,GBP,3834390.52,ICD-MGT-GBP-20260402,"ICD-MGT-GBP-20260402 matured: GBP 3,834,391 (principal 3,800,000 + interest 34,391) back on MGT's on-call account.",
+2026-07-02,2,event,Deposits,CH,CHF,1799363.0,ICD-CH-CHF-20260402,"ICD-CH-CHF-20260402 matured: CHF 1,799,363 (principal 1,800,000 + interest -637) back on CH's on-call account.",
+2026-07-02,3,event,Deposits,EU,EUR,8840729.58,ICD-EU-EUR-20260402,"ICD-EU-EUR-20260402 matured: EUR 8,840,730 (principal 8,800,000 + interest 40,730) back on EU's on-call account.",
+2026-07-02,4,action,Deposits,MGT,GBP,3300000.0,ICD-MGT-GBP-20260702,"MGT places GBP 3,300,000 with TRS for 3 months at a fixed 3.631%, maturing 02 Oct 2026 (ICD-MGT-GBP-20260702, rolling ICD-MGT-GBP-20260402).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 6,522,136 over the next 3 months; keeping 3,177,206 for about a month of OPEX leaves 3,344,930 that can be locked."
+2026-07-02,5,action,Deposits,CH,CHF,1800000.0,ICD-CH-CHF-20260702,"CH places CHF 1,800,000 with TRS for 3 months at a fixed -0.140%, maturing 02 Oct 2026 (ICD-CH-CHF-20260702, rolling ICD-CH-CHF-20260402).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,346,967 over the next 3 months; keeping 512,481 for about a month of OPEX leaves 1,834,486 that can be locked."
+2026-07-02,6,action,Deposits,EU,EUR,9200000.0,ICD-EU-EUR-20260702,"EU places EUR 9,200,000 with TRS for 3 months at a fixed 2.083%, maturing 02 Oct 2026 (ICD-EU-EUR-20260702, rolling ICD-EU-EUR-20260402).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 9,673,179 over the next 3 months; keeping 406,378 for about a month of OPEX leaves 9,266,801 that can be locked."
+2026-07-02,7,event,Interest,,EUR,18202.77,MMF-EUR-A,"Received EUR 18,203 interest on MMF-EUR-A for Jun 2026 (paid on business day 2).",
+2026-07-02,8,event,Interest,,GBP,56926.38,MMF-GBP-A,"Received GBP 56,926 interest on MMF-GBP-A for Jun 2026 (paid on business day 2).",
+2026-07-02,9,action,Cash,,GBP,57410.38,MMF-GBP-A,"Invested GBP 57,410 in MMF-GBP-A.","Bank cash 132,561 is above the GBP 75,151 operating minimum."
+2026-07-02,10,event,Interest,,CHF,-218.07,TRS-BKA-CHF-DEP,Received CHF -218 interest on TRS-BKA-CHF-DEP for Jun 2026 (paid on business day 2).,
+2026-07-02,11,event,Interest,,USD,319771.45,MMF-USD-A,"Received USD 319,771 interest on MMF-USD-A for Jun 2026 (paid on business day 2).",
+2026-07-02,12,action,Cash,,USD,319771.45,MMF-USD-A,"Invested USD 319,771 in MMF-USD-A.","Bank cash 419,771 is above the USD 100,000 operating minimum."
+2026-07-06,1,action,Cash,,USD,-252471.23,MMF-USD-A,"Redeemed USD 252,471 from MMF-USD-A.","Bank cash -152,471 is below the USD 100,000 operating minimum."
+2026-07-10,1,action,Cash,,GBP,7531685.4,MMF-GBP-A,"Invested GBP 7,531,685 in MMF-GBP-A.","Bank cash 7,606,186 is above the GBP 74,501 operating minimum."
+2026-07-10,2,action,Cash,,CHF,1799468.91,TRS-BKA-CHF-DEP,"Invested CHF 1,799,469 in TRS-BKA-CHF-DEP.","Bank cash 1,880,160 is above the CHF 80,691 operating minimum."
+2026-07-10,3,action,Cash,,USD,5018369.22,MMF-USD-A,"Invested USD 5,018,369 in MMF-USD-A.","Bank cash 5,118,369 is above the USD 100,000 operating minimum."
+2026-07-14,1,action,Cash,,GBP,-900216.0,MMF-GBP-A,"Redeemed GBP 900,216 from MMF-GBP-A.","Bank cash -825,499 is below the GBP 74,717 operating minimum."
+2026-07-15,1,action,Cash,,USD,-547995.77,MMF-USD-A,"Redeemed USD 547,996 from MMF-USD-A.","Bank cash -447,996 is below the USD 100,000 operating minimum."
+2026-07-20,1,action,Cash,,EUR,721812.59,MMF-EUR-A,"Invested EUR 721,813 in MMF-EUR-A.","Bank cash 809,333 is above the EUR 87,520 operating minimum."
+2026-07-24,1,action,FX,US,GBP,220000.0,FXI20260724-001,"US buys GBP 220,000 from TRS against USD, forward value 31 Jul (FXI20260724-001: TRS buys USD 293,124 against GBP 220,000 at 1.3324).","US will be short GBP 220,000 on 31 Jul (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-07-24,2,action,FX,CH,GBP,150000.0,FXI20260724-002,"CH buys GBP 150,000 from TRS against CHF, forward value 31 Jul (FXI20260724-002: TRS buys CHF 163,288 against GBP 150,000 at 1.0886).","CH will be short GBP 150,000 on 31 Jul (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-07-24,3,action,FX,,CHF,-163288.43,FXE20260724-003,"TRS sells CHF 163,288 forward to BKA, value 31 Jul (FXE20260724-003: USD 199,857 against CHF 163,288 at 0.8170).","Today's 1 internal deal leaves TRS long CHF 163,288 for 31 Jul. One external forward offsets the net, so TRS stays flat."
+2026-07-24,4,action,FX,,GBP,370000.0,FXE20260724-004,"TRS buys GBP 370,000 forward from BKA, value 31 Jul (FXE20260724-004: GBP 370,000 against USD 492,981 at 1.3324).","Today's 2 internal deals leave TRS short GBP 370,000 for 31 Jul. One external forward offsets the net, so TRS stays flat."
+2026-07-27,1,action,Cash,,GBP,-1599260.24,MMF-GBP-A,"Redeemed GBP 1,599,260 from MMF-GBP-A.","Bank cash -1,524,166 is below the GBP 75,094 operating minimum."
+2026-07-27,2,action,Cash,,CHF,-378333.99,TRS-BKA-CHF-DEP,"Redeemed CHF 378,334 from TRS-BKA-CHF-DEP.","Bank cash -296,817 is below the CHF 81,517 operating minimum."
+2026-07-31,1,event,FX,US,,,FXI20260724-001,"FXI20260724-001 settled on US's IC current accounts: TRS received USD 293,124 and paid GBP 220,000.",
+2026-07-31,2,event,FX,CH,,,FXI20260724-002,"FXI20260724-002 settled on CH's IC current accounts: TRS received CHF 163,288 and paid GBP 150,000.",
+2026-07-31,3,event,FX,,,,FXE20260724-003,"FXE20260724-003 settled on TRS's bank accounts: TRS received USD 199,857 and paid CHF 163,288.",
+2026-07-31,4,event,FX,,,,FXE20260724-004,"FXE20260724-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 492,981.",
+2026-07-31,5,action,Cash,,EUR,-368984.75,MMF-EUR-A,"Redeemed EUR 368,985 from MMF-EUR-A.","Bank cash -281,915 is below the EUR 87,070 operating minimum."
+2026-07-31,6,action,Cash,,GBP,-18900.14,MMF-GBP-A,"Redeemed GBP 18,900 from MMF-GBP-A.","Bank cash 55,608 is below the GBP 74,508 operating minimum."
+2026-07-31,7,action,Cash,,CHF,-251165.33,TRS-BKA-CHF-DEP,"Redeemed CHF 251,165 from TRS-BKA-CHF-DEP.","Bank cash -170,155 is below the CHF 81,010 operating minimum."
+2026-07-31,8,action,Cash,,USD,-833200.41,MMF-USD-A,"Redeemed USD 833,200 from MMF-USD-A.","Bank cash -733,200 is below the USD 100,000 operating minimum."
+2026-07-31,9,event,Interest,,CHF,-304.23,,Month end: net IC interest of CHF -304 posted to the entities' current accounts (+ = TRS pays).,
+2026-07-31,10,event,Interest,,EUR,1305.21,,"Month end: net IC interest of EUR +1,305 posted to the entities' current accounts (+ = TRS pays).",
+2026-07-31,11,event,Interest,,GBP,23625.7,,"Month end: net IC interest of GBP +23,626 posted to the entities' current accounts (+ = TRS pays).",
+2026-07-31,12,event,Interest,,USD,9012.56,,"Month end: net IC interest of USD +9,013 posted to the entities' current accounts (+ = TRS pays).",
+2026-07-31,13,event,Interest,IV,USD,253272.71,ICD-IV-USD-001,"Month end: USD 253,273 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-08-03,1,event,Deposits,MGT,GBP,1715890.25,ICD-MGT-GBP-20260501,"ICD-MGT-GBP-20260501 matured: GBP 1,715,890 (principal 1,700,000 + interest 15,890) back on MGT's on-call account.",
+2026-08-03,2,action,Deposits,MGT,GBP,3700000.0,ICD-MGT-GBP-20260803,"MGT places GBP 3,700,000 with TRS for 3 months at a fixed 3.632%, maturing 03 Nov 2026 (ICD-MGT-GBP-20260803, rolling ICD-MGT-GBP-20260501).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 5,543,845 over the next 3 months; keeping 1,782,455 for about a month of OPEX leaves 3,761,389 that can be locked."
+2026-08-03,3,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-08-04,1,event,Interest,,EUR,20830.04,MMF-EUR-A,"Received EUR 20,830 interest on MMF-EUR-A for Jul 2026 (paid on business day 2).",
+2026-08-04,2,event,Interest,,GBP,68052.5,MMF-GBP-A,"Received GBP 68,052 interest on MMF-GBP-A for Jul 2026 (paid on business day 2).",
+2026-08-04,3,action,Cash,,GBP,68188.5,MMF-GBP-A,"Invested GBP 68,188 in MMF-GBP-A.","Bank cash 142,560 is above the GBP 74,372 operating minimum."
+2026-08-04,4,event,Interest,,CHF,-279.2,TRS-BKA-CHF-DEP,Received CHF -279 interest on TRS-BKA-CHF-DEP for Jul 2026 (paid on business day 2).,
+2026-08-04,5,event,Interest,,USD,335165.64,MMF-USD-A,"Received USD 335,166 interest on MMF-USD-A for Jul 2026 (paid on business day 2).",
+2026-08-04,6,action,Cash,,USD,88520.71,MMF-USD-A,"Invested USD 88,521 in MMF-USD-A.","Bank cash 188,521 is above the USD 100,000 operating minimum."
+2026-08-05,1,event,Deposits,MGT,GBP,7467690.17,ICD-MGT-GBP-20260505,"ICD-MGT-GBP-20260505 matured: GBP 7,467,690 (principal 7,400,000 + interest 67,690) back on MGT's on-call account.",
+2026-08-05,2,action,Deposits,MGT,GBP,7000000.0,ICD-MGT-GBP-20260805,"MGT places GBP 7,000,000 with TRS for 3 months at a fixed 3.631%, maturing 05 Nov 2026 (ICD-MGT-GBP-20260805, rolling ICD-MGT-GBP-20260505).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 9,311,535 over the next 3 months; keeping 2,235,324 for about a month of OPEX leaves 7,076,210 that can be locked."
+2026-08-06,1,event,Deposits,MGT,GBP,1614636.12,ICD-MGT-GBP-20260506,"ICD-MGT-GBP-20260506 matured: GBP 1,614,636 (principal 1,600,000 + interest 14,636) back on MGT's on-call account.",
+2026-08-06,2,action,Deposits,MGT,GBP,1600000.0,ICD-MGT-GBP-20260806,"MGT places GBP 1,600,000 with TRS for 3 months at a fixed 3.632%, maturing 06 Nov 2026 (ICD-MGT-GBP-20260806, rolling ICD-MGT-GBP-20260506).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 3,926,171 over the next 3 months; keeping 2,235,324 for about a month of OPEX leaves 1,690,847 that can be locked."
+2026-08-17,1,action,Cash,,EUR,21641.04,MMF-EUR-A,"Invested EUR 21,641 in MMF-EUR-A.","Bank cash 107,900 is above the EUR 86,259 operating minimum."
+2026-08-17,2,action,Cash,,USD,-551219.28,MMF-USD-A,"Redeemed USD 551,219 from MMF-USD-A.","Bank cash -451,219 is below the USD 100,000 operating minimum."
+2026-08-20,1,action,Cash,,EUR,715085.82,MMF-EUR-A,"Invested EUR 715,086 in MMF-EUR-A.","Bank cash 800,695 is above the EUR 85,609 operating minimum."
+2026-08-21,1,action,FX,US,GBP,220000.0,FXI20260821-001,"US buys GBP 220,000 from TRS against USD, forward value 28 Aug (FXI20260821-001: TRS buys USD 300,430 against GBP 220,000 at 1.3656).","US will be short GBP 220,000 on 28 Aug (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-08-21,2,action,FX,CH,GBP,150000.0,FXI20260821-002,"CH buys GBP 150,000 from TRS against CHF, forward value 28 Aug (FXI20260821-002: TRS buys CHF 163,644 against GBP 150,000 at 1.0910).","CH will be short GBP 150,000 on 28 Aug (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-08-21,3,action,FX,,CHF,-163643.86,FXE20260821-003,"TRS sells CHF 163,644 forward to BKA, value 28 Aug (FXE20260821-003: USD 204,838 against CHF 163,644 at 0.7989).","Today's 1 internal deal leaves TRS long CHF 163,644 for 28 Aug. One external forward offsets the net, so TRS stays flat."
+2026-08-21,4,action,FX,,GBP,370000.0,FXE20260821-004,"TRS buys GBP 370,000 forward from BKA, value 28 Aug (FXE20260821-004: GBP 370,000 against USD 505,268 at 1.3656).","Today's 2 internal deals leave TRS short GBP 370,000 for 28 Aug. One external forward offsets the net, so TRS stays flat."
+2026-08-25,1,action,Cash,,GBP,-1619399.86,MMF-GBP-A,"Redeemed GBP 1,619,400 from MMF-GBP-A.","Bank cash -1,546,042 is below the GBP 73,358 operating minimum."
+2026-08-25,2,action,Cash,,CHF,-382757.57,TRS-BKA-CHF-DEP,"Redeemed CHF 382,758 from TRS-BKA-CHF-DEP.","Bank cash -302,489 is below the CHF 80,269 operating minimum."
+2026-08-28,1,event,FX,US,,,FXI20260821-001,"FXI20260821-001 settled on US's IC current accounts: TRS received USD 300,430 and paid GBP 220,000.",
+2026-08-28,2,event,FX,CH,,,FXI20260821-002,"FXI20260821-002 settled on CH's IC current accounts: TRS received CHF 163,644 and paid GBP 150,000.",
+2026-08-28,3,event,FX,,,,FXE20260821-003,"FXE20260821-003 settled on TRS's bank accounts: TRS received USD 204,838 and paid CHF 163,644.",
+2026-08-28,4,event,FX,,,,FXE20260821-004,"FXE20260821-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 505,268.",
+2026-08-28,5,action,Cash,,GBP,369734.0,MMF-GBP-A,"Invested GBP 369,734 in MMF-GBP-A.","Bank cash 443,358 is above the GBP 73,624 operating minimum."
+2026-08-28,6,action,Cash,,CHF,-163800.86,TRS-BKA-CHF-DEP,"Redeemed CHF 163,801 from TRS-BKA-CHF-DEP.","Bank cash -83,375 is below the CHF 80,426 operating minimum."
+2026-08-28,7,action,Cash,,USD,-300429.78,MMF-USD-A,"Redeemed USD 300,430 from MMF-USD-A.","Bank cash -200,430 is below the USD 100,000 operating minimum."
+2026-08-31,1,action,Cash,,EUR,-365493.9,MMF-EUR-A,"Redeemed EUR 365,494 from MMF-EUR-A.","Bank cash -279,257 is below the EUR 86,237 operating minimum."
+2026-08-31,2,action,Cash,,USD,-542670.85,MMF-USD-A,"Redeemed USD 542,671 from MMF-USD-A.","Bank cash -442,671 is below the USD 100,000 operating minimum."
+2026-08-31,3,event,Interest,,CHF,-304.33,,Month end: net IC interest of CHF -304 posted to the entities' current accounts (+ = TRS pays).,
+2026-08-31,4,event,Interest,,EUR,1883.01,,"Month end: net IC interest of EUR +1,883 posted to the entities' current accounts (+ = TRS pays).",
+2026-08-31,5,event,Interest,,GBP,19781.74,,"Month end: net IC interest of GBP +19,782 posted to the entities' current accounts (+ = TRS pays).",
+2026-08-31,6,event,Interest,,USD,8238.07,,"Month end: net IC interest of USD +8,238 posted to the entities' current accounts (+ = TRS pays).",
+2026-08-31,7,event,Interest,IV,USD,255872.7,ICD-IV-USD-001,"Month end: USD 255,873 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-09-01,1,action,Cash,,CHF,-94067.94,TRS-BKA-CHF-DEP,"Redeemed CHF 94,068 from TRS-BKA-CHF-DEP.","Bank cash -13,015 is below the CHF 81,053 operating minimum."
+2026-09-01,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-09-02,1,event,Deposits,EU,EUR,1507022.67,ICD-EU-EUR-20260602,"ICD-EU-EUR-20260602 matured: EUR 1,507,023 (principal 1,500,000 + interest 7,023) back on EU's on-call account.",
+2026-09-02,2,action,Deposits,EU,EUR,2200000.0,ICD-EU-EUR-20260902,"EU places EUR 2,200,000 with TRS for 3 months at a fixed 2.088%, maturing 02 Dec 2026 (ICD-EU-EUR-20260902, rolling ICD-EU-EUR-20260602).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 2,666,890 over the next 3 months; keeping 408,951 for about a month of OPEX leaves 2,257,939 that can be locked."
+2026-09-02,3,event,Interest,,EUR,21525.44,MMF-EUR-A,"Received EUR 21,525 interest on MMF-EUR-A for Aug 2026 (paid on business day 2).",
+2026-09-02,4,event,Interest,,GBP,68669.91,MMF-GBP-A,"Received GBP 68,670 interest on MMF-GBP-A for Aug 2026 (paid on business day 2).",
+2026-09-02,5,action,Cash,,GBP,68126.91,MMF-GBP-A,"Invested GBP 68,127 in MMF-GBP-A.","Bank cash 142,294 is above the GBP 74,167 operating minimum."
+2026-09-02,6,event,Interest,,CHF,-315.8,TRS-BKA-CHF-DEP,Received CHF -316 interest on TRS-BKA-CHF-DEP for Aug 2026 (paid on business day 2).,
+2026-09-02,7,event,Interest,,USD,337589.44,MMF-USD-A,"Received USD 337,589 interest on MMF-USD-A for Aug 2026 (paid on business day 2).",
+2026-09-02,8,action,Cash,,USD,87251.37,MMF-USD-A,"Invested USD 87,251 in MMF-USD-A.","Bank cash 187,251 is above the USD 100,000 operating minimum."
+2026-09-03,1,action,Cash,,EUR,21666.44,MMF-EUR-A,"Invested EUR 21,666 in MMF-EUR-A.","Bank cash 107,762 is above the EUR 86,096 operating minimum."
+2026-09-04,1,action,Cash,,GBP,-411442.22,MMF-GBP-A,"Redeemed GBP 411,442 from MMF-GBP-A.","Bank cash -337,532 is below the GBP 73,910 operating minimum."
+2026-09-15,1,action,Cash,,USD,-1056436.6,MMF-USD-A,"Redeemed USD 1,056,437 from MMF-USD-A.","Bank cash -956,437 is below the USD 100,000 operating minimum."
+2026-09-21,1,action,Cash,,EUR,678132.79,MMF-EUR-A,"Invested EUR 678,133 in MMF-EUR-A.","Bank cash 765,165 is above the EUR 87,032 operating minimum."
+2026-09-23,1,action,FX,US,GBP,220000.0,FXI20260923-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Sep (FXI20260923-001: TRS buys USD 292,090 against GBP 220,000 at 1.3277).","US will be short GBP 220,000 on 30 Sep (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-09-23,2,action,FX,CH,GBP,150000.0,FXI20260923-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Sep (FXI20260923-002: TRS buys CHF 163,756 against GBP 150,000 at 1.0917).","CH will be short GBP 150,000 on 30 Sep (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-09-23,3,action,FX,,CHF,-163756.0,FXE20260923-003,"TRS sells CHF 163,756 forward to BKA, value 30 Sep (FXE20260923-003: USD 199,152 against CHF 163,756 at 0.8223).","Today's 1 internal deal leaves TRS long CHF 163,756 for 30 Sep. One external forward offsets the net, so TRS stays flat."
+2026-09-23,4,action,FX,,GBP,370000.0,FXE20260923-004,"TRS buys GBP 370,000 forward from BKA, value 30 Sep (FXE20260923-004: GBP 370,000 against USD 491,243 at 1.3277).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Sep. One external forward offsets the net, so TRS stays flat."
+2026-09-25,1,action,Cash,,GBP,-1623848.95,MMF-GBP-A,"Redeemed GBP 1,623,849 from MMF-GBP-A.","Bank cash -1,548,391 is below the GBP 75,458 operating minimum."
+2026-09-25,2,action,Cash,,CHF,-380848.33,TRS-BKA-CHF-DEP,"Redeemed CHF 380,848 from TRS-BKA-CHF-DEP.","Bank cash -298,019 is below the CHF 82,829 operating minimum."
+2026-09-29,1,action,Cash,,GBP,-450031.0,MMF-GBP-A,"Redeemed GBP 450,031 from MMF-GBP-A.","Bank cash -374,542 is below the GBP 75,489 operating minimum."
+2026-09-30,1,event,FX,US,,,FXI20260923-001,"FXI20260923-001 settled on US's IC current accounts: TRS received USD 292,090 and paid GBP 220,000.",
+2026-09-30,2,event,FX,CH,,,FXI20260923-002,"FXI20260923-002 settled on CH's IC current accounts: TRS received CHF 163,756 and paid GBP 150,000.",
+2026-09-30,3,event,FX,,,,FXE20260923-003,"FXE20260923-003 settled on TRS's bank accounts: TRS received USD 199,152 and paid CHF 163,756.",
+2026-09-30,4,event,FX,,,,FXE20260923-004,"FXE20260923-004 settled on TRS's bank accounts: TRS received GBP 370,000 and paid USD 491,243.",
+2026-09-30,5,action,Cash,,EUR,-372808.48,MMF-EUR-A,"Redeemed EUR 372,808 from MMF-EUR-A.","Bank cash -284,741 is below the EUR 88,067 operating minimum."
+2026-09-30,6,action,Cash,,GBP,-325835.15,MMF-GBP-A,"Redeemed GBP 325,835 from MMF-GBP-A.","Bank cash -250,570 is below the GBP 75,265 operating minimum."
+2026-09-30,7,action,Cash,,CHF,-256462.99,TRS-BKA-CHF-DEP,"Redeemed CHF 256,463 from TRS-BKA-CHF-DEP.","Bank cash -172,993 is below the CHF 83,470 operating minimum."
+2026-09-30,8,action,Cash,,USD,-1235477.5,MMF-USD-A,"Redeemed USD 1,235,478 from MMF-USD-A.","Bank cash -1,135,478 is below the USD 100,000 operating minimum."
+2026-09-30,9,event,Interest,,CHF,-173.24,,Month end: net IC interest of CHF -173 posted to the entities' current accounts (+ = TRS pays).,
+2026-09-30,10,event,Interest,,EUR,1289.61,,"Month end: net IC interest of EUR +1,290 posted to the entities' current accounts (+ = TRS pays).",
+2026-09-30,11,event,Interest,,GBP,14096.24,,"Month end: net IC interest of GBP +14,096 posted to the entities' current accounts (+ = TRS pays).",
+2026-09-30,12,event,Interest,,USD,1970.56,,"Month end: net IC interest of USD +1,971 posted to the entities' current accounts (+ = TRS pays).",
+2026-09-30,13,event,Interest,IV,USD,256001.71,ICD-IV-USD-001,"Month end: USD 256,002 interest added to the IV deposit (ICD-IV-USD-001).",
+2026-10-01,1,action,Deposits,MGT,GBP,1700000.0,ICD-MGT-GBP-20261001,"MGT places GBP 1,700,000 with TRS for 3 months at a fixed 3.633%, maturing 04 Jan 2027 (ICD-MGT-GBP-20261001).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 2,730,049 over the next 3 months; keeping 990,000 for about a month of OPEX leaves 1,740,049 that can be locked."
+2026-10-01,2,action,Cash,,USD,-120000.0,MMF-USD-A,"Redeemed USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-10-02,1,event,Deposits,MGT,GBP,3330197.8,ICD-MGT-GBP-20260702,"ICD-MGT-GBP-20260702 matured: GBP 3,330,198 (principal 3,300,000 + interest 30,198) back on MGT's on-call account.",
+2026-10-02,2,event,Deposits,CH,CHF,1799356.0,ICD-CH-CHF-20260702,"ICD-CH-CHF-20260702 matured: CHF 1,799,356 (principal 1,800,000 + interest -644) back on CH's on-call account.",
+2026-10-02,3,event,Deposits,EU,EUR,9248973.64,ICD-EU-EUR-20260702,"ICD-EU-EUR-20260702 matured: EUR 9,248,974 (principal 9,200,000 + interest 48,974) back on EU's on-call account.",
+2026-10-02,4,action,Deposits,MGT,GBP,3300000.0,ICD-MGT-GBP-20261002,"MGT places GBP 3,300,000 with TRS for 3 months at a fixed 3.632%, maturing 04 Jan 2027 (ICD-MGT-GBP-20261002, rolling ICD-MGT-GBP-20260702).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 4,360,247 over the next 3 months; keeping 990,000 for about a month of OPEX leaves 3,370,247 that can be locked."
+2026-10-02,5,action,Deposits,CH,CHF,2300000.0,ICD-CH-CHF-20261002,"CH places CHF 2,300,000 with TRS for 3 months at a fixed -0.140%, maturing 04 Jan 2027 (ICD-CH-CHF-20261002, rolling ICD-CH-CHF-20260702).","A deposit matured today. CH's on-call CHF balance is projected to fall no lower than 2,338,134 over the next 3 months; keeping -0 for about a month of OPEX leaves 2,338,134 that can be locked."
+2026-10-02,6,action,Deposits,EU,EUR,10000000.0,ICD-EU-EUR-20261002,"EU places EUR 10,000,000 with TRS for 3 months at a fixed 2.340%, maturing 04 Jan 2027 (ICD-EU-EUR-20261002, rolling ICD-EU-EUR-20260702).","A deposit matured today. EU's on-call EUR balance is projected to fall no lower than 10,024,449 over the next 3 months; keeping -0 for about a month of OPEX leaves 10,024,449 that can be locked."
+2026-10-02,7,event,Interest,,EUR,22716.19,MMF-EUR-A,"Received EUR 22,716 interest on MMF-EUR-A for Sep 2026 (paid on business day 2).",
+2026-10-02,8,event,Interest,,GBP,61614.8,MMF-GBP-A,"Received GBP 61,615 interest on MMF-GBP-A for Sep 2026 (paid on business day 2).",
+2026-10-02,9,action,Cash,,GBP,61126.8,MMF-GBP-A,"Invested GBP 61,127 in MMF-GBP-A.","Bank cash 136,880 is above the GBP 75,753 operating minimum."
+2026-10-02,10,event,Interest,,CHF,-213.57,TRS-BKA-CHF-DEP,Received CHF -214 interest on TRS-BKA-CHF-DEP for Sep 2026 (paid on business day 2).,
+2026-10-02,11,event,Interest,,USD,331147.36,MMF-USD-A,"Received USD 331,147 interest on MMF-USD-A for Sep 2026 (paid on business day 2).",
+2026-10-02,12,action,Cash,,USD,331147.36,MMF-USD-A,"Invested USD 331,147 in MMF-USD-A.","Bank cash 431,147 is above the USD 100,000 operating minimum."
+2026-10-12,1,action,Cash,,GBP,7724906.66,MMF-GBP-A,"Invested GBP 7,724,907 in MMF-GBP-A.","Bank cash 7,800,462 is above the GBP 75,555 operating minimum."
+2026-10-12,2,action,Cash,,CHF,1852861.53,TRS-BKA-CHF-DEP,"Invested CHF 1,852,862 in TRS-BKA-CHF-DEP.","Bank cash 1,936,146 is above the CHF 83,284 operating minimum."
+2026-10-13,1,action,Cash,,USD,5025718.97,MMF-USD-A,"Invested USD 5,025,719 in MMF-USD-A.","Bank cash 5,125,719 is above the USD 100,000 operating minimum."
+2026-10-14,1,action,Cash,,GBP,-899822.0,MMF-GBP-A,"Redeemed GBP 899,822 from MMF-GBP-A.","Bank cash -824,445 is below the GBP 75,377 operating minimum."
+2026-10-15,1,action,Cash,,USD,-550814.88,MMF-USD-A,"Redeemed USD 550,815 from MMF-USD-A.","Bank cash -450,815 is below the USD 100,000 operating minimum."
+2026-10-20,1,action,Cash,,EUR,725670.7,MMF-EUR-A,"Invested EUR 725,671 in MMF-EUR-A.","Bank cash 814,837 is above the EUR 89,166 operating minimum."
