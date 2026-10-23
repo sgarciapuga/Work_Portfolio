@@ -17,6 +17,7 @@ st.set_page_config(page_title="Treasury simulator", page_icon="🏦", layout="wi
 PAGES = [
     ("pages/overview.py", "Overview", "overview"),
     ("pages/today.py", "Today", "today"),
+    ("pages/activity.py", "Activity", "activity"),
     ("pages/balance_sheet.py", "Balance sheet & NAV", "balance-sheet"),
     ("pages/market_data.py", "Market data", "market-data"),
     ("pages/positions.py", "Positions", "positions"),

@@ -8,6 +8,7 @@ EXPECTED_TABLES = {
     "dim_entity", "dim_bank", "dim_account", "dim_flow_code", "fee_schedule", "iv_commitment",
     "dim_facility", "dim_mmf_fund", "ir_rate", "cash_txn", "cash_balance", "position",
     "fx_deal", "valuation", "forecast_line", "nav_daily", "scenario", "ic_current_account", "alert", "pnl_daily",
+    "activity",
 }
 
 

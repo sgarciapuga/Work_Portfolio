@@ -30,7 +30,7 @@ def history_dir(tmp_path_factory):
 
 
 @pytest.mark.parametrize("page", ["pages/overview.py", "pages/balance_sheet.py", "pages/market_data.py",
-                                  "pages/positions.py"])
+                                  "pages/positions.py", "pages/activity.py"])
 def test_pages_with_history(page, history_dir, monkeypatch):
     monkeypatch.setenv("TSIM_DATA_DIR", str(history_dir))
     monkeypatch.setenv("TSIM_NO_DB", "1")

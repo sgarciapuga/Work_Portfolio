@@ -60,6 +60,22 @@ def test_deal_rate_is_in_market_convention():
     assert deal_rate("CHF", 112, "GBP", 100) == pytest.approx(1.12)         # GBP/CHF: CHF per GBP
 
 
+# ---------------- treasurer's log ----------------
+def test_log_has_a_line_for_every_decision_with_its_reason(result):
+    log = result["activity"]
+    assert not log.duplicated(["activity_date", "seq"]).any()
+    actions = log[log["kind"] == "action"]
+    assert actions["reason"].notna().all() and (actions["reason"].str.len() > 20).all()
+    deals = result["fx_deal"]
+    logged = set(log["ref"].dropna())
+    assert set(deals["deal_id"]) <= logged                              # every deal booked is in the log
+    assert set(result["position"]["position_id"][result["position"]["position_id"].str.match(r"ICD-(?!IV)")]) <= logged
+    jan24 = log[log["activity_date"] == date(2025, 1, 24)]
+    assert jan24["description"].str.contains("TRS buys GBP 370,000 forward").any()
+    settled = log[(log["activity_date"] == date(2025, 1, 31)) & (log["kind"] == "event")]
+    assert settled["description"].str.contains("settled").sum() == 4   # 2 internal + 2 external forwards
+
+
 # ---------------- MTM ----------------
 def test_mtm_is_zero_when_booked_and_back_to_back_deals_cancel():
     fx = _flat(FX, date(2025, 2, 10))

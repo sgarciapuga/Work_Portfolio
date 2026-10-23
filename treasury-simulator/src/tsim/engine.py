@@ -27,6 +27,10 @@ Each calendar day d:
    open FX deals are revalued (MTM, undiscounted).
 7. On the last day of the month IC current account interest is posted.
 
+Every decision (with the autopilot's reason) and every scheduled event (deal
+settlements, deposit maturities, interest received or posted) is written to the
+treasurer's log (activity): one plain-English line each.
+
 The daily P&L (pnl_daily) splits the NAV change by source: MMF and deposit income,
 IC deposit interest TRS pays, IC loan interest TRS earns, FX revaluation of the
 non-USD balance sheet, and the change in MTM of the FX deals. The parts add up to
@@ -56,6 +60,8 @@ PNL_COMPONENTS = [PNL_MMF, PNL_IC_DEPOSIT, PNL_IC_LOAN, PNL_FX, PNL_FX_DEALS]
 
 FX_DEAL_COLUMNS = ["deal_id", "leg", "deal_type", "trade_date", "value_date", "buy_ccy", "buy_amount", "sell_ccy",
                    "sell_amount", "rate", "counterparty", "is_internal"]
+ACTIVITY_COLUMNS = ["activity_date", "seq", "kind", "category", "entity_code", "currency", "amount", "ref",
+                    "description", "reason"]
 FX_FLOW_CODE = {("spot", "single"): "FX_SPOT", ("forward", "single"): "FX_FWD",
                 ("swap", "near"): "FX_SWAP_NEAR", ("swap", "far"): "FX_SWAP_FAR"}
 
@@ -97,6 +103,7 @@ class Engine:
         self.tickets = []          # open FX deal legs (TRS side)
         self.terms = {}            # IC term deposits / loans: position_id -> dict
         self._fx_pnl = defaultdict(float)
+        self._log_seq = defaultdict(int)
         self._open()
         self.autopilot = Autopilot(self)
 
@@ -130,6 +137,19 @@ class Engine:
             "flow_code": flow_code, "currency": ccy, "amount": round(amount, 2), "counterparty": counterparty,
             "counterparty_entity": cp_entity, "is_intercompany": ic, "position_id": position, "deal_id": deal,
         })
+
+    def _log(self, d, kind, category, description, reason=None, entity=None, ccy=None, amount=None, ref=None):
+        """One line of the treasurer's log. kind: 'action' (a decision) or 'event' (something scheduled)."""
+        self._log_seq[d] += 1
+        self.out["activity"].append({
+            "activity_date": d, "seq": self._log_seq[d], "kind": kind, "category": category,
+            "entity_code": entity, "currency": ccy, "amount": None if amount is None else round(amount, 2),
+            "ref": ref, "description": description, "reason": reason})
+
+    @staticmethod
+    def _deal_text(t):
+        return (f"{t['buy_ccy']} {t['buy_amount']:,.0f} against {t['sell_ccy']} {t['sell_amount']:,.0f} "
+                f"at {t['rate']:.4f}")
 
     def _fwd(self, d, ccy, value_date):
         """Units of ccy per 1 USD for value_date, seen on day d."""
@@ -171,8 +191,14 @@ class Engine:
         self.tickets.append(t)
         return t
 
-    def _settle_ticket(self, d, t, transfers):
+    def _settle_ticket(self, d, t, transfers, log=True):
         fx = self.fx.loc[d]
+        if log:
+            where = f"on {t['counterparty']}'s IC current accounts" if t["is_internal"] else "on TRS's bank accounts"
+            leg = "" if t["leg"] == "single" else f" ({t['leg']} leg)"
+            self._log(d, "event", "FX", f"{t['deal_id']}{leg} settled {where}: TRS received {t['buy_ccy']} "
+                      f"{t['buy_amount']:,.0f} and paid {t['sell_ccy']} {t['sell_amount']:,.0f}.",
+                      entity=t["counterparty"] if t["is_internal"] else None, ref=t["deal_id"])
         for ccy, amount in self.ticket_legs(t):
             if t["is_internal"]:
                 self.ic[(t["counterparty"], ccy)] -= amount
@@ -191,26 +217,39 @@ class Engine:
     def _fx_decisions(self, d, transfers):
         ap = self.autopilot
         internal = []
-        for ent, ccy, amount, value_date in ap.fx_orders(d):
+        for ent, ccy, amount, value_date, reason in ap.fx_orders(d):
             own = ap.functional[ent]
             deal_type = "spot" if value_date == d else "forward"
             # the entity buys `amount` of ccy, so TRS sells it
-            internal.append(self.book_fx(d, deal_type, ccy, -amount, value_date, ent, True, counter_ccy=own))
-        for ccy, amount, value_date in ap.cover(d, internal):
-            self.book_fx(d, "forward", ccy, amount, value_date, config.FX_BANK, False)
+            t = self.book_fx(d, deal_type, ccy, -amount, value_date, ent, True, counter_ccy=own)
+            internal.append(t)
+            self._log(d, "action", "FX", f"{ent} {'buys' if amount > 0 else 'sells'} {ccy} {abs(amount):,.0f} "
+                      f"{'from' if amount > 0 else 'to'} TRS against {own}, {deal_type} value {value_date:%d %b} "
+                      f"({t['deal_id']}: TRS buys {self._deal_text(t)}).", reason, ent, ccy, amount, t["deal_id"])
+        for ccy, amount, value_date, reason in ap.cover(d, internal):
+            t = self.book_fx(d, "forward", ccy, amount, value_date, config.FX_BANK, False)
+            self._log(d, "action", "FX", f"TRS {'buys' if amount > 0 else 'sells'} {ccy} {abs(amount):,.0f} forward "
+                      f"{'from' if amount > 0 else 'to'} {config.FX_BANK}, value {value_date:%d %b} "
+                      f"({t['deal_id']}: {self._deal_text(t)}).", reason, None, ccy, amount, t["deal_id"])
         for t in [t for t in internal if t["value_date"] == d]:
-            self._settle_ticket(d, t, transfers)
-        for ccy, amount in ap.flatten(d):
+            self._settle_ticket(d, t, transfers, log=False)   # same-day: the action line says it all
+        for ccy, amount, reason in ap.flatten(d):
             value_date = add_joint_business_days(d, config.SPOT_DAYS, [ccy, "USD"])
-            self.book_fx(d, "spot", ccy, amount, value_date, config.FX_BANK, False)
+            t = self.book_fx(d, "spot", ccy, amount, value_date, config.FX_BANK, False)
+            self._log(d, "action", "FX", f"TRS {'buys' if amount > 0 else 'sells'} {ccy} {abs(amount):,.0f} spot "
+                      f"{'from' if amount > 0 else 'to'} {config.FX_BANK}, value {value_date:%d %b} "
+                      f"({t['deal_id']}: {self._deal_text(t)}).", reason, None, ccy, amount, t["deal_id"])
 
     def _funding_swap(self, d, ccy, transfers):
-        amount = self.autopilot.funding_swap(d, ccy)
+        amount, reason = self.autopilot.funding_swap(d, ccy)
         if amount:
             far = add_months(d, config.SWAP_TENOR_MONTHS, [ccy, "USD"])
             near = self.book_fx(d, "swap", ccy, amount, d, config.FX_BANK, False, leg="near")
             self.book_fx(d, "swap", ccy, -amount, far, config.FX_BANK, False, leg="far", deal_id=near["deal_id"])
-            self._settle_ticket(d, near, transfers)
+            self._settle_ticket(d, near, transfers, log=False)
+            self._log(d, "action", "FX", f"TRS buys {ccy} {amount:,.0f} today and sells it back on {far:%d %b} "
+                      f"({near['deal_id']}: 1-month swap against USD {near['sell_amount']:,.0f}).", reason, None, ccy,
+                      amount, near["deal_id"])
 
     def _revalue_fx(self, d):
         """Daily MTM of open deals; the change per currency goes to P&L. Returns MTM (USD) per deal."""
@@ -232,23 +271,30 @@ class Engine:
                 sign = 1 if p["position_type"] == "IC_DEPOSIT" else -1
                 self.ic[(p["counterparty"], p["currency"])] += sign * amount
                 transfers[(p["counterparty"], p["currency"])] += sign * amount
+                self._log(d, "event", "Deposits", f"{pid} matured: {p['currency']} {amount:,.0f} (principal "
+                          f"{p['principal']:,.0f} + interest {p['accrued']:,.0f}) back on {p['counterparty']}'s "
+                          "on-call account.", entity=p["counterparty"], ccy=p["currency"], amount=amount, ref=pid)
                 p["accrued"], p["status"] = 0.0, "repaid"
                 matured.add((p["counterparty"], p["currency"]))
         return matured
 
     def _place_terms(self, d, matured, transfers):
-        for ent, ccy, amount in self.autopilot.ic_deposits(d, matured):
+        for ent, ccy, amount, reason in self.autopilot.ic_deposits(d, matured):
             pid = f"ICD-{ent}-{ccy}-{d:%Y%m%d}"
             rate = ic_deposit_rate(self.on.loc[d, ccy]) + config.IC_TERM_PREMIUM_BP / 10_000
+            maturity = add_months(d, config.IC_DEPOSIT_TENOR_MONTHS, [ccy])
             self.terms[pid] = {"position_type": "IC_DEPOSIT", "counterparty": ent, "currency": ccy,
                                "principal": float(amount), "rate": rate, "start_date": d,
-                               "maturity_date": add_months(d, config.IC_DEPOSIT_TENOR_MONTHS, [ccy]),
-                               "accrued": 0.0, "status": "open"}
+                               "maturity_date": maturity, "accrued": 0.0, "status": "open"}
             self.ic[(ent, ccy)] -= amount
             transfers[(ent, ccy)] -= amount
-            for p in self.terms.values():   # the deposit that matured today was rolled into this one
+            rolled = ""
+            for old, p in self.terms.items():   # the deposit that matured today was rolled into this one
                 if (p["counterparty"], p["currency"]) == (ent, ccy) and p["maturity_date"] == d:
-                    p["status"] = "rolled"
+                    p["status"], rolled = "rolled", f", rolling {old}"
+            self._log(d, "action", "Deposits", f"{ent} places {ccy} {amount:,.0f} with TRS for "
+                      f"{config.IC_DEPOSIT_TENOR_MONTHS} months at a fixed {rate:.3%}, maturing {maturity:%d %b %Y} "
+                      f"({pid}{rolled}).", reason, ent, ccy, amount, pid)
 
     # ---------------- daily steps ----------------
     def _group_flows(self, d):
@@ -281,6 +327,10 @@ class Engine:
             self.cash[ccy] += amt
             self._txn(d, config.TRS_MAIN_ACCOUNT[ccy], code, ccy, amt, config.INVESTMENT_ACCOUNT[ccy],
                       position=config.INVESTMENT_ACCOUNT[ccy])
+            months = ", ".join(f"{pd.Timestamp(year=y, month=m, day=1):%b %Y}" for _, (y, m) in sorted(due))
+            self._log(d, "event", "Interest", f"Received {ccy} {amt:,.0f} interest on "
+                      f"{config.INVESTMENT_ACCOUNT[ccy]} for {months} (paid on business day "
+                      f"{config.MMF_INTEREST_PAY_BD}).", ccy=ccy, amount=amt, ref=config.INVESTMENT_ACCOUNT[ccy])
 
     def _invest_step(self, d, ccy):
         if is_business_day(d, ccy):
@@ -288,14 +338,16 @@ class Engine:
             self._invest(d, ccy)
 
     def _invest(self, d, ccy):
-        excess = self.autopilot.invest(d, ccy)
+        excess, reason = self.autopilot.invest(d, ccy)
         if not excess:
             return
         sub, red = ("DEP_PLACE", "DEP_RETURN") if ccy == "CHF" else ("MMF_SUB", "MMF_RED")
         self.cash[ccy] -= excess
         self.inv[ccy] += excess
-        self._txn(d, config.TRS_MAIN_ACCOUNT[ccy], sub if excess > 0 else red, ccy, -excess,
-                  config.INVESTMENT_ACCOUNT[ccy], position=config.INVESTMENT_ACCOUNT[ccy])
+        account = config.INVESTMENT_ACCOUNT[ccy]
+        self._txn(d, config.TRS_MAIN_ACCOUNT[ccy], sub if excess > 0 else red, ccy, -excess, account, position=account)
+        self._log(d, "action", "Cash", f"{'Invested' if excess > 0 else 'Redeemed'} {ccy} {abs(excess):,.0f} "
+                  f"{'in' if excess > 0 else 'from'} {account}.", reason, None, ccy, excess, account)
 
     def _interest_items(self, d):
         """One day of interest on today's balances: [(ccy, component, where it accrues, TRS income in ccy)]."""
@@ -339,10 +391,18 @@ class Engine:
         return pnl
 
     def _post_ic_interest(self, d, posted):
+        by_ccy = defaultdict(float)
         for key, amt in list(self.ic_accrued.items()):
             self.ic[key] += amt
             posted[key] += amt
+            by_ccy[key[1]] += amt
             self.ic_accrued[key] = 0.0
+        for ccy, amt in sorted(by_ccy.items()):
+            if abs(amt) >= 0.5:
+                self._log(d, "event", "Interest", f"Month end: net IC interest of {ccy} {amt:+,.0f} posted to the "
+                          "entities' current accounts (+ = TRS pays).", ccy=ccy, amount=amt)
+        self._log(d, "event", "Interest", f"Month end: USD {self.iv_accrued:,.0f} interest added to the IV deposit "
+                  f"({IV_DEPOSIT_ID}).", entity="IV", ccy="USD", amount=self.iv_accrued, ref=IV_DEPOSIT_ID)
         self.iv_dep += self.iv_accrued
         self.iv_accrued = 0.0
 
@@ -479,6 +539,7 @@ class Engine:
         tables = {name: pd.DataFrame(rows) for name, rows in self.out.items()}
         tables.setdefault("alerts", pd.DataFrame(columns=["alert_date", "currency", "alert", "amount"]))
         tables.setdefault("fx_deal", pd.DataFrame(columns=FX_DEAL_COLUMNS))
+        tables.setdefault("activity", pd.DataFrame(columns=ACTIVITY_COLUMNS))
         tables["position"] = self._positions()
         return tables
 

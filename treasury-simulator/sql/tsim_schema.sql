@@ -255,3 +255,18 @@ CREATE TABLE IF NOT EXISTS tsim.alert (
 -- IC term deposit placements and maturities, and internal FX deal settlements, on the IC current account:
 -- opening + settlements + interest_posted + transfers = closing.
 ALTER TABLE tsim.ic_current_account ADD COLUMN IF NOT EXISTS transfers NUMERIC(18, 2) NOT NULL DEFAULT 0;
+
+-- The treasurer's log: one plain-English line per decision (with its reason) or scheduled event.
+CREATE TABLE IF NOT EXISTS tsim.activity (
+    activity_date  DATE NOT NULL,
+    seq            INTEGER NOT NULL,           -- order within the day
+    kind           TEXT NOT NULL CHECK (kind IN ('action', 'event')),
+    category       TEXT NOT NULL,              -- FX, Deposits, Cash, Interest
+    entity_code    TEXT,
+    currency       TEXT,
+    amount         NUMERIC(18, 2),
+    ref            TEXT,                       -- deal, position or fund id
+    description    TEXT NOT NULL,
+    reason         TEXT,                       -- why the autopilot did it (actions only)
+    PRIMARY KEY (activity_date, seq)
+);

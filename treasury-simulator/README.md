@@ -32,13 +32,14 @@ Phases 1 and 2 are done and Phase 3a (the autopilot) is built:
   - IC term deposits: each service company keeps its OPEX on call and places the rest in 3-month fixed deposits (a ladder)
   - FX deals valued daily at MTM (undiscounted); the P&L splits FX revaluation from FX deal MTM
   - a Positions page: MMFs, IC term deposits, FX deal blotter, 13-week maturity ladder
+  - the treasurer's log (`activity`): one plain-English line per decision, with the autopilot's reason, and per scheduled event (settlements, maturities, interest); an Activity page shows each day's group flows, actions, events and end-of-day check
 
 | Phase | Content | Status |
 |---|---|---|
 | 1 | Static data, `tsim` schema, CHF in the FX feed, app skeleton | Done |
 | 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Done |
 | 2.1 | Market data page: FX rates, overnight rates, differentials, implied forwards | Done |
-| 3a | Autopilot: FX conversion, cover and flattening, swaps, IC term deposits, MTM; Positions page | Built |
+| 3a | Autopilot: FX conversion, cover and flattening, swaps, IC term deposits, MTM; treasurer's log; Positions and Activity pages | Built |
 | 3b | Today page: take a day's decisions by hand and compare them with the autopilot | Next |
 | 4 | IV and facilities: calls and distributions, USD 50m buffer, drawings | |
 | 5 | Forecasting: downside / base / upside, 13-week view, accuracy | |
@@ -69,7 +70,7 @@ treasury-simulator/
 │   ├── autopilot.py        # the daily decisions, as rules (FX, IC deposits, investing, swaps)
 │   ├── engine.py           # the daily engine (bookkeeping, interest, MTM, NAV)
 │   └── db.py               # schema, static data, engine outputs in Neon
-├── app/                    # Streamlit app (9 pages)
+├── app/                    # Streamlit app (10 pages)
 └── tests/                  # what each file checks: tests/README.md
 ```
 

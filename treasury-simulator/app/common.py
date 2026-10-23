@@ -25,6 +25,8 @@ RESULT_TABLES = {  # app name -> (tsim table, date column)
     "pnl_daily": ("pnl_daily", "pnl_date"),
     "fx_deal": ("fx_deal", "trade_date"),
     "position": ("position", "start_date"),
+    "activity": ("activity", "activity_date"),
+    "cash_txn": ("cash_txn", "value_date"),
 }
 
 
@@ -67,12 +69,18 @@ def _database_url():
     return url
 
 
-@st.cache_data(ttl=3600, show_spinner="Loading the simulated history...")
 def results():
     """Engine outputs from Neon (tsim schema), or the CSV backups in treasury-simulator/data/.
 
     Returns (dict of DataFrames, source label). Empty dict when nothing has been generated yet.
     """
+    return _load_results(tuple(RESULT_TABLES))
+
+
+# The table names are an argument so the cache key changes when a phase adds a table
+# (Streamlit does not see changes to RESULT_TABLES itself).
+@st.cache_data(ttl=3600, show_spinner="Loading the simulated history...")
+def _load_results(names):
     url = _database_url()
     if url:
         try:
@@ -80,7 +88,12 @@ def results():
 
             engine = create_engine(url, pool_pre_ping=True, connect_args={"connect_timeout": 10})
             with engine.connect() as conn:
-                out = {name: pd.read_sql(f'SELECT * FROM tsim."{table}"', conn) for name, (table, _) in RESULT_TABLES.items()}
+                # a table the workflow has not created yet (new phase, not run yet) comes back empty
+                existing = set(pd.read_sql("SELECT table_name FROM information_schema.tables "
+                                           "WHERE table_schema = 'tsim'", conn)["table_name"])
+                out = {name: pd.read_sql(f'SELECT * FROM tsim."{RESULT_TABLES[name][0]}"', conn)
+                       if RESULT_TABLES[name][0] in existing else pd.DataFrame(columns=[RESULT_TABLES[name][1]])
+                       for name in names}
             if not out["nav_daily"].empty:
                 return _dates(out), "Neon PostgreSQL (tsim schema)"
         except Exception:
@@ -186,6 +199,8 @@ def sidebar():
     with st.sidebar:
         st.header("Settings")
         data, _ = results()
+        if "goto_day" in st.session_state:   # a page asked to move the as-of date (e.g. Activity's buttons)
+            st.session_state["as_of_day"] = st.session_state.pop("goto_day")
         if data:
             days = sorted(data["nav_daily"]["nav_date"].unique())
             st.date_input("As-of date", value=days[-1], min_value=days[0], max_value=days[-1], key="as_of_day")

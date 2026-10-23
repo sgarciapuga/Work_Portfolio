@@ -132,6 +132,7 @@ ENGINE_TABLES = {
     "alerts": ("alert", "alert_date"),
     "pnl_daily": ("pnl_daily", "pnl_date"),
     "fx_deal": ("fx_deal", "trade_date"),     # Phase 3
+    "activity": ("activity", "activity_date"),
 }
 
 
