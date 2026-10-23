@@ -41,7 +41,9 @@ c1, c2, c3, c4, c5 = st.columns([1.3, 1, 3, 1, 1.3], vertical_alignment="center"
 c1.button("◀◀ Previous active day", on_click=go_to, args=(prev_active,), disabled=prev_active is None,
           width="stretch")
 c2.button("◀ Day before", on_click=go_to, args=(day - timedelta(days=1),), disabled=day <= first, width="stretch")
-c3.markdown(f"<h3 style='text-align:center;margin:0'>{day:%A %d %B %Y}</h3>", unsafe_allow_html=True)
+c3.markdown(f"<h3 style='text-align:center;margin:0'>{day:%A %d %B %Y}</h3>" +
+            ("<p style='text-align:center;margin:0;opacity:0.7'>Last closed day</p>" if day == last else ""),
+            unsafe_allow_html=True)
 c4.button("Day after ▶", on_click=go_to, args=(day + timedelta(days=1),), disabled=day >= last, width="stretch")
 c5.button("Next active day ▶▶" if next_active != last or last in action_days else "Latest day ▶▶",
           on_click=go_to, args=(next_active,), disabled=next_active is None, width="stretch")
@@ -99,18 +101,31 @@ else:
 
 # ---------------- the plan (latest day only) ----------------
 if day == last and len(plan):
+    def plan_lines(rows):
+        for r in rows.itertuples():
+            tag = "Will do" if r.kind == "action" else ("Due" if r.category == "Group flows" else "Scheduled")
+            st.markdown(f"- *{tag}* · **{r.category}** · {r.description}")
+            if isinstance(r.reason, str):
+                st.caption(f"Why: {r.reason}")
+
+    today_date = last + timedelta(days=1)   # the engine runs to yesterday: overnight rates come out the next day
+    by_day = dict(tuple(plan.sort_values(["activity_date", "seq"]).groupby("activity_date")))
     with st.container(border=True):
-        st.markdown("#### Coming up: the autopilot's plan")
-        st.caption(f"What the autopilot expects to do over the next {config.PLAN_BUSINESS_DAYS} business days, from "
-                   f"the known schedule and holding the FX and interest rates of {last:%d %b}. It is planned again "
-                   "every evening, so the actions can change when rates move.")
-        for d, rows in plan.sort_values(["activity_date", "seq"]).groupby("activity_date"):
-            st.markdown(f"**{d:%A %d %B}**")
-            for r in rows.itertuples():
-                tag = "Will do" if r.kind == "action" else ("Due" if r.category == "Group flows" else "Scheduled")
-                st.markdown(f"- *{tag}* · **{r.category}** · {r.description}")
-                if isinstance(r.reason, str):
-                    st.caption(f"Why: {r.reason}")
+        st.markdown(f"#### Today, {today_date:%A %d %B}: to do")
+        st.caption(f"Based on the closing position of {last:%d %b}. What the autopilot would do today, from the known "
+                   f"schedule and holding the FX and interest rates of {last:%d %b}.")
+        if today_date in by_day:
+            plan_lines(by_day[today_date])
+        else:
+            st.markdown("Nothing to do today" + (" (weekend)." if today_date.weekday() >= 5 else "."))
+        later = {d: rows for d, rows in by_day.items() if d > today_date}
+        if later:
+            st.markdown("#### Next days")
+            st.caption(f"The look-ahead to {max(later):%a %d %b}: planned again every evening, so these actions can "
+                       "change when rates move or new flows appear.")
+            for d, rows in later.items():
+                st.markdown(f"**{d:%A %d %B}**")
+                plan_lines(rows)
 elif day == last:
     st.caption("No plan yet: it arrives with the next engine run.")
 
