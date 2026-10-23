@@ -69,6 +69,26 @@ def forward_points_history(quotes, on_rates, tenor="3M"):
     return out
 
 
+# ---------------- FX deals (Phase 3) ----------------
+def forward_fx_to_usd(fx_to_usd, on_ccy, on_usd, ccy, days):
+    """Units of ccy per 1 USD for a value date `days` ahead (covered interest parity, simple interest)."""
+    if ccy == "USD":
+        return 1.0
+    return forward_rate(fx_to_usd, on_usd, on_ccy, days, config.DAY_COUNT_BASIS["USD"], config.DAY_COUNT_BASIS[ccy])
+
+
+def pair_of(ccy1, ccy2):
+    """(base, quote) in market order, e.g. ('GBP', 'USD') or ('USD', 'CHF')."""
+    order = config.FX_PAIR_PRIORITY
+    return (ccy1, ccy2) if order.index(ccy1) < order.index(ccy2) else (ccy2, ccy1)
+
+
+def deal_rate(buy_ccy, buy_amount, sell_ccy, sell_amount):
+    """The deal's rate in market convention: units of the quote currency per 1 base."""
+    base, _ = pair_of(buy_ccy, sell_ccy)
+    return sell_amount / buy_amount if base == buy_ccy else buy_amount / sell_amount
+
+
 def differentials_bp(on_rates):
     """EUR, GBP and CHF overnight rate minus SOFR, in basis points."""
     return pd.DataFrame({c: (on_rates[c] - on_rates["USD"]) * 10_000 for c in ["EUR", "GBP", "CHF"]},

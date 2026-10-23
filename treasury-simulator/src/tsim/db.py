@@ -131,6 +131,7 @@ ENGINE_TABLES = {
     "nav_daily": ("nav_daily", "nav_date"),
     "alerts": ("alert", "alert_date"),
     "pnl_daily": ("pnl_daily", "pnl_date"),
+    "fx_deal": ("fx_deal", "trade_date"),     # Phase 3
 }
 
 
@@ -154,6 +155,8 @@ def save_engine_results(engine, results, rates=None, from_date=None):
     with engine.begin() as conn:
         for name, (table, date_col) in ENGINE_TABLES.items():
             counts[table] = replace_window(conn, results[name], table, date_col, from_date)
+        if from_date is None:  # whole history: positions a rule change no longer creates must go too
+            conn.execute(text(f'DELETE FROM {SCHEMA}."position"'))
         counts["position"] = upsert(conn, results["position"], "position", ["position_id"])
         if rates is not None:
             counts["ir_rate"] = upsert(conn, rates, "ir_rate", ["rate_date", "currency", "tenor"])

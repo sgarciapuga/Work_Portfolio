@@ -65,3 +65,29 @@ OPENING_IC_CURRENT_ACCOUNTS = {("MGT", "GBP"): 10_000_000, ("US", "USD"): 5_000_
                                ("CH", "CHF"): 3_000_000, ("EU", "EUR"): 5_000_000}
 # Only move cash in or out of the MMF when the change is at least this much (USD equivalent)
 MIN_INVESTMENT_TRADE_USD = 25_000
+
+# ---------------------------------------------------------------
+# Phase 3: daily cash management (the autopilot, src/tsim/autopilot.py)
+# ---------------------------------------------------------------
+# IC term deposits. Each service company keeps its OPEX on call: a floor of about a month of
+# scheduled outflows (plus a small buffer), on top of whatever its projected balance needs until the
+# deposit matures (fees come in quarterly, costs go out monthly). The rest goes into 3-month fixed
+# deposits, placed on the first business day of each month and at each maturity (a ladder).
+IC_WORKING_BALANCE_MONTHS = 1
+IC_WORKING_BALANCE_BUFFER = 0.10     # floor = next month's outflows x 1.10
+IC_DEPOSIT_TENOR_MONTHS = 3
+IC_TERM_PREMIUM_BP = 5               # fixed rate = IC deposit rate on the start date + 5 bp
+MIN_IC_DEPOSIT_USD = 1_000_000       # smaller surpluses stay on call (USD equivalent)
+IC_DEPOSIT_ROUNDING = 100_000        # term deposits in round amounts (currency units)
+
+# FX. Service companies convert their foreign-currency IC balances into their own currency on the
+# last joint business day of the month. They book the known amounts as internal forwards with TRS
+# a few business days ahead; TRS nets them and covers the net with one external forward per currency.
+FX_HEDGE_LOOKAHEAD_BD = LOOKAHEAD_BUSINESS_DAYS
+SPOT_DAYS = 2                        # external spot settles T+2 on the joint calendar
+MIN_FX_DEAL_USD = 10_000             # smaller nets stay in the position (inside the tolerance)
+SWAP_TENOR_MONTHS = 1                # a currency short of cash is funded from USD with a 1-month swap
+FX_SWAP_ROUNDING = 100_000
+FX_BANK = "BKA"                      # TRS deals external FX with its main bank
+# Market quoting order: the first currency of a pair is the base (EUR/USD, GBP/USD, USD/CHF, GBP/CHF)
+FX_PAIR_PRIORITY = ["EUR", "GBP", "USD", "CHF"]

@@ -19,7 +19,7 @@ else:
     nav = hist["nav_daily"]
     today = nav[nav["nav_date"] == day].set_index("currency")
     val = hist["valuation"]
-    val_day = val[val["valuation_date"] == day]
+    val_day = val[(val["valuation_date"] == day) & (val["item_type"] == "position")]
     invested = val_day[val_day["value_ccy"] > 0]["value_usd"].sum()
     iv_deposit = -val_day[val_day["item_id"].str.startswith("ICD-IV")]["value_usd"].sum()
     open_fx = today.drop(index="USD")["open_fx_position_usd"]
@@ -35,7 +35,7 @@ else:
               delta="Outside ±50k tolerance" if breach else "Within ±50k tolerance",
               delta_color="inverse" if breach else "off")
     if breach:
-        st.caption("Interest margin builds up in EUR, GBP and CHF. Flattening it with FX deals is Phase 3.")
+        st.caption("The autopilot trades spot to bring a currency back inside the tolerance on its next business day.")
 
     st.subheader("TRS NAV in USD")
     total = nav.groupby("nav_date", as_index=False)["nav_usd"].sum()
@@ -47,8 +47,9 @@ else:
     st.caption(f"Data: {source}. NAV = TRS equity of USD 20m plus the interest margin earned since 1 Jan 2025.")
 
     st.subheader("Monthly P&L by source (USD)")
-    PNL_COLORS = {"MMF and deposit income": "#2a78d6", "IC loan interest earned": "#1baf7a",
-                  "IC deposit interest paid": "#eb6834", "FX revaluation": "#eda100"}
+    # Categorical slots 1-5 in order (validated: neighbours stay apart, incl. colour-blind vision)
+    PNL_COLORS = {"MMF and deposit income": "#2a78d6", "IC deposit interest paid": "#eb6834",
+                  "IC loan interest earned": "#1baf7a", "FX revaluation": "#eda100", "FX deal MTM": "#e87ba4"}
     pnl = hist["pnl_daily"].copy()
     pnl["month"] = pd.to_datetime(pnl["pnl_date"]).dt.to_period("M").dt.to_timestamp()
     monthly = pnl.groupby(["month", "component"], as_index=False)["amount_usd"].sum()
@@ -65,8 +66,16 @@ else:
                       yaxis_tickformat=",.0f", legend=dict(orientation="h", y=1.12))
     st.plotly_chart(fig, theme="streamlit", config={"displayModeBar": False})
     st.caption("Income above zero, costs below; the diamond is the month's net P&L (= the change in NAV). "
-               "MMF income falls with the central bank rate cuts; FX revaluation is the small open "
-               "position in EUR, GBP and CHF moving with the rate. The latest month is not complete.")
+               "MMF income falls with the central bank rate cuts. FX revaluation (the balance sheet in EUR, "
+               "GBP and CHF moving with the rate) and FX deal MTM largely cancel: TRS keeps each currency "
+               "flat. The latest month is not complete.")
+    with st.expander("Monthly P&L table (USD)"):
+        table = monthly.pivot(index="month", columns="component", values="amount_usd").reindex(
+            columns=list(PNL_COLORS)).fillna(0.0)
+        table["Net P&L"] = table.sum(axis=1)
+        table.index = table.index.strftime("%b %Y")
+        st.dataframe(table.iloc[::-1].round(0), width="stretch", column_config={
+            c: st.column_config.NumberColumn(format="localized") for c in table.columns})
 
 st.subheader("Group entities")
 st.dataframe(data["entities"], hide_index=True, width="stretch")

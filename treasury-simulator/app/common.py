@@ -23,6 +23,8 @@ RESULT_TABLES = {  # app name -> (tsim table, date column)
     "valuation": ("valuation", "valuation_date"),
     "alerts": ("alert", "alert_date"),
     "pnl_daily": ("pnl_daily", "pnl_date"),
+    "fx_deal": ("fx_deal", "trade_date"),
+    "position": ("position", "start_date"),
 }
 
 
@@ -97,8 +99,8 @@ def _dates(tables):
 
     for name, (_, col) in RESULT_TABLES.items():
         df = tables[name]
-        if col in df.columns:
-            df[col] = pd.to_datetime(df[col]).dt.date
+        for c in {col, "value_date", "maturity_date"} & set(df.columns):
+            df[c] = pd.to_datetime(df[c]).dt.date
         for c in df.columns:
             if df[c].dtype == object and df[c].map(lambda v: isinstance(v, Decimal)).any():
                 df[c] = df[c].astype(float)
@@ -138,8 +140,17 @@ def no_history_message():
 
 
 def as_of():
-    """The as-of date chosen in the sidebar (latest simulated day by default)."""
-    return st.session_state.get("as_of_day")
+    """The as-of date chosen in the sidebar (latest simulated day by default).
+
+    On a browser session's first run of a page opened by its own link, the sidebar widget
+    has no value yet: fall back to the latest simulated day.
+    """
+    day = st.session_state.get("as_of_day")
+    if day is None:
+        data, _ = results()
+        if data:
+            day = max(data["nav_daily"]["nav_date"])
+    return day
 
 
 def tier_badge(tier):

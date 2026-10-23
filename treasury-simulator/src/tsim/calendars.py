@@ -65,6 +65,42 @@ def last_business_day(year, month, currency):
     return previous_business_day(nxt - timedelta(days=1), currency)
 
 
+def is_joint_business_day(d, currencies):
+    """A business day in every currency (an FX deal between them can settle)."""
+    return all(is_business_day(d, c) for c in currencies)
+
+
+def add_joint_business_days(d, n, currencies):
+    while not is_joint_business_day(d, currencies):
+        d += timedelta(days=1)
+    for _ in range(n):
+        d += timedelta(days=1)
+        while not is_joint_business_day(d, currencies):
+            d += timedelta(days=1)
+    return d
+
+
+def last_joint_business_day(year, month, currencies):
+    d = date(year + (month == 12), month % 12 + 1, 1) - timedelta(days=1)
+    while not is_joint_business_day(d, currencies):
+        d -= timedelta(days=1)
+    return d
+
+
+def add_months(d, months, currencies):
+    """Same day n months later (end of month if shorter), then modified following on the joint calendar."""
+    y, m = divmod(d.month - 1 + months, 12)
+    y, m = d.year + y, m + 1
+    last = (date(y + (m == 12), m % 12 + 1, 1) - timedelta(days=1)).day
+    target = date(y, m, min(d.day, last))
+    nxt = add_joint_business_days(target, 0, currencies)
+    if nxt.month == target.month:
+        return nxt
+    while not is_joint_business_day(target, currencies):
+        target -= timedelta(days=1)
+    return target
+
+
 def business_days(start, end, currency):
     d, out = start, []
     while d <= end:

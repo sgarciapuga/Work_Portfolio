@@ -9,9 +9,10 @@ What each test file checks. Each phase adds its own test file, and a row here.
 | Overnight rates | `test_rates.py` | The SOFR, €STR, SONIA and SARON parsers return decimal rates and fail loudly if a source changes format. Daily rates fill weekends, and the MMF and IC margins are applied. |
 | Market data | `test_market.py` | FX in market convention, forward points that follow the rate differential, and rate history and differentials. |
 | Daily engine | `test_engine.py` | Entity accounts are zero every day, settlements mirror group flows, and TRS keeps the operating minimum with no overdraft. MMF interest is paid on BD2 and matches the accrual, and the IV deposit earns MMF − 10 bp. The opening NAV is TRS equity, the P&L parts add up to the NAV change, FX gaps are filled, and runs are deterministic. |
+| Autopilot (Phase 3) | `test_autopilot.py` | Month-end conversions are booked as internal forwards ahead and covered net with one external forward per currency, and entities end each month with no foreign-currency balance. Deal rates are in market convention, MTM is zero when booked, and back-to-back deals cancel. Spot settles T+2 and keeps the position inside the tolerance. A currency short of cash is funded with a swap ahead of the payment. IC term deposits take a fixed rate, are paid at maturity, never leave an entity short on call, and form a ladder. IC current account moves add up. |
 | Schema | `test_schema_sql.py` | `tsim_schema.sql` creates every design table and static table, every statement can be re-run, and the file parses as PostgreSQL. |
 | App *(local only)* | `test_app.py` | The main app and every page run without an exception. |
-| App with history *(local only)* | `test_app_with_history.py` | Overview, Balance sheet and Market data render with a simulated history (synthetic flat rates). |
+| App with history *(local only)* | `test_app_with_history.py` | Overview, Balance sheet, Market data and Positions render with a simulated history (synthetic flat rates). |
 
 ## Running
 

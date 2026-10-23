@@ -13,7 +13,7 @@ The full design (decisions, tier map, balance sheet, daily cycle, data model, KP
 
 ## Status
 
-Phase 1 (foundation) is done and Phase 2 (cash and balance sheet) is built:
+Phases 1 and 2 are done and Phase 3a (the autopilot) is built:
 
 - static data for the made-up Aldmere Group, the `tsim` schema for Neon, and an app with the page structure
 - a daily engine that rebuilds the history from 1 Jan 2025:
@@ -25,13 +25,21 @@ Phase 1 (foundation) is done and Phase 2 (cash and balance sheet) is built:
 - real overnight rates (SOFR, €STR, SONIA, SARON), downloaded daily
 - live Overview and Balance sheet & NAV pages
 - Phase 2.1: a Market data page (FX in market convention, overnight rates, rate differentials, implied 1M / 3M forwards)
+- Phase 3a: the autopilot (`src/tsim/autopilot.py`), which takes the daily decisions as rules while the engine does the bookkeeping:
+  - month-end FX conversion: each service company converts its foreign-currency IC balance into its own currency with an internal forward booked 5 business days ahead; TRS nets the internal deals and covers the net with one external forward per currency
+  - flattening: any currency outside ± USD 50k is brought back to zero with spot (T+2)
+  - funding swaps: a currency the 5-day look-ahead shows short is funded from USD with a 1-month swap
+  - IC term deposits: each service company keeps its OPEX on call and places the rest in 3-month fixed deposits (a ladder)
+  - FX deals valued daily at MTM (undiscounted); the P&L splits FX revaluation from FX deal MTM
+  - a Positions page: MMFs, IC term deposits, FX deal blotter, 13-week maturity ladder
 
 | Phase | Content | Status |
 |---|---|---|
 | 1 | Static data, `tsim` schema, CHF in the FX feed, app skeleton | Done |
-| 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Built |
-| 2.1 | Market data page: FX rates, overnight rates, differentials, implied forwards | Built |
-| 3 | Daily cash management: autopilot, IC loans and deposits, FX deals with MTM | Next |
+| 2 | Cash and balance sheet: daily engine, in-house bank settlement, MMF accruals, 2-year backfill | Done |
+| 2.1 | Market data page: FX rates, overnight rates, differentials, implied forwards | Done |
+| 3a | Autopilot: FX conversion, cover and flattening, swaps, IC term deposits, MTM; Positions page | Built |
+| 3b | Today page: take a day's decisions by hand and compare them with the autopilot | Next |
 | 4 | IV and facilities: calls and distributions, USD 50m buffer, drawings | |
 | 5 | Forecasting: downside / base / upside, 13-week view, accuracy | |
 | 6 | Scenarios, bank accounts, Learn page | |
@@ -58,7 +66,8 @@ treasury-simulator/
 │   ├── schedule.py         # fee and cost schedules -> dated flows
 │   ├── rates.py            # SOFR, €STR, SONIA, SARON download; MMF and IC rates
 │   ├── market.py           # FX in market convention, implied forwards, differentials
-│   ├── engine.py           # the daily engine
+│   ├── autopilot.py        # the daily decisions, as rules (FX, IC deposits, investing, swaps)
+│   ├── engine.py           # the daily engine (bookkeeping, interest, MTM, NAV)
 │   └── db.py               # schema, static data, engine outputs in Neon
 ├── app/                    # Streamlit app (9 pages)
 └── tests/                  # what each file checks: tests/README.md
@@ -74,6 +83,8 @@ treasury-simulator/
 | FX tolerance (net open position) | ± USD 50k equivalent per currency |
 | IV buffer | USD 50m minimum deposit with TRS |
 | IC loans / IC deposits | MMF rate + 50 bp / MMF rate − 10 bp |
+| IC term deposits | 3 months, fixed at the start date's IC deposit rate + 5 bp, interest at maturity; about one month of OPEX stays on call |
+| FX deals | Spot T+2; month-end forwards booked 5 business days ahead; 1-month funding swaps; no deal under USD 10k |
 | Facilities | Secured USD 300m (base + 150 bp), RCF USD 200m (base + 200 bp), commitment fee 35% of margin |
 
 ## Setup and run

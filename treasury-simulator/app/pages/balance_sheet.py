@@ -27,8 +27,15 @@ lines = []
 for r in cash.itertuples():
     lines.append({"item": "Bank cash", "detail": r.account_id, "currency": r.account_id[-3:], "amount": r.closing})
 for r in val.itertuples():
-    kind = "IC deposit from IV" if r.item_id.startswith("ICD-IV") else (
-        "Bank deposit" if r.currency == "CHF" else "Money market fund")
+    if r.item_type == "fx_deal":
+        lines.append({"item": "FX deal at MTM", "detail": r.item_id, "currency": r.currency, "amount": r.value_ccy})
+        continue
+    if r.item_id.startswith("ICD-IV"):
+        kind = "IC deposit from IV"
+    elif r.item_id.startswith("ICD-"):
+        kind = f"IC term deposit from {r.item_id.split('-')[1]}"
+    else:
+        kind = "Bank deposit" if r.currency == "CHF" else "Money market fund"
     lines.append({"item": kind, "detail": f"{r.item_id} (incl. accrued {r.accrued_interest:,.0f})",
                   "currency": r.currency, "amount": r.value_ccy})
 for r in ic.itertuples():
@@ -44,8 +51,9 @@ summary["within_tolerance"] = summary["open_fx_position_usd"].abs() <= config.FX
 st.dataframe(summary.reset_index(), hide_index=True, width="stretch", column_config={
     c: st.column_config.NumberColumn(format="localized") for c in
     ["assets", "liabilities", "nav_ccy", "nav_usd", "open_fx_position_usd"]})
-st.caption(f"Total NAV: USD {summary['nav_usd'].sum():,.0f}. Open FX = NAV in EUR, GBP or CHF "
-           "(no FX deals until Phase 3); the tolerance is ±USD 50k per currency.")
+st.caption(f"Total NAV: USD {summary['nav_usd'].sum():,.0f}. Open FX = NAV in EUR, GBP or CHF plus the legs "
+           "of open FX deals in that currency; the tolerance is ±USD 50k per currency. FX deals are valued in "
+           "USD (MTM, undiscounted), so they sit in the USD balance sheet.")
 
 ccy = st.radio("Currency", config.CURRENCIES, horizontal=True)
 st.dataframe(lines[lines["currency"] == ccy].drop(columns="currency"), hide_index=True, width="stretch",

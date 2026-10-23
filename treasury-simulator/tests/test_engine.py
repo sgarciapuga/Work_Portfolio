@@ -30,7 +30,8 @@ def test_entity_accounts_are_zero_every_day(result):
 
 def test_settlements_mirror_group_flows(result):
     txn = result["cash_txn"]
-    flows = txn[~txn["flow_code"].isin(["IHB_SETTLE", "MMF_SUB", "MMF_RED", "MMF_INT", "DEP_PLACE", "DEP_RETURN", "DEP_INT"])]
+    codes = load_static()["flow_codes"]
+    flows = txn[txn["flow_code"].isin(codes.loc[codes["category"] == "group_flows", "flow_code"])]
     trs_settle = txn[(txn["flow_code"] == "IHB_SETTLE") & txn["account_id"].str.startswith("TRS")]
     for ccy in config.CURRENCIES:
         assert flows.loc[flows["currency"] == ccy, "amount"].sum() == pytest.approx(

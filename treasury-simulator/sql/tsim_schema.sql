@@ -248,3 +248,10 @@ CREATE TABLE IF NOT EXISTS tsim.alert (
     amount      NUMERIC(18, 2),
     PRIMARY KEY (alert_date, currency, alert)
 );
+
+-- ---------------------------------------------------------------
+-- Phase 3 additions
+-- ---------------------------------------------------------------
+-- IC term deposit placements and maturities, and internal FX deal settlements, on the IC current account:
+-- opening + settlements + interest_posted + transfers = closing.
+ALTER TABLE tsim.ic_current_account ADD COLUMN IF NOT EXISTS transfers NUMERIC(18, 2) NOT NULL DEFAULT 0;
