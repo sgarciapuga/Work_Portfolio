@@ -61,7 +61,7 @@ treasury-simulator/
 │   ├── engine.py           # the daily engine
 │   └── db.py               # schema, static data, engine outputs in Neon
 ├── app/                    # Streamlit app (9 pages)
-└── tests/
+└── tests/                  # what each file checks: tests/README.md
 ```
 
 ## Key settings (`src/tsim/config.py`)
@@ -104,6 +104,8 @@ streamlit run treasury-simulator/app/streamlit_app.py
 ```
 
 The workflow `.github/workflows/treasury_simulator_7pm.yml` runs every day at 19:00 UTC (after the FX feed). It runs the tests, creates or updates the schema, runs the engine with fresh rates, stores the results in Neon (the whole history on Mondays) and commits the CSV backups.
+
+[tests/README.md](tests/README.md) lists what each test file checks.
 
 FX rates come from the Daily FX Rates feed (`public.fx_rates`), shown in the schema as the view `tsim.fx_rate`.
 
