@@ -18,6 +18,9 @@ __pycache__/
 *_cache/
 !docs/**/*_cache/
 
+# ProcDump (Sysinternals; not redistributable). capture_python_dump.ps1 downloads it when missing.
+scripts/procdump/
+
 # Microsoft Office temporary files
 ~$*.pptx
 

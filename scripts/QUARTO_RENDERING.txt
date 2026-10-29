@@ -8,7 +8,8 @@ Run these commands from the repository root:
 RENDER ALL REPORTS AT ONCE
 ==========================
 
-Render all reports without executing code (uses cached results):
+Render all reports (the data-project reports have no freeze, so their Python
+cells run on every render, with or without -Execute):
 
   powershell -ExecutionPolicy Bypass -File .\scripts\render_all_reports.ps1
 
@@ -23,7 +24,7 @@ Render only specific reports:
 RENDER INDIVIDUAL REPORTS
 ==========================
 
-Render a single report without executing code:
+Render a single report:
 
   powershell -ExecutionPolicy Bypass -File .\scripts\render_in_env_quarto.ps1 -ReportPath "fx-prime-brokerage-collateral/report.qmd"
 
@@ -67,7 +68,9 @@ ADDING NEW REPORTS
 When you create a new Quarto report project:
 
 1. Create your .qmd file and project folder (e.g., my-new-project/report.qmd)
-2. Add it to the $AllReports array in render_all_reports.ps1
-3. Run render_all_reports.ps1 to include it in batch renders
+2. Register it in _quarto.yml: under project.render and in the navbar
+3. Add it to the $AllReports array in render_all_reports.ps1
+4. Add a card for it in index.qmd
+5. Render it, plus index.qmd for the new card
 
 Example: add "my-new-project/report.qmd" to the registry in render_all_reports.ps1

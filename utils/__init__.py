@@ -1,1 +1,1 @@
-﻿# Empty file â€” required for Python to treat this folder as a package
+# Shared helpers for the treasury-cashflow-simulation pipeline.
