@@ -1,37 +1,37 @@
 plan_date,activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reason
-2026-10-27,2026-10-30,1,event,Group flows,US,USD,-554622.75,F06,"US pays USD 554,623: salaries and social charges.",
-2026-10-27,2026-10-30,2,event,Group flows,EU,EUR,-257266.7,F08,"EU pays EUR 257,267: salaries and social charges.",
-2026-10-27,2026-10-30,3,event,Group flows,US,USD,-238242.67,F12,"US pays USD 238,243: supplier invoices.",
-2026-10-27,2026-10-30,4,event,Group flows,CH,CHF,-93814.0,F13,"CH pays CHF 93,814: supplier invoices.",
-2026-10-27,2026-10-30,5,event,Group flows,CH,CHF,-60000.0,F17,"CH pays CHF 60,000: external audit fee.",
-2026-10-27,2026-10-30,6,event,Group flows,EU,EUR,-50000.0,F18,"EU pays EUR 50,000: external audit fee.",
-2026-10-27,2026-10-30,7,event,Group flows,US,GBP,-220000.0,F21,"US pays GBP 220,000: intercompany recharge between service companies.",
-2026-10-27,2026-10-30,8,event,Group flows,MGT,GBP,220000.0,F22,"MGT receives GBP 220,000: intercompany recharge between service companies.",
-2026-10-27,2026-10-30,9,event,Group flows,CH,GBP,-150000.0,F23,"CH pays GBP 150,000: intercompany recharge between service companies.",
-2026-10-27,2026-10-30,10,event,Group flows,MGT,GBP,150000.0,F24,"MGT receives GBP 150,000: intercompany recharge between service companies.",
-2026-10-27,2026-10-30,11,event,FX,US,,,FXI20261023-001,"FXI20261023-001 settles on US's IC current accounts: TRS receives USD 294,115 and pays GBP 220,000.",
-2026-10-27,2026-10-30,12,event,FX,CH,,,FXI20261023-002,"FXI20261023-002 settles on CH's IC current accounts: TRS receives CHF 165,182 and pays GBP 150,000.",
-2026-10-27,2026-10-30,13,event,FX,,,,FXE20261023-003,"FXE20261023-003 settles on TRS's bank accounts: TRS receives USD 200,533 and pays CHF 165,182.",
-2026-10-27,2026-10-30,14,event,FX,,,,FXE20261023-004,"FXE20261023-004 settles on TRS's bank accounts: TRS receives GBP 370,000 and pays USD 494,649.",
-2026-10-27,2026-10-30,15,action,Cash,,EUR,-307786.7,MMF-EUR-A,"TRS redeems EUR 307,787 from MMF-EUR-A.","Bank cash -218,101 is below the EUR 89,686 operating minimum."
-2026-10-27,2026-10-30,16,action,Cash,,GBP,369890.0,MMF-GBP-A,"TRS invests GBP 369,890 in MMF-GBP-A.","Bank cash 444,920 is above the GBP 75,030 operating minimum."
-2026-10-27,2026-10-30,17,action,Cash,,CHF,-319241.78,TRS-BKA-CHF-DEP,"TRS redeems CHF 319,242 from TRS-BKA-CHF-DEP.","Bank cash -236,381 is below the CHF 82,861 operating minimum."
-2026-10-27,2026-10-30,18,action,Cash,,USD,-1086980.9,MMF-USD-A,"TRS redeems USD 1,086,981 from MMF-USD-A.","Bank cash -986,981 is below the USD 100,000 operating minimum."
-2026-10-27,2026-10-31,1,event,Interest,,CHF,-318.41,,Month end: net IC interest of CHF -318 is posted to the entities' current accounts (+ = TRS pays).,
-2026-10-27,2026-10-31,2,event,Interest,,EUR,1357.84,,"Month end: net IC interest of EUR +1,358 is posted to the entities' current accounts (+ = TRS pays).",
-2026-10-27,2026-10-31,3,event,Interest,,GBP,21100.04,,"Month end: net IC interest of GBP +21,100 is posted to the entities' current accounts (+ = TRS pays).",
-2026-10-27,2026-10-31,4,event,Interest,,USD,4876.98,,"Month end: net IC interest of USD +4,877 is posted to the entities' current accounts (+ = TRS pays).",
-2026-10-27,2026-10-31,5,event,Interest,IV,USD,276248.33,ICD-IV-USD-001,"Month end: USD 276,248 interest is added to the IV deposit (ICD-IV-USD-001).",
-2026-10-27,2026-11-02,1,event,Group flows,US,USD,-120000.0,F10,"US pays USD 120,000: office rent.",
-2026-10-27,2026-11-02,2,action,Deposits,MGT,GBP,1700000.0,ICD-MGT-GBP-20261102,"MGT places GBP 1,700,000 with TRS for 3 months at a fixed 3.633%, maturing 02 Feb 2027 (ICD-MGT-GBP-20261102).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 3,916,656 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 1,726,716 that can be locked."
-2026-10-27,2026-11-02,3,action,Cash,,USD,-120000.0,MMF-USD-A,"TRS redeems USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
-2026-10-27,2026-11-03,1,event,Group flows,EU,EUR,-112687.28,F14,"EU pays EUR 112,687: supplier invoices.",
-2026-10-27,2026-11-03,2,event,Deposits,MGT,GBP,3733873.06,ICD-MGT-GBP-20260803,"ICD-MGT-GBP-20260803 matures: GBP 3,733,873 (principal 3,700,000 + interest 33,873) goes back on MGT's on-call account.",
-2026-10-27,2026-11-03,3,action,Deposits,MGT,GBP,3700000.0,ICD-MGT-GBP-20261103,"MGT places GBP 3,700,000 with TRS for 3 months at a fixed 3.633%, maturing 03 Feb 2027 (ICD-MGT-GBP-20261103, rolling ICD-MGT-GBP-20260803).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 5,950,529 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 3,760,589 that can be locked."
-2026-10-27,2026-11-03,4,event,Interest,,EUR,25479.37,MMF-EUR-A,"TRS receives EUR 25,479 interest on MMF-EUR-A for Oct 2026 (paid on business day 2).",
-2026-10-27,2026-11-03,5,action,Cash,,EUR,-87207.91,MMF-EUR-A,"TRS redeems EUR 87,208 from MMF-EUR-A.","Bank cash 2,478 is below the EUR 89,686 operating minimum."
-2026-10-27,2026-11-03,6,event,Interest,,GBP,70474.48,MMF-GBP-A,"TRS receives GBP 70,474 interest on MMF-GBP-A for Oct 2026 (paid on business day 2).",
-2026-10-27,2026-11-03,7,action,Cash,,GBP,70474.48,MMF-GBP-A,"TRS invests GBP 70,474 in MMF-GBP-A.","Bank cash 145,504 is above the GBP 75,030 operating minimum."
-2026-10-27,2026-11-03,8,event,Interest,,CHF,-290.79,TRS-BKA-CHF-DEP,TRS receives CHF -291 interest on TRS-BKA-CHF-DEP for Oct 2026 (paid on business day 2).,
-2026-10-27,2026-11-03,9,event,Interest,,USD,360022.04,MMF-USD-A,"TRS receives USD 360,022 interest on MMF-USD-A for Oct 2026 (paid on business day 2).",
-2026-10-27,2026-11-03,10,action,Cash,,USD,360022.04,MMF-USD-A,"TRS invests USD 360,022 in MMF-USD-A.","Bank cash 460,022 is above the USD 100,000 operating minimum."
+2026-10-28,2026-10-30,1,event,Group flows,US,USD,-554622.75,F06,"US pays USD 554,623: salaries and social charges.",
+2026-10-28,2026-10-30,2,event,Group flows,EU,EUR,-257266.7,F08,"EU pays EUR 257,267: salaries and social charges.",
+2026-10-28,2026-10-30,3,event,Group flows,US,USD,-238242.67,F12,"US pays USD 238,243: supplier invoices.",
+2026-10-28,2026-10-30,4,event,Group flows,CH,CHF,-93814.0,F13,"CH pays CHF 93,814: supplier invoices.",
+2026-10-28,2026-10-30,5,event,Group flows,CH,CHF,-60000.0,F17,"CH pays CHF 60,000: external audit fee.",
+2026-10-28,2026-10-30,6,event,Group flows,EU,EUR,-50000.0,F18,"EU pays EUR 50,000: external audit fee.",
+2026-10-28,2026-10-30,7,event,Group flows,US,GBP,-220000.0,F21,"US pays GBP 220,000: intercompany recharge between service companies.",
+2026-10-28,2026-10-30,8,event,Group flows,MGT,GBP,220000.0,F22,"MGT receives GBP 220,000: intercompany recharge between service companies.",
+2026-10-28,2026-10-30,9,event,Group flows,CH,GBP,-150000.0,F23,"CH pays GBP 150,000: intercompany recharge between service companies.",
+2026-10-28,2026-10-30,10,event,Group flows,MGT,GBP,150000.0,F24,"MGT receives GBP 150,000: intercompany recharge between service companies.",
+2026-10-28,2026-10-30,11,event,FX,US,,,FXI20261023-001,"FXI20261023-001 settles on US's IC current accounts: TRS receives USD 294,115 and pays GBP 220,000.",
+2026-10-28,2026-10-30,12,event,FX,CH,,,FXI20261023-002,"FXI20261023-002 settles on CH's IC current accounts: TRS receives CHF 165,182 and pays GBP 150,000.",
+2026-10-28,2026-10-30,13,event,FX,,,,FXE20261023-003,"FXE20261023-003 settles on TRS's bank accounts: TRS receives USD 200,533 and pays CHF 165,182.",
+2026-10-28,2026-10-30,14,event,FX,,,,FXE20261023-004,"FXE20261023-004 settles on TRS's bank accounts: TRS receives GBP 370,000 and pays USD 494,649.",
+2026-10-28,2026-10-30,15,action,Cash,,EUR,-307923.7,MMF-EUR-A,"TRS redeems EUR 307,924 from MMF-EUR-A.","Bank cash -218,101 is below the EUR 89,823 operating minimum."
+2026-10-28,2026-10-30,16,action,Cash,,GBP,369662.0,MMF-GBP-A,"TRS invests GBP 369,662 in MMF-GBP-A.","Bank cash 444,920 is above the GBP 75,258 operating minimum."
+2026-10-28,2026-10-30,17,action,Cash,,CHF,-319439.78,TRS-BKA-CHF-DEP,"TRS redeems CHF 319,440 from TRS-BKA-CHF-DEP.","Bank cash -236,381 is below the CHF 83,059 operating minimum."
+2026-10-28,2026-10-30,18,action,Cash,,USD,-1086980.9,MMF-USD-A,"TRS redeems USD 1,086,981 from MMF-USD-A.","Bank cash -986,981 is below the USD 100,000 operating minimum."
+2026-10-28,2026-10-31,1,event,Interest,,CHF,-318.41,,Month end: net IC interest of CHF -318 is posted to the entities' current accounts (+ = TRS pays).,
+2026-10-28,2026-10-31,2,event,Interest,,EUR,1357.73,,"Month end: net IC interest of EUR +1,358 is posted to the entities' current accounts (+ = TRS pays).",
+2026-10-28,2026-10-31,3,event,Interest,,GBP,21101.38,,"Month end: net IC interest of GBP +21,101 is posted to the entities' current accounts (+ = TRS pays).",
+2026-10-28,2026-10-31,4,event,Interest,,USD,4873.88,,"Month end: net IC interest of USD +4,874 is posted to the entities' current accounts (+ = TRS pays).",
+2026-10-28,2026-10-31,5,event,Interest,IV,USD,276153.2,ICD-IV-USD-001,"Month end: USD 276,153 interest is added to the IV deposit (ICD-IV-USD-001).",
+2026-10-28,2026-11-02,1,event,Group flows,US,USD,-120000.0,F10,"US pays USD 120,000: office rent.",
+2026-10-28,2026-11-02,2,action,Deposits,MGT,GBP,1700000.0,ICD-MGT-GBP-20261102,"MGT places GBP 1,700,000 with TRS for 3 months at a fixed 3.634%, maturing 02 Feb 2027 (ICD-MGT-GBP-20261102).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 3,916,658 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 1,726,718 that can be locked."
+2026-10-28,2026-11-02,3,action,Cash,,USD,-120000.0,MMF-USD-A,"TRS redeems USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-10-28,2026-11-03,1,event,Group flows,EU,EUR,-112687.28,F14,"EU pays EUR 112,687: supplier invoices.",
+2026-10-28,2026-11-03,2,event,Deposits,MGT,GBP,3733873.06,ICD-MGT-GBP-20260803,"ICD-MGT-GBP-20260803 matures: GBP 3,733,873 (principal 3,700,000 + interest 33,873) goes back on MGT's on-call account.",
+2026-10-28,2026-11-03,3,action,Deposits,MGT,GBP,3700000.0,ICD-MGT-GBP-20261103,"MGT places GBP 3,700,000 with TRS for 3 months at a fixed 3.634%, maturing 03 Feb 2027 (ICD-MGT-GBP-20261103, rolling ICD-MGT-GBP-20260803).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 5,950,531 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 3,760,591 that can be locked."
+2026-10-28,2026-11-03,4,event,Interest,,EUR,25477.94,MMF-EUR-A,"TRS receives EUR 25,478 interest on MMF-EUR-A for Oct 2026 (paid on business day 2).",
+2026-10-28,2026-11-03,5,action,Cash,,EUR,-87209.34,MMF-EUR-A,"TRS redeems EUR 87,209 from MMF-EUR-A.","Bank cash 2,614 is below the EUR 89,823 operating minimum."
+2026-10-28,2026-11-03,6,event,Interest,,GBP,70478.33,MMF-GBP-A,"TRS receives GBP 70,478 interest on MMF-GBP-A for Oct 2026 (paid on business day 2).",
+2026-10-28,2026-11-03,7,action,Cash,,GBP,70478.33,MMF-GBP-A,"TRS invests GBP 70,478 in MMF-GBP-A.","Bank cash 145,736 is above the GBP 75,258 operating minimum."
+2026-10-28,2026-11-03,8,event,Interest,,CHF,-290.79,TRS-BKA-CHF-DEP,TRS receives CHF -291 interest on TRS-BKA-CHF-DEP for Oct 2026 (paid on business day 2).,
+2026-10-28,2026-11-03,9,event,Interest,,USD,359899.91,MMF-USD-A,"TRS receives USD 359,900 interest on MMF-USD-A for Oct 2026 (paid on business day 2).",
+2026-10-28,2026-11-03,10,action,Cash,,USD,359899.91,MMF-USD-A,"TRS invests USD 359,900 in MMF-USD-A.","Bank cash 459,900 is above the USD 100,000 operating minimum."
