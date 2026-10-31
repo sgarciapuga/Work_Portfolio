@@ -739,3 +739,11 @@ activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reas
 2026-10-23,4,action,FX,,GBP,370000.0,FXE20261023-004,"TRS buys GBP 370,000 forward from BKA, value 30 Oct (FXE20261023-004: GBP 370,000 against USD 494,649 at 1.3369).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Oct. One external forward offsets the net, so TRS stays flat."
 2026-10-26,1,action,Cash,,GBP,-1606612.97,MMF-GBP-A,"TRS redeems GBP 1,606,613 from MMF-GBP-A.","Bank cash -1,531,693 is below the GBP 74,920 operating minimum."
 2026-10-26,2,action,Cash,,CHF,-379805.79,TRS-BKA-CHF-DEP,"TRS redeems CHF 379,806 from TRS-BKA-CHF-DEP.","Bank cash -297,191 is below the CHF 82,615 operating minimum."
+2026-10-30,1,event,FX,US,,,FXI20261023-001,"FXI20261023-001 settles on US's IC current accounts: TRS receives USD 294,115 and pays GBP 220,000.",
+2026-10-30,2,event,FX,CH,,,FXI20261023-002,"FXI20261023-002 settles on CH's IC current accounts: TRS receives CHF 165,182 and pays GBP 150,000.",
+2026-10-30,3,event,FX,,,,FXE20261023-003,"FXE20261023-003 settles on TRS's bank accounts: TRS receives USD 200,533 and pays CHF 165,182.",
+2026-10-30,4,event,FX,,,,FXE20261023-004,"FXE20261023-004 settles on TRS's bank accounts: TRS receives GBP 370,000 and pays USD 494,649.",
+2026-10-30,5,action,Cash,,EUR,-307609.7,MMF-EUR-A,"TRS redeems EUR 307,610 from MMF-EUR-A.","Bank cash -218,101 is below the EUR 89,509 operating minimum."
+2026-10-30,6,action,Cash,,GBP,370287.0,MMF-GBP-A,"TRS invests GBP 370,287 in MMF-GBP-A.","Bank cash 444,920 is above the GBP 74,633 operating minimum."
+2026-10-30,7,action,Cash,,CHF,-318675.78,TRS-BKA-CHF-DEP,"TRS redeems CHF 318,676 from TRS-BKA-CHF-DEP.","Bank cash -236,381 is below the CHF 82,295 operating minimum."
+2026-10-30,8,action,Cash,,USD,-1086980.9,MMF-USD-A,"TRS redeems USD 1,086,981 from MMF-USD-A.","Bank cash -986,981 is below the USD 100,000 operating minimum."
