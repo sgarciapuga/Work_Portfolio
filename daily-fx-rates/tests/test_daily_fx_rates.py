@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 import pytest
+import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -130,3 +131,51 @@ def test_full_check_stops_when_the_api_returns_too_little_history():
     fx.check_api_coverage(week, date(2026, 10, 15), date(2026, 10, 19))
     with pytest.raises(RuntimeError, match="refusing to rebuild"):
         fx.check_api_coverage(week, date(2026, 10, 1), date(2026, 10, 19))
+
+
+def _api_response(status):
+    r = requests.Response()
+    r.status_code, r._content = status, b'{"rates": {}}'
+    return r
+
+
+@pytest.fixture
+def api(monkeypatch):
+    """Replay a list of responses (or exceptions) for requests.get; record the waits."""
+    calls, waits = [], []
+
+    def install(*outcomes):
+        queue = list(outcomes)
+
+        def fake_get(url, **kwargs):
+            calls.append(url)
+            outcome = queue.pop(0)
+            if isinstance(outcome, Exception):
+                raise outcome
+            return outcome
+
+        monkeypatch.setattr(fx.requests, "get", fake_get)
+        monkeypatch.setattr(fx.time, "sleep", waits.append)
+        return calls, waits
+
+    return install
+
+
+def test_api_call_retries_temporary_failures(api):
+    calls, waits = api(_api_response(503), requests.Timeout(), _api_response(200))
+    assert fx.fetch_api("https://example.test").status_code == 200
+    assert len(calls) == 3 and waits == list(fx.API_RETRY_WAITS)
+
+
+def test_api_call_gives_up_after_three_attempts(api):
+    calls, waits = api(_api_response(500), requests.ConnectionError(), _api_response(502))
+    with pytest.raises(RuntimeError, match="status code 502"):
+        fx.fetch_api("https://example.test")
+    assert len(calls) == 3
+
+
+def test_api_call_does_not_retry_a_client_error(api):
+    calls, waits = api(_api_response(404))
+    with pytest.raises(RuntimeError, match="status code 404"):
+        fx.fetch_api("https://example.test")
+    assert len(calls) == 1 and waits == []

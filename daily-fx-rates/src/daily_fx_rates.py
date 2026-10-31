@@ -1,5 +1,6 @@
 ﻿import argparse
 import os
+import time
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import pandas as pd
@@ -20,6 +21,8 @@ RECENT_FILLED_LOOKBACK_DAYS = 7
 # A full check stops if the API has rates for fewer business days than this
 # share (ECB holidays are about 2-3%), rather than turn real history into filled rows.
 MIN_MARKET_DAY_SHARE = 0.95
+# Seconds to wait before the 2nd and 3rd attempts when the API fails for a moment.
+API_RETRY_WAITS = (10, 30)
 
 # Daily runs only work on the last DAILY_WINDOW_DAYS days.
 # Once a week (and on the first run) the whole history is checked.
@@ -135,6 +138,30 @@ def check_api_coverage(df_fetched, start_date, end_date):
             f"Frankfurter API returned rates for {market_days} of {business_days} business days "
             f"since {start_date}; refusing to rebuild the history from it."
         )
+
+
+def fetch_api(url):
+    """GET the Frankfurter API, retrying temporary failures (5xx, timeouts, dropped connections).
+
+    Any other failure stops the run at once, so the workflow turns red and the
+    Slack alert is sent. Nothing is written in that case.
+    """
+    for wait in (*API_RETRY_WAITS, None):
+        try:
+            response = requests.get(url, timeout=30)
+            if response.status_code == 200:
+                return response
+            error = RuntimeError(
+                f"Frankfurter API request failed with status code {response.status_code}: {url}"
+            )
+            if response.status_code < 500:
+                raise error
+        except (requests.ConnectionError, requests.Timeout) as exc:
+            error = exc
+        if wait is None:
+            raise error
+        print(f"{type(error).__name__} from the Frankfurter API; retrying in {wait}s")
+        time.sleep(wait)
 
 
 def _load_fx_from_db(engine, from_date=None):
@@ -293,14 +320,7 @@ def update_fx_history(force_full=False):
         url = (
             f"https://api.frankfurter.dev/v1/{start_str}..{end_str}?from=USD&to={','.join(QUOTED_CURRENCIES)}"
         )
-        response = requests.get(url, timeout=30)
-
-        # A failed API call must fail the run, so the workflow turns red
-        # and the Slack alert is sent. Nothing is written in that case.
-        if response.status_code != 200:
-            raise RuntimeError(
-                f"Frankfurter API request failed with status code {response.status_code}: {url}"
-            )
+        response = fetch_api(url)
 
         rates_by_date = response.json().get("rates", {})
 

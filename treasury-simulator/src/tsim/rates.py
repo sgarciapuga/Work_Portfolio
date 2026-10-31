@@ -9,6 +9,7 @@ parser raises a clear error and the daily workflow fails (turns red).
 """
 
 import io
+import time
 from datetime import date, timedelta
 
 import pandas as pd
@@ -19,6 +20,8 @@ from tsim import config
 RATE_COLUMNS = ["rate_date", "currency", "tenor", "rate", "source"]
 HEADERS = {"User-Agent": "Mozilla/5.0 (treasury-simulator portfolio project)"}
 TIMEOUT = 60
+# Seconds to wait before the 2nd and 3rd attempts when a server fails for a moment.
+RETRY_WAITS = (10, 30)
 
 SOFR_URL = "https://markets.newyorkfed.org/api/rates/secured/sofr/search.json"
 ESTR_URL = "https://data-api.ecb.europa.eu/service/data/EST/B.EU000A2X2A25.WT"
@@ -71,33 +74,48 @@ def parse_saron(text, series=SARON_SERIES):
 
 
 # ---------------- downloads ----------------
+def _get(url, params):
+    """GET that retries temporary failures: server errors (5xx), timeouts, dropped connections.
+
+    Any other HTTP error (a 4xx, such as a moved URL) fails at once, as does a
+    parsing error after a successful download.
+    """
+    for wait in (*RETRY_WAITS, None):
+        try:
+            r = requests.get(url, params=params, headers=HEADERS, timeout=TIMEOUT)
+            r.raise_for_status()
+            return r
+        except requests.HTTPError as exc:
+            if exc.response is None or exc.response.status_code < 500:
+                raise
+            error = exc
+        except (requests.ConnectionError, requests.Timeout) as exc:
+            error = exc
+        if wait is None:
+            raise error
+        print(f"{type(error).__name__} from {url}; retrying in {wait}s")
+        time.sleep(wait)
+
+
 def fetch_sofr(start, end):
-    r = requests.get(SOFR_URL, params={"startDate": start.isoformat(), "endDate": end.isoformat()},
-                     headers=HEADERS, timeout=TIMEOUT)
-    r.raise_for_status()
+    r = _get(SOFR_URL, {"startDate": start.isoformat(), "endDate": end.isoformat()})
     return parse_sofr(r.json())
 
 
 def fetch_estr(start, end):
-    r = requests.get(ESTR_URL, params={"startPeriod": start.isoformat(), "endPeriod": end.isoformat(),
-                                       "format": "csvdata"}, headers=HEADERS, timeout=TIMEOUT)
-    r.raise_for_status()
+    r = _get(ESTR_URL, {"startPeriod": start.isoformat(), "endPeriod": end.isoformat(), "format": "csvdata"})
     return parse_estr(r.text)
 
 
 def fetch_sonia(start, end):
     params = {"csv.x": "yes", "Datefrom": start.strftime("%d/%b/%Y"), "Dateto": end.strftime("%d/%b/%Y"),
               "SeriesCodes": "IUDSOIA", "CSVF": "TN", "UsingCodes": "Y", "VPD": "Y", "VFD": "N"}
-    r = requests.get(SONIA_URL, params=params, headers=HEADERS, timeout=TIMEOUT)
-    r.raise_for_status()
+    r = _get(SONIA_URL, params)
     return parse_sonia(r.text)
 
 
 def fetch_saron(start, end):
-    r = requests.get(SARON_URL.format(cube=SARON_CUBE),
-                     params={"fromDate": start.isoformat(), "toDate": end.isoformat()},
-                     headers=HEADERS, timeout=TIMEOUT)
-    r.raise_for_status()
+    r = _get(SARON_URL.format(cube=SARON_CUBE), {"fromDate": start.isoformat(), "toDate": end.isoformat()})
     return parse_saron(r.text)
 
 
