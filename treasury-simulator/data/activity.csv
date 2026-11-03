@@ -749,7 +749,7 @@ activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reas
 2026-10-30,8,action,Cash,,USD,-1086980.9,MMF-USD-A,"TRS redeems USD 1,086,981 from MMF-USD-A.","Bank cash -986,981 is below the USD 100,000 operating minimum."
 2026-10-31,1,event,Interest,,CHF,-317.18,,Month end: net IC interest of CHF -317 is posted to the entities' current accounts (+ = TRS pays).,
 2026-10-31,2,event,Interest,,EUR,1357.78,,"Month end: net IC interest of EUR +1,358 is posted to the entities' current accounts (+ = TRS pays).",
-2026-10-31,3,event,Interest,,GBP,21102.14,,"Month end: net IC interest of GBP +21,102 is posted to the entities' current accounts (+ = TRS pays).",
+2026-10-31,3,event,Interest,,GBP,21101.96,,"Month end: net IC interest of GBP +21,102 is posted to the entities' current accounts (+ = TRS pays).",
 2026-10-31,4,event,Interest,,USD,4875.13,,"Month end: net IC interest of USD +4,875 is posted to the entities' current accounts (+ = TRS pays).",
 2026-10-31,5,event,Interest,IV,USD,276200.76,ICD-IV-USD-001,"Month end: USD 276,201 interest is added to the IV deposit (ICD-IV-USD-001).",
 2026-11-02,1,action,Deposits,MGT,GBP,1700000.0,ICD-MGT-GBP-20261102,"MGT places GBP 1,700,000 with TRS for 3 months at a fixed 3.635%, maturing 02 Feb 2027 (ICD-MGT-GBP-20261102).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 3,916,658 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 1,726,718 that can be locked."
