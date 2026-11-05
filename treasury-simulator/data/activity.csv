@@ -754,3 +754,12 @@ activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reas
 2026-10-31,5,event,Interest,IV,USD,276200.76,ICD-IV-USD-001,"Month end: USD 276,201 interest is added to the IV deposit (ICD-IV-USD-001).",
 2026-11-02,1,action,Deposits,MGT,GBP,1700000.0,ICD-MGT-GBP-20261102,"MGT places GBP 1,700,000 with TRS for 3 months at a fixed 3.635%, maturing 02 Feb 2027 (ICD-MGT-GBP-20261102).","First business day of the month. MGT's on-call GBP balance is projected to fall no lower than 3,916,658 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 1,726,718 that can be locked."
 2026-11-02,2,action,Cash,,USD,-120000.0,MMF-USD-A,"TRS redeems USD 120,000 from MMF-USD-A.","Bank cash -20,000 is below the USD 100,000 operating minimum."
+2026-11-03,1,event,Deposits,MGT,GBP,3733873.06,ICD-MGT-GBP-20260803,"ICD-MGT-GBP-20260803 matures: GBP 3,733,873 (principal 3,700,000 + interest 33,873) goes back on MGT's on-call account.",
+2026-11-03,2,action,Deposits,MGT,GBP,3700000.0,ICD-MGT-GBP-20261103,"MGT places GBP 3,700,000 with TRS for 3 months at a fixed 3.635%, maturing 03 Feb 2027 (ICD-MGT-GBP-20261103, rolling ICD-MGT-GBP-20260803).","A deposit matured today. MGT's on-call GBP balance is projected to fall no lower than 5,950,531 over the next 3 months; keeping 2,189,940 for about a month of OPEX leaves 3,760,591 that can be locked."
+2026-11-03,3,event,Interest,,EUR,25478.68,MMF-EUR-A,"TRS receives EUR 25,479 interest on MMF-EUR-A for Oct 2026 (paid on business day 2).",
+2026-11-03,4,action,Cash,,EUR,-87152.6,MMF-EUR-A,"TRS redeems EUR 87,153 from MMF-EUR-A.","Bank cash 2,300 is below the EUR 89,453 operating minimum."
+2026-11-03,5,event,Interest,,GBP,70480.16,MMF-GBP-A,"TRS receives GBP 70,480 interest on MMF-GBP-A for Oct 2026 (paid on business day 2).",
+2026-11-03,6,action,Cash,,GBP,70546.16,MMF-GBP-A,"TRS invests GBP 70,546 in MMF-GBP-A.","Bank cash 145,113 is above the GBP 74,567 operating minimum."
+2026-11-03,7,event,Interest,,CHF,-288.72,TRS-BKA-CHF-DEP,TRS receives CHF -289 interest on TRS-BKA-CHF-DEP for Oct 2026 (paid on business day 2).,
+2026-11-03,8,event,Interest,,USD,359960.67,MMF-USD-A,"TRS receives USD 359,961 interest on MMF-USD-A for Oct 2026 (paid on business day 2).",
+2026-11-03,9,action,Cash,,USD,359960.67,MMF-USD-A,"TRS invests USD 359,961 in MMF-USD-A.","Bank cash 459,961 is above the USD 100,000 operating minimum."
