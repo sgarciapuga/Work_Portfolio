@@ -179,3 +179,11 @@ def test_api_call_does_not_retry_a_client_error(api):
     with pytest.raises(RuntimeError, match="status code 404"):
         fx.fetch_api("https://example.test")
     assert len(calls) == 1 and waits == []
+
+
+def test_api_call_retries_an_ok_answer_that_is_not_json(api):
+    blank = _api_response(200)
+    blank._content = b"<html>Service unavailable</html>"
+    calls, waits = api(blank, _api_response(200))
+    assert fx.fetch_api("https://example.test").json() == {"rates": {}}
+    assert len(calls) == 2 and waits == [fx.API_RETRY_WAITS[0]]

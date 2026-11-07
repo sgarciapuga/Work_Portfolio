@@ -74,22 +74,35 @@ def parse_saron(text, series=SARON_SERIES):
 
 
 # ---------------- downloads ----------------
-def _get(url, params):
+class BadResponse(Exception):
+    """A 200 answer without a usable body (empty, or not JSON when JSON was expected)."""
+
+
+def _get(url, params, json=False):
     """GET that retries temporary failures: server errors (5xx), timeouts, dropped connections.
 
-    Any other HTTP error (a 4xx, such as a moved URL) fails at once, as does a
-    parsing error after a successful download.
+    A 200 answer with an empty body, or one that is not JSON when ``json`` is
+    set, is retried too: a server in trouble can answer "OK" with a blank or
+    error page. Any other HTTP error (a 4xx, such as a moved URL) fails at once,
+    as does a parsing error on a well-formed answer (the source changed format).
     """
     for wait in (*RETRY_WAITS, None):
         try:
             r = requests.get(url, params=params, headers=HEADERS, timeout=TIMEOUT)
             r.raise_for_status()
+            if not r.content.strip():
+                raise BadResponse(f"empty response from {url}")
+            if json:
+                try:
+                    r.json()
+                except ValueError as exc:
+                    raise BadResponse(f"response from {url} is not JSON: {r.text[:80]!r}") from exc
             return r
         except requests.HTTPError as exc:
             if exc.response is None or exc.response.status_code < 500:
                 raise
             error = exc
-        except (requests.ConnectionError, requests.Timeout) as exc:
+        except (requests.ConnectionError, requests.Timeout, BadResponse) as exc:
             error = exc
         if wait is None:
             raise error
@@ -98,7 +111,7 @@ def _get(url, params):
 
 
 def fetch_sofr(start, end):
-    r = _get(SOFR_URL, {"startDate": start.isoformat(), "endDate": end.isoformat()})
+    r = _get(SOFR_URL, {"startDate": start.isoformat(), "endDate": end.isoformat()}, json=True)
     return parse_sofr(r.json())
 
 

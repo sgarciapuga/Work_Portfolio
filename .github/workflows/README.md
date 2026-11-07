@@ -4,11 +4,11 @@
 
 2) Paste this workflow:
 
-name: Treasury Cashflow - 3:10 AM UTC - This is the name you give to the new action
+name: Treasury Cashflow - 3:41 AM UTC - This is the name you give to the new action
 
 on:
   schedule:
-    - cron: '10 3 * * *'
+    - cron: '41 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -80,7 +80,7 @@ Its value should be the same PostgreSQL/Neon connection string you use locally.
 
 4. Commit and push the workflow file to GitHub.
 
-5. Open GitHub -> Actions -> Treasury Cashflow - 3:10 AM UTC -> Run workflow. Run it once manually.
+5. Open GitHub -> Actions -> Treasury Cashflow - 3:41 AM UTC -> Run workflow. Run it once manually.
 
 6. Check the log for the “Run Treasury cashflow simulation” step. A successful run creates or updates:
 

@@ -1,8 +1,9 @@
-name: Treasury Cashflow - 3:10 AM UTC
+name: Treasury Cashflow - 3:41 AM UTC
 
 on:
   schedule:
-    - cron: '10 3 * * *'
+    # 03:41 UTC (off the hour: GitHub delays on-the-hour schedules most)
+    - cron: '41 3 * * *'
   workflow_dispatch:
 
 permissions:

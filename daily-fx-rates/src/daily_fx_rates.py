@@ -141,21 +141,30 @@ def check_api_coverage(df_fetched, start_date, end_date):
 
 
 def fetch_api(url):
-    """GET the Frankfurter API, retrying temporary failures (5xx, timeouts, dropped connections).
+    """GET the Frankfurter API, retrying temporary failures.
 
-    Any other failure stops the run at once, so the workflow turns red and the
-    Slack alert is sent. Nothing is written in that case.
+    Temporary: server errors (5xx), timeouts, dropped connections, and a 200
+    answer whose body is not JSON (a server in trouble can answer "OK" with a
+    blank or error page). Any other failure stops the run at once, so the
+    workflow turns red and the Slack alert is sent. Nothing is written in that case.
     """
     for wait in (*API_RETRY_WAITS, None):
         try:
             response = requests.get(url, timeout=30)
             if response.status_code == 200:
-                return response
-            error = RuntimeError(
-                f"Frankfurter API request failed with status code {response.status_code}: {url}"
-            )
-            if response.status_code < 500:
-                raise error
+                try:
+                    response.json()
+                    return response
+                except ValueError:
+                    error = RuntimeError(
+                        f"Frankfurter API answered 200 but not with JSON: {response.text[:80]!r}"
+                    )
+            else:
+                error = RuntimeError(
+                    f"Frankfurter API request failed with status code {response.status_code}: {url}"
+                )
+                if response.status_code < 500:
+                    raise error
         except (requests.ConnectionError, requests.Timeout) as exc:
             error = exc
         if wait is None:

@@ -2,8 +2,8 @@ name: Daily FX & Data Pipeline
 
 on:
   schedule:
-    # Runs automatically at 18:00 UTC every day
-    - cron: '0 18 * * *'
+    # Runs automatically at 18:37 UTC every day (off the hour: GitHub delays on-the-hour schedules most)
+    - cron: '37 18 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
 #give GitHub Actions permission to commit and push

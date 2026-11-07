@@ -215,7 +215,7 @@ display(data["mark_to_market"].head(10))
 
 ## Stage 4: orchestrate the workflow
 
-`generate_fx_datasets.py` is the entry point. Its job is coordination: call the generators in dependency order and save the results. It does not contain the business logic of the calculations; that logic belongs in the stage modules above. A GitHub Action runs it every day at 03:00 UTC.
+`generate_fx_datasets.py` is the entry point. Its job is coordination: call the generators in dependency order and save the results. It does not contain the business logic of the calculations; that logic belongs in the stage modules above. A GitHub Action runs it every day at 03:17 UTC.
 
 Each run regenerates the datasets from a fixed seed, then:
 

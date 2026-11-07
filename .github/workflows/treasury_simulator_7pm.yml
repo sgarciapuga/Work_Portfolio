@@ -1,9 +1,10 @@
-name: Treasury Simulator - 7:00 PM UTC
+name: Treasury Simulator - 7:43 PM UTC
 
 on:
   schedule:
-    # 19:00 UTC: after the Daily FX & Data Pipeline (18:00 UTC) has stored the day's FX rates
-    - cron: '0 19 * * *'
+    # 19:43 UTC: after the Daily FX & Data Pipeline (18:37 UTC) has stored the day's FX rates;
+    # off the hour because GitHub delays on-the-hour schedules most
+    - cron: '43 19 * * *'
   workflow_dispatch:
     inputs:
       full:

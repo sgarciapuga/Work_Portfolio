@@ -68,7 +68,7 @@ TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
 DEFAULT_PRESET = "YTD"
 
 # Data is reloaded once a day at this time. The pipeline stores the day's
-# rates at 18:00 UTC, so they are always in the database by then.
+# rates in the evening (scheduled 18:37 UTC), so they are always in the database by then.
 REFRESH_TZ = ZoneInfo("Europe/London")
 REFRESH_HOUR = 8
 # Normally the latest rate is yesterday's; older than this means the pipeline missed runs.

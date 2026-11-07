@@ -1,9 +1,9 @@
-name: FX Prime Brokerage - 3AM Local
+name: FX Prime Brokerage - 3:17 AM UTC
 
 on:
   schedule:
-    # Runs automatically at 03:00 UTC every day
-    - cron: '0 3 * * *'
+    # Runs automatically at 03:17 UTC every day (off the hour: GitHub delays on-the-hour schedules most)
+    - cron: '17 3 * * *'
   workflow_dispatch:
 
 permissions:

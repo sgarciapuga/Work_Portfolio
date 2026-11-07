@@ -17,7 +17,7 @@ The maintained implementation lives in [src/daily_fx_rates.py](src/daily_fx_rate
 The presentation tells the project end to end. In short:
 
 - **Why:** a proof of concept for building something real in Visual Studio Code with AI, and a way to get the FX rates my other reports need to convert data into USD.
-- **How it runs:** GitHub Actions runs the script every day at 18:00 UTC (or by hand), saves the CSV backup back to GitHub, upserts into Neon PostgreSQL, and sends a Slack alert only if the run fails. Two live reports show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app that reads the table every morning, and a Google Data Studio report that reads it through SQL views once a day.
+- **How it runs:** GitHub Actions runs the script every day at 18:37 UTC (or by hand), saves the CSV backup back to GitHub, upserts into Neon PostgreSQL, and sends a Slack alert only if the run fails. Two live reports show GBP/USD, EUR/USD and GBP/EUR: a Streamlit app that reads the table every morning, and a Google Data Studio report that reads it through SQL views once a day.
 - **Key decisions:** USD as the base currency; a rate for every day including weekends and holidays (`filled` vs `raw`); a database with the CSV as backup; a full check once a week instead of on every run.
 - **Issues fixed:** missing days (weekly full check), duplicate rows (unique key on date and currency with upsert), and provisional values (filled rates from the last 7 days are rechecked on every run).
 - **Working with AI:** I owned the idea, instructions, testing, debugging, the Data Studio report and the design of the Streamlit app; AI (GitHub Copilot, now Claude) wrote the code from my instructions and helped solve each issue.

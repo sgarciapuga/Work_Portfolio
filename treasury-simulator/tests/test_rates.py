@@ -1,3 +1,4 @@
+import json
 from datetime import date
 
 import pandas as pd
@@ -110,4 +111,25 @@ def test_download_does_not_retry_a_client_error(server):
     calls, waits = server(_response(404))
     with pytest.raises(requests.HTTPError, match="404"):
         rates.fetch_sonia(date(2025, 1, 2), date(2025, 1, 3))
+    assert len(calls) == 1 and waits == []
+
+
+def test_download_retries_an_ok_answer_that_is_not_json(server):
+    # 6 Nov 2026: the New York Fed answered 200 with a body that was not JSON.
+    good = _response(200, json.dumps(SOFR_JSON))
+    calls, waits = server(_response(200, "<html>Service unavailable</html>"), _response(200, ""), good)
+    assert len(rates.fetch_sofr(date(2025, 1, 2), date(2025, 1, 3))) == 2
+    assert len(calls) == 3 and waits == list(rates.RETRY_WAITS)
+
+
+def test_download_reports_the_bad_answer_after_three_attempts(server):
+    server(*[_response(200, "<html>Service unavailable</html>")] * 3)
+    with pytest.raises(rates.BadResponse, match="not JSON: '<html>Service unavailable"):
+        rates.fetch_sofr(date(2025, 1, 2), date(2025, 1, 3))
+
+
+def test_a_new_format_is_not_retried(server):
+    calls, waits = server(_response(200, '{"somethingElse": []}'))
+    with pytest.raises(ValueError, match="SOFR: no rates found"):
+        rates.fetch_sofr(date(2025, 1, 2), date(2025, 1, 3))
     assert len(calls) == 1 and waits == []

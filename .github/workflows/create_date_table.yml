@@ -2,8 +2,8 @@ name: Create Date Table
 
 on:
   schedule:
-    # Runs automatically at 03:00 UTC every day
-    - cron: '0 3 * * *'
+    # Runs automatically at 02:23 UTC every day (off the hour: GitHub delays on-the-hour schedules most)
+    - cron: '23 2 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
 permissions:

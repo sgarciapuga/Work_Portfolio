@@ -123,7 +123,7 @@ pip install -r treasury-simulator/app/requirements.txt
 streamlit run treasury-simulator/app/streamlit_app.py
 ```
 
-The workflow `.github/workflows/treasury_simulator_7pm.yml` runs every day at 19:00 UTC (after the FX feed). It runs the tests, creates or updates the schema, runs the engine with fresh rates, stores the results in Neon (the whole history on Mondays) and commits the CSV backups.
+The workflow `.github/workflows/treasury_simulator_7pm.yml` runs every day at 19:43 UTC (after the FX feed). It runs the tests, creates or updates the schema, runs the engine with fresh rates, stores the results in Neon (the whole history on Mondays) and commits the CSV backups.
 
 [tests/README.md](tests/README.md) lists what each test file checks.
 
