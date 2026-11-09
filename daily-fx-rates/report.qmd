@@ -144,12 +144,12 @@ I can share a link and anyone can open the report. Power BI needs a licence and 
 
 The same data is also in a [Streamlit app](https://fx-rates-sergio.streamlit.app){target="_blank"}. It is written in Python and kept in this repository with the rest of the project ([app/streamlit_app.py](app/streamlit_app.py)). It is hosted for free on Streamlit Community Cloud, so anyone with the link can open it, and it reads the `fx_rates` table directly.
 
-- **Overview:** KPI cards for GBP/USD, EUR/USD and GBP/EUR, GBP and EUR against USD rebased to the start of the period, GBP/EUR with its 30-day average, and a period summary with the date of each high and low.
+- **Overview:** KPI cards for GBP/USD, EUR/USD, GBP/EUR and USD/CHF, GBP, EUR and CHF against USD rebased to the start of the period, GBP/EUR with its 30-day average, and a period summary with the date of each high and low.
 - **In brief:** a short written summary of the period that updates itself from the numbers.
-- **Against GBP & EUR:** EUR and USD against GBP, GBP and USD against EUR, and EUR/USD and GBP/USD with their 30-day averages.
+- **Against GBP & EUR:** EUR, CHF and USD against GBP, GBP, CHF and USD against EUR, and EUR/USD and GBP/USD with their 30-day averages.
 - **Period controls:** quick periods (1M, 3M, YTD, 1Y, All), a date picker and a CSV download of the selected period.
 
-The numbers match the Data Studio report. The app reloads the data every morning at 08:00 UK time, and shows a warning if the latest rate is more than 2 days old.
+The numbers match the Data Studio report; the app also shows the Swiss franc, which Data Studio doesn't. The app reloads the data every morning at 08:00 UK time, and shows a warning if the latest rate is more than 2 days old.
 
 # The final result
 

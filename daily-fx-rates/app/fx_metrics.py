@@ -1,8 +1,9 @@
 """Calculations behind the FX rates Streamlit report.
 
 Rates are stored as units of currency per 1 USD (``fx_to_usd``). The report
-shows them as market pairs: GBP/USD and EUR/USD (USD per unit), and GBP/EUR
-(EUR per GBP), which is calculated from both.
+shows them as market pairs, quoted the way the market quotes them: GBP/USD and
+EUR/USD (USD per unit), GBP/EUR (EUR per GBP, calculated from both) and USD/CHF
+(CHF per USD).
 
 The definitions match the Google Data Studio report:
 - "vs previous day" compares the last two market days, so a weekend or holiday
@@ -14,8 +15,9 @@ The definitions match the Google Data Studio report:
 import pandas as pd
 
 QUALITY_RAW = "raw"
-CURRENCIES = ["GBP", "EUR", "USD"]
-PAIRS = ["GBP/USD", "EUR/USD", "GBP/EUR"]
+CURRENCIES = ["GBP", "EUR", "CHF", "USD"]
+QUOTED = ["EUR", "GBP", "CHF"]  # stored against USD
+PAIRS = ["GBP/USD", "EUR/USD", "GBP/EUR", "USD/CHF"]
 MOVING_AVERAGE_DAYS = 30
 
 
@@ -23,7 +25,7 @@ def to_pairs(rates):
     """Turn fx_rates rows (date, currency, fx_to_usd, fx_quality_flag) into one row per date.
 
     Returns a frame indexed by date with one column per pair and ``is_raw``,
-    which is True when both EUR and GBP came from the source that day.
+    which is True when EUR, GBP and CHF all came from the source that day.
     """
     df = rates.copy()
     df.columns = [str(col).strip().lower() for col in df.columns]
@@ -32,11 +34,11 @@ def to_pairs(rates):
 
     df["date"] = pd.to_datetime(df["date"])
     df["currency"] = df["currency"].astype(str).str.upper().str.strip()
-    df = df[df["currency"].isin(["EUR", "GBP"])]
+    df = df[df["currency"].isin(QUOTED)]
     df = df.drop_duplicates(subset=["date", "currency"], keep="last")
 
     wide = df.pivot(index="date", columns="currency", values="fx_to_usd").sort_index()
-    wide = wide.dropna(subset=["EUR", "GBP"])
+    wide = wide.reindex(columns=QUOTED).dropna()
     flags = df.pivot(index="date", columns="currency", values="fx_quality_flag").reindex(wide.index)
 
     pairs = pd.DataFrame(
@@ -44,9 +46,10 @@ def to_pairs(rates):
             "GBP/USD": 1 / wide["GBP"],
             "EUR/USD": 1 / wide["EUR"],
             "GBP/EUR": wide["EUR"] / wide["GBP"],
+            "USD/CHF": wide["CHF"],
         }
     )
-    pairs["is_raw"] = (flags["EUR"] == QUALITY_RAW) & (flags["GBP"] == QUALITY_RAW)
+    pairs["is_raw"] = (flags[QUOTED] == QUALITY_RAW).all(axis=1)
     return pairs
 
 
@@ -99,14 +102,16 @@ def period_summary(pairs):
 
 
 def priced_in(pairs, base):
-    """The other two currencies priced in ``base``, one column per pair.
+    """The other currencies priced in ``base``, one column per pair.
 
-    For base GBP this returns EUR/GBP and USD/GBP (GBP per EUR and per USD).
+    For base GBP this returns EUR/GBP, CHF/GBP and USD/GBP (GBP per EUR, CHF and USD).
+    For base USD the franc shows as CHF/USD, so every line rises when that currency gains.
     """
     usd_value = {
         "USD": pd.Series(1.0, index=pairs.index),
         "GBP": pairs["GBP/USD"],
         "EUR": pairs["EUR/USD"],
+        "CHF": 1 / pairs["USD/CHF"],
     }
     return pd.DataFrame(
         {f"{cur}/{base}": usd_value[cur] / usd_value[base] for cur in CURRENCIES if cur != base}
@@ -130,3 +135,21 @@ def rebased(pairs, columns=("GBP/USD", "EUR/USD")):
 def moving_average(series, days=MOVING_AVERAGE_DAYS):
     """Trailing average over the last ``days`` days of the period (shorter at the start)."""
     return series.rolling(days, min_periods=1).mean()
+
+
+def label_positions(values, min_gap):
+    """Label heights for end labels: as close to ``values`` (sorted high to low) as
+    possible, at least ``min_gap`` apart, with clusters centred on their points."""
+    groups = []  # each group: [values in it, top position]
+    for value in values:
+        groups.append([[value], value])
+        # Merge with the group above while they overlap, then re-centre the merged group.
+        while len(groups) > 1:
+            (upper, upper_top), (lower, lower_top) = groups[-2], groups[-1]
+            upper_bottom = upper_top - (len(upper) - 1) * min_gap
+            if upper_bottom - lower_top >= min_gap:
+                break
+            members = upper + lower
+            centre = sum(members) / len(members)
+            groups[-2:] = [[members, centre + (len(members) - 1) * min_gap / 2]]
+    return [top - i * min_gap for members, top in groups for i in range(len(members))]

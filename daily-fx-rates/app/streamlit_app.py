@@ -1,9 +1,10 @@
 """FX rates report in Streamlit, based on the Google Data Studio report.
 
 Two pages share the header (latest rate and period picker) and footer:
-- Overview: GBP and EUR against USD, the GBP/EUR rate, KPI cards and a period summary.
-- Against GBP & EUR: EUR and USD against GBP, GBP and USD against EUR, and the
-  EUR/USD and GBP/USD rates.
+- Overview: GBP, EUR and CHF against USD, the GBP/EUR rate, KPI cards (GBP/USD,
+  EUR/USD, GBP/EUR, USD/CHF) and a period summary.
+- Against GBP & EUR: EUR, CHF and USD against GBP, GBP, CHF and USD against EUR,
+  and the EUR/USD and GBP/USD rates.
 
 Run from the repository root:
 
@@ -27,6 +28,7 @@ from fx_metrics import (
     PAIRS,
     PERIOD_PRESETS,
     filter_period,
+    label_positions,
     moving_average,
     period_csv,
     period_summary,
@@ -42,8 +44,10 @@ REPO_ROOT = APP_DIR.parents[1]
 CSV_PATH = APP_DIR.parent / "data" / "fx_rates.csv"
 
 # One colour per pair, the same on every chart and card. The first three match
-# the Data Studio report. Checked for colour-blind separation: the two lines that
-# share a chart are always far apart; across charts, end labels and titles name each pair.
+# the Data Studio report. Checked for colour-blind separation (light and dark):
+# the lines that share a chart are always far apart; across charts, end labels
+# and titles name each pair. The franc is brown wherever it can be; next to the
+# gold EUR/GBP line brown is too close, so CHF/GBP is plum.
 COLORS = {
     "GBP/USD": "#3B78E7",  # blue
     "EUR/USD": "#F08C2E",  # orange
@@ -51,6 +55,10 @@ COLORS = {
     "EUR/GBP": "#9E7B00",  # gold
     "USD/GBP": "#4A3AA7",  # violet
     "USD/EUR": "#C2185B",  # crimson
+    "USD/CHF": "#8A5700",  # brown (the KPI card)
+    "CHF/USD": "#8A5700",  # brown (the same rate, the franc's side)
+    "CHF/EUR": "#8A5700",  # brown
+    "CHF/GBP": "#94436D",  # plum
 }
 # The violet is too dark on the dark theme; a lighter step that stays apart from the blue.
 DARK_COLORS = {"USD/GBP": "#AC72DA"}
@@ -62,7 +70,7 @@ CHART_CONFIG = {"displayModeBar": False, "responsive": True}
 # only the line charts stretch with the screen.
 KPI_CARD_WIDTH = 360  # fits both changes on one line, whatever the start date
 KPI_GAP = 16
-SUMMARY_WIDTH = 3 * KPI_CARD_WIDTH + 2 * KPI_GAP  # lines up with the row of cards
+SUMMARY_WIDTH = len(PAIRS) * KPI_CARD_WIDTH + (len(PAIRS) - 1) * KPI_GAP  # lines up with the row of cards
 DATE_PICKER_WIDTH = 260
 TREND_COLORS = {"light": ("#1E8E3E", "#D93025"), "dark": ("#5BC97A", "#F28B82")}
 DEFAULT_PRESET = "YTD"
@@ -116,7 +124,7 @@ def load_rates(refresh_day):
             engine = create_engine(url, pool_pre_ping=True, connect_args={"connect_timeout": 10})
             query = text(
                 "SELECT date, currency, fx_to_usd, fx_quality_flag "
-                "FROM fx_rates WHERE currency IN ('EUR', 'GBP') ORDER BY date"
+                "FROM fx_rates WHERE currency IN ('EUR', 'GBP', 'CHF') ORDER BY date"
             )
             with engine.connect() as conn:
                 rows = pd.read_sql(query, conn)
@@ -275,20 +283,20 @@ def performance_chart(prices, is_raw):
             )
         )
 
-    # Label each line at its last point. When the two ends are close, push the
-    # labels apart so they don't overlap.
+    # Label each line at its last point. When ends are close, push the labels
+    # apart (at least about one label height) so they don't overlap, keeping the
+    # group centred on the ends.
     ends = indexed.iloc[-1].sort_values(ascending=False)
     span = indexed.max().max() - indexed.min().min()
-    close = span > 0 and (ends.iloc[0] - ends.iloc[-1]) < span * 0.06
-    for rank, (pair, value) in enumerate(ends.items()):
+    label_ys = label_positions(ends.tolist(), min_gap=span * 0.06)
+    for (pair, value), y in zip(ends.items(), label_ys):
         fig.add_annotation(
             x=indexed.index[-1],
-            y=value,
+            y=y,
             text=f"{pair} {value:.1f}",
             showarrow=False,
             xanchor="left",
             xshift=8,
-            yshift=(9 if rank == 0 else -9) if close else 0,
             font=dict(size=12),
         )
 
@@ -376,7 +384,7 @@ def overview_page():
 
     # Charts
     left, right = st.columns(2)
-    chart_card(left, f"GBP and EUR against USD (rebased, {start_label} = 100)",
+    chart_card(left, f"GBP, EUR and CHF against USD (rebased, {start_label} = 100)",
                performance_chart(priced_in(period, "USD"), period["is_raw"]), "fx-chart-rebased")
     chart_card(right, "GBP/EUR with 30-day average", rate_chart(period["GBP/EUR"], "GBP/EUR", period["is_raw"]), "fx-chart-gbpeur")
 
@@ -406,9 +414,9 @@ def overview_page():
 
 def other_bases_page():
     top_left, top_right = st.columns(2)
-    chart_card(top_left, f"EUR and USD against GBP (rebased, {start_label} = 100)",
+    chart_card(top_left, f"EUR, CHF and USD against GBP (rebased, {start_label} = 100)",
                performance_chart(priced_in(period, "GBP"), period["is_raw"]), "fx-chart-gbp-base")
-    chart_card(top_right, f"GBP and USD against EUR (rebased, {start_label} = 100)",
+    chart_card(top_right, f"GBP, CHF and USD against EUR (rebased, {start_label} = 100)",
                performance_chart(priced_in(period, "EUR"), period["is_raw"]), "fx-chart-eur-base")
 
     bottom_left, bottom_right = st.columns(2)
@@ -417,11 +425,15 @@ def other_bases_page():
 
 
 PAGES = {
-    "Overview": (overview_page, "overview", "GBP vs EUR: performance against USD and the GBP/EUR rate."),
+    "Overview": (
+        overview_page,
+        "overview",
+        "GBP vs EUR: performance against USD and the GBP/EUR rate, with the Swiss franc alongside.",
+    ),
     "Against GBP & EUR": (
         other_bases_page,
         "against-gbp-eur",
-        "EUR and USD against GBP, GBP and USD against EUR, and the EUR/USD and GBP/USD rates.",
+        "EUR, CHF and USD against GBP, GBP, CHF and USD against EUR, and the EUR/USD and GBP/USD rates.",
     ),
 }
 

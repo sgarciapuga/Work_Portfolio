@@ -15,6 +15,7 @@ def _pairs(gbpusd, eurusd, is_raw=None, start="2026-10-01"):
     index = pd.date_range(start, periods=len(gbpusd), freq="D")
     pairs = pd.DataFrame({"GBP/USD": gbpusd, "EUR/USD": eurusd}, index=index)
     pairs["GBP/EUR"] = pairs["GBP/USD"] / pairs["EUR/USD"]
+    pairs["USD/CHF"] = 0.80
     pairs["is_raw"] = is_raw if is_raw is not None else [True] * len(gbpusd)
     return pairs
 
