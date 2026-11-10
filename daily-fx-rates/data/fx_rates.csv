@@ -677,7 +677,7 @@ date,currency,fx_to_usd,fx_quality_flag
 2026-11-07,CHF,0.8189,filled
 2026-11-08,CHF,0.8189,filled
 2026-11-09,CHF,0.81873,raw
-2026-11-10,CHF,0.81873,filled
+2026-11-10,CHF,0.82067,raw
 2025-01-01,EUR,0.96256,filled
 2025-01-02,EUR,0.9689,raw
 2025-01-03,EUR,0.97097,raw
@@ -1356,7 +1356,7 @@ date,currency,fx_to_usd,fx_quality_flag
 2026-11-07,EUR,0.89566,filled
 2026-11-08,EUR,0.89566,filled
 2026-11-09,EUR,0.89342,raw
-2026-11-10,EUR,0.89342,filled
+2026-11-10,EUR,0.89174,raw
 2025-01-01,GBP,0.79813,filled
 2025-01-02,GBP,0.80533,raw
 2025-01-03,GBP,0.80584,raw
@@ -2035,7 +2035,7 @@ date,currency,fx_to_usd,fx_quality_flag
 2026-11-07,GBP,0.74711,filled
 2026-11-08,GBP,0.74711,filled
 2026-11-09,GBP,0.74538,raw
-2026-11-10,GBP,0.74538,filled
+2026-11-10,GBP,0.74501,raw
 2025-01-01,USD,1.0,raw
 2025-01-02,USD,1.0,raw
 2025-01-03,USD,1.0,raw
