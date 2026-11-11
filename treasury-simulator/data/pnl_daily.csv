@@ -13489,8 +13489,8 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-06,EUR,IC loan interest earned,0.0,0.0
 2026-11-06,EUR,FX revaluation,0.0,-21.05
 2026-11-06,EUR,FX deal MTM,0.0,0.0
-2026-11-06,GBP,MMF and deposit income,2545.18,3406.7
-2026-11-06,GBP,IC deposit interest paid,-2451.84,-3281.76
+2026-11-06,GBP,MMF and deposit income,2546.99,3409.12
+2026-11-06,GBP,IC deposit interest paid,-2452.48,-3282.62
 2026-11-06,GBP,IC loan interest earned,0.0,0.0
 2026-11-06,GBP,FX revaluation,0.0,-28.83
 2026-11-06,GBP,FX deal MTM,0.0,0.0
@@ -13509,8 +13509,8 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-07,EUR,IC loan interest earned,0.0,0.0
 2026-11-07,EUR,FX revaluation,0.0,0.0
 2026-11-07,EUR,FX deal MTM,0.0,0.0
-2026-11-07,GBP,MMF and deposit income,2545.18,3406.7
-2026-11-07,GBP,IC deposit interest paid,-2451.84,-3281.76
+2026-11-07,GBP,MMF and deposit income,2546.99,3409.12
+2026-11-07,GBP,IC deposit interest paid,-2452.48,-3282.62
 2026-11-07,GBP,IC loan interest earned,0.0,0.0
 2026-11-07,GBP,FX revaluation,0.0,0.0
 2026-11-07,GBP,FX deal MTM,0.0,0.0
@@ -13529,8 +13529,8 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-08,EUR,IC loan interest earned,0.0,0.0
 2026-11-08,EUR,FX revaluation,0.0,0.0
 2026-11-08,EUR,FX deal MTM,0.0,0.0
-2026-11-08,GBP,MMF and deposit income,2545.18,3406.7
-2026-11-08,GBP,IC deposit interest paid,-2451.84,-3281.76
+2026-11-08,GBP,MMF and deposit income,2546.99,3409.12
+2026-11-08,GBP,IC deposit interest paid,-2452.48,-3282.62
 2026-11-08,GBP,IC loan interest earned,0.0,0.0
 2026-11-08,GBP,FX revaluation,0.0,0.0
 2026-11-08,GBP,FX deal MTM,0.0,0.0
@@ -13539,23 +13539,43 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-08,CHF,IC loan interest earned,0.0,0.0
 2026-11-08,CHF,FX revaluation,0.0,0.0
 2026-11-08,CHF,FX deal MTM,0.0,0.0
-2026-11-09,USD,MMF and deposit income,11691.59,11691.59
-2026-11-09,USD,IC deposit interest paid,-9146.02,-9146.02
+2026-11-09,USD,MMF and deposit income,11661.15,11661.15
+2026-11-09,USD,IC deposit interest paid,-9121.56,-9121.56
 2026-11-09,USD,IC loan interest earned,0.0,0.0
 2026-11-09,USD,FX revaluation,0.0,0.0
 2026-11-09,USD,FX deal MTM,0.0,0.0
-2026-11-09,EUR,MMF and deposit income,827.6,926.32
-2026-11-09,EUR,IC deposit interest paid,-796.82,-891.87
+2026-11-09,EUR,MMF and deposit income,827.25,925.94
+2026-11-09,EUR,IC deposit interest paid,-796.8,-891.85
 2026-11-09,EUR,IC loan interest earned,0.0,0.0
 2026-11-09,EUR,FX revaluation,0.0,10.24
 2026-11-09,EUR,FX deal MTM,0.0,0.0
-2026-11-09,GBP,MMF and deposit income,2545.18,3414.6
-2026-11-09,GBP,IC deposit interest paid,-2451.84,-3289.38
+2026-11-09,GBP,MMF and deposit income,2546.99,3417.04
+2026-11-09,GBP,IC deposit interest paid,-2452.48,-3290.24
 2026-11-09,GBP,IC loan interest earned,0.0,0.0
-2026-11-09,GBP,FX revaluation,0.0,12.94
+2026-11-09,GBP,FX revaluation,0.0,12.95
 2026-11-09,GBP,FX deal MTM,0.0,0.0
 2026-11-09,CHF,MMF and deposit income,-8.53,-10.42
 2026-11-09,CHF,IC deposit interest paid,16.2,19.79
 2026-11-09,CHF,IC loan interest earned,0.0,0.0
 2026-11-09,CHF,FX revaluation,0.0,1.14
 2026-11-09,CHF,FX deal MTM,0.0,0.0
+2026-11-10,USD,MMF and deposit income,11661.15,11661.15
+2026-11-10,USD,IC deposit interest paid,-9121.56,-9121.56
+2026-11-10,USD,IC loan interest earned,0.0,0.0
+2026-11-10,USD,FX revaluation,0.0,0.0
+2026-11-10,USD,FX deal MTM,0.0,0.0
+2026-11-10,EUR,MMF and deposit income,827.25,927.68
+2026-11-10,EUR,IC deposit interest paid,-796.8,-893.53
+2026-11-10,EUR,IC loan interest earned,0.0,0.0
+2026-11-10,EUR,FX revaluation,0.0,7.78
+2026-11-10,EUR,FX deal MTM,0.0,0.0
+2026-11-10,GBP,MMF and deposit income,2546.99,3418.73
+2026-11-10,GBP,IC deposit interest paid,-2452.48,-3291.87
+2026-11-10,GBP,IC loan interest earned,0.0,0.0
+2026-11-10,GBP,FX revaluation,0.0,2.84
+2026-11-10,GBP,FX deal MTM,0.0,0.0
+2026-11-10,CHF,MMF and deposit income,-8.53,-10.4
+2026-11-10,CHF,IC deposit interest paid,16.2,19.74
+2026-11-10,CHF,IC loan interest earned,0.0,0.0
+2026-11-10,CHF,FX revaluation,0.0,-13.06
+2026-11-10,CHF,FX deal MTM,0.0,0.0

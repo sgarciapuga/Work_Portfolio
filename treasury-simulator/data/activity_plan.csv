@@ -1,3 +1,3 @@
 plan_date,activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reason
-2026-11-09,2026-11-16,1,event,Group flows,US,USD,-542490.7,F06,"US pays USD 542,491: salaries and social charges.",
-2026-11-09,2026-11-16,2,action,Cash,,USD,-542490.7,MMF-USD-A,"TRS redeems USD 542,491 from MMF-USD-A.","Bank cash -442,491 is below the USD 100,000 operating minimum."
+2026-11-10,2026-11-16,1,event,Group flows,US,USD,-542490.7,F06,"US pays USD 542,491: salaries and social charges.",
+2026-11-10,2026-11-16,2,action,Cash,,USD,-542490.7,MMF-USD-A,"TRS redeems USD 542,491 from MMF-USD-A.","Bank cash -442,491 is below the USD 100,000 operating minimum."
