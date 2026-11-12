@@ -1,0 +1,216 @@
+---
+title: "Case 03 — Bank Statements"
+subtitle: "From bank portals to one daily cash position in Kyriba"
+author: "Sergio"
+date: 2026-11-12
+description: "A source-traceable Kyriba case study covering bank statement connectivity, transaction code mapping, automatic reconciliation and the daily cash position."
+format:
+  html:
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    number-sections: false
+    page-layout: full
+    max-width: 100%
+    code-fold: false
+    smooth-scroll: true
+execute:
+  echo: false
+  warning: false
+  error: false
+---
+
+[← Back to Kyriba TMS Transformation overview](../report.qmd)
+
+::: {.report-kicker}
+Kyriba transformation · case study 03
+:::
+
+::: {.report-intro}
+How prior-day bank statements moved from bank portal downloads and SharePoint files to automatic delivery into Kyriba, where they are mapped, reconciled and turned into one daily cash position.
+:::
+
+::: {.callout-note}
+## Evidence boundary
+
+This case study is based on the supplied `Case 03 - Bank Statements` presentation. The statement flow, reconciliation rules and impact figures below are reported as described in that source. Banks are anonymised as Bank A and Bank B, as in the source, and the statement aggregator is not named. The case does not add client, bank or aggregator names, implementation dates, or independently audited benefits.
+:::
+
+## How bank statements reach Treasury
+
+Every morning, the previous day's bank statements are loaded into Kyriba.
+
+1. **Bank B, direct.** Bank B is connected directly to Kyriba through EBICS and sends camt.053 statements.
+2. **Bank A, through an aggregator.** Bank A sends MT940 statements through an external bank statement aggregator.
+3. **Other banks, through the same aggregator.** About 20 other banks send MT940 statements through the same aggregator, covering about 100 group entities in many currencies.
+4. **About 300 accounts.** In total, about 300 bank accounts report into Kyriba.
+5. **Same core banks as Case 02.** Bank A and Bank B are the same core banks as in [Case 02: Payments Connectivity](../Case_02_Payments_Connectivity/report.qmd), now fully connected for both payments and statements.
+
+All statements are prior-day. They arrive in the morning and are loaded into Kyriba early, ready for the daily cash position. Before this project, statements came from bank portal downloads or SFTP files in SharePoint.
+
+camt.053 is the ISO 20022 XML bank-to-customer end-of-day statement; MT940 is the equivalent SWIFT MT format. EBICS is a file-transfer protocol used for direct bank–corporate connectivity.
+
+## From bank portals to automatic statements
+
+| Before: manual process | After: statement connectivity |
+|---|---|
+| Many statements were downloaded from bank portals. | Prior-day statements arrive automatically every morning. |
+| Some statements were delivered to SharePoint through SFTP. | Bank B sends directly through EBICS (camt.053); Bank A (MT940) and about 20 other banks send through an external aggregator. |
+| The legacy TMS calculated the cash balance from its ledger, built from all financial transactions (FX, ETD, OTC derivatives, CDS, fixed income, netting, intercompany, invoices, collateral). | Statements are loaded into Kyriba early in the morning by AUTOINTEG, with balances and transactions. |
+| Some deals, such as collateral movements and invoices, were entered by hand as journal vouchers. | BTC mapping gives each statement line the correct flow code. |
+| Reconciliation was a mix: by hand, or in Power BI with Dataflows connected to SharePoint. | Reconciliation rules (AUTOREC) match lines with the forecasts in Kyriba, or create the cash flow when there is no forecast. Lines with no match go on hold for manual reconciliation. |
+| — | Today's expected cash position shows what to invest or divest. |
+
+AUTOINTEG and AUTOREC are the names the source uses for the automatic statement integration and reconciliation tasks. A BTC is a bank transaction code, the code the bank puts on each statement line.
+
+## The statement flow
+
+The redesigned flow follows five steps: **banks send → AUTOINTEG loads → BTC to flow code → AUTOREC → cash position**.
+
+```{mermaid}
+%%| fig-cap: "Bank statement flow as described in the source presentation. Solid arrows are the daily flow; the dashed arrow is the planned next step for group entities; the amber box is the exception path."
+%%| fig-alt: "Bank B sends camt.053 statements directly to Kyriba through EBICS. Bank A and about 20 other banks send MT940 statements through an external aggregator. Inside the Kyriba Cash and Liquidity module, AUTOINTEG loads the bank statements each morning, BTC mapping gives each line a flow code, and AUTOREC reconciliation matches lines with forecasts from netting, collateral and fees, or creates the cash flow. Lines with no match go on hold for manual reconciliation. The result feeds the cash position worksheet and today's expected position, which Treasury uses each morning to decide what to invest or divest. The planned next step is for group entities to reconcile in Kyriba instead of Excel."
+flowchart LR
+    BB["Bank B<br/>direct: EBICS, camt.053"]
+    BA["Bank A<br/>MT940"]
+    OB["About 20 other banks<br/>MT940"]
+    AG(["External<br/>aggregator"])
+
+    subgraph K["Kyriba"]
+        subgraph CL["Cash & Liquidity module"]
+            ST["Bank statements<br/>loaded each morning<br/>by AUTOINTEG"]
+            BTC["BTC mapping<br/>line to flow code"]
+            FC["Forecasts<br/>netting, collateral, fees"]
+            AR(["AUTOREC<br/>reconciliation"])
+            HOLD["On hold<br/>manual reconciliation"]
+            CP["Cash position worksheet<br/>today's expected position"]
+        end
+    end
+
+    TR["Treasury<br/>what to invest or divest today"]
+    GE["Group entities<br/>reconcile in Kyriba, not Excel"]
+
+    BB -->|camt.053| ST
+    BA --> AG
+    OB --> AG
+    AG -->|MT940| ST
+    ST --> BTC
+    BTC --> AR
+    FC -->|matched with,<br/>or cash flow created| AR
+    AR -->|no match| HOLD
+    AR --> CP
+    CP -->|each morning| TR
+    CP -.->|next step| GE
+
+    classDef ext fill:#EFEFE8,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef job fill:#FFFFFF,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    classDef alert fill:#FDF0E6,stroke:#C8692B,stroke-width:1.5px,color:#7A3A10
+    class BB,BA,OB,AG,TR,GE ext
+    class ST,BTC,FC,AR,CP job
+    class HOLD alert
+    style K fill:#E3EEF5,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    style CL fill:#F5F9FB,stroke:#6FA1BF,stroke-width:1.5px,color:#1F3A4D
+    linkStyle default stroke:#4A7F9E,stroke-width:1.5px
+```
+
+| Step | What happens |
+|---|---|
+| 1. Banks send | Bank B sends camt.053 statements directly through EBICS. Bank A and about 20 other banks send MT940 statements through an external aggregator. |
+| 2. AUTOINTEG loads | Statements are loaded into the Cash & Liquidity module early each morning, with balances and transactions. |
+| 3. BTC to flow code | Each bank transaction code is mapped to a flow code: credit and debit transfers, fees, dividends, miscellaneous. |
+| 4. AUTOREC | Statement lines are matched with the forecasts already in Kyriba (from netting, collateral and fees), or the cash flow is created when there is no forecast. Lines with no match go on hold for manual reconciliation. |
+| 5. Cash position | The cash position worksheet shows today's expected position. Treasury uses it each morning to see what to invest or divest. The planned next step is for group entities to reconcile in Kyriba, not in Excel. |
+
+## How reconciliation works
+
+AUTOREC matches statement lines with the forecasts Treasury already has in Kyriba:
+
+| # | Flow | Statement line | Matched with forecast from |
+|---|---|---|---|
+| 1 | Netting | TRF with "netting" in the description | Netting deal |
+| 2 | Treasury transfers | Transfer between Bank A and Bank B | Treasury transfer (balancing transfer) |
+| 3 | Collateral | Collateral posted | Financial transaction: collateral (variable balance) |
+| 4 | RCF | RCF principal or interest | Financial transaction: RCF principal and interest |
+| 5 | Fees | Fees | Intercompany fees |
+| 6 | Invoices | Payment to a supplier | Third party invoice paid by Treasury |
+| 7 | Money market funds | MMF subscription or redemption | Financial transaction: MMF deal (variable balance) |
+
+When there is no forecast, AUTOREC creates the cash flow. When there is no match, the line goes on hold for manual reconciliation. The plan is for other group entities to reconcile in Kyriba instead of in Excel or by hand.
+
+The netting and treasury transfer forecasts are the same flows that Case 02 sends to the banks as payments, so the statements close the loop on those payments.
+
+## Daily statement checks
+
+Treasury runs four checks every morning, all in Kyriba. Only after these checks does Treasury use the cash position to invest or divest.
+
+| Check | Where to check | If something is wrong |
+|---|---|---|
+| 1. Did all statements arrive? | Bank connectivity cockpit and bank connection status report | An empty bank statement balance means the statement was not received. Contact the bank. |
+| 2. Were they integrated? | Rejected transactions | Codes 01 to 04: fix the set-up and reintegrate. Code 90: the previous day's statement is missing; contact the bank. |
+| 3. Is anything on hold? | On hold column in the bank/cash balance variance report | Lines with no match. Do the manual reconciliation. |
+| 4. Do bank and cash agree? | Bank connectivity cockpit and bank/cash balance variance report | Bank ledger and flow ledger differ. Check pending items, duplicates, manual actuals or a missing initial balance. |
+
+## Reported business impact
+
+The presentation reports the following outcomes:
+
+::: {.evidence-grid}
+::: {.evidence-card}
+### Operational risk: ~300 bank accounts
+
+About 300 bank accounts report automatically. Previously, many statements were downloaded from bank portals or sent to SharePoint by SFTP.
+:::
+
+::: {.evidence-card}
+### Efficiency: ~15 minutes every morning
+
+Approximately 15 minutes saved every morning on reconciliation. Previously, reconciliation was done by hand, or in Power BI with Dataflows connected to SharePoint.
+:::
+
+::: {.evidence-card}
+### Control: 1 daily cash position
+
+One daily cash position in Kyriba. Previously, the legacy TMS calculated the cash balance from its ledger of financial transactions, with some deals entered by hand.
+:::
+:::
+
+The coverage figure spans 2 core banks (Bank A and Bank B) plus about 20 other banks through an external aggregator, covering about 100 group entities. The source does not give a monthly total for the time saving; on the same one-run-per-working-day basis used in Case 02 (about 21 a month), 15 minutes a morning would be roughly 5 hours a month. That conversion is added here for comparison only. All figures are source-reported estimates, not measured or audited savings.
+
+## Delivery contribution
+
+The case demonstrates the Treasury-functional contribution to bank statement connectivity work:
+
+- mapping where every bank's statements come from (direct EBICS for Bank B, an external aggregator for Bank A and about 20 other banks) and how they reach Kyriba each morning;
+- defining how bank transaction codes map to Kyriba flow codes;
+- designing reconciliation rules that match statement lines with the forecasts Treasury already holds for netting, treasury transfers, collateral, RCF, fees, invoices and money market funds;
+- setting out the four daily checks, where to run them in Kyriba and what to do when one fails; and
+- making the operational, efficiency and control benefits visible, alongside the planned roll-out of reconciliation in Kyriba to group entities.
+
+Technical ownership of the bank and aggregator connections, statement formats and infrastructure is outside the evidence provided by the source presentation.
+
+## Source traceability
+
+| Report section | Source evidence | Status |
+|---|---|---|
+| How bank statements reach Treasury | Slide 2, statement sources and coverage | Source-derived summary |
+| camt.053, MT940 and EBICS note | General message-standard context | Added context, not from the source |
+| Before and after | Slide 3, manual process vs statement connectivity | Source-derived summary |
+| Statement flow | Slide 4, module flow and five steps | Source-derived summary and redrawn diagram |
+| How reconciliation works | Slide 5, seven AUTOREC matching rules | Source-derived summary |
+| Link to Case 02 payments | Slides 2 and 5, same core banks and netting/transfer flows | Source-derived cross-reference |
+| Daily statement checks | Slide 6, four morning checks | Source-derived summary |
+| Business impact | Slide 7, risk, efficiency and control figures | Source-reported estimates |
+| Monthly time conversion | Arithmetic on the slide 7 figure | Added context, not from the source |
+
+## Source files
+
+- [Case presentation (PDF)](presentation/Case_03_-_Bank_Statements.pdf){target="_blank"}
+- [Case presentation (PowerPoint)](presentation/Case_03_-_Bank_Statements.pptx)
+- [Kyriba transformation overview](../report.qmd)
+- [Case 01: FX Platform Integration](../Case_01_FX_Integration/report.qmd)
+- [Case 02: Payments Connectivity](../Case_02_Payments_Connectivity/report.qmd)
+
+::: {.report-footer}
+Source: `Case 03 - Bank Statements` presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source's approximate qualifiers.
+:::

@@ -165,6 +165,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../kyriba-transformation/Case_02_Payments_Connectivity/report.html">
  <span class="dropdown-text">Case 02: Payments Connectivity</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../kyriba-transformation/Case_03_Bank_Statements/report.html">
+ <span class="dropdown-text">Case 03: Bank Statements</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -314,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre class="mermaid mermaid-js">flowchart LR
   API["&lt;b&gt;Frankfurter API&lt;/b&gt;&lt;br/&gt;daily EUR, GBP and CHF&lt;br/&gt;rates against USD"] --&gt; PY
 
-  subgraph GHA["&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;br/&gt;daily at 18:00 UTC"]
+  subgraph GHA["&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;br/&gt;daily at 18:37 UTC"]
     PY["&lt;b&gt;Python script&lt;/b&gt;&lt;br/&gt;reads what is stored,&lt;br/&gt;gets the missing dates,&lt;br/&gt;cleans and fills gaps"]
     PY --&gt;|every run| CSV["&lt;b&gt;CSV backup&lt;/b&gt;&lt;br/&gt;saved back to GitHub"]
     PY -.-&gt;|on failure| SLACK["&lt;b&gt;Slack alert&lt;/b&gt;"]
@@ -343,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ol type="1">
 <li><strong>Source:</strong> the Frankfurter API provides daily EUR, GBP and CHF rates against USD.</li>
-<li><strong>Python script:</strong> runs inside GitHub Actions (<code>.github/workflows/daily_pipeline.yml</code>) every day at 18:00 UTC, or when started by hand. It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.</li>
+<li><strong>Python script:</strong> runs inside GitHub Actions (<code>.github/workflows/daily_pipeline.yml</code>) every day at 18:37 UTC, or when started by hand. It reads what is already stored, fetches the missing dates, cleans the data and fills the gaps. The database login is kept as a GitHub secret.</li>
 <li><strong>CSV backup:</strong> saved on every run and committed back to the repository.</li>
 <li><strong>Database:</strong> rows are upserted into the <code>fx_rates</code> table in Neon PostgreSQL.</li>
 <li><strong>Reports:</strong> the Streamlit app reads the table directly and reloads the data every morning at 08:00 UK time. Google Data Studio reads it through SQL views and refreshes once a day. Other reports and Python projects can read the same table.</li>
@@ -474,12 +478,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>The Streamlit app</h1>
 <p>The same data is also in a <a href="https://fx-rates-sergio.streamlit.app" target="_blank">Streamlit app</a>. It is written in Python and kept in this repository with the rest of the project (<a href="app/streamlit_app.py">app/streamlit_app.py</a>). It is hosted for free on Streamlit Community Cloud, so anyone with the link can open it, and it reads the <code>fx_rates</code> table directly.</p>
 <ul>
-<li><strong>Overview:</strong> KPI cards for GBP/USD, EUR/USD and GBP/EUR, GBP and EUR against USD rebased to the start of the period, GBP/EUR with its 30-day average, and a period summary with the date of each high and low.</li>
+<li><strong>Overview:</strong> KPI cards for GBP/USD, EUR/USD, GBP/EUR and USD/CHF, GBP, EUR and CHF against USD rebased to the start of the period, GBP/EUR with its 30-day average, and a period summary with the date of each high and low.</li>
 <li><strong>In brief:</strong> a short written summary of the period that updates itself from the numbers.</li>
-<li><strong>Against GBP &amp; EUR:</strong> EUR and USD against GBP, GBP and USD against EUR, and EUR/USD and GBP/USD with their 30-day averages.</li>
+<li><strong>Against GBP &amp; EUR:</strong> EUR, CHF and USD against GBP, GBP, CHF and USD against EUR, and EUR/USD and GBP/USD with their 30-day averages.</li>
 <li><strong>Period controls:</strong> quick periods (1M, 3M, YTD, 1Y, All), a date picker and a CSV download of the selected period.</li>
 </ul>
-<p>The numbers match the Data Studio report. The app reloads the data every morning at 08:00 UK time, and shows a warning if the latest rate is more than 2 days old.</p>
+<p>The numbers match the Data Studio report; the app also shows the Swiss franc, which Data Studio doesn’t. The app reloads the data every morning at 08:00 UK time, and shows a warning if the latest rate is more than 2 days old.</p>
 </section>
 <section id="the-final-result" class="level1">
 <h1>The final result</h1>
@@ -498,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td><strong>0</strong></td>
 <td>manual steps from source to report</td>
-<td>The job runs every day at 18:00 UTC and alerts me only if it fails. The Streamlit app reloads every morning and Data Studio refreshes once a day.</td>
+<td>The job runs every day at 18:37 UTC and alerts me only if it fails. The Streamlit app reloads every morning and Data Studio refreshes once a day.</td>
 </tr>
 <tr class="odd">
 <td><strong>2</strong></td>
@@ -528,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="example" class="level1">
 <h1>Example</h1>
 <p>The CSV stores units of each currency per 1 USD. The reports turn them into market pairs: GBP/USD and EUR/USD (dollars per pound and per euro), and GBP/EUR (euros per pound). The latest days:</p>
-<div id="f666d101" class="cell" data-execution_count="1">
+<div id="8ba2a444" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -558,14 +562,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style type="text/css">
 </style>
 
-<table id="T_7e2c0" class="caption-top table table-sm table-striped small">
+<table id="T_98ca6" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_7e2c0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">GBP/USD</th>
-<th id="T_7e2c0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">EUR/USD</th>
-<th id="T_7e2c0_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">GBP/EUR</th>
-<th id="T_7e2c0_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rate type</th>
+<th id="T_98ca6_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">GBP/USD</th>
+<th id="T_98ca6_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">EUR/USD</th>
+<th id="T_98ca6_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">GBP/EUR</th>
+<th id="T_98ca6_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Rate type</th>
 </tr>
 <tr class="even">
 <th class="index_name level0" data-quarto-table-cell-role="th">Date</th>
@@ -577,60 +581,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<th id="T_7e2c0_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Tue 20 Oct 2026</th>
-<td id="T_7e2c0_row0_col0" class="data row0 col0">1.3347</td>
-<td id="T_7e2c0_row0_col1" class="data row0 col1">1.1215</td>
-<td id="T_7e2c0_row0_col2" class="data row0 col2">1.1901</td>
-<td id="T_7e2c0_row0_col3" class="data row0 col3">market</td>
+<th id="T_98ca6_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Fri 06 Nov 2026</th>
+<td id="T_98ca6_row0_col0" class="data row0 col0">1.3385</td>
+<td id="T_98ca6_row0_col1" class="data row0 col1">1.1165</td>
+<td id="T_98ca6_row0_col2" class="data row0 col2">1.1988</td>
+<td id="T_98ca6_row0_col3" class="data row0 col3">market</td>
 </tr>
 <tr class="even">
-<th id="T_7e2c0_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Wed 21 Oct 2026</th>
-<td id="T_7e2c0_row1_col0" class="data row1 col0">1.3402</td>
-<td id="T_7e2c0_row1_col1" class="data row1 col1">1.1234</td>
-<td id="T_7e2c0_row1_col2" class="data row1 col2">1.1930</td>
-<td id="T_7e2c0_row1_col3" class="data row1 col3">market</td>
+<th id="T_98ca6_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Sat 07 Nov 2026</th>
+<td id="T_98ca6_row1_col0" class="data row1 col0">1.3385</td>
+<td id="T_98ca6_row1_col1" class="data row1 col1">1.1165</td>
+<td id="T_98ca6_row1_col2" class="data row1 col2">1.1988</td>
+<td id="T_98ca6_row1_col3" class="data row1 col3">filled</td>
 </tr>
 <tr class="odd">
-<th id="T_7e2c0_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Thu 22 Oct 2026</th>
-<td id="T_7e2c0_row2_col0" class="data row2 col0">1.3376</td>
-<td id="T_7e2c0_row2_col1" class="data row2 col1">1.1205</td>
-<td id="T_7e2c0_row2_col2" class="data row2 col2">1.1938</td>
-<td id="T_7e2c0_row2_col3" class="data row2 col3">market</td>
+<th id="T_98ca6_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Sun 08 Nov 2026</th>
+<td id="T_98ca6_row2_col0" class="data row2 col0">1.3385</td>
+<td id="T_98ca6_row2_col1" class="data row2 col1">1.1165</td>
+<td id="T_98ca6_row2_col2" class="data row2 col2">1.1988</td>
+<td id="T_98ca6_row2_col3" class="data row2 col3">filled</td>
 </tr>
 <tr class="even">
-<th id="T_7e2c0_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">Fri 23 Oct 2026</th>
-<td id="T_7e2c0_row3_col0" class="data row3 col0">1.3368</td>
-<td id="T_7e2c0_row3_col1" class="data row3 col1">1.1193</td>
-<td id="T_7e2c0_row3_col2" class="data row3 col2">1.1943</td>
-<td id="T_7e2c0_row3_col3" class="data row3 col3">market</td>
+<th id="T_98ca6_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">Mon 09 Nov 2026</th>
+<td id="T_98ca6_row3_col0" class="data row3 col0">1.3416</td>
+<td id="T_98ca6_row3_col1" class="data row3 col1">1.1193</td>
+<td id="T_98ca6_row3_col2" class="data row3 col2">1.1986</td>
+<td id="T_98ca6_row3_col3" class="data row3 col3">market</td>
 </tr>
 <tr class="odd">
-<th id="T_7e2c0_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">Sat 24 Oct 2026</th>
-<td id="T_7e2c0_row4_col0" class="data row4 col0">1.3368</td>
-<td id="T_7e2c0_row4_col1" class="data row4 col1">1.1193</td>
-<td id="T_7e2c0_row4_col2" class="data row4 col2">1.1943</td>
-<td id="T_7e2c0_row4_col3" class="data row4 col3">filled</td>
+<th id="T_98ca6_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">Tue 10 Nov 2026</th>
+<td id="T_98ca6_row4_col0" class="data row4 col0">1.3423</td>
+<td id="T_98ca6_row4_col1" class="data row4 col1">1.1214</td>
+<td id="T_98ca6_row4_col2" class="data row4 col2">1.1970</td>
+<td id="T_98ca6_row4_col3" class="data row4 col3">market</td>
 </tr>
 <tr class="even">
-<th id="T_7e2c0_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">Sun 25 Oct 2026</th>
-<td id="T_7e2c0_row5_col0" class="data row5 col0">1.3368</td>
-<td id="T_7e2c0_row5_col1" class="data row5 col1">1.1193</td>
-<td id="T_7e2c0_row5_col2" class="data row5 col2">1.1943</td>
-<td id="T_7e2c0_row5_col3" class="data row5 col3">filled</td>
+<th id="T_98ca6_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">Wed 11 Nov 2026</th>
+<td id="T_98ca6_row5_col0" class="data row5 col0">1.3307</td>
+<td id="T_98ca6_row5_col1" class="data row5 col1">1.1127</td>
+<td id="T_98ca6_row5_col2" class="data row5 col2">1.1959</td>
+<td id="T_98ca6_row5_col3" class="data row5 col3">market</td>
 </tr>
 <tr class="odd">
-<th id="T_7e2c0_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">Mon 26 Oct 2026</th>
-<td id="T_7e2c0_row6_col0" class="data row6 col0">1.3348</td>
-<td id="T_7e2c0_row6_col1" class="data row6 col1">1.1188</td>
-<td id="T_7e2c0_row6_col2" class="data row6 col2">1.1930</td>
-<td id="T_7e2c0_row6_col3" class="data row6 col3">market</td>
+<th id="T_98ca6_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">Thu 12 Nov 2026</th>
+<td id="T_98ca6_row6_col0" class="data row6 col0">1.3307</td>
+<td id="T_98ca6_row6_col1" class="data row6 col1">1.1127</td>
+<td id="T_98ca6_row6_col2" class="data row6 col2">1.1959</td>
+<td id="T_98ca6_row6_col3" class="data row6 col3">filled</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <p>This year’s performance, one panel per pair:</p>
-<div id="eb617817" class="cell" data-execution_count="2">
+<div id="23f46325" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same colour per pair as the Streamlit app.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {<span class="st">'GBP/USD'</span>: <span class="st">'#3B78E7'</span>, <span class="st">'EUR/USD'</span>: <span class="st">'#F08C2E'</span>, <span class="st">'GBP/EUR'</span>: <span class="st">'#00939E'</span>}</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>this_year <span class="op">=</span> pairs.loc[<span class="bu">str</span>(pairs.index.<span class="bu">max</span>().year)]</span>
@@ -653,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="report_files/figure-html/cell-3-output-1.png" width="946" height="277" class="figure-img"></p>
+<p><img src="report_files/figure-html/cell-3-output-1.png" width="948" height="277" class="figure-img"></p>
 </figure>
 </div>
 </div>

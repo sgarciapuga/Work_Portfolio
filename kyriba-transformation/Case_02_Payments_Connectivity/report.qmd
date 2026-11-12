@@ -192,6 +192,7 @@ Technical ownership of the bank connection, message mapping and infrastructure i
 - [Case presentation (PowerPoint)](presentation/Case_02_-_Payments_Connectivity.pptx)
 - [Kyriba transformation overview](../report.qmd)
 - [Case 01: FX Platform Integration](../Case_01_FX_Integration/report.qmd)
+- [Case 03: Bank Statements](../Case_03_Bank_Statements/report.qmd)
 
 ::: {.report-footer}
 Source: `Case 02 - Payments Connectivity` presentation supplied for the Kyriba transformation portfolio. Quantitative claims are reproduced with the source's approximate or minimum qualifiers.

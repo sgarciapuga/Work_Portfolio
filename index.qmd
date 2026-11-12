@@ -31,6 +31,7 @@ My end-to-end Kyriba Treasury Management System work, covering functional design
 
 - [Case 01: FX Platform Integration](kyriba-transformation/Case_01_FX_Integration/report.qmd)
 - [Case 02: Payments Connectivity](kyriba-transformation/Case_02_Payments_Connectivity/report.qmd)
+- [Case 03: Bank Statements](kyriba-transformation/Case_03_Bank_Statements/report.qmd)
 :::
 :::
 

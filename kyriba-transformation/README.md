@@ -15,6 +15,7 @@ Unlike the other projects in this portfolio, this is a narrative case study buil
 - [Accounting](accounting/report.qmd) — under development.
 - [Case 01: FX Platform Integration](Case_01_FX_Integration/report.qmd) — an FX workflow redesign connecting Kyriba and a trading platform.
 - [Case 02: Payments Connectivity](Case_02_Payments_Connectivity/report.qmd) — netting and payment-flow redesign with direct connectivity to two core banks.
+- [Case 03: Bank Statements](Case_03_Bank_Statements/report.qmd) — automatic prior-day statements, transaction code mapping and reconciliation feeding one daily cash position.
 
 ## Evidence discipline
 
@@ -34,6 +35,10 @@ kyriba-transformation/
 │   ├── report.qmd
 │   └── presentation/         # case source files
 ├── Case_02_Payments_Connectivity/
+│   ├── README.md
+│   ├── report.qmd
+│   └── presentation/         # case source files
+├── Case_03_Bank_Statements/
 │   ├── README.md
 │   ├── report.qmd
 │   └── presentation/         # case source files
