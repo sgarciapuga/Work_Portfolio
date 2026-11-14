@@ -1,3 +1,9 @@
 plan_date,activity_date,seq,kind,category,entity_code,currency,amount,ref,description,reason
-2026-11-12,2026-11-16,1,event,Group flows,US,USD,-542490.7,F06,"US pays USD 542,491: salaries and social charges.",
-2026-11-12,2026-11-16,2,action,Cash,,USD,-542490.7,MMF-USD-A,"TRS redeems USD 542,491 from MMF-USD-A.","Bank cash -442,491 is below the USD 100,000 operating minimum."
+2026-11-13,2026-11-16,1,event,Group flows,US,USD,-542490.7,F06,"US pays USD 542,491: salaries and social charges.",
+2026-11-13,2026-11-16,2,action,Cash,,USD,-542490.7,MMF-USD-A,"TRS redeems USD 542,491 from MMF-USD-A.","Bank cash -442,491 is below the USD 100,000 operating minimum."
+2026-11-13,2026-11-20,1,event,Group flows,EU,EUR,676138.61,F04,"EU receives EUR 676,139: fund administration fees received.",
+2026-11-13,2026-11-20,2,action,Cash,,EUR,675110.61,MMF-EUR-A,"TRS invests EUR 675,111 in MMF-EUR-A.","Bank cash 765,592 is above the EUR 90,481 operating minimum."
+2026-11-13,2026-11-20,3,action,FX,US,GBP,220000.0,FXI20261120-001,"US buys GBP 220,000 from TRS against USD, forward value 30 Nov (FXI20261120-001: TRS buys USD 290,984 against GBP 220,000 at 1.3227).","US will be short GBP 220,000 on 30 Nov (its balance now plus its known flows to month end). It converts foreign currency into USD at month end and fixes the rate now."
+2026-11-13,2026-11-20,4,action,FX,CH,GBP,150000.0,FXI20261120-002,"CH buys GBP 150,000 from TRS against CHF, forward value 30 Nov (FXI20261120-002: TRS buys CHF 166,155 against GBP 150,000 at 1.1077).","CH will be short GBP 150,000 on 30 Nov (its balance now plus its known flows to month end). It converts foreign currency into CHF at month end and fixes the rate now."
+2026-11-13,2026-11-20,5,action,FX,,CHF,-166154.97,FXE20261120-003,"TRS sells CHF 166,155 forward to BKA, value 30 Nov (FXE20261120-003: USD 198,398 against CHF 166,155 at 0.8375).","Today's 1 internal deal leaves TRS long CHF 166,155 for 30 Nov. One external forward offsets the net, so TRS stays flat."
+2026-11-13,2026-11-20,6,action,FX,,GBP,370000.0,FXE20261120-004,"TRS buys GBP 370,000 forward from BKA, value 30 Nov (FXE20261120-004: GBP 370,000 against USD 489,382 at 1.3227).","Today's 2 internal deals leave TRS short GBP 370,000 for 30 Nov. One external forward offsets the net, so TRS stays flat."
