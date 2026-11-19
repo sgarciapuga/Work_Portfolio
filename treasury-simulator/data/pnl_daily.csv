@@ -13689,8 +13689,8 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-16,EUR,IC loan interest earned,0.0,0.0
 2026-11-16,EUR,FX revaluation,0.0,-14.73
 2026-11-16,EUR,FX deal MTM,0.0,0.0
-2026-11-16,GBP,MMF and deposit income,2545.7,3359.9
-2026-11-16,GBP,IC deposit interest paid,-2452.14,-3236.42
+2026-11-16,GBP,MMF and deposit income,2545.76,3359.99
+2026-11-16,GBP,IC deposit interest paid,-2452.15,-3236.44
 2026-11-16,GBP,IC loan interest earned,0.0,0.0
 2026-11-16,GBP,FX revaluation,0.0,-13.64
 2026-11-16,GBP,FX deal MTM,0.0,0.0
@@ -13699,18 +13699,18 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-16,CHF,IC loan interest earned,0.0,0.0
 2026-11-16,CHF,FX revaluation,0.0,-5.84
 2026-11-16,CHF,FX deal MTM,0.0,0.0
-2026-11-17,USD,MMF and deposit income,11754.91,11754.91
-2026-11-17,USD,IC deposit interest paid,-9186.87,-9186.87
+2026-11-17,USD,MMF and deposit income,11724.62,11724.62
+2026-11-17,USD,IC deposit interest paid,-9162.57,-9162.57
 2026-11-17,USD,IC loan interest earned,0.0,0.0
 2026-11-17,USD,FX revaluation,0.0,0.0
 2026-11-17,USD,FX deal MTM,0.0,0.0
-2026-11-17,EUR,MMF and deposit income,826.56,908.31
-2026-11-17,EUR,IC deposit interest paid,-796.76,-875.56
+2026-11-17,EUR,MMF and deposit income,826.9,908.69
+2026-11-17,EUR,IC deposit interest paid,-796.78,-875.58
 2026-11-17,EUR,IC loan interest earned,0.0,0.0
 2026-11-17,EUR,FX revaluation,0.0,-9.71
 2026-11-17,EUR,FX deal MTM,0.0,0.0
-2026-11-17,GBP,MMF and deposit income,2545.7,3358.08
-2026-11-17,GBP,IC deposit interest paid,-2452.14,-3234.67
+2026-11-17,GBP,MMF and deposit income,2545.76,3358.17
+2026-11-17,GBP,IC deposit interest paid,-2452.15,-3234.69
 2026-11-17,GBP,IC loan interest earned,0.0,0.0
 2026-11-17,GBP,FX revaluation,0.0,-3.51
 2026-11-17,GBP,FX deal MTM,0.0,0.0
@@ -13719,3 +13719,23 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-17,CHF,IC loan interest earned,0.0,0.0
 2026-11-17,CHF,FX revaluation,0.0,-5.84
 2026-11-17,CHF,FX deal MTM,0.0,0.0
+2026-11-18,USD,MMF and deposit income,11724.62,11724.62
+2026-11-18,USD,IC deposit interest paid,-9162.57,-9162.57
+2026-11-18,USD,IC loan interest earned,0.0,0.0
+2026-11-18,USD,FX revaluation,0.0,0.0
+2026-11-18,USD,FX deal MTM,0.0,0.0
+2026-11-18,EUR,MMF and deposit income,826.9,906.95
+2026-11-18,EUR,IC deposit interest paid,-796.78,-873.91
+2026-11-18,EUR,IC loan interest earned,0.0,0.0
+2026-11-18,EUR,FX revaluation,0.0,-8.23
+2026-11-18,EUR,FX deal MTM,0.0,0.0
+2026-11-18,GBP,MMF and deposit income,2545.76,3352.38
+2026-11-18,GBP,IC deposit interest paid,-2452.15,-3229.11
+2026-11-18,GBP,IC loan interest earned,0.0,0.0
+2026-11-18,GBP,FX revaluation,0.0,-11.41
+2026-11-18,GBP,FX deal MTM,0.0,0.0
+2026-11-18,CHF,MMF and deposit income,-8.53,-10.13
+2026-11-18,CHF,IC deposit interest paid,16.2,19.23
+2026-11-18,CHF,IC loan interest earned,0.0,0.0
+2026-11-18,CHF,FX revaluation,0.0,-16.31
+2026-11-18,CHF,FX deal MTM,0.0,0.0
