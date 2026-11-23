@@ -13779,3 +13779,43 @@ pnl_date,currency,component,amount_ccy,amount_usd
 2026-11-20,CHF,IC loan interest earned,0.0,0.0
 2026-11-20,CHF,FX revaluation,0.0,22.05
 2026-11-20,CHF,FX deal MTM,0.0,0.0
+2026-11-21,USD,MMF and deposit income,11694.32,11694.32
+2026-11-21,USD,IC deposit interest paid,-9138.26,-9138.26
+2026-11-21,USD,IC loan interest earned,0.0,0.0
+2026-11-21,USD,FX revaluation,0.0,0.0
+2026-11-21,USD,FX deal MTM,0.0,0.0
+2026-11-21,EUR,MMF and deposit income,871.71,958.01
+2026-11-21,EUR,IC deposit interest paid,-839.81,-922.95
+2026-11-21,EUR,IC loan interest earned,0.0,0.0
+2026-11-21,EUR,FX revaluation,0.0,0.0
+2026-11-21,EUR,FX deal MTM,0.0,0.0
+2026-11-21,GBP,MMF and deposit income,2546.21,3341.84
+2026-11-21,GBP,IC deposit interest paid,-2452.27,-3218.54
+2026-11-21,GBP,IC loan interest earned,0.0,0.0
+2026-11-21,GBP,FX revaluation,0.0,0.0
+2026-11-21,GBP,FX deal MTM,0.0,0.0
+2026-11-21,CHF,MMF and deposit income,-8.53,-10.17
+2026-11-21,CHF,IC deposit interest paid,16.2,19.31
+2026-11-21,CHF,IC loan interest earned,0.0,0.0
+2026-11-21,CHF,FX revaluation,0.0,0.0
+2026-11-21,CHF,FX deal MTM,0.0,0.0
+2026-11-22,USD,MMF and deposit income,11694.32,11694.32
+2026-11-22,USD,IC deposit interest paid,-9138.26,-9138.26
+2026-11-22,USD,IC loan interest earned,0.0,0.0
+2026-11-22,USD,FX revaluation,0.0,0.0
+2026-11-22,USD,FX deal MTM,0.0,0.0
+2026-11-22,EUR,MMF and deposit income,871.71,958.01
+2026-11-22,EUR,IC deposit interest paid,-839.81,-922.95
+2026-11-22,EUR,IC loan interest earned,0.0,0.0
+2026-11-22,EUR,FX revaluation,0.0,0.0
+2026-11-22,EUR,FX deal MTM,0.0,0.0
+2026-11-22,GBP,MMF and deposit income,2546.21,3341.84
+2026-11-22,GBP,IC deposit interest paid,-2452.27,-3218.54
+2026-11-22,GBP,IC loan interest earned,0.0,0.0
+2026-11-22,GBP,FX revaluation,0.0,0.0
+2026-11-22,GBP,FX deal MTM,0.0,0.0
+2026-11-22,CHF,MMF and deposit income,-8.53,-10.17
+2026-11-22,CHF,IC deposit interest paid,16.2,19.31
+2026-11-22,CHF,IC loan interest earned,0.0,0.0
+2026-11-22,CHF,FX revaluation,0.0,0.0
+2026-11-22,CHF,FX deal MTM,0.0,0.0
